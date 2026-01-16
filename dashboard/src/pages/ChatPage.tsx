@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Upload, Send, MessageSquare, FileText, AlertTriangle, CheckCircle, Trash2, Home, ChevronDown, ChevronUp, Table } from 'lucide-react';
+import { Upload, Send, MessageSquare, FileText, Trash2, Home, ChevronDown, ChevronUp, Table, Download, Mic, MicOff, Volume2, VolumeX } from 'lucide-react';
 
 interface Message {
     role: 'user' | 'assistant' | 'system';
@@ -35,14 +35,25 @@ interface ProductData {
     date: string;
 }
 
+// Session storage key
+const CHAT_SESSION_KEY = 'inventory_chat_messages';
+
 const ChatPage: React.FC = () => {
-    const [messages, setMessages] = useState<Message[]>([
-        {
-            role: 'assistant',
-            content: 'Hello! I\'m your inventory analysis assistant. Upload a CSV file to get started, then ask me questions about your data.',
-            timestamp: new Date()
+    const [messages, setMessages] = useState<Message[]>(() => {
+        // Load from localStorage on init
+        const saved = localStorage.getItem(CHAT_SESSION_KEY);
+        if (saved) {
+            try {
+                const parsed = JSON.parse(saved);
+                return parsed.map((m: any) => ({ ...m, timestamp: new Date(m.timestamp) }));
+            } catch { }
         }
-    ]);
+        return [{
+            role: 'assistant',
+            content: 'Hello! I\'m your inventory analysis assistant. Upload a CSV file to get started, then ask me questions about your data. 🎤 Use the mic button for voice input!',
+            timestamp: new Date()
+        }];
+    });
     const [inputMessage, setInputMessage] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [isUploading, setIsUploading] = useState(false);
@@ -52,8 +63,19 @@ const ChatPage: React.FC = () => {
     const [showDataTable, setShowDataTable] = useState(false);
     const [productData, setProductData] = useState<ProductData[]>([]);
 
+    // Voice state
+    const [isListening, setIsListening] = useState(false);
+    const [isSpeaking, setIsSpeaking] = useState(false);
+    const [voiceEnabled, setVoiceEnabled] = useState(true);
+
     const fileInputRef = useRef<HTMLInputElement>(null);
     const messagesEndRef = useRef<HTMLDivElement>(null);
+    const recognitionRef = useRef<any>(null);
+
+    // Save messages to localStorage whenever they change
+    useEffect(() => {
+        localStorage.setItem(CHAT_SESSION_KEY, JSON.stringify(messages));
+    }, [messages]);
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -66,7 +88,70 @@ const ChatPage: React.FC = () => {
     // Check session status on mount
     useEffect(() => {
         checkStatus();
+        initSpeechRecognition();
     }, []);
+
+    const initSpeechRecognition = () => {
+        // Check for browser support
+        const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
+        if (SpeechRecognition) {
+            recognitionRef.current = new SpeechRecognition();
+            recognitionRef.current.continuous = false;
+            recognitionRef.current.interimResults = false;
+            recognitionRef.current.lang = 'en-US';
+
+            recognitionRef.current.onresult = (event: any) => {
+                const transcript = event.results[0][0].transcript;
+                setInputMessage(transcript);
+                setIsListening(false);
+            };
+
+            recognitionRef.current.onerror = () => {
+                setIsListening(false);
+            };
+
+            recognitionRef.current.onend = () => {
+                setIsListening(false);
+            };
+        }
+    };
+
+    const toggleListening = () => {
+        if (!recognitionRef.current) {
+            alert('Speech recognition is not supported in this browser. Try Chrome.');
+            return;
+        }
+
+        if (isListening) {
+            recognitionRef.current.stop();
+            setIsListening(false);
+        } else {
+            recognitionRef.current.start();
+            setIsListening(true);
+        }
+    };
+
+    const speakText = (text: string) => {
+        if (!voiceEnabled) return;
+
+        // Cancel any ongoing speech
+        window.speechSynthesis.cancel();
+
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = 1.0;
+        utterance.pitch = 1.0;
+
+        utterance.onstart = () => setIsSpeaking(true);
+        utterance.onend = () => setIsSpeaking(false);
+        utterance.onerror = () => setIsSpeaking(false);
+
+        window.speechSynthesis.speak(utterance);
+    };
+
+    const stopSpeaking = () => {
+        window.speechSynthesis.cancel();
+        setIsSpeaking(false);
+    };
 
     const checkStatus = async () => {
         try {
@@ -76,7 +161,6 @@ const ChatPage: React.FC = () => {
             if (data.summary) {
                 setSummary(data.summary);
             }
-            // Fetch product data if available
             if (data.has_data) {
                 fetchProductData();
             }
@@ -95,6 +179,10 @@ const ChatPage: React.FC = () => {
         } catch (error) {
             console.error('Failed to fetch product data:', error);
         }
+    };
+
+    const handleExportCSV = () => {
+        window.open('/api/chat/export-csv', '_blank');
     };
 
     const handleFileUpload = async (file: File) => {
@@ -123,13 +211,17 @@ const ChatPage: React.FC = () => {
             if (response.ok) {
                 setHasData(true);
                 setSummary(data.summary);
-                fetchProductData();  // Fetch product data after upload
+                fetchProductData();
 
                 setMessages(prev => [...prev, {
                     role: 'system',
                     content: `✅ ${data.message}\n\n📊 **Analysis Complete:**\n- Products: ${data.summary.total_products}\n- Critical: ${data.summary.critical_risk} | Warning: ${data.summary.warning_risk} | Safe: ${data.summary.safe}\n- Profitable: ${data.summary.profitable} | Loss-makers: ${data.summary.loss_makers}`,
                     timestamp: new Date()
                 }]);
+
+                if (voiceEnabled) {
+                    speakText(`Loaded ${data.summary.total_products} products. ${data.summary.critical_risk} need immediate attention.`);
+                }
             } else {
                 setMessages(prev => [...prev, {
                     role: 'system',
@@ -197,6 +289,11 @@ const ChatPage: React.FC = () => {
                 timestamp: new Date()
             }]);
 
+            // Auto-speak response if enabled
+            if (voiceEnabled && data.response) {
+                speakText(data.response.substring(0, 500)); // Limit to first 500 chars
+            }
+
             if (data.summary) {
                 setSummary(data.summary);
             }
@@ -220,6 +317,7 @@ const ChatPage: React.FC = () => {
             setSummary(null);
             setProductData([]);
             setShowDataTable(false);
+            localStorage.removeItem(CHAT_SESSION_KEY);
             setMessages([{
                 role: 'assistant',
                 content: 'Session cleared. Upload a new CSV file to start fresh.',
@@ -251,6 +349,14 @@ const ChatPage: React.FC = () => {
                         </h1>
                     </div>
                     <div className="flex items-center gap-3">
+                        {/* Voice Toggle */}
+                        <button
+                            onClick={() => setVoiceEnabled(!voiceEnabled)}
+                            className={`flex items-center gap-2 px-3 py-2 rounded-full transition-colors text-xs font-bold uppercase ${voiceEnabled ? 'bg-green-500/20 text-green-400 border border-green-500/30' : 'bg-white/5 text-gray-400 border border-white/10'}`}
+                            title={voiceEnabled ? 'Voice enabled' : 'Voice disabled'}
+                        >
+                            {voiceEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
+                        </button>
                         {hasData && (
                             <button
                                 onClick={handleClearSession}
@@ -307,12 +413,21 @@ const ChatPage: React.FC = () => {
                     </div>
                 )}
 
-                {/* Summary Card */}
+                {/* Summary Card with Export */}
                 {hasData && summary && (
                     <div className="mb-4 p-4 bg-white/5 border border-white/10 rounded-xl">
-                        <div className="flex items-center gap-2 mb-3">
-                            <FileText className="w-5 h-5 text-blue-400" />
-                            <span className="text-sm font-bold uppercase text-gray-400">Data Loaded</span>
+                        <div className="flex items-center justify-between mb-3">
+                            <div className="flex items-center gap-2">
+                                <FileText className="w-5 h-5 text-blue-400" />
+                                <span className="text-sm font-bold uppercase text-gray-400">Data Loaded</span>
+                            </div>
+                            <button
+                                onClick={handleExportCSV}
+                                className="flex items-center gap-2 px-3 py-1.5 bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 border border-blue-500/20 rounded-full transition-colors text-xs font-bold uppercase"
+                            >
+                                <Download className="w-3 h-3" />
+                                Export CSV
+                            </button>
                         </div>
                         <div className="grid grid-cols-3 gap-4 text-center">
                             <div>
@@ -410,6 +525,15 @@ const ChatPage: React.FC = () => {
                                         }`}
                                 >
                                     <p className="whitespace-pre-wrap text-sm">{msg.content}</p>
+                                    {msg.role === 'assistant' && (
+                                        <button
+                                            onClick={() => speakText(msg.content)}
+                                            className="mt-2 text-xs text-gray-400 hover:text-white flex items-center gap-1"
+                                            title="Read aloud"
+                                        >
+                                            <Volume2 className="w-3 h-3" /> Listen
+                                        </button>
+                                    )}
                                 </div>
                             </div>
                         ))}
@@ -424,12 +548,33 @@ const ChatPage: React.FC = () => {
                                 </div>
                             </div>
                         )}
+                        {isSpeaking && (
+                            <div className="flex justify-center">
+                                <button
+                                    onClick={stopSpeaking}
+                                    className="px-4 py-2 bg-purple-500/20 text-purple-400 rounded-full text-xs flex items-center gap-2"
+                                >
+                                    <VolumeX className="w-4 h-4" /> Stop Speaking
+                                </button>
+                            </div>
+                        )}
                         <div ref={messagesEndRef} />
                     </div>
 
-                    {/* Input */}
+                    {/* Input with Voice */}
                     <div className="border-t border-white/10 p-4">
                         <div className="flex gap-3">
+                            <button
+                                onClick={toggleListening}
+                                disabled={!hasData}
+                                className={`px-4 py-3 rounded-full transition-colors flex items-center justify-center ${isListening
+                                    ? 'bg-red-500 text-white animate-pulse'
+                                    : 'bg-white/5 text-gray-400 hover:bg-white/10 disabled:opacity-50'
+                                    }`}
+                                title={isListening ? 'Stop listening' : 'Voice input'}
+                            >
+                                {isListening ? <MicOff className="w-5 h-5" /> : <Mic className="w-5 h-5" />}
+                            </button>
                             <input
                                 type="text"
                                 value={inputMessage}
