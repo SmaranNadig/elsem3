@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { RefreshCw, TrendingUp, TrendingDown, AlertTriangle, Activity, Bell } from 'lucide-react';
+import { RefreshCw, TrendingUp, TrendingDown, AlertTriangle, Activity, Bell, BarChart3 } from 'lucide-react';
 import AgentStatusCard from './AgentStatusCard';
 import MetricsChart from './MetricsChart';
 import RecommendationsTable from './RecommendationsTable';
@@ -243,6 +243,36 @@ const Dashboard: React.FC = () => {
                                 </div>
                             </div>
                         )}
+
+                        {/* Link to Product Sales Analysis */}
+                        <div className="mb-12">
+                            <h2 className="text-xl font-bold uppercase tracking-widest text-gray-400 mb-6 pl-1">Sales Analysis</h2>
+                            <a href="/product-sales" className="block">
+                                <div className="glass-card p-8 hover:bg-white/5 transition-colors cursor-pointer border-2 border-transparent hover:border-emerald-500/30">
+                                    <div className="flex items-center justify-between">
+                                        <div className="flex items-center gap-4">
+                                            <div className="bg-emerald-500/10 p-4 rounded-lg">
+                                                <BarChart3 size={32} className="text-emerald-400" />
+                                            </div>
+                                            <div>
+                                                <h3 className="text-2xl font-bold text-white mb-1">
+                                                    📊 Individual Product Sales Analysis
+                                                </h3>
+                                                <p className="text-gray-400">
+                                                    View detailed month-by-month sales trends for each product from retail dataset
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div className="flex items-center gap-2 text-emerald-400">
+                                            <span className="text-sm font-semibold uppercase">View Charts</span>
+                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
 
                         {/* Recommendations Table */}
                         {recommendations.length > 0 && (

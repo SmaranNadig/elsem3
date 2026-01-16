@@ -109,9 +109,26 @@ export const api = {
         return response.data;
     },
 
-    updateSKUMode: async (skuId: string, mode: string) => {
-        const response = await apiClient.put(`/sku/${skuId}/mode`, { mode });
-        return response.data;
+    updateSKUMode: (skuId: string, mode: string) => {
+        return apiClient.put(`/sku/${skuId}/mode`, { mode });
+    },
+
+    // Sales analytics
+    getSalesData: () => {
+        return apiClient.get('/sales/monthly');
+    },
+
+    getProductSales: (limit: number = 20) => {
+        return apiClient.get(`/sales/products?limit=${limit}`);
+    },
+
+    // Advanced Analytics
+    getAnalyticsProducts: (limit: number = 50) => {
+        return apiClient.get(`/analytics/products?limit=${limit}`);
+    },
+
+    getProductAnalytics: (productName: string) => {
+        return apiClient.get(`/analytics/product/${encodeURIComponent(productName)}`);
     },
 
     bulkUpdateModes: async (updates: Record<string, string>) => {

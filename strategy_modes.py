@@ -1,11 +1,10 @@
 """
 strategy_modes.py - Strategy Mode Definitions and Configurations
 
-Defines 4 strategy modes that affect how all agents analyze products:
+Defines 3 strategy modes that affect how all agents analyze products:
 1. Profit Maximization - Maximize margins and revenue
 2. Loss Reduction - Minimize losses and protect margins
-3. Customer Satisfaction - Prioritize availability and competitive pricing
-4. Balanced - Optimize across all factors
+3. Balanced - Optimize across all factors
 """
 
 from enum import Enum
@@ -17,7 +16,6 @@ class StrategyMode(str, Enum):
     """Strategy mode enumeration"""
     PROFIT_MAX = "profit_maximization"
     LOSS_REDUCTION = "loss_reduction"
-    CUSTOMER_SAT = "customer_satisfaction"
     BALANCED = "balanced"
 
 
@@ -130,44 +128,6 @@ MODE_CONFIGS: Dict[str, ModeConfig] = {
             "PAUSE_LOSS_MAKERS": 0.9,
             "RESTOCK": 0.6,
             "DISCOUNT": 0.1
-        }
-    ),
-    
-    StrategyMode.CUSTOMER_SAT: ModeConfig(
-        id="customer_satisfaction",
-        name="Customer Satisfaction",
-        icon="❤️",
-        description="Prioritize availability and competitive pricing. Maximum stock levels, market-competitive prices.",
-        color="purple",
-        
-        # Profit Doctor - Accept lower margins for availability
-        min_margin_threshold=0.05,  # Flag margins below 5%
-        low_margin_alert_threshold=0.10,  # Alert if below 10%
-        
-        # Inventory Sentinel - Maximum safety stock, prevent stockouts
-        safety_stock_multiplier=2.0,
-        risk_tolerance="very_low",
-        stockout_penalty_weight=1.0,
-        
-        # Pricing - Competitive, value-oriented
-        price_elasticity_weight=0.5,
-        competitive_pricing_weight=0.9,
-        
-        # Ad Optimizer - Brand awareness, customer retention
-        ad_roas_target=1.5,
-        ad_spend_aggressiveness=0.6,
-        
-        # Seasonal Analyst - Availability-focused forecasting
-        seasonal_forecast_conservatism=0.5,
-        seasonal_risk_threshold=0.3,
-        
-        # Strategy Supervisor - Prioritize availability
-        action_priority_weights={
-            "RESTOCK": 1.0,
-            "PREVENT_STOCKOUT": 0.95,
-            "COMPETITIVE_PRICE": 0.8,
-            "OPTIMIZE_ADS": 0.6,
-            "INCREASE_PRICE": 0.2
         }
     ),
     

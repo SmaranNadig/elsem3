@@ -1,8 +1,10 @@
 {
   "SKU_SHOES_9083792654552": "profit_maximization",
-  "SKU_SHOES_9083792720088": "customer_satisfaction",
+  "SKU_SHOES_9083792720088": "loss_reduction",
   "SKU_SHOES_9083792687320": "loss_reduction",
+  "SKU_SHOES_9083792785624": "profit_maximization",
+  "SKU_SHOES_9083792752856": "loss_reduction",
   "_default_mode": "balanced",
-  "_last_updated": "2026-01-16T15:02:53.449500",
+  "_last_updated": "2026-01-16T16:03:12.608175",
   "_comment": "SKU Strategy Mode Storage - Maps SKU IDs to their selected strategy mode"
 }

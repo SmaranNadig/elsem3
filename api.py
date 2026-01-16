@@ -13,6 +13,7 @@ from config import CFG
 from config import CFG
 from pipeline import run_pipeline
 from shopify_loader import ShopifyLoader
+from sku_mode_manager import sku_mode_manager  # Import mode manager
 
 # Initialize FastAPI app
 app = FastAPI(
@@ -80,6 +81,7 @@ class SKURecommendation(BaseModel):
     profit_at_risk: float
     impact_score: float
     recommended_action: str
+    strategy_mode: Optional[str]  = None  # Strategy mode for this SKU
     # LangChain LLM insights (optional)
     llm_profit_insight: Optional[str] = None
     llm_inventory_insight: Optional[str] = None
@@ -1372,6 +1374,69 @@ async def execute_alert_action(action: InternalAction):
         
     except Exception as e:
         print(f"[ERROR] Failed to execute alert action: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+# ============================================================================
+# Sales Analysis Endpoints
+# ============================================================================
+
+from sales_analyzer import sales_analyzer
+
+@app.get("/api/sales/monthly")
+async def get_monthly_sales():
+    """Get monthly sales data from retail dataset"""
+    try:
+        data = sales_analyzer.get_monthly_sales()
+        return data
+    except Exception as e:
+        print(f"[ERROR] Sales analysis failed: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/api/sales/top-products")
+async def get_top_products(top_n: int = 10):
+    """Get top selling products by month"""
+    try:
+        data = sales_analyzer.get_top_products_by_month(top_n=top_n)
+        return data
+    except Exception as e:
+        print(f"[ERROR] Top products analysis failed: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/api/sales/products")
+async def get_product_sales(limit: int = 20):
+    """Get sales data for individual products over months"""
+    try:
+        data = sales_analyzer.get_product_sales_by_month(limit=limit)
+        return data
+    except Exception as e:
+        print(f"[ERROR] Product sales analysis failed: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+from advanced_sales_analyzer import advanced_analyzer
+
+@app.get("/api/analytics/products")
+async def get_analytics_products(limit: int = 50):
+    """Get list of products for advanced analytics"""
+    try:
+        data = advanced_analyzer.get_product_list(limit=limit)
+        return data
+    except Exception as e:
+        print(f"[ERROR] Product list failed: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/api/analytics/product/{product_name}")
+async def get_product_analytics(product_name: str):
+    """Get comprehensive analytics for a specific product"""
+    try:
+        data = advanced_analyzer.get_product_analytics(product_name)
+        return data
+    except Exception as e:
+        print(f"[ERROR] Product analytics failed: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
 
