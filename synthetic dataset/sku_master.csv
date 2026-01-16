@@ -1,0 +1,6 @@
+sku_id,category,product_name,selling_price,mrp,cogs,shipping_cost_per_unit,platform_fee_percent,platform_fixed_fee,ad_spend_total_last_30_days,units_sold_last_30_days,current_stock,lead_time_days,is_hero
+SKU_SHOES_9083792720088,Footwear,Classic Leather Loafers,2499,3499,900,70,2.0,3,8000,100,5,10,False
+SKU_SHOES_9083792785624,Footwear,Limited Edition Hype Kicks,2499,3499,900,70,2.0,3,8000,100,20,10,True
+SKU_SHOES_9083792654552,Footwear,Urban High-Top Sneakers,2499,3499,900,70,2.0,3,8000,100,45,10,False
+SKU_SHOES_9083792687320,Footwear,Marathon Pro Running Shoes,2499,3499,900,70,2.0,3,8000,100,120,10,True
+SKU_SHOES_9083792752856,Footwear,Canvas Slip-Ons,2499,3499,900,70,2.0,3,8000,100,200,10,False
