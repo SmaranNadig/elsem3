@@ -7,6 +7,7 @@ import AnalyticsPage from './pages/AnalyticsPage';
 import ProductSalesPage from './pages/ProductSalesPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import ChatPage from './pages/ChatPage';
+import WorkflowsPage from './pages/WorkflowsPage';
 import './index.css';
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
                 <Route path="/product-sales" element={<ProductSalesPage />} />
                 <Route path="/product/:productName" element={<ProductDetailPage />} />
                 <Route path="/chat" element={<ChatPage />} />
+                <Route path="/workflows" element={<WorkflowsPage />} />
             </Routes>
         </Router>
     );
