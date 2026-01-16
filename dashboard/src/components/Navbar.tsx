@@ -24,6 +24,9 @@ const Navbar: React.FC = () => {
                     <Link to="/features" className={`text-sm font-medium hover:text-white transition-colors uppercase tracking-widest hidden md:block ${location.pathname === '/features' ? 'text-white' : 'text-gray-300'}`}>
                         Features
                     </Link>
+                    <Link to="/chat" className={`text-sm font-medium hover:text-white transition-colors uppercase tracking-widest hidden md:block ${location.pathname === '/chat' ? 'text-white' : 'text-gray-300'}`}>
+                        Chat
+                    </Link>
                     <Link to="/about" className={`text-sm font-medium hover:text-white transition-colors uppercase tracking-widest hidden md:block ${location.pathname === '/about' ? 'text-white' : 'text-gray-300'}`}>
                         About
                     </Link>

@@ -6,6 +6,7 @@ import AboutPage from './pages/AboutPage';
 import AnalyticsPage from './pages/AnalyticsPage';
 import ProductSalesPage from './pages/ProductSalesPage';
 import ProductDetailPage from './pages/ProductDetailPage';
+import ChatPage from './pages/ChatPage';
 import './index.css';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/product-sales" element={<ProductSalesPage />} />
                 <Route path="/product/:productName" element={<ProductDetailPage />} />
+                <Route path="/chat" element={<ChatPage />} />
             </Routes>
         </Router>
     );

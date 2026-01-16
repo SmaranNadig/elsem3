@@ -139,6 +139,36 @@ export const api = {
     getModeDistribution: async () => {
         const response = await apiClient.get('/modes/distribution');
         return response.data;
+    },
+
+    // Chat API
+    getChatStatus: async () => {
+        const response = await apiClient.get('/chat/status');
+        return response.data;
+    },
+
+    uploadChatCSV: async (file: File) => {
+        const formData = new FormData();
+        formData.append('file', file);
+        const response = await apiClient.post('/chat/upload-csv', formData, {
+            headers: { 'Content-Type': 'multipart/form-data' }
+        });
+        return response.data;
+    },
+
+    sendChatMessage: async (message: string) => {
+        const response = await apiClient.post('/chat/message', { message });
+        return response.data;
+    },
+
+    clearChatSession: async () => {
+        const response = await apiClient.post('/chat/clear');
+        return response.data;
+    },
+
+    getChatAnalysis: async () => {
+        const response = await apiClient.get('/chat/analysis');
+        return response.data;
     }
 };
 
