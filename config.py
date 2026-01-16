@@ -13,7 +13,7 @@ class Config:
     
     # Data paths (default to synthetic dataset)
     sku_master_path: str = os.getenv("SKU_MASTER_PATH", "synthetic dataset/sku_master.csv")
-    sales_history_path: str = os.getenv("SALES_HISTORY_PATH", "synthetic dataset/seasonal_sales_history.csv")
+    sales_history_path: str = os.getenv("SALES_HISTORY_PATH", "synthetic dataset/sales_history.csv")
     
     # Agent parameters
     fee_gst_rate: float = 0.18
@@ -43,7 +43,7 @@ class Config:
     enable_ad_optimizer_llm: bool = os.getenv("ENABLE_AD_OPTIMIZER_LLM", "True").lower() == "true"
     
     # Seasonal Analyst Configuration
-    seasonal_history_path: str = os.getenv("SEASONAL_HISTORY_PATH", "synthetic dataset/seasonal_sales_history.csv")
+    seasonal_history_path: str = os.getenv("SEASONAL_HISTORY_PATH", "synthetic dataset/sales_history.csv")
     seasonal_period: int = int(os.getenv("SEASONAL_PERIOD", "12"))  # Monthly seasonality
     min_seasonal_history_days: int = int(os.getenv("MIN_SEASONAL_HISTORY_DAYS", "90"))
     seasonality_strength_threshold: float = float(os.getenv("SEASONALITY_STRENGTH_THRESHOLD", "0.3"))

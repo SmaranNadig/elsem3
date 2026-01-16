@@ -10,7 +10,6 @@ from datetime import datetime
 import traceback
 
 from config import CFG
-from config import CFG
 from pipeline import run_pipeline
 from shopify_loader import ShopifyLoader
 
@@ -89,9 +88,9 @@ class SKURecommendation(BaseModel):
     llm_strategy_confidence: Optional[float] = None
 
 
-# Helper function to execute pipeline
+# Helper functions to execute pipeline
 def load_shopify_data():
-    """Fetch data from Shopify and run pipeline"""
+    """Fetch data from Shopify and run pipeline with unified format."""
     global pipeline_data, last_execution_time, execution_status, data_source
     
     loader = ShopifyLoader()
@@ -103,7 +102,7 @@ def load_shopify_data():
         if df_master.empty:
             return False
             
-        # Run pipeline with Shopify data
+        # Run pipeline with Shopify data (already in unified format)
         pipeline_data = run_pipeline(verbose=True, df_master=df_master, df_sales=df_sales)
         last_execution_time = datetime.now()
         data_source = "shopify"
@@ -119,7 +118,7 @@ def load_shopify_data():
 def execute_pipeline():
     global pipeline_data, last_execution_time, execution_status, data_source
     
-    # Try Shopify First
+    # Try Shopify first if configured
     if CFG.shopify_access_token and CFG.shopify_shop_domain and data_source != "shopify":
         print("[INFO] Attempting to load Shopify data...")
         if load_shopify_data():
@@ -130,7 +129,7 @@ def execute_pipeline():
         print("[INFO] Shopify data active. Skipping CSV pipeline.")
         return True
     
-    # Don't re-run if we already have CSV data (avoids timeout on refresh)
+    # Don't re-run if we already have CSV data
     if data_source == "csv" and pipeline_data is not None:
         print("[INFO] CSV data already loaded. Skipping re-execution.")
         return True
@@ -140,7 +139,7 @@ def execute_pipeline():
         df = run_pipeline(verbose=False)
         if not df.empty:
             pipeline_data = df
-            data_source = "csv"  # Mark as CSV
+            data_source = "csv"
             last_execution_time = datetime.now()
             execution_status = {
                 "status": "success",
@@ -157,11 +156,10 @@ def execute_pipeline():
 
 
 
-# Execute pipeline on startup - Waiting for Shopify data from n8n
+# Execute pipeline on startup
 @app.on_event("startup")
 async def startup_event():
     print("[INFO] API started. Initializing data...")
-    # Auto-run pipeline with synthetic data if no Shopify data
     success = execute_pipeline()
     if success:
         print("[INFO] Pipeline executed successfully on startup.")
@@ -748,12 +746,6 @@ async def get_ad_spend_for_sku(sku_id: str, days: int = 30):
 # n8n Integration Endpoints
 # ============================================================================
 
-class ShopifyData(BaseModel):
-    """Model for Shopify data sent from n8n"""
-    products: List[Dict[str, Any]]
-    orders: Optional[List[Dict[str, Any]]] = None
-
-
 class N8nActionLog(BaseModel):
     """Model for logging actions taken by n8n"""
     sku_id: str
@@ -809,153 +801,44 @@ completed_user_actions: List[Dict[str, Any]] = []
 
 
 @app.post("/api/n8n/analyze")
-async def n8n_analyze_shopify_data(data: ShopifyData):
+async def n8n_analyze(products: Optional[List[Dict[str, Any]]] = None):
     """
-    Endpoint for n8n to trigger agent analysis with Shopify data.
+    Endpoint for n8n to trigger agent analysis.
     
-    This receives product and order data from Shopify via n8n,
-    transforms it to agent format, and returns real recommendations.
+    Can be called with:
+    - No body: Uses CSV data from files
+    - With products list: Transforms Shopify data to unified format
     """
     global pipeline_data, last_execution_time, execution_status, data_source
     
     try:
-        print(f"[INFO] n8n triggered analysis with {len(data.products)} products")
-        
-        # DEBUG: Print first product to verify input
-        if data.products:
-            print(f"[DEBUG] First product: {data.products[0].get('title', 'NO TITLE')}")
-        
         execution_status = {"status": "running", "message": "n8n workflow triggered analysis..."}
         
-        # ============================================================
-        # TRANSFORM SHOPIFY DATA TO AGENT FORMAT
-        # ============================================================
-        
-        # Create SKU master DataFrame from Shopify products
-        sku_master_rows = []
-        
-        for product in data.products:
-            # Extract product details
-            product_id = product.get("id", "unknown")
-            product_title = product.get("title", "Unknown Product")
-            product_type = product.get("product_type", "General")
-            vendor = product.get("vendor", "Unknown")
+        if products:
+            # Shopify data provided - transform to unified format
+            print(f"[INFO] n8n triggered analysis with {len(products)} Shopify products")
             
-            # Get first variant (or iterate through all variants if needed)
-            variants = product.get("variants", [])
-            if not variants:
-                print(f"[WARNING] Product {product_title} has no variants, skipping")
-                continue
-                
-            variant = variants[0]
+            from data_transformer import transform_shopify_data
+            df_master, df_sales = transform_shopify_data(products)
             
-            # Extract pricing
-            selling_price = float(variant.get("price", 0))
+            if df_master.empty:
+                raise HTTPException(status_code=400, detail="No valid products to analyze")
             
-            # Estimate COGS (48% of selling price as default, adjust as needed)
-            cogs = selling_price * 0.48
-            
-            # Extract inventory
-            inventory_quantity = variant.get("inventory_quantity", 0)
-            
-            # Generate SKU from Shopify ID
-            sku_id = f"SKU_{product_type.upper().replace(' ', '_')}_{product_id}"
-            
-            # Map Shopify product_type to your category system
-            category_map = {
-                "Shoes": "Footwear",
-                "Apparel": "Fashion",
-                "Electronics": "Electronics",
-                "Beauty": "Beauty",
-                "Home": "Home"
-            }
-            category = category_map.get(product_type, product_type)
-            
-            # Create row for SKU master
-            sku_row = {
-                "sku_id": sku_id,
-                "category": category,
-                "product_name": product_title,
-                "selling_price": selling_price,
-                "mrp": selling_price * 1.5,  # Estimate MRP as 1.5x selling price
-                "cogs": cogs,
-                "shipping_cost_per_unit": 75,  # Default shipping cost
-                "platform_fee_percent": 2.0,
-                "platform_fixed_fee": 3,
-                "ad_spend_total_last_30_days": 5000,  # Default ad spend
-                "units_sold_last_30_days": 150,  # Default sales (can be calculated from orders if provided)
-                "current_stock": inventory_quantity,
-                "lead_time_days": 12,  # Default lead time
-                "is_hero": False,
-                # Store Shopify IDs for write-back
-                "shopify_variant_id": variant.get("id"),
-                "shopify_inventory_item_id": variant.get("inventory_item_id")
-            }
-            
-            sku_master_rows.append(sku_row)
+            # Run pipeline with transformed Shopify data
+            df = run_pipeline(verbose=True, df_master=df_master, df_sales=df_sales)
+            data_source = "shopify"
+            print(f"[INFO] Analyzed {len(df)} SKUs from Shopify data")
+        else:
+            # No data provided - use CSV files
+            print("[INFO] n8n triggered analysis with CSV data")
+            df = run_pipeline(verbose=True)
+            data_source = "csv"
         
-        if not sku_master_rows:
-            raise HTTPException(status_code=400, detail="No valid products to analyze")
-        
-        df_master = pd.DataFrame(sku_master_rows)
-        print(f"[INFO] Created SKU master with {len(df_master)} products")
-        
-        # Create sample sales history (in production, use actual Shopify orders)
-        # For now, generate synthetic sales based on units_sold_last_30_days
-        # Extended to 90 days for seasonal analysis
-        sales_rows = []
-        for _, sku in df_master.iterrows():
-            # Generate 90 days of sales data (minimum for seasonal analysis)
-            daily_avg = sku["units_sold_last_30_days"] / 30
-            for day in range(1, 91):
-                # Add some randomness to daily sales
-                import random
-                daily_units = max(0, int(daily_avg * random.uniform(0.5, 1.5)))
-                # Generate dates going back 90 days from today
-                from datetime import timedelta
-                date_obj = datetime.now() - timedelta(days=90-day)
-                sales_rows.append({
-                    "sku_id": sku["sku_id"],
-                    "date": date_obj.strftime("%Y-%m-%d"),
-                    "units_sold": daily_units
-                })
-        
-        df_sales = pd.DataFrame(sales_rows)
-        print(f"[INFO] Created sales history with {len(df_sales)} records")
-        
-        # ============================================================
-        # RUN AGENT PIPELINE WITH SHOPIFY DATA
-        # ============================================================
-        
-        # Run agents on transformed Shopify data
-        from profit_doctor import ProfitDoctorAgent
-        from inventory_sentinel import InventorySentinelAgent
-        from seasonal_analyst import SeasonalAnalystAgent
-        from strategy_supervisor import StrategySupervisorAgent
-        
-        # Agent 1: Profit Doctor
-        profit_agent = ProfitDoctorAgent()
-        df_profit = profit_agent.compute_profit_metrics(df_master)
-        print(f"[INFO] Profit Doctor analyzed {len(df_profit)} SKUs")
-        
-        # Agent 2: Inventory Sentinel
-        inventory_agent = InventorySentinelAgent()
-        df_inventory = inventory_agent.compute_inventory_metrics(df_profit, df_sales)
-        print(f"[INFO] Inventory Sentinel analyzed {len(df_inventory)} SKUs")
-        
-        # Agent 3: Seasonal Analyst
-        seasonal_agent = SeasonalAnalystAgent()
-        df_seasonal = seasonal_agent.compute_seasonal_metrics(df_inventory, df_sales)
-        print(f"[INFO] Seasonal Analyst analyzed {len(df_seasonal)} SKUs")
-        
-        # Agent 4: Strategy Supervisor
-        strategy_agent = StrategySupervisorAgent()
-        df_final = strategy_agent.rank_actions(df_seasonal)
-        print(f"[INFO] Strategy Supervisor ranked {len(df_final)} SKUs")
+        if df.empty:
+            raise HTTPException(status_code=400, detail="No data to analyze")
         
         # Update global pipeline data
-        pipeline_data = df_final
-        data_source = "shopify"  # Mark as Shopify data
+        pipeline_data = df
         last_execution_time = datetime.now()
         execution_status = {
             "status": "success",
@@ -964,7 +847,7 @@ async def n8n_analyze_shopify_data(data: ShopifyData):
         
         # Convert recommendations to JSON-serializable format
         recommendations = []
-        for _, row in df_final.iterrows():
+        for _, row in df.iterrows():
             recommendations.append({
                 "sku_id": row["sku_id"],
                 "category": row["category"],
@@ -986,15 +869,16 @@ async def n8n_analyze_shopify_data(data: ShopifyData):
         
         return {
             "status": "success",
-            "message": "Agent analysis completed with Shopify data",
+            "message": f"Agent analysis completed with {data_source} data",
+            "data_source": data_source,
             "timestamp": last_execution_time.isoformat(),
             "total_skus": len(recommendations),
             "recommendations": recommendations,
             "summary": {
-                "critical_risk": int((df_final["risk_level"] == "CRITICAL").sum()),
-                "warning_risk": int((df_final["risk_level"] == "WARNING").sum()),
-                "profitable_skus": int((df_final["profit_per_unit"] > 0).sum()),
-                "loss_makers": int((df_final["profit_per_unit"] < 0).sum())
+                "critical_risk": int((df["risk_level"] == "CRITICAL").sum()),
+                "warning_risk": int((df["risk_level"] == "WARNING").sum()),
+                "profitable_skus": int((df["profit_per_unit"] > 0).sum()),
+                "loss_makers": int((df["profit_per_unit"] < 0).sum())
             }
         }
             
@@ -1294,7 +1178,7 @@ def update_csv_source(sku_id: str, action_type: str, value: float):
 async def execute_alert_action(action: InternalAction):
     """
     Execute an action from the Alerts tab.
-    Mock update for now, but logs the action as if sent to Shopify.
+    Updates pipeline data and persists to CSV.
     """
     global pipeline_data
     
@@ -1310,7 +1194,7 @@ async def execute_alert_action(action: InternalAction):
         }
         completed_user_actions.append(action_entry)
         
-        # MOCK UPDATE: Update the local pipeline_data to reflect change
+        # Update the local pipeline_data to reflect change
         if pipeline_data is not None and not pipeline_data.empty:
             if action.action_type == "RESTOCK":
                 # Update stock
@@ -1322,7 +1206,7 @@ async def execute_alert_action(action: InternalAction):
                     # Recalculate risk (simplified)
                     pipeline_data.loc[mask, "risk_level"] = "SAFE" 
                     pipeline_data.loc[mask, "recommended_action"] = "MONITOR"
-                    print(f"[INFO] Mock update: Restocked {action.sku_id} to {new_stock}")
+                    print(f"[INFO] Restocked {action.sku_id} to {new_stock}")
                     
             elif action.action_type == "PRICE_CHANGE":
                 # Update price
@@ -1332,35 +1216,12 @@ async def execute_alert_action(action: InternalAction):
                     # Recalculate profit (simplified)
                     pipeline_data.loc[mask, "profit_per_unit"] += (action.value - (action.original_value or action.value)) # Approximate
                     pipeline_data.loc[mask, "recommended_action"] = "MONITOR"
-                    print(f"[INFO] Mock update: Repriced {action.sku_id} to {action.value}")
+                    print(f"[INFO] Repriced {action.sku_id} to {action.value}")
 
-        # PERSIST UPDATE: Update the source (CSV or Shopify)
+        # PERSIST UPDATE: Update the CSV source
         try:
-            if data_source == "shopify" and CFG.shopify_access_token:
-                loader = ShopifyLoader()
-                # Find IDs from dataframe
-                mask = pipeline_data["sku_id"] == action.sku_id
-                if mask.any():
-                    row = pipeline_data.loc[mask].iloc[0]
-                    # Check if we have variant ID mapped (ShopifyLoader adds it)
-                    if "shopify_variant_id" in row:
-                        variant_id = int(row["shopify_variant_id"])
-                        inv_id = int(row["shopify_inventory_item_id"])
-                        
-                        if action.action_type == "RESTOCK":
-                            # We need new TOTAL qty, not just add
-                            current = int(row["current_stock"]) # This is already updated in memory above
-                            # But wait, above updated pipeline_data. So 'row' has NEW stock.
-                            loader.update_stock(variant_id, inv_id, current)
-                        elif action.action_type == "PRICE_CHANGE":
-                             loader.update_price(variant_id, action.value)
-                        
-                        print(f"[INFO] Shopify updated for {action.sku_id}")
-            
-            elif data_source != "shopify":
-                update_csv_source(action.sku_id, action.action_type, action.value)
-                print(f"[INFO] Source CSV updated for {action.sku_id}")
-                
+            update_csv_source(action.sku_id, action.action_type, action.value)
+            print(f"[INFO] Source CSV updated for {action.sku_id}")
         except Exception as e:
             print(f"[ERROR] Failed to persist update: {str(e)}")
 
@@ -1373,6 +1234,7 @@ async def execute_alert_action(action: InternalAction):
     except Exception as e:
         print(f"[ERROR] Failed to execute alert action: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
+
 
 
 # ============================================================================
