@@ -115,12 +115,11 @@ class StrategySupervisorAgent:
         df["llm_strategy_insight"] = ""
         df["llm_strategy_confidence"] = 0.0
         
-        # Find SKUs that need LLM analysis (high priority items)
-        needs_analysis = df["is_high_priority"] == True
+        # Find SKUs that need LLM analysis - Now analyzing ALL SKUs as per user request
+        needs_analysis = pd.Series(True, index=df.index)
         
-        analysis_count = needs_analysis.sum()
-        if analysis_count == 0:
-            return df
+        analysis_count = len(df)
+
         
         print(f"[INFO] Strategy Supervisor: Analyzing {analysis_count} high-priority SKUs with LLM...")
         

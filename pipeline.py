@@ -115,7 +115,7 @@ def run_pipeline(
     cols_for_output = [
         "sku_id", "category", "product_name",
         "selling_price", "cogs", "current_stock", "lead_time_days",
-        "profit_per_unit", "loss_per_day",
+        "profit_per_unit", "loss_per_day", "is_loss_maker",
         "sales_velocity_per_day", "days_of_stock_left", "risk_level",
         "reorder_qty_suggested", "profit_at_risk",
         "impact_score", "recommended_action",
