@@ -1,6 +1,117 @@
 sku_id,category,product_name,selling_price,cogs,current_stock,lead_time_days,profit_per_unit,loss_per_day,sales_velocity_per_day,days_of_stock_left,risk_level,reorder_qty_suggested,profit_at_risk,impact_score,recommended_action,strategy_mode,seasonal_index_current,seasonal_index_next,peak_month,trough_month,seasonal_trend,seasonality_strength,seasonal_forecast,seasonal_risk_flag,llm_profit_insight,llm_inventory_insight,llm_strategy_insight,llm_seasonal_insight,llm_inventory_confidence,llm_strategy_confidence,llm_seasonal_confidence
-SKU_SHOES_9083792654552,Footwear,Urban High-Top Sneakers,2499,900,45,10,288.5557,0.0,18.449872687637974,2.439041220601565,CRITICAL,184,12985.006500000001,5323.815928292257,REORDER_IMMEDIATELY,profit_maximization,1.132,0.933,October,December,FALLING,0.786,525.7,False,,,,,0.0,0.0,0.0
-SKU_SHOES_9083792720088,Footwear,Classic Leather Loafers,2499,900,5,10,116.46629999999999,0.0,17.642725314938836,0.2834029273111388,CRITICAL,264,582.3314999999999,2054.7829393472607,REORDER_IMMEDIATELY,loss_reduction,1.271,1.019,October,December,FALLING,0.187,515.4,False,,,,,0.0,0.0,0.0
-SKU_SHOES_9083792785624,Footwear,Limited Edition Hype Kicks,2499,900,20,10,96.98590000000007,0.0,15.37276990178007,1.3010017145761172,CRITICAL,153,1939.7180000000012,1490.9419244170526,REORDER_IMMEDIATELY,profit_maximization,1.253,1.028,November,December,FALLING,0.2,467.6,False,,,,,0.0,0.0,0.0
-SKU_SHOES_9083792687320,Footwear,Marathon Pro Running Shoes,2499,900,120,10,-234.73900000000003,782.4633333333335,19.84585691952469,6.046602093656232,CRITICAL,0,0.0,129.40546131756406,PAUSE_ADS_OR_INCREASE_PRICE,loss_reduction,1.099,0.904,May,December,FALLING,0.849,556.3,False,,,,,0.0,0.0,0.0
-SKU_SHOES_9083792752856,Footwear,Canvas Slip-Ons,2499,900,200,10,-72.79789999999991,242.6596666666664,17.006417309200387,11.760266513735436,WARNING,0,0.0,20.633857777223955,PAUSE_ADS_OR_INCREASE_PRICE,loss_reduction,1.036,0.797,May,December,FALLING,0.938,371.9,False,,,,,0.0,0.0,0.0
+SKU_SHOES_9083792654552,Footwear,Urban High-Top Sneakers,2499,900,45,10,288.5557,0.0,18.449872687637974,2.439041220601565,CRITICAL,184,12985.006500000001,5323.815928292257,REORDER_IMMEDIATELY,profit_maximization,1.132,0.933,October,December,FALLING,0.786,525.7,False,"**1. Brief Profitability Assessment:**
+The current profit margin is approximately 11.54% (₹288.5557 / ₹2499), which is below the minimum target of 25.0%. This indicates a significant opportunity for improvement.
+
+**2. Pricing Recommendation:**
+To maximize profit margins, I recommend increasing the selling price to ₹3499, which would result in a profit margin of approximately 25.1% (₹2599 / ₹3499 - ₹900). This aggressive pricing strategy aligns with the Profit Maximization approach.
+
+**3. Cost Optimization Tip:**
+To further enhance profitability, consider renegotiating with suppliers to reduce the COGS (₹900) by at least 5-10%, which would increase the profit per unit and support the high ROAS targets.","**1. Risk Assessment:**
+Given the CRITICAL risk level and high risk tolerance, we'll prioritize profit maximization over stockout risks. With a stockout penalty weight of 0.5, we'll accept some stockout risks to maintain aggressive pricing.
+
+**2. Demand Pattern Analysis:**
+The high velocity of 18.4 units/day indicates strong demand. With only 2.4 days of stock left, demand is likely to outstrip supply soon. We must act quickly to replenish stock.
+
+**3. Reorder Strategy Recommendation:**
+Reorder immediately to minimize stockouts. Given the 10-day lead time, we risk significant stockouts if we don't act now. Order a quantity that covers the lead time demand (18.4 units/day * 10 days = 184 units) plus the current stock (45 units), totaling 229 units. This will ensure we can maintain aggressive pricing and maximize profits.","**1. Alignment with Strategy:** The recommended action ""REORDER_IMMEDIATELY"" aligns with the Profit Maximization strategy as it aims to minimize stockouts, thereby maximizing revenue and profit margins. With only 2.4 days of stock left, reordering immediately will prevent lost sales and protect the profit at risk of ₹12,985.01.
+
+**2. Effective Implementation:** To implement this action, we will:
+- Expedite the reorder process to ensure timely arrival of new stock.
+- Consider airlifting or express shipping to reduce lead time.
+- Allocate additional budget to cover potential extra costs, as the profit at risk justifies the investment.
+
+**3. Expected Outcome:** The expected outcome is to prevent stockouts, maintain sales momentum, and protect the profit at risk. This will contribute to maximizing profit margins and revenue, aligning with the Profit Maximization strategy.
+
+**4. Priority Justification:** The high Impact Score (5324.0) and critical risk level justify the priority of this action. The potential loss of ₹12,985.01 in profit within 2.4 days necessitates immediate attention to prevent significant revenue and profit erosion, making this action a high-priority task to support the Profit Maximization strategy.","To maximize profit, I recommend:
+1) Reduce inventory due to falling seasonal trend and low current stock days.
+2) Aggressive pricing to maintain high ROAS targets, considering 0.3 conservatism.
+3) Watch October's peak month for pricing adjustments and monitor next month's 0.93 index for potential discounts.",0.85,0.9,0.85
+SKU_SHOES_9083792720088,Footwear,Classic Leather Loafers,2499,900,5,10,116.46629999999999,0.0,17.642725314938836,0.2834029273111388,CRITICAL,264,582.3314999999999,2054.7829393472607,REORDER_IMMEDIATELY,loss_reduction,1.271,1.019,October,December,FALLING,0.187,515.4,False,"Based on the Loss Reduction strategy, here are the recommendations:
+
+1. **Brief Profitability Assessment**: The product has a profit margin of 4.66% (₹116.47 / ₹2499), which is below the minimum target margin of 10%. This indicates a need for pricing adjustment to protect margins.
+
+2. **Pricing Recommendation**: Increase the selling price to ₹2799 to achieve a profit margin of 10% (₹1199 / ₹2799 = 42.9% - 32.9% = 10% margin, considering COGS ₹900 and desired margin). This conservative pricing approach will help minimize losses and protect margins.
+
+3. **Cost Optimization Tip**: Review and optimize the supply chain to reduce COGS (₹900) without compromising product quality, aiming to maintain or increase the desired profit margin of 10%.","**Loss Reduction Strategy Alignment**
+
+1. **Risk Assessment**: Given the CRITICAL risk level and low risk tolerance, immediate action is required to mitigate potential stockouts and protect margins.
+2. **Demand Pattern Analysis**: The high velocity of 17.6 units/day indicates a strong demand for Classic Leather Loafers. With only 0.3 days of stock left, the likelihood of stockouts is high, which could lead to significant losses.
+3. **Reorder Strategy Recommendation**: To minimize losses and protect margins, we recommend:
+	* Reordering immediately to avoid stockouts.
+	* Calculating the safety stock: 17.6 units/day * 10 days (lead time) * 1.5 (safety stock multiplier) = 264 units.
+	* Considering the high stockout penalty weight (0.8), prioritize replenishing stock to the calculated safety stock level to minimize potential losses.","Given the Loss Reduction strategy, here's the analysis for the Classic Leather Loafers:
+
+1. **Alignment with Strategy**: The recommended action ""REORDER_IMMEDIATELY"" aligns with the Loss Reduction strategy as it aims to minimize losses by replenishing stock and avoiding stockouts, thus protecting margins.
+
+2. **Effective Implementation**: To implement this action effectively, immediately place an order for a high safety stock of Classic Leather Loafers to ensure availability and mitigate the risk of lost sales due to stockouts.
+
+3. **Expected Outcome**: The expected outcome is the reduction of profit at risk (₹582.33) by ensuring continuous availability of the product, thereby protecting the profit margin per unit (₹116.47) and maintaining sales revenue.
+
+4. **Priority Justification**: The priority is justified due to the ""CRITICAL"" risk level and the extremely low stock level (5 units, 0.3 days left), which necessitates immediate action to prevent losses and aligns with the strategy's focus on minimizing losses and protecting margins.","To minimize losses:
+1. Increase inventory to 30-40 days' stock to protect margins.
+2. Maintain conservative pricing to avoid discounts.
+3. Monitor October's peak sales, and be cautious in December's trough.",0.85,0.9,0.85
+SKU_SHOES_9083792785624,Footwear,Limited Edition Hype Kicks,2499,900,20,10,96.98590000000007,0.0,15.37276990178007,1.3010017145761172,CRITICAL,153,1939.7180000000012,1490.9419244170526,REORDER_IMMEDIATELY,profit_maximization,1.253,1.028,November,December,FALLING,0.2,467.6,False,,"**1. Risk Assessment:**
+Given the CRITICAL risk level and high risk tolerance, we'll prioritize profit maximization over stockout risks. With a stockout penalty weight of 0.5, we'll accept some stockout risks to maintain high prices and maximize revenue.
+
+**2. Demand Pattern Analysis:**
+The high velocity of 15.4 units/day indicates strong demand for the Limited Edition Hype Kicks. With only 1.3 days of stock left, demand is likely to outstrip supply, allowing for aggressive pricing.
+
+**3. Reorder Strategy Recommendation:**
+Reorder 150-200 units (10-13 days of supply) to capitalize on high demand and profit margins. With a safety stock multiplier of 1.0x, we'll maintain minimal safety stock to optimize inventory costs. This strategy will help maximize revenue and profit while accepting some stockout risks.","Given the Profit Maximization strategy, here's the analysis:
+
+1. **Alignment with Strategy**: The recommended action ""REORDER_IMMEDIATELY"" aligns with the strategy as it aims to minimize stockouts, thereby maximizing revenue and profit margins. With only 1.3 days of stock left, reordering immediately ensures continuous sales and reduces the risk of lost profits.
+
+2. **Effective Implementation**: To implement this effectively, prioritize expedited shipping to receive the new stock as soon as possible. Additionally, consider temporarily increasing prices to capitalize on the product's limited edition status and high demand, further boosting profit margins.
+
+3. **Expected Outcome**: The expected outcome is a significant reduction in profit at risk (₹1939.72) and an increase in overall revenue. By reordering immediately and potentially increasing prices, the business can maximize its profit margins and achieve high ROAS targets.
+
+4. **Priority Justification**: The critical risk level and high impact score (1491.0) justify the priority of this action. The potential loss of ₹1939.72 in profit within 1.3 days necessitates immediate attention to protect revenue and aligns with the strategy's focus on maximizing profit margins.","To maximize profit:
+
+1. Reduce inventory due to falling seasonal trend and low current stock days.
+2. Implement aggressive pricing, considering a 20% seasonality strength.
+3. Watch November's peak month for optimal sales, then adjust pricing and inventory accordingly.",0.85,0.9,0.85
+SKU_SHOES_9083792687320,Footwear,Marathon Pro Running Shoes,2499,900,120,10,-234.73900000000003,782.4633333333335,19.84585691952469,6.046602093656232,CRITICAL,0,0.0,129.40546131756406,PAUSE_ADS_OR_INCREASE_PRICE,loss_reduction,1.099,0.904,May,December,FALLING,0.849,556.3,False,"**Loss Reduction Strategy Implementation**
+
+1. **Brief Profitability Assessment**: The Marathon Pro Running Shoes are currently unprofitable, with a daily loss of ₹782.46 and a negative profit per unit of ₹234.74, indicating a significant margin erosion.
+
+2. **Pricing Recommendation**: To minimize losses and protect margins, consider increasing the selling price to at least ₹1499 + (10% of ₹1499) = ₹1649, but ideally to ₹1799 (20% above COGS) or higher, to ensure a minimum margin target of 10% is met.
+
+3. **Cost Optimization Tip**: Reduce COGS by renegotiating with suppliers or exploring alternative, cost-effective materials to manufacture the shoes, aiming to decrease the COGS by at least 10% to ₹810, thereby improving the profit per unit and reducing daily losses.","**Loss Reduction Strategy Alignment**
+
+1. **Risk Assessment**: Given the CRITICAL risk level and negative profit per unit (₹-234.74), our low-risk tolerance dictates a cautious approach to minimize losses. The current stock level of 120 units, with only 6 days left, exacerbates the risk.
+2. **Demand Pattern Analysis**: The high velocity of 19.8 units/day indicates a strong demand for Marathon Pro Running Shoes. However, with a lead time of 10 days, we must ensure sufficient safety stock to avoid stockouts and potential losses.
+3. **Reorder Strategy Recommendation**: To mitigate the critical risk and protect margins, we recommend:
+	* Calculating the safety stock: 19.8 units/day * 10 days (lead time) * 1.5 (safety stock multiplier) = 297 units
+	* Considering the stockout penalty weight (0.8), we should prioritize replenishing stock to avoid losses.
+	* Reorder quantity: 297 (safety stock) - 120 (current stock) = 177 units to ensure a buffer against stockouts and minimize losses.","**Loss Reduction Strategy Implementation**
+
+1. **Alignment with Strategy**: The recommended action (PAUSE_ADS_OR_INCREASE_PRICE) aligns with the Loss Reduction strategy by minimizing losses and protecting margins. Given the critical risk level and negative profit per unit, pausing ads or increasing price will help reduce costs and mitigate further losses.
+
+2. **Effective Implementation**: To implement effectively, immediately pause all advertising campaigns for Marathon Pro Running Shoes to reduce unnecessary expenses. Alternatively, consider increasing the price to offset the losses, but carefully assess the potential impact on demand. Monitor sales and adjust pricing or advertising strategies accordingly.
+
+3. **Expected Outcome**: The expected outcome is a reduction in losses, as the action aims to minimize costs and protect margins. By pausing ads or increasing the price, the company can prevent further financial damage and potentially create a more sustainable pricing strategy for the product.
+
+4. **Priority Justification**: The priority justification for this action is the critical risk level and significant negative profit per unit (₹-234.74). With only 6 days of stock left, it is essential to act quickly to minimize losses and prevent further financial harm, aligning with the REDUCE_COST and PAUSE_LOSS_MAKERS priorities of the Loss Reduction strategy.","Given the Loss Reduction strategy:
+1. Reduce inventory to minimize losses, considering 6 days of current stock.
+2. Conservative pricing to protect margins, no discounts.
+3. Watch May (peak month) and December (trough month) for key seasonal shifts, adjusting inventory and pricing accordingly to minimize losses.",0.85,0.9,0.85
+SKU_SHOES_9083792752856,Footwear,Canvas Slip-Ons,2499,900,200,10,-72.79789999999991,242.6596666666664,17.006417309200387,11.760266513735436,WARNING,0,0.0,20.633857777223955,PAUSE_ADS_OR_INCREASE_PRICE,loss_reduction,1.036,0.797,May,December,FALLING,0.938,371.9,False,"**1. Brief Profitability Assessment:**
+The product is currently unprofitable, with a loss of ₹72.80 per unit and a daily loss of ₹242.66. This indicates a significant margin erosion, requiring immediate attention to minimize losses.
+
+**2. Pricing Recommendation:**
+To align with the Loss Reduction strategy, I recommend increasing the selling price to ₹1,799 (20% increase) to improve profitability while being conservative. This will help reduce losses and protect margins.
+
+**3. Cost Optimization Tip:**
+Reduce COGS by 10% (from ₹900 to ₹810) through supplier negotiations or material optimization to further improve profitability and support the pricing increase. This will help minimize losses and move towards the min margin target of 10%.",,"**Loss Reduction Strategy Implementation**
+
+1. **Alignment with Strategy**: The recommended action (PAUSE_ADS_OR_INCREASE_PRICE) aligns with the Loss Reduction strategy by minimizing losses and protecting margins. Given the negative profit per unit (₹-72.8), pausing ads or increasing price will help reduce costs and mitigate further losses.
+
+2. **Effective Implementation**: To implement this action, first, pause all advertising campaigns for Canvas Slip-Ons to immediately reduce costs. Then, analyze the market and competition to determine a suitable price increase that will help offset the losses while considering customer price sensitivity.
+
+3. **Expected Outcome**: The expected outcome is a reduction in losses due to decreased advertising expenses and potentially increased revenue per unit from the price increase. This should help minimize the overall loss and protect the company's margins.
+
+4. **Priority Justification**: The priority justification for this action is high due to the negative profit per unit and the limited stock period (11.8 days left). Acting quickly to pause ads or increase the price will help prevent further losses and is consistent with the REDUCE_COST and PAUSE_LOSS_MAKERS action priorities of the Loss Reduction strategy.","Given the Loss Reduction strategy:
+1. Reduce inventory to minimize losses, considering 11.76 stock days and falling seasonal trend.
+2. Conservative pricing to protect margins, avoiding discounts.
+3. Watch May (peak month) and December (trough month) to adjust inventory and pricing accordingly, ensuring minimal losses.",0.0,0.9,0.85
