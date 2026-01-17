@@ -8,6 +8,10 @@ import ProductSalesPage from './pages/ProductSalesPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import ChatPage from './pages/ChatPage';
 import WorkflowsPage from './pages/WorkflowsPage';
+import SimulationsPage from './pages/SimulationsPage';
+import InventoryGravity from './pages/simulations/InventoryGravity';
+import SalesPulse from './pages/simulations/SalesPulse';
+import StockWave from './pages/simulations/StockWave';
 import './index.css';
 
 function App() {
@@ -23,8 +27,12 @@ function App() {
                 <Route path="/product/:productName" element={<ProductDetailPage />} />
                 <Route path="/chat" element={<ChatPage />} />
                 <Route path="/workflows" element={<WorkflowsPage />} />
-            </Routes>
-        </Router>
+                <Route path="/simulations" element={<SimulationsPage />} />
+                <Route path="/simulations/gravity" element={<InventoryGravity />} />
+                <Route path="/simulations/pulse" element={<SalesPulse />} />
+                <Route path="/simulations/wave" element={<StockWave />} />
+            </Routes >
+        </Router >
     );
 }
 

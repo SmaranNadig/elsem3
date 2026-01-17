@@ -1,10 +1,12 @@
 # api.py
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, File, UploadFile
+from fastapi.responses import StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List, Optional, Dict, Any
 import pandas as pd
+import requests
 import os
 from datetime import datetime
 import traceback
@@ -36,6 +38,12 @@ pipeline_data: Optional[pd.DataFrame] = None
 last_execution_time: Optional[datetime] = None
 execution_status = {"status": "idle", "message": "Not yet executed"}
 data_source: str = "none"  # Track data source: "shopify" or "csv" or "none"
+
+# Chat session storage
+chat_data: Optional[pd.DataFrame] = None
+chat_messages: List[Dict[str, Any]] = []
+chat_summary: Optional[Dict[str, Any]] = None
+chat_data_type: str = "unknown"  # Track data type: inventory, sales, generic
 
 
 # Pydantic models
@@ -1665,6 +1673,481 @@ async def reset_sku_mode(sku_id: str):
         "message": f"Mode reset to default ({sku_mode_manager.default_mode}) - run pipeline to see changes",
         "sku_id": sku_id
     }
+
+
+# ============================================================================
+# Chat API Endpoints  
+# ============================================================================
+
+@app.get("/api/chat/status")
+async def chat_status():
+    """Check if chat session has data loaded"""
+    global chat_data, chat_summary
+    return {
+        "has_data": chat_data is not None,
+        "summary": chat_summary
+    }
+
+
+@app.post("/api/chat/upload-csv")
+async def upload_chat_csv(file: UploadFile = File(...)):
+    """Upload and analyze CSV file with AI-powered intelligence"""
+    global chat_data, chat_summary, chat_data_type
+    
+    try:
+        import io
+        import numpy as np
+        from groq import Groq
+        
+        # Read CSV file
+        contents = await file.read()
+        df = pd.read_csv(io.BytesIO(contents))
+        
+        print(f"[INFO] CSV uploaded with {len(df)} rows and columns: {list(df.columns)}")
+        
+        # Use Ollama AI to analyze the CSV and determine what to do
+        try:
+            import requests
+            
+            # Prepare CSV info for AI
+            column_info = {
+                "columns": list(df.columns),
+                "sample_data": df.head(3).to_dict('records'),
+                "row_count": len(df)
+            }
+            
+            # Ask Ollama to analyze the CSV
+            analysis_prompt = f"""Analyze this CSV data and provide a JSON response:
+
+Columns: {column_info['columns']}
+Sample rows: {column_info['sample_data']}
+Total rows: {column_info['row_count']}
+
+Identify:
+1. data_type: Is this "inventory" (products with prices/stock), "sales" (transactions/sales data), or "generic" (other)?
+2. description: brief description of the data
+
+Respond ONLY with valid JSON format:
+{{
+  "data_type": "inventory|sales|generic",
+  "description": "brief description of the data"
+}}"""
+            
+            # Call Ollama API
+            response = requests.post(
+                'http://localhost:11434/api/generate',
+                json={
+                    'model': 'llama3.2:1b',
+                    'prompt': analysis_prompt,
+                    'stream': False
+                },
+                timeout=15
+            )
+            
+            if response.status_code == 200:
+                # Parse Ollama response
+                import json
+                ollama_result = response.json()
+                ai_response = ollama_result.get('response', '')
+                
+                # Extract JSON from response (handle markdown code blocks)
+                if "```json" in ai_response:
+                    ai_response = ai_response.split("```json")[1].split("```")[0].strip()
+                elif "```" in ai_response:
+                    ai_response = ai_response.split("```")[1].split("```")[0].strip()
+                    
+                ai_analysis = json.loads(ai_response)
+                chat_data_type = ai_analysis.get("data_type", "generic")
+                
+                print(f"[INFO] Ollama detected data type: {chat_data_type}")
+                print(f"[INFO] Ollama analysis: {ai_analysis.get('description', '')}")
+            else:
+                print(f"[WARNING] Ollama API failed with status {response.status_code}, using fallback")
+                chat_data_type = "generic"
+                
+        except Exception as e:
+            print(f"[WARNING] Ollama analysis failed: {str(e)}, using fallback detection")
+            chat_data_type = "generic"
+        
+        print(f"[DEBUG] Adapting to data type: '{chat_data_type}'")
+        
+        # Adaptive analysis based on data type
+        if chat_data_type == "inventory":
+            print("[DEBUG] Routing to Inventory Analyzer")
+            analysis_result = analyze_inventory_data(df)
+        elif chat_data_type == "sales":
+            print("[DEBUG] Routing to Sales Analyzer")
+            analysis_result = analyze_sales_data(df)
+        else:
+            print("[DEBUG] Routing to Generic Analyzer")
+            analysis_result = analyze_generic_data(df)
+        
+        chat_data = analysis_result["data"]
+        chat_summary = analysis_result["summary"]
+        
+        return {
+            "message": f"Successfully analyzed {len(df)} rows as {chat_data_type} data",
+            "summary": chat_summary,
+            "data_type": chat_data_type
+        }
+        
+    except HTTPException as he:
+        raise he
+    except Exception as e:
+        import traceback
+        error_detail = traceback.format_exc()
+        print(f"[ERROR] CSV Upload Failed:\n{error_detail}")
+        raise HTTPException(status_code=500, detail=f"Error processing CSV: {str(e)}")
+
+
+def analyze_inventory_data(df: pd.DataFrame) -> Dict:
+    """Analyze inventory-focused data - only if it has price/stock columns"""
+    print("[DEBUG] Executing analyze_inventory_data")
+    import numpy as np
+    
+    # Check if this is actually inventory data
+    def find_column(variations):
+        norm_cols = {col.lower().replace('_', '').replace(' ', ''): col for col in df.columns}
+        for var in variations:
+            norm_var = var.lower().replace('_', '').replace(' ', '')
+            if norm_var in norm_cols:
+                return norm_cols[norm_var]
+        return None
+    
+    price_col = find_column(['price', 'sellingprice', 'unitprice', 'cost'])
+    stock_col = find_column(['stock', 'inventory', 'currentstock', 'stocklevel'])
+    
+    # If no price or no STOCK columns (quantity alone isn't stock), return raw data
+    # This prevents sales transaction data from being treated as inventory
+    if not price_col or not stock_col:
+        return analyze_generic_data(df)
+    
+    # This is actual inventory data - do full analysis
+    result_df = df.copy()
+    product_col = find_column(['product', 'productname', 'name', 'item', 'description'])
+    
+    if 'sku_id' not in result_df.columns:
+        result_df['sku_id'] = [f"SKU_{i:08d}" for i in range(len(result_df))]
+    
+    if product_col:
+        result_df['product_name'] = result_df[product_col]
+    else:
+        result_df['product_name'] = [f"Product {i+1}" for i in range(len(result_df))]
+    
+    if price_col:
+        result_df['selling_price'] = pd.to_numeric(result_df[price_col], errors='coerce').fillna(0)
+    else:
+        result_df['selling_price'] = np.random.uniform(10, 1000, len(result_df))
+    
+    if stock_col:
+        result_df['current_stock'] = pd.to_numeric(result_df[stock_col], errors='coerce').fillna(0).astype(int)
+    else:
+        result_df['current_stock'] = np.random.randint(0, 100, len(result_df))
+    
+    result_df['sales_velocity_per_day'] = np.random.uniform(0.5, 5.0, len(result_df))
+    result_df['cogs'] = result_df['selling_price'] * 0.6
+    result_df['profit_per_unit'] = result_df['selling_price'] - result_df['cogs']
+    result_df['days_of_stock_left'] = result_df['current_stock'] / result_df['sales_velocity_per_day'].replace(0, 0.01)
+    
+    def calc_risk(row):
+        if row['days_of_stock_left'] < 7 or row['profit_per_unit'] < 0:
+            return "CRITICAL"
+        elif row['days_of_stock_left'] < 14:
+            return "WARNING"
+        return "SAFE"
+    
+    result_df['risk_level'] = result_df.apply(calc_risk, axis=1)
+    
+    summary = {
+        "total_products": len(result_df),
+        "critical_risk": int((result_df['risk_level'] == 'CRITICAL').sum()),
+        "warning_risk": int((result_df['risk_level'] == 'WARNING').sum()),
+        "safe": int((result_df['risk_level'] == 'SAFE').sum()),
+        "profitable": int((result_df['profit_per_unit'] > 0).sum()),
+        "loss_makers": int((result_df['profit_per_unit'] < 0).sum()),
+        "avg_profit": float(result_df['profit_per_unit'].mean())
+    }
+    
+    return {"data": result_df, "summary": summary}
+
+
+def analyze_sales_data(df: pd.DataFrame) -> Dict:
+    """Analyze sales transaction data - return raw data"""
+    print("[DEBUG] Executing analyze_sales_data")
+    import numpy as np
+    
+    # Return raw data without modifications - just like generic
+    result_df = df.copy()
+    
+    # Basic statistical summary
+    numeric_cols = result_df.select_dtypes(include=[np.number]).columns.tolist()
+    
+    summary = {
+        "total_rows": len(result_df),
+        "total_columns": len(result_df.columns),
+        "column_names": list(result_df.columns),
+        "numeric_columns": numeric_cols,
+        "analysis_type": "sales_data",
+        "total_products": len(result_df),
+        "critical_risk": 0,
+        "warning_risk": 0,
+        "safe": 0,
+        "profitable": 0,
+        "loss_makers": 0,
+        "avg_profit": 0.0
+    }
+    
+    # Add basic stats for numeric columns
+    if numeric_cols:
+        summary["statistics"] = {
+            col: {
+                "mean": float(result_df[col].mean()),
+                "median": float(result_df[col].median()),
+                "std": float(result_df[col].std()),
+                "total": float(result_df[col].sum())
+            }
+            for col in numeric_cols[:5]
+        }
+    
+    return {"data": result_df, "summary": summary}
+
+
+def analyze_generic_data(df: pd.DataFrame) -> Dict:
+    """Analyze generic/unknown data - return raw CSV without modifications"""
+    print("[DEBUG] Executing analyze_generic_data")
+    import numpy as np
+    
+    # Return the raw data without any added columns
+    result_df = df.copy()
+    
+    # Basic statistical summary
+    numeric_cols = result_df.select_dtypes(include=[np.number]).columns.tolist()
+    
+    summary = {
+        "total_rows": len(result_df),
+        "total_columns": len(result_df.columns),
+        "column_names": list(result_df.columns),
+        "numeric_columns": numeric_cols,
+        "analysis_type": "raw_data",
+        "total_products": len(result_df),
+        "critical_risk": 0,
+        "warning_risk": 0,
+        "safe": 0,
+        "profitable": 0,
+        "loss_makers": 0,
+        "avg_profit": 0.0
+    }
+    
+    # Add basic stats for numeric columns
+    if numeric_cols:
+        summary["statistics"] = {
+            col: {
+                "mean": float(result_df[col].mean()),
+                "median": float(result_df[col].median()),
+                "std": float(result_df[col].std()),
+                "total": float(result_df[col].sum())
+            }
+            for col in numeric_cols[:5]  # Limit to first 5 numeric columns
+        }
+    
+    return {"data": result_df, "summary": summary}
+
+
+@app.post("/api/chat/message")
+async def chat_message(data: Dict[str, str]):
+    """Handle chat messages with LLM"""
+    global chat_data, chat_summary
+    
+    if chat_data is None:
+        raise HTTPException(status_code=400, detail="No data loaded. Upload a CSV first.")
+    
+    user_message = data.get("message", "")
+    
+    # Use Groq LLM if available
+    try:
+        from groq import Groq
+        
+        if not CFG.groq_api_key or CFG.groq_api_key == "your_groq_api_key_here":
+            # Fallback to simple rule-based responses
+            response = generate_simple_response(user_message, chat_data, chat_summary)
+        else:
+            # Use LLM for intelligent responses
+            client = Groq(api_key=CFG.groq_api_key)
+            
+            # Prepare context based on data type and actual columns
+            if chat_data_type == 'inventory':
+                context = f"""You are an inventory analysis assistant. You have access to the following data:
+                
+Total Products: {chat_summary['total_products']}
+Critical Risk: {chat_summary['critical_risk']}
+Warning Risk: {chat_summary['warning_risk']}
+Safe: {chat_summary['safe']}
+Profitable: {chat_summary['profitable']}
+Loss Makers: {chat_summary['loss_makers']}
+Average Profit: ${chat_summary['avg_profit']:.2f}
+
+The user has uploaded INVENTORY data. Answer their questions based on the risk levels and profit metrics above."""
+            else:
+                # For Generic/Sales data: Give the LLM actual data visibility
+                import io
+                
+                # Get columns
+                columns = ", ".join(chat_data.columns.tolist())
+                
+                # Get data preview (first 5 rows)
+                preview_csv = chat_data.head(5).to_markdown(index=False)
+                
+                # Get basic stats for numeric columns
+                stats_info = ""
+                numeric_cols = chat_data.select_dtypes(include=['number']).columns
+                if not numeric_cols.empty:
+                    stats = chat_data[numeric_cols].describe().to_markdown()
+                    stats_info = f"\n\nData Statistics:\n{stats}"
+                
+                context = f"""You are an advanced data analyst AI. You are analyzing a CSV file with the following structure:
+
+Columns: {columns}
+
+Data Preview for context:
+{preview_csv}
+{stats_info}
+
+INSTRUCTIONS:
+1. Answer the user's question purely based on the data provided above.
+2. Do NOT hallucinate columns that don't exist (like 'risk_level' or 'profit') unless you see them in the preview.
+3. If the user asks for 'issues', look for outliers in the data (low sales, high prices, etc.) or just summarize the key trends.
+4. Be concise and professional."""
+            
+            # Call Ollama API
+            response = requests.post(
+                'http://localhost:11434/api/generate',
+                json={
+                    'model': 'llama3.2:1b',  # Use the installed model
+                    'prompt': f"System: {context}\n\nUser: {user_message}",
+                    'stream': False
+                },
+                timeout=30
+            )
+            
+            if response.status_code == 200:
+                response = response.json().get('response', 'I could not generate a response.')
+            else:
+                response = f"Error generating response: {response.text}"
+            
+    except Exception as e:
+        print(f"[WARNING] LLM chat failed: {str(e)}")
+        # Fallback to simple responses
+        response = generate_simple_response(user_message, chat_data, chat_summary)
+    
+    return {
+        "response": response,
+        "has_data": True,
+        "summary": chat_summary
+    }
+
+
+def generate_simple_response(message: str, data: pd.DataFrame, summary: Dict) -> str:
+    """Generate rule-based responses when LLM is not available"""
+    msg_lower = message.lower()
+    
+    # Check for columns availability
+    has_risk = "risk_level" in data.columns
+    has_profit = "profit_per_unit" in data.columns
+    has_product = "product_name" in data.columns
+    
+    product_col = "product_name" if has_product else data.columns[0]
+    
+    if ("restock" in msg_lower or "stock" in msg_lower) and has_risk:
+        critical = data[data["risk_level"] == "CRITICAL"]
+        if len(critical) > 0:
+            products = ", ".join(critical[product_col].head(3).astype(str).tolist())
+            return f"🚨 {len(critical)} products need restocking urgently: {products}"
+        return "✅ No urgent restocking needed right now."
+    
+    elif ("loss" in msg_lower or "losing" in msg_lower) and has_profit:
+        loss_makers = data[data["profit_per_unit"] < 0]
+        if len(loss_makers) > 0:
+            products = ", ".join(loss_makers[product_col].head(3).astype(str).tolist())
+            total_loss = abs(loss_makers["profit_per_unit"].sum())
+            return f"⚠️ {len(loss_makers)} products are losing money (${total_loss:.2f} total loss): {products}"
+        return "✅ No loss-making products found."
+    
+    elif ("issue" in msg_lower or "problem" in msg_lower or "top" in msg_lower) and has_risk and "impact_score" in data.columns:
+        critical = data[data["risk_level"] == "CRITICAL"].nlargest(3, "impact_score")
+        issues = []
+        for _, row in critical.iterrows():
+            issues.append(f"• {row[product_col]}: {row.get('recommended_action', 'Check stock')}")
+        if issues:
+            return "🔴 Top issues:\n" + "\n".join(issues)
+        return "✅ No critical issues found."
+    
+    elif "health" in msg_lower or "summary" in msg_lower or "overview" in msg_lower:
+        if has_risk and has_profit:
+             return f"""📊 Inventory Health Summary:
+        
+• Total Products: {summary.get('total_products', 0)}
+• Critical Risk: {summary.get('critical_risk', 0)} 🔴
+• Warning: {summary.get('warning_risk', 0)} ⚠️
+• Safe: {summary.get('safe', 0)} ✅
+• Profitable: {summary.get('profitable', 0)}
+• Loss Makers: {summary.get('loss_makers', 0)}
+• Avg Profit/Unit: ${summary.get('avg_profit', 0):.2f}"""
+        else:
+             return f"📊 Data Summary:\n\nAnalyze {summary.get('total_rows', 0)} rows and {summary.get('total_columns', 0)} columns. I can help you explore specific trends!"
+    
+    else:
+        return f"I'm analyzing your {summary.get('total_products', summary.get('total_rows', 0))} items. Ask me about specific data points!"
+
+
+@app.get("/api/chat/analysis")
+async def chat_analysis():
+    """Get full product analysis data"""
+    global chat_data
+    
+    if chat_data is None:
+        raise HTTPException(status_code=404, detail="No data loaded")
+    
+    # Convert to list of dicts, handling NaN/Inf
+    import numpy as np
+    products = chat_data.replace({np.nan: None}).to_dict(orient='records')
+    
+    return {"products": products}
+
+
+@app.get("/api/chat/export-csv")
+async def export_chat_csv():
+    """Export analyzed data as CSV"""
+    global chat_data
+    
+    if chat_data is None:
+        raise HTTPException(status_code=404, detail="No data to export")
+    
+    import io
+    
+    # Create CSV in memory
+    output = io.StringIO()
+    chat_data.to_csv(output, index=False)
+    output.seek(0)
+    
+    # Return as downloadable file
+    return StreamingResponse(
+        iter([output.getvalue()]),
+        media_type="text/csv",
+        headers={"Content-Disposition": "attachment; filename=inventory_analysis.csv"}
+    )
+
+
+@app.post("/api/chat/clear")
+async def clear_chat():
+    """Clear chat session"""
+    global chat_data, chat_messages, chat_summary, chat_data_type
+    
+    chat_data = None
+    chat_messages = []
+    chat_summary = None
+    chat_data_type = "unknown"
+    
+    return {"message": "Chat session cleared"}
 
 
 # ============================================================================
