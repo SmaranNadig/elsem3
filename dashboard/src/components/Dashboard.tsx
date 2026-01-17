@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { RefreshCw, TrendingUp, TrendingDown, AlertTriangle, Activity, Bell, BarChart3 } from 'lucide-react';
+import { RefreshCw, TrendingUp, TrendingDown, AlertTriangle, Activity, BarChart3 } from 'lucide-react';
 import AgentStatusCard from './AgentStatusCard';
 import MetricsChart from './MetricsChart';
 import RecommendationsTable from './RecommendationsTable';

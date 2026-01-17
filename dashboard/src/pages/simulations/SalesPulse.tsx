@@ -1,10 +1,9 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Zap, Globe, DollarSign } from 'lucide-react';
 
 const SalesPulse: React.FC = () => {
-    const [salesData, setSalesData] = useState<any[]>([]);
     const [totalRevenue, setTotalRevenue] = useState(0);
     const [activePulses, setActivePulses] = useState<number[]>([]);
 
@@ -14,7 +13,6 @@ const SalesPulse: React.FC = () => {
                 const response = await fetch('/api/chat/analysis');
                 const result = await response.json();
                 const products = result.products || [];
-                setSalesData(products);
 
                 // Calculate revenue (simulate from products)
                 const rev = products.reduce((acc: number, p: any) => acc + (p.selling_price * 10), 0); // Mock sales volume

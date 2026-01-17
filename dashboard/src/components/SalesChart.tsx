@@ -112,11 +112,11 @@ const SalesChart: React.FC = () => {
                             borderRadius: '8px',
                             color: '#fff'
                         }}
-                        formatter={(value: number, name: string) => {
+                        formatter={(value: any, name: any) => {
                             if (name === 'sales') {
-                                return [`£${value.toLocaleString()}`, 'Revenue'];
+                                return [`£${Number(value).toLocaleString()}`, 'Revenue'];
                             }
-                            return [value.toLocaleString(), 'Quantity'];
+                            return [Number(value).toLocaleString(), 'Quantity'];
                         }}
                     />
                     <Legend

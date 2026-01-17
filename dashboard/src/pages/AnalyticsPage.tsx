@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Activity, BarChart2, PieChart, TrendingUp, Calendar } from 'lucide-react';
+import { ArrowLeft, Activity, BarChart2, TrendingUp, Calendar } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import {
     BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,

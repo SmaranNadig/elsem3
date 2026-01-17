@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { motion, useAnimation } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, Droplets, ShieldCheck, AlertTriangle } from 'lucide-react';
 
 const StockWave: React.FC = () => {
     const [stockLevel, setStockLevel] = useState(50); // % filled
     const [risk, setRisk] = useState('SAFE');
-    const controls = useAnimation();
 
     useEffect(() => {
         // Fetch real data to determine wave height/color
@@ -61,7 +60,7 @@ const StockWave: React.FC = () => {
             transition: {
                 duration: isStorm ? 1 + i * 0.5 : 5 + i,
                 repeat: Infinity,
-                ease: "easeInOut"
+                ease: "easeInOut" as const
             }
         })
     };
@@ -213,5 +212,4 @@ const StockWave: React.FC = () => {
         </div>
     );
 };
-
 export default StockWave;

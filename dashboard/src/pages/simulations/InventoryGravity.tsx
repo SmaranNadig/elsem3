@@ -95,7 +95,7 @@ const InventoryGravity: React.FC = () => {
         const bodies: Matter.Body[] = [];
         let totalValue = 0;
 
-        products.slice(0, 100).forEach((p, i) => {
+        products.slice(0, 100).forEach((p: any) => {
             const size = Math.min(Math.max(p.current_stock / 10, 20), 60); // Scale size
             const x = Math.random() * (width - 100) + 50;
             const y = -Math.random() * 2000 - 100; // Stagger drop
