@@ -160,8 +160,13 @@ def execute_pipeline():
 # Execute pipeline on startup - Waiting for Shopify data from n8n
 @app.on_event("startup")
 async def startup_event():
-    print("[INFO] API started. Waiting for Shopify data from n8n...")
-    print("[INFO] Trigger your n8n workflow to load Shopify products with LangChain insights!")
+    print("[INFO] API started. Initializing data...")
+    # Auto-run pipeline with synthetic data if no Shopify data
+    success = execute_pipeline()
+    if success:
+        print("[INFO] Pipeline executed successfully on startup.")
+    else:
+        print("[WARNING] Pipeline execution failed on startup.")
 
 
 
@@ -322,8 +327,12 @@ async def get_recommendations():
     # Convert DataFrame to list of dicts (including LLM insights)
     recommendations = []
     for _, row in pipeline_data.iterrows():
+        sku_id = row["sku_id"]
+        # Get CURRENT mode from storage (not stale mode from pipeline)
+        current_mode = sku_mode_manager.get_mode(sku_id)
+        
         rec = {
-            "sku_id": row["sku_id"],
+            "sku_id": sku_id,
             "category": row["category"],
             "product_name": row["product_name"],
             "selling_price": float(row["selling_price"]),
@@ -338,7 +347,8 @@ async def get_recommendations():
             "reorder_qty_suggested": float(row["reorder_qty_suggested"]),
             "profit_at_risk": float(row["profit_at_risk"]),
             "impact_score": float(row["impact_score"]),
-            "recommended_action": row["recommended_action"]
+            "recommended_action": row["recommended_action"],
+            "strategy_mode": current_mode  # Use CURRENT mode from storage!
         }
         
         # Add LLM insights if columns exist and have values
@@ -1363,6 +1373,124 @@ async def execute_alert_action(action: InternalAction):
     except Exception as e:
         print(f"[ERROR] Failed to execute alert action: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
+
+
+# ============================================================================
+# Strategy Mode Endpoints
+# ============================================================================
+
+from strategy_modes import get_all_modes, get_mode_config, get_mode_display_name, StrategyMode
+from sku_mode_manager import sku_mode_manager
+
+
+class ModeUpdate(BaseModel):
+    """Model for mode update request"""
+    mode: str
+
+
+class BulkModeUpdate(BaseModel):
+    """Model for bulk mode update request"""
+    updates: Dict[str, str]
+
+
+@app.get("/api/modes/available")
+async def get_available_modes():
+    """Get list of all available strategy modes"""
+    return {
+        "modes": get_all_modes(),
+        "default_mode": sku_mode_manager.default_mode
+    }
+
+
+@app.get("/api/sku/{sku_id}/mode")
+async def get_sku_mode(sku_id: str):
+    """Get strategy mode for a specific SKU"""
+    mode = sku_mode_manager.get_mode(sku_id)
+    config = get_mode_config(mode)
+    
+    return {
+        "sku_id": sku_id,
+        "mode": mode,
+        "mode_name": config.name,
+        "mode_icon": config.icon,
+        "mode_description": config.description,
+        "mode_color": config.color
+    }
+
+
+@app.put("/api/sku/{sku_id}/mode")
+async def update_sku_mode(sku_id: str, data: ModeUpdate):
+    """Update strategy mode for a specific SKU"""
+    success = sku_mode_manager.set_mode(sku_id, data.mode)
+    
+    if not success:
+        raise HTTPException(status_code=400, detail=f"Invalid mode: {data.mode}")
+    
+    # Note: Mode is saved but pipeline needs to be re-run manually (via n8n or /agents/run)
+    # to regenerate insights with the new mode
+    
+    return {
+        "success": True,
+        "message": f"Mode updated to {get_mode_display_name(data.mode)} - run pipeline to see changes",
+        "sku_id": sku_id,
+        "mode": data.mode
+    }
+
+
+@app.post("/api/modes/bulk-update")
+async def bulk_update_modes(data: BulkModeUpdate):
+    """Update modes for multiple SKUs at once"""
+    results = sku_mode_manager.bulk_set_modes(data.updates)
+    
+    success_count = sum(1 for v in results.values() if v)
+    
+    # Note: Modes are saved but pipeline needs to be re-run manually
+    
+    return {
+        "success": True,
+        "total_updates": len(results),
+        "successful": success_count,
+        "failed": len(results) - success_count,
+        "results": results,
+        "message": "Modes updated - run pipeline to regenerate insights"
+    }
+
+
+@app.get("/api/modes/distribution")
+async def get_mode_distribution():
+    """Get distribution of SKUs across different modes"""
+    all_modes = sku_mode_manager.get_all_modes()
+    
+    distribution = {}
+    for mode in StrategyMode:
+        skus = sku_mode_manager.get_skus_by_mode(mode.value)
+        distribution[mode.value] = {
+            "count": len(skus),
+            "name": get_mode_config(mode.value).name,
+            "icon": get_mode_config(mode.value).icon
+        }
+    
+    return {
+        "total_skus": len(all_modes),
+        "distribution": distribution
+    }
+
+
+@app.delete("/api/sku/{sku_id}/mode")
+async def reset_sku_mode(sku_id: str):
+    """Reset SKU to default mode"""
+    success = sku_mode_manager.reset_mode(sku_id)
+    
+    if not success:
+        raise HTTPException(status_code=404, detail=f"SKU {sku_id} has no custom mode set")
+    
+    # Note: Mode is reset but pipeline needs to be re-run manually
+    
+    return {
+        "success": True,
+        "message": f"Mode reset to default ({sku_mode_manager.default_mode}) - run pipeline to see changes",
+        "sku_id": sku_id
+    }
 
 
 # ============================================================================
