@@ -1563,6 +1563,231 @@ async def reset_sku_mode(sku_id: str):
 # ============================================================================
 
 
+# ============================================================================
+# Ollama Chat Endpoints
+# ============================================================================
+
+from fastapi import UploadFile, File
+from ollama_chat import chat_session
+
+
+class ChatMessage(BaseModel):
+    """Chat message model"""
+    message: str
+
+
+@app.get("/api/chat/status")
+async def get_chat_status():
+    """Get current chat session status."""
+    return chat_session.get_session_status()
+
+
+@app.post("/api/chat/upload-csv")
+async def upload_csv_for_chat(file: UploadFile = File(...)):
+    """
+    Upload a CSV file for analysis.
+    
+    The file will be parsed, transformed to unified format, and analyzed.
+    """
+    try:
+        # Read file content
+        content = await file.read()
+        
+        # Parse CSV
+        success, message = chat_session.parse_csv(content, file.filename)
+        
+        if not success:
+            raise HTTPException(status_code=400, detail=message)
+        
+        return {
+            "status": "success",
+            "message": message,
+            "summary": chat_session.session_summary
+        }
+        
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/api/chat/message")
+async def send_chat_message(data: ChatMessage):
+    """
+    Send a message to the Ollama chatbot.
+    
+    Requires a CSV to be uploaded first.
+    """
+    try:
+        if chat_session.session_data is None:
+            return {
+                "response": "Please upload a CSV file first before asking questions.",
+                "has_data": False
+            }
+        
+        response = chat_session.chat(data.message)
+        
+        return {
+            "response": response,
+            "has_data": True,
+            "summary": chat_session.session_summary
+        }
+        
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.post("/api/chat/clear")
+async def clear_chat_session():
+    """Clear the current chat session."""
+    chat_session.clear_session()
+    return {"status": "success", "message": "Session cleared"}
+
+
+@app.get("/api/chat/analysis")
+async def get_chat_analysis():
+    """Get the analysis results from the uploaded CSV."""
+    if chat_session.session_analysis is None:
+        raise HTTPException(status_code=404, detail="No analysis available. Upload a CSV first.")
+    
+    # Convert to list of dicts
+    results = []
+    for _, row in chat_session.session_analysis.iterrows():
+        results.append({
+            "sku_id": row.get("sku_id", ""),
+            "product_name": row.get("product_name", ""),
+            "selling_price": float(row.get("selling_price", 0)),
+            "current_stock": int(row.get("current_stock", 0)),
+            "profit_per_unit": float(row.get("profit_per_unit", 0)),
+            "risk_level": row.get("risk_level", "UNKNOWN"),
+            "recommended_action": row.get("recommended_action", ""),
+            "impact_score": float(row.get("impact_score", 0)),
+            "date": row.get("date", "")
+        })
+    
+    return {
+        "products": results,
+        "summary": chat_session.session_summary
+    }
+
+
+@app.get("/api/chat/export-csv")
+async def export_chat_analysis_csv():
+    """Export the analysis results as a CSV file."""
+    from fastapi.responses import StreamingResponse
+    import io
+    import csv
+    
+    if chat_session.session_analysis is None:
+        raise HTTPException(status_code=404, detail="No analysis available. Upload a CSV first.")
+    
+    # Create CSV in memory
+    output = io.StringIO()
+    writer = csv.writer(output)
+    
+    # Write header
+    headers = ["Date", "SKU", "Product Name", "Price", "Stock", "Cost", "Profit/Unit", "Risk Level", "Recommended Action"]
+    writer.writerow(headers)
+    
+    # Write data
+    for _, row in chat_session.session_analysis.iterrows():
+        writer.writerow([
+            row.get("date", ""),
+            row.get("sku_id", ""),
+            row.get("product_name", ""),
+            f"${row.get('selling_price', 0):.2f}",
+            row.get("current_stock", 0),
+            f"${row.get('cogs', 0):.2f}",
+            f"${row.get('profit_per_unit', 0):.2f}",
+            row.get("risk_level", ""),
+            row.get("recommended_action", "")
+        ])
+    
+    output.seek(0)
+    
+    return StreamingResponse(
+        iter([output.getvalue()]),
+        media_type="text/csv",
+        headers={"Content-Disposition": "attachment; filename=inventory_analysis.csv"}
+    )
+
+
+# ============ Workflow Generation Endpoints ============
+
+from workflow_generator import WorkflowGenerator
+
+class WorkflowRequest(BaseModel):
+    workflow_type: str = "overview"  # restock, pricing, seasonal, overview, custom
+    custom_prompt: Optional[str] = None
+
+
+@app.post("/api/workflows/generate")
+async def generate_workflow(request: WorkflowRequest):
+    """Generate a dynamic workflow visualization based on analysis data."""
+    
+    # Get analysis data if available
+    analysis_data = None
+    summary_data = {}
+    
+    if chat_session.session_analysis is not None:
+        # Use the chat session's analysis data
+        summary_data = chat_session.session_summary or {}
+        
+        # For specific product workflows, get top product based on type
+        if request.workflow_type == "restock":
+            critical = chat_session.session_analysis[
+                chat_session.session_analysis.get("risk_level") == "CRITICAL"
+            ]
+            if not critical.empty:
+                analysis_data = critical.iloc[0].to_dict()
+                
+        elif request.workflow_type == "pricing":
+            loss_makers = chat_session.session_analysis[
+                chat_session.session_analysis.get("profit_per_unit", 0) < 0
+            ]
+            if not loss_makers.empty:
+                analysis_data = loss_makers.iloc[0].to_dict()
+        else:
+            analysis_data = summary_data
+    
+    # Merge analysis data with summary
+    merged_data = {**summary_data, **(analysis_data or {})}
+    
+    # Create fresh generator instance (loads .env fresh each time)
+    generator = WorkflowGenerator()
+    
+    # Generate workflow
+    result = generator.generate_workflow(
+        workflow_type=request.workflow_type,
+        analysis_data=merged_data,
+        custom_prompt=request.custom_prompt
+    )
+    
+    return result
+
+
+@app.get("/api/workflows/list")
+async def list_generated_workflows():
+    """List all generated workflow images."""
+    import os
+    generated_dir = os.path.join(os.path.dirname(__file__), "dashboard", "public", "workflows", "generated")
+    
+    if not os.path.exists(generated_dir):
+        return {"workflows": []}
+    
+    workflows = []
+    for filename in os.listdir(generated_dir):
+        if filename.endswith(('.png', '.jpg', '.jpeg', '.webp')):
+            workflows.append({
+                "filename": filename,
+                "path": f"/workflows/generated/{filename}",
+                "type": filename.split("_")[0] if "_" in filename else "custom"
+            })
+    
+    return {"workflows": sorted(workflows, key=lambda x: x["filename"], reverse=True)}
+
+
+
 
 if __name__ == "__main__":
     import uvicorn
@@ -1570,4 +1795,6 @@ if __name__ == "__main__":
     print("[INFO] API docs available at http://localhost:8000/docs")
     print("[INFO] Dashboard should connect to http://localhost:8000/api")
     print("[INFO] n8n endpoints available at http://localhost:8000/api/n8n/*")
+    print("[INFO] Chat endpoints available at http://localhost:8000/api/chat/*")
     uvicorn.run(app, host="0.0.0.0", port=8000)
+
