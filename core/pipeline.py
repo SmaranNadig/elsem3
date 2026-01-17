@@ -5,18 +5,18 @@ import os
 import time
 from typing import Optional
 
-from config import CFG
-from profit_doctor import ProfitDoctorAgent
-from inventory_sentinel import InventorySentinelAgent
-from seasonal_analyst import SeasonalAnalystAgent
-from strategy_supervisor import StrategySupervisorAgent
-from sku_mode_manager import sku_mode_manager
+from core.config import CFG
+from agents.profit_doctor import ProfitDoctorAgent
+from agents.inventory_sentinel import InventorySentinelAgent
+from agents.seasonal_analyst import SeasonalAnalystAgent
+from agents.strategy_supervisor import StrategySupervisorAgent
+from core.sku_mode_manager import sku_mode_manager
 
 
 def run_pipeline(
     sku_master_path: str = CFG.sku_master_path,
     sales_history_path: str = CFG.sales_history_path,
-    output_path: str = "agent_recommendations.csv",
+    output_path: str = "data/agent_recommendations.csv",
     verbose: bool = True,
     df_master: Optional[pd.DataFrame] = None,
     df_sales: Optional[pd.DataFrame] = None

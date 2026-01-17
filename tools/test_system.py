@@ -2,7 +2,7 @@
 Comprehensive test of all agents and API endpoints including Ad Gateway
 """
 from fastapi.testclient import TestClient
-from api import app
+from server.api import app
 
 client = TestClient(app)
 

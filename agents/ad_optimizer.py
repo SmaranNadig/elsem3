@@ -7,8 +7,8 @@ import time
 from typing import Optional, List, Dict, Any
 from datetime import datetime
 
-from config import CFG, HAS_LANGCHAIN, llm
-from strategy_modes import get_mode_config, StrategyMode
+from core.config import CFG, HAS_LANGCHAIN, llm
+from core.strategy_modes import get_mode_config, StrategyMode
 
 # Import pydantic
 try:
@@ -366,7 +366,7 @@ Keep response under 200 words."""
 
 # Standalone testing
 if __name__ == "__main__":
-    from ad_gateway import AdGateway
+    from agents.ad_gateway import AdGateway
     
     print("=" * 60)
     print("AD OPTIMIZER TEST")

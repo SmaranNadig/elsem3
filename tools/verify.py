@@ -3,7 +3,7 @@ import pandas as pd
 print("PIPELINE OUTPUT SUMMARY")
 print("=" * 50)
 
-df = pd.read_csv("agent_recommendations.csv")
+df = pd.read_csv("data/agent_recommendations.csv")
 
 print(f"Total SKUs: {len(df)}")
 print(f"Total Columns: {len(df.columns)}")

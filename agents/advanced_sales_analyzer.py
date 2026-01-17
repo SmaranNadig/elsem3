@@ -11,7 +11,7 @@ from scipy import stats
 class AdvancedSalesAnalyzer:
     """Advanced analytics for product sales data"""
     
-    def __init__(self, excel_path: str = "online_retail_II.xlsx"):
+    def __init__(self, excel_path: str = "data/online_retail_II.xlsx"):
         self.excel_path = excel_path
         self.df = None
         

@@ -8,7 +8,7 @@ from datetime import datetime, timedelta
 import os
 from pydantic import BaseModel, Field
 
-from config import CFG
+from core.config import CFG
 
 
 # ============================================================================
@@ -104,8 +104,8 @@ class AdGateway:
     4. Spend Calculator - Calculate ad spend by SKU
     """
     
-    campaigns_path: str = "synthetic dataset/ad_campaigns.csv"
-    daily_metrics_path: str = "synthetic dataset/ad_daily_metrics.csv"
+    campaigns_path: str = "data/synthetic dataset/ad_campaigns.csv"
+    daily_metrics_path: str = "data/synthetic dataset/ad_daily_metrics.csv"
     
     # In-memory storage
     connected_platforms: Dict[str, AdPlatformCredentials] = field(default_factory=dict)

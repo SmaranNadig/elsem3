@@ -4,7 +4,7 @@ import pandas as pd
 import time
 from typing import Tuple, Optional, Dict, List
 from datetime import datetime, timedelta
-from config import CFG
+from core.config import CFG
 
 class ShopifyLoader:
     def __init__(self):
@@ -115,7 +115,15 @@ class ShopifyLoader:
                     "current_stock": stock,
                     "lead_time_days": lead_time,
                     "shopify_variant_id": v["id"],
-                    "shopify_inventory_item_id": v["inventory_item_id"]
+                    "shopify_inventory_item_id": v["inventory_item_id"],
+                    # Add required pipeline columns with defaults
+                    "mrp": price * 1.2,  # Assumed MRP
+                    "shipping_cost_per_unit": 60.0,
+                    "platform_fee_percent": 2.0,
+                    "platform_fixed_fee": 5.0,
+                    "is_hero": False,
+                    "discount_applied": 0.0,
+                    "payment_fee": price * 0.02
                 })
         
         df = pd.DataFrame(rows)

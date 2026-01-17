@@ -79,7 +79,7 @@ class WorkflowGenerator:
         else:
             print("[WARN] WorkflowGenerator: No GEMINI_API_KEY found in environment")
             
-        self.output_dir = os.path.join(os.path.dirname(__file__), "dashboard", "public", "workflows", "generated")
+        self.output_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "dashboard", "public", "workflows", "generated")
         os.makedirs(self.output_dir, exist_ok=True)
     
     def _build_prompt(self, template_type: str, data: Dict[str, Any], custom_prompt: str = None) -> str:

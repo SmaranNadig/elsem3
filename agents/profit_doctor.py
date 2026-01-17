@@ -5,8 +5,8 @@ import numpy as np
 from dataclasses import dataclass
 import time
 from typing import Optional
-from config import CFG, HAS_LANGCHAIN, llm
-from strategy_modes import get_mode_config, StrategyMode
+from core.config import CFG, HAS_LANGCHAIN, llm
+from core.strategy_modes import get_mode_config, StrategyMode
 
 # Always import pydantic (used for data validation)
 try:
@@ -75,8 +75,8 @@ class ProfitDoctorAgent:
         
         # Ad cost per unit - Try to get from Ad Gateway first
         try:
-            from ad_gateway import ad_gateway
-            from config import CFG
+            from agents.ad_gateway import ad_gateway
+            from core.config import CFG
             
             if CFG.enable_ad_gateway:
                 # Get ad spend from Ad Gateway

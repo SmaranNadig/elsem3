@@ -98,21 +98,21 @@ class OllamaChat:
             if pattern in col_lower:
                 sku_col = col_lower[pattern]
                 break
-        
-        # Product name detection
-        for pattern in ['product_name', 'productname', 'name', 'title', 'description', 'product', 'item']:
+                
+        # Name detection
+        for pattern in ['product_name', 'name', 'title', 'description', 'product']:
             if pattern in col_lower:
                 name_col = col_lower[pattern]
                 break
-        
+                
         # Price detection
-        for pattern in ['selling_price', 'price', 'unit_price', 'unitprice', 'amount']:
+        for pattern in ['selling_price', 'price', 'unit_price', 'amount', 'value', 'mrp']:
             if pattern in col_lower:
                 price_col = col_lower[pattern]
                 break
-        
+                
         # Cost detection
-        for pattern in ['cogs', 'cost', 'unit_cost', 'cost_price']:
+        for pattern in ['cogs', 'cost', 'unit_cost', 'cost_price', 'buying_price']:
             if pattern in col_lower:
                 cost_col = col_lower[pattern]
                 break
@@ -158,24 +158,15 @@ class OllamaChat:
             result['cogs'] = result['selling_price'] * 0.6
             
         if stock_col:
-            result['current_stock'] = pd.to_numeric(df[stock_col], errors='coerce').fillna(50).astype(int)
+            result['current_stock'] = pd.to_numeric(df[stock_col], errors='coerce').fillna(0).astype(int)
         else:
-            result['current_stock'] = 50
-        
-        # Add required columns with defaults
-        result['category'] = 'General'
-        result['lead_time_days'] = 7
-        result['units_sold_last_30_days'] = (result['current_stock'] / 30 * 30).astype(int).clip(lower=1)
-        result['platform_fee_percent'] = 2.0
-        result['platform_fixed_fee'] = 0.30
-        result['shipping_cost_per_unit'] = (result['selling_price'] * 0.1).clip(lower=0.5, upper=5.0)
-        result['ad_spend_total_last_30_days'] = 0.0
-        
-        # Add date if found
+            result['current_stock'] = 0
+            
         if date_col:
-            result['date'] = pd.to_datetime(df[date_col], errors='coerce').dt.strftime('%Y-%m-%d')
-        else:
-            result['date'] = datetime.now().strftime('%Y-%m-%d')
+            result['date'] = pd.to_datetime(df[date_col], errors='coerce')
+        
+        # Mock other pipeline fields
+        result['units_sold_last_30_days'] = result['current_stock'] * 0.5 # Mock
         
         return result
     
@@ -183,9 +174,9 @@ class OllamaChat:
         """Run pipeline analysis on transformed data."""
         try:
             # Import pipeline components
-            from profit_doctor import ProfitDoctorAgent
-            from inventory_sentinel import InventorySentinelAgent
-            from strategy_supervisor import StrategySupervisorAgent
+            from agents.profit_doctor import ProfitDoctorAgent
+            from agents.inventory_sentinel import InventorySentinelAgent
+            from agents.strategy_supervisor import StrategySupervisorAgent
             
             # Generate simple sales history
             sales_rows = []
@@ -325,44 +316,41 @@ Answer the user's question thoroughly. If they ask for analysis, provide:
                 high_risk_products = df[df['risk_level'].isin(['CRITICAL', 'WARNING'])][['product_name', 'risk_level', 'current_stock', 'recommended_action']].head(5).to_dict('records')
         
         context = f"""
-📊 INVENTORY OVERVIEW:
-━━━━━━━━━━━━━━━━━━━━━━
-• Total Products: {self.session_summary.get('total_products', 0)}
-• Total Stock Value: ${total_stock_value:,.2f}
-• Average Profit per Unit: ${self.session_summary.get('avg_profit', 0):.2f}
-
-💰 PROFITABILITY BREAKDOWN:
-━━━━━━━━━━━━━━━━━━━━━━
-• Profitable Products: {self.session_summary.get('profitable', 0)} ({self.session_summary.get('profitable', 0) / max(1, self.session_summary.get('total_products', 1)) * 100:.0f}%)
-• Loss-Making Products: {self.session_summary.get('loss_makers', 0)} ({self.session_summary.get('loss_makers', 0) / max(1, self.session_summary.get('total_products', 1)) * 100:.0f}%)
-
-⚠️ RISK ASSESSMENT:
-━━━━━━━━━━━━━━━━━━━━━━
-• 🔴 CRITICAL: {self.session_summary.get('critical_risk', 0)} products need IMMEDIATE action
-• 🟡 WARNING: {self.session_summary.get('warning_risk', 0)} products need monitoring
-• 🟢 SAFE: {self.session_summary.get('safe', 0)} products are healthy
-
-🚨 TOP PRIORITY ISSUES:
-━━━━━━━━━━━━━━━━━━━━━━
-"""
+        SUMMARY:
+        - Total Products: {self.session_summary.get('total_products', 0)}
+        - Total Stock Value: ${total_stock_value:,.2f}
+        - Average Product Profit: ${self.session_summary.get('avg_profit', 0):.2f}
+        
+        RISK PROFILE:
+        - Critical Risk: {self.session_summary.get('critical_risk', 0)} ({self.session_summary.get('critical_risk', 0) / max(1, self.session_summary.get('total_products', 1)) * 100:.0f}%)
+        - Warnings: {self.session_summary.get('warning_risk', 0)}
+        - Safe: {self.session_summary.get('safe', 0)}
+        
+        PROFITABILITY:
+        - Profitable Products: {self.session_summary.get('profitable', 0)}
+        - Loss Makers: {self.session_summary.get('loss_makers', 0)} ({self.session_summary.get('loss_makers', 0) / max(1, self.session_summary.get('total_products', 1)) * 100:.0f}%)
+        
+        TOP ISSUES TO ADDRESS:
+        """
+        
         for i, item in enumerate(self.session_summary.get('top_issues', []), 1):
-            context += f"{i}. {item['product_name']}\n   Status: {item['risk_level']} → Action: {item['recommended_action']}\n"
-        
-        # Add high-risk products detail
+            context += f"\n{i}. {item['product_name']}\n   Status: {item['risk_level']} -> Action: {item['recommended_action']}"
+            
         if high_risk_products:
-            context += "\n📋 PRODUCTS REQUIRING ATTENTION:\n━━━━━━━━━━━━━━━━━━━━━━\n"
+            context += "\n\nHIGH RISK ITEMS (Sample):"
             for prod in high_risk_products:
-                context += f"• {prod['product_name']} (Stock: {prod['current_stock']})\n  → {prod['recommended_action']}\n"
-        
-        # Add full product data
-        if df is not None and not df.empty:
-            cols = ['product_name', 'selling_price', 'current_stock', 'profit_per_unit', 'risk_level', 'recommended_action']
+                context += f"\n- {prod['product_name']} (Stock: {prod['current_stock']}) -> {prod['risk_level']}, {prod['recommended_action']}"
+
+        # Add data sample
+        if df is not None:
+            # Select key columns for context
+            cols = ['sku_id', 'product_name', 'selling_price', 'cogs', 'current_stock', 'profit_per_unit', 'risk_level', 'recommended_action']
             available_cols = [c for c in cols if c in df.columns]
-            if available_cols:
-                context += f"\n📦 COMPLETE PRODUCT DATA:\n━━━━━━━━━━━━━━━━━━━━━━\n{df[available_cols].to_string()}\n"
-        
+            
+            context += f"\n\nCOMPLETE PRODUCT DATA:\n==========\n{df[available_cols].to_string()}\n"
+            
         return context
-    
+
     def get_session_status(self) -> Dict[str, Any]:
         """Get current session status."""
         return {
@@ -373,7 +361,7 @@ Answer the user's question thoroughly. If they ask for analysis, provide:
             "ollama_available": self.check_ollama_available(),
             "model": self.model
         }
-    
+
     def clear_session(self):
         """Clear the current session."""
         self.session_data = None
@@ -381,10 +369,8 @@ Answer the user's question thoroughly. If they ask for analysis, provide:
         self.session_summary = {}
         self.chat_history = []
 
-
 # Global instance
 chat_session = OllamaChat()
-
 
 # Test
 if __name__ == "__main__":

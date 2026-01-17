@@ -10,14 +10,14 @@ print("=" * 70)
 # Test 1: Import all modules
 print("\n1. Importing modules...")
 try:
-    from config import CFG
-    from profit_doctor import ProfitDoctorAgent
-    from inventory_sentinel import InventorySentinelAgent
-    from seasonal_analyst import SeasonalAnalystAgent
-    from strategy_supervisor import StrategySupervisorAgent
-    from ad_gateway import AdGateway
-    from ad_optimizer import AdOptimizerAgent
-    from pipeline import run_pipeline
+    from core.config import CFG
+    from agents.profit_doctor import ProfitDoctorAgent
+    from agents.inventory_sentinel import InventorySentinelAgent
+    from agents.seasonal_analyst import SeasonalAnalystAgent
+    from agents.strategy_supervisor import StrategySupervisorAgent
+    from agents.ad_gateway import AdGateway
+    from agents.ad_optimizer import AdOptimizerAgent
+    from core.pipeline import run_pipeline
     print("   ✓ All modules imported successfully")
 except Exception as e:
     print(f"   ✗ Import error: {e}")
@@ -78,7 +78,7 @@ except Exception as e:
 print("\n6. Testing API endpoints...")
 try:
     from fastapi.testclient import TestClient
-    from api import app
+    from server.api import app
     
     client = TestClient(app)
     
@@ -114,7 +114,7 @@ except Exception as e:
 print("\n7. Testing Profit Doctor + Ad Gateway integration...")
 try:
     agent = ProfitDoctorAgent()
-    df_master = pd.read_csv("synthetic dataset/sku_master.csv")
+    df_master = pd.read_csv("data/synthetic dataset/sku_master.csv")
     result = agent.compute_profit_metrics(df_master)
     
     has_ad_data = "ad_roas" in result.columns and result["ad_roas"].sum() > 0

@@ -12,8 +12,8 @@ class Config:
     """Configuration for E-commerce Agent Dashboard"""
     
     # Data paths (default to synthetic dataset)
-    sku_master_path: str = os.getenv("SKU_MASTER_PATH", "synthetic dataset/sku_master.csv")
-    sales_history_path: str = os.getenv("SALES_HISTORY_PATH", "synthetic dataset/seasonal_sales_history.csv")
+    sku_master_path: str = os.getenv("SKU_MASTER_PATH", "data/synthetic dataset/sku_master.csv")
+    sales_history_path: str = os.getenv("SALES_HISTORY_PATH", "data/synthetic dataset/seasonal_sales_history.csv")
     
     # Agent parameters
     fee_gst_rate: float = 0.18
@@ -43,15 +43,15 @@ class Config:
     enable_ad_optimizer_llm: bool = os.getenv("ENABLE_AD_OPTIMIZER_LLM", "True").lower() == "true"
     
     # Seasonal Analyst Configuration
-    seasonal_history_path: str = os.getenv("SEASONAL_HISTORY_PATH", "synthetic dataset/seasonal_sales_history.csv")
+    seasonal_history_path: str = os.getenv("SEASONAL_HISTORY_PATH", "data/synthetic dataset/seasonal_sales_history.csv")
     seasonal_period: int = int(os.getenv("SEASONAL_PERIOD", "12"))  # Monthly seasonality
     min_seasonal_history_days: int = int(os.getenv("MIN_SEASONAL_HISTORY_DAYS", "90"))
     seasonality_strength_threshold: float = float(os.getenv("SEASONALITY_STRENGTH_THRESHOLD", "0.3"))
     
     # Ad Gateway Configuration
     enable_ad_gateway: bool = os.getenv("ENABLE_AD_GATEWAY", "True").lower() == "true"
-    ad_campaigns_path: str = os.getenv("AD_CAMPAIGNS_PATH", "synthetic dataset/ad_campaigns.csv")
-    ad_daily_metrics_path: str = os.getenv("AD_DAILY_METRICS_PATH", "synthetic dataset/ad_daily_metrics.csv")
+    ad_campaigns_path: str = os.getenv("AD_CAMPAIGNS_PATH", "data/synthetic dataset/ad_campaigns.csv")
+    ad_daily_metrics_path: str = os.getenv("AD_DAILY_METRICS_PATH", "data/synthetic dataset/ad_daily_metrics.csv")
     default_ad_budget: float = float(os.getenv("DEFAULT_AD_BUDGET", "500.0"))
     ad_roas_target: float = float(os.getenv("AD_ROAS_TARGET", "3.0"))
     ad_min_roas_threshold: float = float(os.getenv("AD_MIN_ROAS_THRESHOLD", "1.5"))

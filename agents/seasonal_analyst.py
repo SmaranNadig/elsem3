@@ -6,8 +6,8 @@ from dataclasses import dataclass
 import time
 from typing import Optional, Dict, Tuple
 from datetime import datetime
-from config import CFG, HAS_ARIMA, HAS_LANGCHAIN, llm
-from strategy_modes import get_mode_config, StrategyMode
+from core.config import CFG, HAS_ARIMA, HAS_LANGCHAIN, llm
+from core.strategy_modes import get_mode_config, StrategyMode
 
 # Import pydantic for structured output
 try:
@@ -359,8 +359,8 @@ if __name__ == "__main__":
     import sys
     
     # Check for required files
-    sku_master_path = "synthetic dataset/sku_master.csv"
-    sales_history_path = "synthetic dataset/seasonal_sales_history.csv"
+    sku_master_path = "data/synthetic dataset/sku_master.csv"
+    sales_history_path = "data/synthetic dataset/seasonal_sales_history.csv"
     
     if not os.path.exists(sku_master_path):
         print(f"[ERROR] SKU master not found: {sku_master_path}")
@@ -378,12 +378,12 @@ if __name__ == "__main__":
     print(f"[INFO] Loaded {len(df_master)} SKUs and {len(df_sales)} sales records")
     
     # Run profit doctor first (to get profit metrics)
-    from profit_doctor import ProfitDoctorAgent
+    from agents.profit_doctor import ProfitDoctorAgent
     profit_agent = ProfitDoctorAgent()
     df_profit = profit_agent.compute_profit_metrics(df_master)
     
     # Run inventory sentinel (to get days_of_stock_left)
-    from inventory_sentinel import InventorySentinelAgent
+    from agents.inventory_sentinel import InventorySentinelAgent
     inventory_agent = InventorySentinelAgent()
     df_inventory = inventory_agent.compute_inventory_metrics(df_profit, df_sales)
     

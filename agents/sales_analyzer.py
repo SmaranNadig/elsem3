@@ -10,7 +10,7 @@ from typing import Dict, List
 class SalesAnalyzer:
     """Analyzes retail sales data and generates insights"""
     
-    def __init__(self, excel_path: str = "online_retail_II.xlsx"):
+    def __init__(self, excel_path: str = "data/online_retail_II.xlsx"):
         self.excel_path = excel_path
         self.df = None
         

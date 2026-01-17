@@ -6,8 +6,8 @@ from dataclasses import dataclass
 import time
 from typing import Optional
 from functools import lru_cache
-from config import CFG, HAS_ARIMA, ARIMA, HAS_LANGCHAIN, llm
-from strategy_modes import get_mode_config, StrategyMode
+from core.config import CFG, HAS_ARIMA, ARIMA, HAS_LANGCHAIN, llm
+from core.strategy_modes import get_mode_config, StrategyMode
 
 # Always import pydantic
 try:
@@ -265,7 +265,7 @@ if __name__ == "__main__":
     import sys
     
     if os.path.exists(CFG.sku_master_path) and os.path.exists(CFG.sales_history_path):
-        from profit_doctor import ProfitDoctorAgent
+        from agents.profit_doctor import ProfitDoctorAgent
         
         df_master = pd.read_csv(CFG.sku_master_path)
         df_sales = pd.read_csv(CFG.sales_history_path)

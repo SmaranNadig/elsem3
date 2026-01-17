@@ -11,7 +11,7 @@ trap cleanup SIGINT SIGTERM
 
 echo "Starting Backend (FastAPI)..."
 source venv/bin/activate
-uvicorn api:app --reload --port 8000 &
+uvicorn server.api:app --reload --port 8000 &
 BACKEND_PID=$!
 
 echo "Starting Frontend (Vite)..."

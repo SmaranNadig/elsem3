@@ -9,11 +9,11 @@ import os
 from datetime import datetime
 import traceback
 
-from config import CFG
-from config import CFG
-from pipeline import run_pipeline
-from shopify_loader import ShopifyLoader
-from sku_mode_manager import sku_mode_manager  # Import mode manager
+from core.config import CFG
+from core.pipeline import run_pipeline
+from server.shopify_loader import ShopifyLoader
+from core.sku_mode_manager import sku_mode_manager  # Import mode manager
+from server.ollama_chat import OllamaChat, chat_session
 
 # Initialize FastAPI app
 app = FastAPI(
@@ -102,20 +102,70 @@ def load_shopify_data():
         
     try:
         df_master, df_sales = loader.fetch_data()
+        
+        # Fallback for master data (products)
         if df_master.empty:
-            return False
+            print("[INFO] No products fetched from Shopify. Attempting fallback to local product data...")
             
-        # Run pipeline with Shopify data
+            # Prioritize the specific SKU master file requested
+            sku_master_path = "data/synthetic dataset/sku_master.csv"
+            
+            if os.path.exists(sku_master_path):
+                try:
+                    df_master = pd.read_csv(sku_master_path)
+                    print(f"[SUCCESS] Loaded {len(df_master)} products from SKU master: {sku_master_path}")
+                except Exception as e:
+                    print(f"[WARNING] Failed to load from SKU master: {e}")
+            
+            # If that fails, try CFG path
+            if df_master.empty and os.path.exists(CFG.sku_master_path):
+                 try:
+                    df_master = pd.read_csv(CFG.sku_master_path)
+                    print(f"[SUCCESS] Loaded {len(df_master)} products from config path: {CFG.sku_master_path}")
+                 except Exception as e:
+                    print(f"[WARNING] Failed to load from config path: {e}")
+
+            if df_master.empty:
+                print("[ERROR] No product data available (Shopify failed and no local fallback found)")
+                return False
+            
+        # Fallback for sales history (orders)
+        if df_sales.empty:
+            print("[INFO] No orders fetched from Shopify. Attempting fallback to local sales history...")
+            
+            # Prioritize the specific seasonal sales history file requested
+            sales_history_path = "data/synthetic dataset/seasonal_sales_history.csv"
+            
+            paths_to_try = [sales_history_path, CFG.sales_history_path]
+            
+            for path in paths_to_try:
+                if os.path.exists(path):
+                    try:
+                        df_temp = pd.read_csv(path)
+                        if not df_temp.empty:
+                            df_sales = df_temp
+                            print(f"[SUCCESS] Loaded {len(df_sales)} fallback sales records from {path}")
+                            break
+                    except Exception as e:
+                        print(f"[WARNING] Failed to load from {path}: {e}")
+            
+            if df_sales.empty:
+                print("[WARNING] No sales history available (Shopify failed and no local fallback found)")
+                # Pipeline will still run but agents may have limited data
+            
+        # Run pipeline with Shopify data (and potentially fallback sales data)
         pipeline_data = run_pipeline(verbose=True, df_master=df_master, df_sales=df_sales)
         last_execution_time = datetime.now()
         data_source = "shopify"
         execution_status = {
             "status": "success",
-            "message": f"Shopify data loaded at {last_execution_time.strftime('%Y-%m-%d %H:%M:%S')}"
+            "message": f"Data loaded at {last_execution_time.strftime('%Y-%m-%d %H:%M:%S')} (Source: {data_source} with fallbacks if needed)"
         }
         return True
     except Exception as e:
-        print(f"[ERROR] Shopify load failed: {str(e)}")
+        print(f"[ERROR] Shopify load process failed: {str(e)}")
+        import traceback
+        traceback.print_exc()
         return False
 
 def execute_pipeline():
@@ -161,14 +211,19 @@ def execute_pipeline():
 
 # Execute pipeline on startup - Waiting for Shopify data from n8n
 @app.on_event("startup")
-async def startup_event():
+def startup_event():
     print("[INFO] API started. Initializing data...")
     # Auto-run pipeline with synthetic data if no Shopify data
-    success = execute_pipeline()
-    if success:
-        print("[INFO] Pipeline executed successfully on startup.")
-    else:
-        print("[WARNING] Pipeline execution failed on startup.")
+    try:
+        success = execute_pipeline()
+        if success:
+            print("[INFO] Pipeline executed successfully on startup.")
+        else:
+            print("[WARNING] Pipeline execution failed on startup.")
+    except Exception as e:
+        print(f"[ERROR] Startup execution error: {e}")
+        import traceback
+        traceback.print_exc()
 
 
 
@@ -254,8 +309,8 @@ async def get_agent_status():
     
     # Add Ad Gateway status if enabled
     try:
-        from ad_gateway import ad_gateway
-        from config import CFG
+        from agents.ad_gateway import ad_gateway
+        from core.config import CFG
         if CFG.enable_ad_gateway:
             ad_summary = ad_gateway.get_summary()
             agents.append({
@@ -561,11 +616,11 @@ async def get_sku_seasonal_details(sku_id: str):
 # Ad Gateway Endpoints
 # ============================================================================
 
-from ad_gateway import (
+from agents.ad_gateway import (
     AdGateway, AdPlatformCredentials, CampaignCreate, CampaignUpdate,
     Campaign, AdMetrics, AdSummary
 )
-from ad_optimizer import AdOptimizerAgent
+from agents.ad_optimizer import AdOptimizerAgent
 
 # Initialize Ad Gateway
 ad_gateway_instance = AdGateway()
@@ -931,7 +986,7 @@ async def n8n_analyze_shopify_data(data: ShopifyData):
         print(f"[INFO] Created SKU master with {len(df_master)} products")
         
         # Load real sales history from the prepared CSV file
-        sales_history_path = "synthetic dataset/seasonal_sales_history.csv"
+        sales_history_path = "data/synthetic dataset/seasonal_sales_history.csv"
         
         if os.path.exists(sales_history_path):
             print(f"[INFO] Loading custom sales history from {sales_history_path}")
@@ -973,10 +1028,10 @@ async def n8n_analyze_shopify_data(data: ShopifyData):
         # ============================================================
         
         # Run agents on transformed Shopify data
-        from profit_doctor import ProfitDoctorAgent
-        from inventory_sentinel import InventorySentinelAgent
-        from seasonal_analyst import SeasonalAnalystAgent
-        from strategy_supervisor import StrategySupervisorAgent
+        from agents.profit_doctor import ProfitDoctorAgent
+        from agents.inventory_sentinel import InventorySentinelAgent
+        from agents.seasonal_analyst import SeasonalAnalystAgent
+        from agents.strategy_supervisor import StrategySupervisorAgent
         
         # Agent 1: Profit Doctor
         profit_agent = ProfitDoctorAgent()
@@ -1435,7 +1490,7 @@ async def execute_alert_action(action: InternalAction):
 # Sales Analysis Endpoints
 # ============================================================================
 
-from sales_analyzer import sales_analyzer
+from agents.sales_analyzer import sales_analyzer
 
 @app.get("/api/sales/monthly")
 async def get_monthly_sales():
@@ -1470,7 +1525,7 @@ async def get_product_sales(limit: int = 20):
         raise HTTPException(status_code=500, detail=str(e))
 
 
-from advanced_sales_analyzer import advanced_analyzer
+from agents.advanced_sales_analyzer import advanced_analyzer
 
 @app.get("/api/analytics/products")
 async def get_analytics_products(limit: int = 50):
@@ -1498,8 +1553,8 @@ async def get_product_analytics(product_name: str):
 # Strategy Mode Endpoints
 # ============================================================================
 
-from strategy_modes import get_all_modes, get_mode_config, get_mode_display_name, StrategyMode
-from sku_mode_manager import sku_mode_manager
+from core.strategy_modes import get_all_modes, get_mode_config, get_mode_display_name, StrategyMode
+from core.sku_mode_manager import sku_mode_manager
 
 
 class ModeUpdate(BaseModel):
@@ -1622,7 +1677,7 @@ async def reset_sku_mode(sku_id: str):
 # ============================================================================
 
 from fastapi import UploadFile, File
-from ollama_chat import chat_session
+from server.ollama_chat import chat_session
 
 
 class ChatMessage(BaseModel):
@@ -1768,7 +1823,7 @@ async def export_chat_analysis_csv():
 
 # ============ Workflow Generation Endpoints ============
 
-from workflow_generator import WorkflowGenerator
+from agents.workflow_generator import WorkflowGenerator
 
 class WorkflowRequest(BaseModel):
     workflow_type: str = "overview"  # restock, pricing, seasonal, overview, custom

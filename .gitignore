@@ -10,3 +10,5 @@ dist/
 build/
 coverage/
 *.log
+dashboard_backup/
+merge_backup/

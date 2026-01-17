@@ -3,10 +3,9 @@ import os
 
 # Paths
 PATHS = [
-    r"c:\Users\nadig\OneDrive\Desktop\eltesting\synthetic dataset\seasonal_sales_history.csv",
-    r"c:\Users\nadig\OneDrive\Desktop\eltesting\elsem3-feature-UK-dataset\synthetic dataset\sales_history.csv"
+    r"c:\Users\nadig\OneDrive\Desktop\eltesting\data\synthetic dataset\seasonal_sales_history.csv",
 ]
-MASTER_PATH = r"c:\Users\nadig\OneDrive\Desktop\eltesting\synthetic dataset\sku_master.csv"
+MASTER_PATH = r"c:\Users\nadig\OneDrive\Desktop\eltesting\data\synthetic dataset\sku_master.csv"
 
 def transform_history():
     print("[INFO] Loading master dataset...")

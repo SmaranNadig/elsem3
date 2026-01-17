@@ -8,7 +8,7 @@ import json
 import os
 from typing import Dict, Optional
 from datetime import datetime
-from strategy_modes import StrategyMode
+from core.strategy_modes import StrategyMode
 
 
 class SKUModeManager:
