@@ -201,15 +201,11 @@ class InventorySentinelAgent:
         df["llm_inventory_insight"] = ""
         df["llm_inventory_confidence"] = 0.0
         
-        # Find SKUs that need LLM analysis
-        needs_analysis = (
-            (df["risk_level"] == "CRITICAL") |
-            ((df["risk_level"] == "WARNING") & (df["profit_at_risk"] > df["profit_at_risk"].median()))
-        )
+        # Find SKUs that need LLM analysis - Now analyzing ALL SKUs as per user request
+        needs_analysis = pd.Series(True, index=df.index)
         
-        analysis_count = needs_analysis.sum()
-        if analysis_count == 0:
-            return df
+        analysis_count = len(df)
+
         
         print(f"[INFO] Inventory Sentinel: Analyzing {analysis_count} SKUs with LLM...")
         

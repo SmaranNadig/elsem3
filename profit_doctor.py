@@ -191,15 +191,11 @@ class ProfitDoctorAgent:
         df["llm_profit_insight"] = ""
         df["llm_confidence"] = 0.0
         
-        # Find SKUs that need LLM analysis
-        needs_analysis = (
-            (df["profit_per_unit"] < 0) |  # Loss makers
-            (df["profit_per_unit"] > df["profit_per_unit"].median())  # High performers
-        )
+        # Find SKUs that need LLM analysis - Now analyzing ALL SKUs as per user request
+        needs_analysis = pd.Series(True, index=df.index)
         
-        analysis_count = needs_analysis.sum()
-        if analysis_count == 0:
-            return df
+        analysis_count = len(df)
+
         
         print(f"[INFO] Profit Doctor: Analyzing {analysis_count} SKUs with LLM...")
         

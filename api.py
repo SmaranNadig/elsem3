@@ -280,16 +280,43 @@ async def get_agent_status():
 
 @app.post("/api/agents/run")
 async def run_agents():
-    """Trigger agent pipeline execution"""
+    """Trigger agent pipeline execution (tries Shopify first)"""
     success = execute_pipeline()
     if success:
         return {
             "status": "success",
-            "message": "Pipeline executed successfully",
+            "message": f"Pipeline executed successfully using {data_source} data",
             "timestamp": last_execution_time.isoformat() if last_execution_time else None
         }
     else:
         raise HTTPException(status_code=500, detail=execution_status["message"])
+
+@app.post("/api/agents/run/csv")
+async def run_agents_csv():
+    """Force pipeline execution using local CSV files"""
+    global pipeline_data, last_execution_time, execution_status, data_source
+    try:
+        execution_status = {"status": "running", "message": "Executing agent pipeline (CSV)..."}
+        df = run_pipeline(verbose=True)
+        if not df.empty:
+            pipeline_data = df
+            data_source = "csv"
+            last_execution_time = datetime.now()
+            execution_status = {
+                "status": "success",
+                "message": f"CSV pipeline executed successfully at {last_execution_time.strftime('%Y-%m-%d %H:%M:%S')}"
+            }
+            return {
+                "status": "success", 
+                "message": "CSV Data Loaded Successfully",
+                "timestamp": last_execution_time.isoformat()
+            }
+        else:
+            raise HTTPException(status_code=500, detail="Pipeline returned empty data")
+    except Exception as e:
+        execution_status = {"status": "error", "message": f"CSV Pipeline failed: {str(e)}"}
+        print(f"[ERROR] CSV Pipeline failed: {traceback.format_exc()}")
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 @app.get("/api/metrics/summary", response_model=MetricsSummary)
@@ -814,7 +841,8 @@ async def n8n_analyze_shopify_data(data: ShopifyData):
     Endpoint for n8n to trigger agent analysis with Shopify data.
     
     This receives product and order data from Shopify via n8n,
-    transforms it to agent format, and returns real recommendations.
+    transforms it to agent format, and returns recommendations.
+    Note: Processing may take 60-120 seconds with full year data.
     """
     global pipeline_data, last_execution_time, execution_status, data_source
     
@@ -825,7 +853,7 @@ async def n8n_analyze_shopify_data(data: ShopifyData):
         if data.products:
             print(f"[DEBUG] First product: {data.products[0].get('title', 'NO TITLE')}")
         
-        execution_status = {"status": "running", "message": "n8n workflow triggered analysis..."}
+        execution_status = {"status": "running", "message": "Processing Shopify data..."}
         
         # ============================================================
         # TRANSFORM SHOPIFY DATA TO AGENT FORMAT
@@ -900,28 +928,43 @@ async def n8n_analyze_shopify_data(data: ShopifyData):
         df_master = pd.DataFrame(sku_master_rows)
         print(f"[INFO] Created SKU master with {len(df_master)} products")
         
-        # Create sample sales history (in production, use actual Shopify orders)
-        # For now, generate synthetic sales based on units_sold_last_30_days
-        # Extended to 90 days for seasonal analysis
-        sales_rows = []
-        for _, sku in df_master.iterrows():
-            # Generate 90 days of sales data (minimum for seasonal analysis)
-            daily_avg = sku["units_sold_last_30_days"] / 30
-            for day in range(1, 91):
-                # Add some randomness to daily sales
-                import random
-                daily_units = max(0, int(daily_avg * random.uniform(0.5, 1.5)))
-                # Generate dates going back 90 days from today
-                from datetime import timedelta
-                date_obj = datetime.now() - timedelta(days=90-day)
-                sales_rows.append({
-                    "sku_id": sku["sku_id"],
-                    "date": date_obj.strftime("%Y-%m-%d"),
-                    "units_sold": daily_units
-                })
+        # Load real sales history from the prepared CSV file
+        sales_history_path = "synthetic dataset/seasonal_sales_history.csv"
         
-        df_sales = pd.DataFrame(sales_rows)
-        print(f"[INFO] Created sales history with {len(df_sales)} records")
+        if os.path.exists(sales_history_path):
+            print(f"[INFO] Loading custom sales history from {sales_history_path}")
+            df_sales_full = pd.read_csv(sales_history_path)
+            
+            # Filter for only the SKUs that came from n8n
+            sku_ids_from_shopify = df_master["sku_id"].tolist()
+            df_sales = df_sales_full[df_sales_full["sku_id"].isin(sku_ids_from_shopify)].copy()
+            
+            # Keep only the required columns for the agents
+            df_sales = df_sales[["sku_id", "date", "units_sold"]]
+            
+            print(f"[INFO] Loaded {len(df_sales)} sales records from custom history for {len(sku_ids_from_shopify)} products")
+        else:
+            # Fallback: Generate synthetic sales if the file doesn't exist
+            print(f"[WARNING] Custom sales history not found at {sales_history_path}, generating synthetic data")
+            sales_rows = []
+            for _, sku in df_master.iterrows():
+                # Generate 90 days of sales data (minimum for seasonal analysis)
+                daily_avg = sku["units_sold_last_30_days"] / 30
+                for day in range(1, 91):
+                    # Add some randomness to daily sales
+                    import random
+                    daily_units = max(0, int(daily_avg * random.uniform(0.5, 1.5)))
+                    # Generate dates going back 90 days from today
+                    from datetime import timedelta
+                    date_obj = datetime.now() - timedelta(days=90-day)
+                    sales_rows.append({
+                        "sku_id": sku["sku_id"],
+                        "date": date_obj.strftime("%Y-%m-%d"),
+                        "units_sold": daily_units
+                    })
+            
+            df_sales = pd.DataFrame(sales_rows)
+            print(f"[INFO] Created synthetic sales history with {len(df_sales)} records")
         
         # ============================================================
         # RUN AGENT PIPELINE WITH SHOPIFY DATA
@@ -959,10 +1002,12 @@ async def n8n_analyze_shopify_data(data: ShopifyData):
         last_execution_time = datetime.now()
         execution_status = {
             "status": "success",
-            "message": f"n8n analysis completed at {last_execution_time.strftime('%Y-%m-%d %H:%M:%S')}"
+            "message": f"Analysis completed at {last_execution_time.strftime('%Y-%m-%d %H:%M:%S')}"
         }
         
-        # Convert recommendations to JSON-serializable format
+        print(f"[SUCCESS] Processing complete for {len(df_final)} SKUs")
+        
+        # Convert recommendations to JSON-serializable format for n8n
         recommendations = []
         for _, row in df_final.iterrows():
             recommendations.append({
@@ -970,9 +1015,7 @@ async def n8n_analyze_shopify_data(data: ShopifyData):
                 "category": row["category"],
                 "product_name": row["product_name"],
                 "selling_price": float(row["selling_price"]),
-                "cogs": float(row["cogs"]),
                 "current_stock": int(row["current_stock"]),
-                "lead_time_days": int(row["lead_time_days"]),
                 "profit_per_unit": float(row["profit_per_unit"]),
                 "loss_per_day": float(row["loss_per_day"]),
                 "sales_velocity_per_day": float(row["sales_velocity_per_day"]),
@@ -981,15 +1024,19 @@ async def n8n_analyze_shopify_data(data: ShopifyData):
                 "reorder_qty_suggested": float(row["reorder_qty_suggested"]),
                 "profit_at_risk": float(row["profit_at_risk"]),
                 "impact_score": float(row["impact_score"]),
-                "recommended_action": row["recommended_action"]
+                "recommended_action": row["recommended_action"],
+                # Include Shopify IDs for n8n to use
+                "shopify_variant_id": row.get("shopify_variant_id"),
+                "shopify_inventory_item_id": row.get("shopify_inventory_item_id")
             })
         
+        # Return complete results to n8n
         return {
             "status": "success",
-            "message": "Agent analysis completed with Shopify data",
+            "message": "Agent analysis completed",
             "timestamp": last_execution_time.isoformat(),
-            "total_skus": len(recommendations),
-            "recommendations": recommendations,
+            "total_skus": len(df_final),
+            "recommendations": recommendations,  # Full array for n8n to loop through
             "summary": {
                 "critical_risk": int((df_final["risk_level"] == "CRITICAL").sum()),
                 "warning_risk": int((df_final["risk_level"] == "WARNING").sum()),
@@ -1224,10 +1271,17 @@ async def get_alerts():
     alerts = []
     
     # Filter for actionable items
-    actionable = pipeline_data[
-        (pipeline_data["risk_level"].isin(["CRITICAL", "WARNING"])) |
-        (pipeline_data["is_loss_maker"] == True)
-    ]
+    # Check if 'is_loss_maker' column exists, otherwise use profit_per_unit calculation
+    if "is_loss_maker" in pipeline_data.columns:
+        actionable = pipeline_data[
+            (pipeline_data["risk_level"].isin(["CRITICAL", "WARNING"])) |
+            (pipeline_data["is_loss_maker"] == True)
+        ]
+    else:
+        actionable = pipeline_data[
+            (pipeline_data["risk_level"].isin(["CRITICAL", "WARNING"])) |
+            (pipeline_data["profit_per_unit"] < 0)
+        ]
     
     # Exclude already acted upon SKUs (simple in-memory check for this session)
     acted_skus = {a["sku_id"] for a in completed_user_actions if a["status"] == "executed"}

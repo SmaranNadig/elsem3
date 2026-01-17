@@ -291,16 +291,11 @@ class SeasonalAnalystAgent:
         - Products with seasonal risk flag
         - Products entering peak/trough season
         """
-        # Find SKUs that need LLM analysis
-        needs_analysis = (
-            (df["seasonality_strength"] > self.strength_threshold) |
-            (df["seasonal_risk_flag"] == True) |
-            (df["seasonal_trend"].isin(["RISING", "FALLING"]))
-        )
+        # Find SKUs that need LLM analysis - Now analyzing ALL SKUs as per user request
+        needs_analysis = pd.Series(True, index=df.index)
         
-        analysis_count = needs_analysis.sum()
-        if analysis_count == 0:
-            return df
+        analysis_count = len(df)
+
         
         print(f"[INFO] Seasonal Analyst: Generating LLM insights for {analysis_count} SKUs...")
         
