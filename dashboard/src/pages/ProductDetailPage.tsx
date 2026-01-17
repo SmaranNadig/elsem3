@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import {
-    LineChart, Line, BarChart, Bar, ScatterChart, Scatter, PieChart, Pie, Cell,
-    RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar,
+    LineChart, Line, BarChart, Bar, ScatterChart, Scatter, Cell,
     XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Area, AreaChart
 } from 'recharts';
-import { ArrowLeft, TrendingUp, TrendingDown, DollarSign, Package, ShoppingCart, Globe } from 'lucide-react';
+import { ArrowLeft, TrendingUp, DollarSign, Package, ShoppingCart, Globe } from 'lucide-react';
 import api from '../services/api';
 
-const COLORS = ['#10B981', '#3B82F6', '#8B5CF6', '#F59E0B', '#EF4444', '#EC4899', '#14B8A6', '#F97316'];
+
 
 const ProductDetailPage: React.FC = () => {
     const { productName } = useParams<{ productName: string }>();
@@ -163,7 +162,7 @@ const ProductDetailPage: React.FC = () => {
                                 <YAxis stroke="#9CA3AF" tickFormatter={(v) => `£${(v / 1000).toFixed(0)}k`} />
                                 <Tooltip
                                     contentStyle={{ backgroundColor: '#1F2937', border: '1px solid #374151', borderRadius: '8px' }}
-                                    formatter={(value: any) => [`£${value.toLocaleString()}`, '']}
+                                    formatter={(value: any) => [`£${Number(value).toLocaleString()}`, '']}
                                 />
                                 <Legend />
                                 <Area type="monotone" dataKey="sales" stroke="#10B981" fill="url(#salesGradient)" strokeWidth={2} />
@@ -183,11 +182,11 @@ const ProductDetailPage: React.FC = () => {
                                 <YAxis stroke="#9CA3AF" tickFormatter={(v) => `${v}%`} />
                                 <Tooltip
                                     contentStyle={{ backgroundColor: '#1F2937', border: '1px solid #374151', borderRadius: '8px' }}
-                                    formatter={(value: any) => [`${value.toFixed(2)}%`, 'Growth']}
+                                    formatter={(value: any) => [`${Number(value).toFixed(2)}%`, 'Growth']}
                                 />
                                 <Bar dataKey="growth" fill="#10B981" radius={[8, 8, 0, 0]}>
                                     {monthlyData.map((entry: any, index: number) => (
-                                        <Cell key={`cell-${index}`} fill={entry.growth >= 0 ? '#10B981' : '#EF4444'} />
+                                        <Cell key={`cell-${index}`} fill={Number(entry.growth) >= 0 ? '#10B981' : '#EF4444'} />
                                     ))}
                                 </Bar>
                             </BarChart>
@@ -204,7 +203,7 @@ const ProductDetailPage: React.FC = () => {
                                 <YAxis stroke="#9CA3AF" tickFormatter={(v) => `£${(v / 1000).toFixed(0)}k`} />
                                 <Tooltip
                                     contentStyle={{ backgroundColor: '#1F2937', border: '1px solid #374151', borderRadius: '8px' }}
-                                    formatter={(value: any) => [`£${value.toLocaleString()}`, 'Sales']}
+                                    formatter={(value: any) => [`£${Number(value).toLocaleString()}`, 'Sales']}
                                 />
                                 <Bar dataKey="sales" fill="#3B82F6" radius={[8, 8, 0, 0]} />
                             </BarChart>
@@ -221,7 +220,7 @@ const ProductDetailPage: React.FC = () => {
                                 <YAxis stroke="#9CA3AF" tickFormatter={(v) => `£${(v / 1000).toFixed(0)}k`} />
                                 <Tooltip
                                     contentStyle={{ backgroundColor: '#1F2937', border: '1px solid #374151', borderRadius: '8px' }}
-                                    formatter={(value: any) => [`£${value.toLocaleString()}`, 'Sales']}
+                                    formatter={(value: any) => [`£${Number(value).toLocaleString()}`, 'Sales']}
                                 />
                                 <Line type="monotone" dataKey="sales" stroke="#8B5CF6" strokeWidth={3} dot={{ fill: '#8B5CF6', r: 5 }} />
                             </LineChart>
@@ -238,7 +237,7 @@ const ProductDetailPage: React.FC = () => {
                                 <YAxis type="category" dataKey="country" stroke="#9CA3AF" width={100} />
                                 <Tooltip
                                     contentStyle={{ backgroundColor: '#1F2937', border: '1px solid #374151', borderRadius: '8px' }}
-                                    formatter={(value: any) => [`£${value.toLocaleString()}`, 'Sales']}
+                                    formatter={(value: any) => [`£${Number(value).toLocaleString()}`, 'Sales']}
                                 />
                                 <Bar dataKey="sales" fill="#F59E0B" radius={[0, 8, 8, 0]} />
                             </BarChart>
@@ -256,7 +255,7 @@ const ProductDetailPage: React.FC = () => {
                                 <Tooltip
                                     cursor={{ strokeDasharray: '3 3' }}
                                     contentStyle={{ backgroundColor: '#1F2937', border: '1px solid #374151', borderRadius: '8px' }}
-                                    formatter={(value: any, name: string) => [value, name === 'price' ? 'Price' : 'Quantity']}
+                                    formatter={(value: any, name: any) => [value, name === 'price' ? 'Price' : 'Quantity']}
                                 />
                                 <Scatter data={priceQtyData} fill="#EC4899" />
                             </ScatterChart>

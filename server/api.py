@@ -101,79 +101,77 @@ class SKURecommendation(BaseModel):
 
 # Helper function to execute pipeline
 def load_shopify_data():
-    """Fetch data from Shopify and run pipeline"""
+    """Fetch data from Shopify (fallback) or local CSV (priority) and run pipeline"""
     global pipeline_data, last_execution_time, execution_status, data_source
     
     loader = ShopifyLoader()
-    if not loader.validate_config():
-        return False
-        
+    
+    # Priority: Local synthetic dataset files as requested by user
+    sku_master_path = "data/synthetic dataset/sku_master.csv"
+    seasonal_sales_path = "data/synthetic dataset/seasonal_sales_history.csv"
+    
+    df_master = pd.DataFrame()
+    df_sales = pd.DataFrame()
+    
     try:
-        df_master, df_sales = loader.fetch_data()
-        
-        # Fallback for master data (products)
-        if df_master.empty:
-            print("[INFO] No products fetched from Shopify. Attempting fallback to local product data...")
-            
-            # Prioritize the specific SKU master file requested
-            sku_master_path = "data/synthetic dataset/sku_master.csv"
-            
-            if os.path.exists(sku_master_path):
-                try:
-                    df_master = pd.read_csv(sku_master_path)
-                    print(f"[SUCCESS] Loaded {len(df_master)} products from SKU master: {sku_master_path}")
-                except Exception as e:
-                    print(f"[WARNING] Failed to load from SKU master: {e}")
-            
-            # If that fails, try CFG path
-            if df_master.empty and os.path.exists(CFG.sku_master_path):
-                 try:
-                    df_master = pd.read_csv(CFG.sku_master_path)
-                    print(f"[SUCCESS] Loaded {len(df_master)} products from config path: {CFG.sku_master_path}")
-                 except Exception as e:
-                    print(f"[WARNING] Failed to load from config path: {e}")
+        # 1. Try loading product master data from local file first
+        if os.path.exists(sku_master_path):
+            try:
+                df_master = pd.read_csv(sku_master_path)
+                print(f"[SUCCESS] Loaded {len(df_master)} products from local master: {sku_master_path}")
+                data_source = "Local CSV (Synthetic)"
+            except Exception as e:
+                print(f"[WARNING] Failed to load local master: {e}")
 
-            if df_master.empty:
-                print("[ERROR] No product data available (Shopify failed and no local fallback found)")
-                return False
-            
-        # Fallback for sales history (orders)
-        if df_sales.empty:
-            print("[INFO] No orders fetched from Shopify. Attempting fallback to local sales history...")
-            
-            # Prioritize the specific seasonal sales history file requested
-            sales_history_path = "data/synthetic dataset/seasonal_sales_history.csv"
-            
-            paths_to_try = [sales_history_path, CFG.sales_history_path]
-            
-            for path in paths_to_try:
-                if os.path.exists(path):
-                    try:
-                        df_temp = pd.read_csv(path)
-                        if not df_temp.empty:
-                            df_sales = df_temp
-                            print(f"[SUCCESS] Loaded {len(df_sales)} fallback sales records from {path}")
-                            break
-                    except Exception as e:
-                        print(f"[WARNING] Failed to load from {path}: {e}")
-            
-            if df_sales.empty:
-                print("[WARNING] No sales history available (Shopify failed and no local fallback found)")
-                # Pipeline will still run but agents may have limited data
-            
-        # Run pipeline with Shopify data (and potentially fallback sales data)
+        # 2. Try loading sales history from local file first
+        if os.path.exists(seasonal_sales_path):
+            try:
+                df_sales = pd.read_csv(seasonal_sales_path)
+                print(f"[SUCCESS] Loaded {len(df_sales)} sales records from local history: {seasonal_sales_path}")
+            except Exception as e:
+                print(f"[WARNING] Failed to load local history: {e}")
+                
+        # 3. If local files were not found or empty, fall back to Shopify
+        if df_master.empty or df_sales.empty:
+            print("[INFO] Local data incomplete or missing. Attempting to fetch from Shopify...")
+            try:
+                shopify_master, shopify_sales = loader.fetch_data()
+                if df_master.empty:
+                    df_master = shopify_master
+                    data_source = "Shopify API"
+                if df_sales.empty:
+                    df_sales = shopify_sales
+            except Exception as e:
+                print(f"[ERROR] Shopify fetch failed: {e}")
+
+        # Final validation
+        if df_master.empty:
+            print("[ERROR] No product data available (Local and Shopify failed)")
+            return False
+
+        # Ensure we have column 'units_sold_last_30_days' if it's missing (Shopify might skip it)
+        if 'units_sold_last_30_days' not in df_master.columns:
+            print("[INFO] Adding 'units_sold_last_30_days' column (filled with 0)")
+            df_master['units_sold_last_30_days'] = 0
+
+        # Run pipeline with the loaded data
         pipeline_data = run_pipeline(verbose=True, df_master=df_master, df_sales=df_sales)
         last_execution_time = datetime.now()
-        data_source = "shopify"
+        
         execution_status = {
             "status": "success",
-            "message": f"Data loaded at {last_execution_time.strftime('%Y-%m-%d %H:%M:%S')} (Source: {data_source} with fallbacks if needed)"
+            "message": f"Data loaded at {last_execution_time.strftime('%Y-%m-%d %H:%M:%S')} (Source: {data_source})"
         }
         return True
+        
     except Exception as e:
-        print(f"[ERROR] Shopify load process failed: {str(e)}")
+        print(f"[ERROR] load_shopify_data failed: {str(e)}")
         import traceback
         traceback.print_exc()
+        execution_status = {
+            "status": "error",
+            "message": f"Execution failed: {str(e)}"
+        }
         return False
 
 def execute_pipeline():

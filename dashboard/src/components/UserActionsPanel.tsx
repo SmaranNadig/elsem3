@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { CheckCircle, Clock, XCircle, RefreshCw, ShoppingBag, DollarSign, AlertTriangle } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { CheckCircle, Clock, RefreshCw, ShoppingBag, DollarSign, AlertTriangle } from 'lucide-react';
 
 interface UserAction {
     sku_id: string;
@@ -203,8 +203,8 @@ export default function UserActionsPanel() {
                 <button
                     onClick={() => setActiveTab('pending')}
                     className={`px-6 py-3 font-medium transition-colors ${activeTab === 'pending'
-                            ? 'text-blue-600 border-b-2 border-blue-600'
-                            : 'text-gray-600 hover:text-gray-900'
+                        ? 'text-blue-600 border-b-2 border-blue-600'
+                        : 'text-gray-600 hover:text-gray-900'
                         }`}
                 >
                     Pending ({pendingActions.length})
@@ -212,8 +212,8 @@ export default function UserActionsPanel() {
                 <button
                     onClick={() => setActiveTab('completed')}
                     className={`px-6 py-3 font-medium transition-colors ${activeTab === 'completed'
-                            ? 'text-blue-600 border-b-2 border-blue-600'
-                            : 'text-gray-600 hover:text-gray-900'
+                        ? 'text-blue-600 border-b-2 border-blue-600'
+                        : 'text-gray-600 hover:text-gray-900'
                         }`}
                 >
                     Completed ({completedActions.length})
