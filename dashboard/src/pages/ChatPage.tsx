@@ -1,5 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Upload, Send, MessageSquare, FileText, Trash2, Home, ChevronDown, ChevronUp, Table, Download, Mic, MicOff, Volume2, VolumeX } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
+import { Send, Upload, FileText, Trash2, Mic, MicOff, Volume2, VolumeX, MessageSquare, Home, Table, ChevronDown, ChevronUp, Download, BarChart2, Activity } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface Message {
     role: 'user' | 'assistant' | 'system';
@@ -328,14 +329,7 @@ const ChatPage: React.FC = () => {
         }
     };
 
-    const getRiskColor = (level: string) => {
-        switch (level) {
-            case 'CRITICAL': return 'text-red-400 bg-red-500/10';
-            case 'WARNING': return 'text-yellow-400 bg-yellow-500/10';
-            case 'SAFE': return 'text-green-400 bg-green-500/10';
-            default: return 'text-gray-400 bg-gray-500/10';
-        }
-    };
+
 
     return (
         <div className="min-h-screen p-6 font-sans text-white bg-[#1D1D1F]">
@@ -428,6 +422,22 @@ const ChatPage: React.FC = () => {
                                 <Download className="w-3 h-3" />
                                 Export CSV
                             </button>
+                            <Link to="/analytics">
+                                <button
+                                    className="flex items-center gap-2 px-3 py-1.5 bg-purple-500/10 hover:bg-purple-500/20 text-purple-400 border border-purple-500/20 rounded-full transition-colors text-xs font-bold uppercase"
+                                >
+                                    <BarChart2 className="w-3 h-3" />
+                                    Analytics
+                                </button>
+                            </Link>
+                            <Link to="/simulations">
+                                <button
+                                    className="flex items-center gap-2 px-3 py-1.5 bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 border border-cyan-500/20 rounded-full transition-colors text-xs font-bold uppercase"
+                                >
+                                    <Activity className="w-3 h-3" />
+                                    Simulations
+                                </button>
+                            </Link>
                         </div>
                         <div className="grid grid-cols-3 gap-4 text-center">
                             <div>
@@ -467,37 +477,44 @@ const ChatPage: React.FC = () => {
                                     <table className="w-full text-left text-sm">
                                         <thead className="bg-white/5 sticky top-0">
                                             <tr>
-                                                <th className="px-4 py-3 text-xs font-bold uppercase text-gray-400">Date</th>
-                                                <th className="px-4 py-3 text-xs font-bold uppercase text-gray-400">Product</th>
-                                                <th className="px-4 py-3 text-xs font-bold uppercase text-gray-400">Price</th>
-                                                <th className="px-4 py-3 text-xs font-bold uppercase text-gray-400">Stock</th>
-                                                <th className="px-4 py-3 text-xs font-bold uppercase text-gray-400">Profit/Unit</th>
-                                                <th className="px-4 py-3 text-xs font-bold uppercase text-gray-400">Risk</th>
-                                                <th className="px-4 py-3 text-xs font-bold uppercase text-gray-400">Action</th>
+                                                {productData.length > 0 && Object.keys(productData[0]).map((column) => (
+                                                    <th key={column} className="px-4 py-3 text-xs font-bold uppercase text-gray-400">
+                                                        {column.replace(/_/g, ' ')}
+                                                    </th>
+                                                ))}
                                             </tr>
                                         </thead>
                                         <tbody className="divide-y divide-white/5">
                                             {productData.map((product, idx) => (
                                                 <tr key={idx} className="hover:bg-white/5">
-                                                    <td className="px-4 py-3 text-gray-400 text-xs">
-                                                        {product.date || '-'}
-                                                    </td>
-                                                    <td className="px-4 py-3 text-white font-medium truncate max-w-[200px]" title={product.product_name}>
-                                                        {product.product_name}
-                                                    </td>
-                                                    <td className="px-4 py-3 text-gray-300">${product.selling_price.toFixed(2)}</td>
-                                                    <td className="px-4 py-3 text-gray-300">{product.current_stock}</td>
-                                                    <td className={`px-4 py-3 ${product.profit_per_unit >= 0 ? 'text-green-400' : 'text-red-400'}`}>
-                                                        ${product.profit_per_unit.toFixed(2)}
-                                                    </td>
-                                                    <td className="px-4 py-3">
-                                                        <span className={`px-2 py-1 rounded-full text-xs font-bold ${getRiskColor(product.risk_level)}`}>
-                                                            {product.risk_level}
-                                                        </span>
-                                                    </td>
-                                                    <td className="px-4 py-3 text-gray-400 text-xs truncate max-w-[150px]" title={product.recommended_action}>
-                                                        {product.recommended_action}
-                                                    </td>
+                                                    {Object.entries(product).map(([key, value], colIdx) => (
+                                                        <td
+                                                            key={colIdx}
+                                                            className={`px-4 py-3 text-xs ${key === 'product_name' ? 'text-white font-medium truncate max-w-[200px]' :
+                                                                key === 'risk_level' ? '' :
+                                                                    key === 'profit_per_unit' ? (Number(value) >= 0 ? 'text-green-400' : 'text-red-400') :
+                                                                        key === 'selling_price' || key === 'current_stock' ? 'text-gray-300' :
+                                                                            'text-gray-400'
+                                                                }`}
+                                                            title={typeof value === 'string' ? value : undefined}
+                                                        >
+                                                            {key === 'risk_level' ? (
+                                                                <span className={`px-2 py-1 rounded-full text-xs font-bold ${value === 'CRITICAL' ? 'bg-red-500/20 text-red-400' :
+                                                                    value === 'WARNING' ? 'bg-yellow-500/20 text-yellow-400' :
+                                                                        value === 'SAFE' ? 'bg-green-500/20 text-green-400' :
+                                                                            'bg-gray-500/20 text-gray-400'
+                                                                    }`}>
+                                                                    {String(value)}
+                                                                </span>
+                                                            ) : key === 'selling_price' || key === 'profit_per_unit' ? (
+                                                                `$${Number(value).toFixed(2)}`
+                                                            ) : key === 'recommended_action' ? (
+                                                                <span className="truncate max-w-[150px] block">{String(value)}</span>
+                                                            ) : (
+                                                                String(value || '-')
+                                                            )}
+                                                        </td>
+                                                    ))}
                                                 </tr>
                                             ))}
                                         </tbody>
