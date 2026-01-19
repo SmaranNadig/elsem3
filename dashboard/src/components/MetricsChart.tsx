@@ -141,10 +141,11 @@ const MetricsChart: React.FC<MetricsChartProps> = ({ metrics, recommendations })
         maintainAspectRatio: false,
         plugins: {
             legend: {
-                position: 'right' as const,
+                position: 'bottom' as const,
                 labels: {
                     color: '#a1a1aa',
                     boxWidth: 8,
+                    padding: 20,
                     usePointStyle: true,
                     font: {
                         size: 10,
@@ -169,8 +170,8 @@ const MetricsChart: React.FC<MetricsChartProps> = ({ metrics, recommendations })
                 <h3 className="text-xs font-bold uppercase tracking-widest text-gray-300 mb-6">Risk Breakdown</h3>
                 <div className="h-64 relative">
                     <Doughnut data={riskData} options={doughnutOptions} />
-                    {/* Center Text Overlay */}
-                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none pr-28 lg:pr-32">
+                    {/* Center Text Overlay - Now truly centered because legend is at bottom */}
+                    <div className="absolute inset-x-0 top-0 bottom-16 flex items-center justify-center pointer-events-none">
                         <div className="text-center">
                             <span className="block text-2xl font-bold text-white">{metrics.total_critical_risk}</span>
                             <span className="text-[10px] uppercase tracking-wider text-gray-300">Critical</span>

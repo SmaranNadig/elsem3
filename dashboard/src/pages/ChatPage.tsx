@@ -68,6 +68,7 @@ const ChatPage: React.FC = () => {
     const [isListening, setIsListening] = useState(false);
     const [isSpeaking, setIsSpeaking] = useState(false);
     const [voiceEnabled, setVoiceEnabled] = useState(true);
+    const [speechSupported, setSpeechSupported] = useState(true);
 
     const fileInputRef = useRef<HTMLInputElement>(null);
     const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -107,19 +108,53 @@ const ChatPage: React.FC = () => {
                 setIsListening(false);
             };
 
-            recognitionRef.current.onerror = () => {
+            recognitionRef.current.onerror = (event: any) => {
                 setIsListening(false);
+                // Provide specific error messages based on error type
+                const errorMessages: Record<string, string> = {
+                    'not-allowed': '🎤 Microphone access denied. Please enable microphone permissions in your browser settings.',
+                    'no-speech': '🎤 No speech detected. Please try again.',
+                    'audio-capture': '🎤 No microphone found. Please connect a microphone.',
+                    'network': '🎤 Network error. Please check your connection.',
+                    'aborted': '🎤 Speech recognition was aborted.',
+                    'service-not-allowed': '🎤 Speech recognition service not allowed. Try using Chrome or Edge browser.',
+                };
+                const errorMessage = errorMessages[event.error] || `🎤 Speech recognition error: ${event.error}`;
+                console.error('Speech recognition error:', event.error);
+                // Show error to user via system message
+                setMessages(prev => [...prev, {
+                    role: 'system',
+                    content: errorMessage,
+                    timestamp: new Date()
+                }]);
             };
 
             recognitionRef.current.onend = () => {
                 setIsListening(false);
             };
+        } else {
+            // Browser doesn't support WebSpeech API
+            setSpeechSupported(false);
+            console.warn('WebSpeech API not supported in this browser. Use Chrome or Edge for voice features.');
         }
     };
 
     const toggleListening = () => {
+        if (!speechSupported) {
+            setMessages(prev => [...prev, {
+                role: 'system',
+                content: '🎤 Voice input is not supported in this browser. Please use Google Chrome or Microsoft Edge for voice features.',
+                timestamp: new Date()
+            }]);
+            return;
+        }
+
         if (!recognitionRef.current) {
-            alert('Speech recognition is not supported in this browser. Try Chrome.');
+            setMessages(prev => [...prev, {
+                role: 'system',
+                content: '🎤 Speech recognition failed to initialize. Please refresh the page and try again.',
+                timestamp: new Date()
+            }]);
             return;
         }
 
@@ -127,8 +162,17 @@ const ChatPage: React.FC = () => {
             recognitionRef.current.stop();
             setIsListening(false);
         } else {
-            recognitionRef.current.start();
-            setIsListening(true);
+            try {
+                recognitionRef.current.start();
+                setIsListening(true);
+            } catch (error) {
+                console.error('Failed to start speech recognition:', error);
+                setMessages(prev => [...prev, {
+                    role: 'system',
+                    content: '🎤 Failed to start speech recognition. Please try again.',
+                    timestamp: new Date()
+                }]);
+            }
         }
     };
 
@@ -319,13 +363,27 @@ const ChatPage: React.FC = () => {
             setProductData([]);
             setShowDataTable(false);
             localStorage.removeItem(CHAT_SESSION_KEY);
+            // Also clear the Ollama chat session if using it
+            if (recognitionRef.current && isListening) {
+                recognitionRef.current.stop();
+                setIsListening(false);
+            }
+            if (isSpeaking) {
+                window.speechSynthesis.cancel();
+                setIsSpeaking(false);
+            }
             setMessages([{
                 role: 'assistant',
-                content: 'Session cleared. Upload a new CSV file to start fresh.',
+                content: 'Session cleared. Upload a new CSV file to start fresh. 🎤 Use the mic button for voice input!',
                 timestamp: new Date()
             }]);
         } catch (error) {
             console.error('Failed to clear session:', error);
+            setMessages(prev => [...prev, {
+                role: 'system',
+                content: '⚠️ Failed to clear session. Please try again.',
+                timestamp: new Date()
+            }]);
         }
     };
 
@@ -351,15 +409,15 @@ const ChatPage: React.FC = () => {
                         >
                             {voiceEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
                         </button>
-                        {hasData && (
-                            <button
-                                onClick={handleClearSession}
-                                className="flex items-center gap-2 px-4 py-2 bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20 rounded-full transition-colors text-xs font-bold uppercase"
-                            >
-                                <Trash2 className="w-4 h-4" />
-                                Clear
-                            </button>
-                        )}
+                        {/* Clear Button - Always visible */}
+                        <button
+                            onClick={handleClearSession}
+                            className="flex items-center gap-2 px-4 py-2 bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20 rounded-full transition-colors text-xs font-bold uppercase"
+                            title="Clear chat session and uploaded data"
+                        >
+                            <Trash2 className="w-4 h-4" />
+                            Clear
+                        </button>
                         <a
                             href="/"
                             className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 text-gray-300 border border-white/10 rounded-full transition-colors text-xs font-bold uppercase"
