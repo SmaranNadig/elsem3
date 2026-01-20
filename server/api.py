@@ -15,7 +15,7 @@ from core.config import CFG
 from core.pipeline import run_pipeline
 from server.shopify_loader import ShopifyLoader
 from core.sku_mode_manager import sku_mode_manager  # Import mode manager
-from server.ollama_chat import OllamaChat, chat_session
+from server.chatgpt_chat import ChatGPTChat, chat_session
 
 # Initialize FastAPI app
 app = FastAPI(
@@ -949,8 +949,10 @@ async def n8n_analyze_shopify_data(data: ShopifyData):
             # Extract inventory
             inventory_quantity = variant.get("inventory_quantity", 0)
             
-            # Generate SKU from Shopify ID
-            sku_id = f"SKU_{product_type.upper().replace(' ', '_')}_{product_id}"
+            # Extract SKU from Shopify variant, fallback to generated ID
+            sku_id = variant.get("sku")
+            if not sku_id or str(sku_id).strip() == "":
+                sku_id = f"SKU_{product_type.upper().replace(' ', '_')}_{product_id}"
             
             # Map Shopify product_type to your category system
             category_map = {

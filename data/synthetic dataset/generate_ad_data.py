@@ -13,7 +13,7 @@ import random
 np.random.seed(42)
 
 # Load SKU master to create campaigns for each product
-SKU_MASTER_PATH = "sku_master.csv"
+SKU_MASTER_PATH = "data/synthetic dataset/sku_master.csv"
 
 # Platform configurations
 PLATFORMS = {
@@ -194,8 +194,8 @@ def main():
     print(f"[INFO] Generated {len(df_daily)} daily metric records")
     
     # Save to CSV
-    campaigns_path = "ad_campaigns.csv"
-    daily_path = "ad_daily_metrics.csv"
+    campaigns_path = "data/synthetic dataset/ad_campaigns.csv"
+    daily_path = "data/synthetic dataset/ad_daily_metrics.csv"
     
     df_campaigns.to_csv(campaigns_path, index=False)
     df_daily.to_csv(daily_path, index=False)

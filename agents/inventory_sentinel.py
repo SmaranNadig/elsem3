@@ -5,9 +5,15 @@ import numpy as np
 from dataclasses import dataclass
 import time
 from typing import Optional
+import warnings
 from functools import lru_cache
 from core.config import CFG, HAS_ARIMA, ARIMA, HAS_LANGCHAIN, llm
 from core.strategy_modes import get_mode_config, StrategyMode
+
+# Suppress statsmodels warnings about unsupported index
+warnings.filterwarnings('ignore', category=UserWarning, module='statsmodels')
+warnings.filterwarnings('ignore', message='No supported index')
+warnings.filterwarnings('ignore', message='An unsupported index')
 
 # Always import pydantic
 try:
@@ -61,7 +67,9 @@ class InventorySentinelAgent:
             return None
 
         try:
-            model = ARIMA(series, order=(1, 1, 1))
+            # Reset index to avoid statsmodels warning about unsupported index
+            series_clean = series.reset_index(drop=True)
+            model = ARIMA(series_clean, order=(1, 1, 1))
             model_fit = model.fit()
             forecast = model_fit.forecast(steps=self.forecast_horizon_days)
             velocity = float(np.mean(forecast))
@@ -87,12 +95,21 @@ class InventorySentinelAgent:
         self,
         sku_id: str,
         df_sales: pd.DataFrame,
-        use_arima_if_available: bool = True
+        use_arima_if_available: bool = True,
+        product_name: str = None
     ) -> float:
         """
         Forecast velocity for a single SKU.
         """
-        sku_sales = df_sales[df_sales["sku_id"] == sku_id].copy()
+        target_sku_id = str(sku_id)
+        
+        sku_sales = df_sales[df_sales["sku_id"] == target_sku_id].copy()
+        
+        # Fallback to product name if no sales found for SKU ID
+        if sku_sales.empty and product_name:
+            sku_sales = df_sales[df_sales["product_name"] == product_name].copy()
+            if not sku_sales.empty:
+                print(f"[INFO] Inventory Sentinel: Matched history by name for '{product_name}'")
         
         if sku_sales.empty:
             return 0.0
@@ -122,12 +139,18 @@ class InventorySentinelAgent:
         # STEP 1: Mathematical calculations (always run)
         df = df_profit_enriched.copy()
 
+        # Prepare Sales Data (Ensure string SKU IDs for matching)
+        df_sales = df_sales.copy()
+        df_sales["sku_id"] = df_sales["sku_id"].astype(str)
+        
         # Forecast velocity for each SKU
         sku_ids = df["sku_id"].unique()
         velocity_map = {}
         
-        for sku_id in sku_ids:
-            velocity_map[sku_id] = self._forecast_velocity_for_sku(sku_id, df_sales)
+        for idx in df.index:
+            sku_id = df.loc[idx, "sku_id"]
+            product_name = df.loc[idx, "product_name"] if "product_name" in df.columns else None
+            velocity_map[sku_id] = self._forecast_velocity_for_sku(sku_id, df_sales, product_name=product_name)
 
         df["sales_velocity_per_day"] = df["sku_id"].map(velocity_map).fillna(0.0)
 

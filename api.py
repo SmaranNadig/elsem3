@@ -8,6 +8,7 @@ from typing import List, Optional, Dict, Any
 import pandas as pd
 import requests
 import os
+import json
 from datetime import datetime
 import traceback
 
@@ -164,18 +165,48 @@ def execute_pipeline():
         print(f"[ERROR] Pipeline execution failed: {traceback.format_exc()}")
         return False
 
+# Flag to track if n8n has sent data
+n8n_data_received = False
+n8n_wait_complete = False
 
+async def wait_for_n8n_data():
+    """Background task to wait for n8n data"""
+    global n8n_data_received, n8n_wait_complete
+    import asyncio
+    
+    print("[INFO] Waiting for n8n workflow to trigger...")
+    print("[INFO] Please trigger your n8n workflow now. Waiting up to 60 seconds...")
+    
+    # Wait for n8n data (up to 60 seconds)
+    wait_time = 0
+    max_wait = 60  # seconds
+    
+    while not n8n_data_received and wait_time < max_wait:
+        await asyncio.sleep(5)
+        wait_time += 5
+        if not n8n_data_received:
+            print(f"[INFO] Still waiting for n8n data... ({wait_time}s / {max_wait}s)")
+    
+    n8n_wait_complete = True
+    
+    if n8n_data_received:
+        print("[INFO] n8n data received! Pipeline executed by n8n endpoint.")
+    else:
+        print("[INFO] No n8n data received. Falling back to local CSV data...")
+        # Auto-run pipeline with synthetic/CSV data
+        success = execute_pipeline()
+        if success:
+            print("[INFO] Pipeline executed successfully with fallback CSV data.")
+        else:
+            print("[WARNING] Pipeline execution failed on startup.")
 
-# Execute pipeline on startup - Waiting for Shopify data from n8n
+# Execute pipeline on startup - Start background wait for n8n data
 @app.on_event("startup")
 async def startup_event():
-    print("[INFO] API started. Initializing data...")
-    # Auto-run pipeline with synthetic data if no Shopify data
-    success = execute_pipeline()
-    if success:
-        print("[INFO] Pipeline executed successfully on startup.")
-    else:
-        print("[WARNING] Pipeline execution failed on startup.")
+    import asyncio
+    print("[INFO] API started. Starting background wait for n8n data...")
+    # Start the wait as a background task (non-blocking)
+    asyncio.create_task(wait_for_n8n_data())
 
 
 
@@ -825,9 +856,11 @@ async def n8n_analyze_shopify_data(data: ShopifyData):
     This receives product and order data from Shopify via n8n,
     transforms it to agent format, and returns real recommendations.
     """
-    global pipeline_data, last_execution_time, execution_status, data_source
+    global pipeline_data, last_execution_time, execution_status, data_source, n8n_data_received
     
     try:
+        # Signal that n8n data has been received
+        n8n_data_received = True
         print(f"[INFO] n8n triggered analysis with {len(data.products)} products")
         
         # DEBUG: Print first product to verify input
@@ -867,8 +900,10 @@ async def n8n_analyze_shopify_data(data: ShopifyData):
             # Extract inventory
             inventory_quantity = variant.get("inventory_quantity", 0)
             
-            # Generate SKU from Shopify ID
-            sku_id = f"SKU_{product_type.upper().replace(' ', '_')}_{product_id}"
+            # Extract SKU from Shopify variant, fallback to generated ID
+            sku_id = variant.get("sku")
+            if not sku_id or str(sku_id).strip() == "":
+                sku_id = f"SKU_{product_type.upper().replace(' ', '_')}_{product_id}"
             
             # Map Shopify product_type to your category system
             category_map = {
@@ -904,33 +939,53 @@ async def n8n_analyze_shopify_data(data: ShopifyData):
             sku_master_rows.append(sku_row)
         
         if not sku_master_rows:
-            raise HTTPException(status_code=400, detail="No valid products to analyze")
-        
-        df_master = pd.DataFrame(sku_master_rows)
-        print(f"[INFO] Created SKU master with {len(df_master)} products")
-        
-        # Create sample sales history (in production, use actual Shopify orders)
-        # For now, generate synthetic sales based on units_sold_last_30_days
-        # Extended to 90 days for seasonal analysis
-        sales_rows = []
-        for _, sku in df_master.iterrows():
-            # Generate 90 days of sales data (minimum for seasonal analysis)
-            daily_avg = sku["units_sold_last_30_days"] / 30
-            for day in range(1, 91):
-                # Add some randomness to daily sales
-                import random
-                daily_units = max(0, int(daily_avg * random.uniform(0.5, 1.5)))
-                # Generate dates going back 90 days from today
-                from datetime import timedelta
-                date_obj = datetime.now() - timedelta(days=90-day)
-                sales_rows.append({
-                    "sku_id": sku["sku_id"],
-                    "date": date_obj.strftime("%Y-%m-%d"),
-                    "units_sold": daily_units
-                })
-        
-        df_sales = pd.DataFrame(sales_rows)
-        print(f"[INFO] Created sales history with {len(df_sales)} records")
+            # === FALLBACK TO SYNTHETIC CSV DATA IF NO VALID SHOPIFY PRODUCTS ===
+            print("[WARNING] No valid Shopify products (all skipped). Loading fallback CSV data...")
+            
+            # Load synthetic dataset from CSV files
+            import os
+            csv_base_path = os.path.join(os.path.dirname(__file__), "data", "synthetic dataset")
+            sku_master_path = os.path.join(csv_base_path, "sku_master.csv")
+            sales_history_path = os.path.join(csv_base_path, "seasonal_sales_history.csv")
+            
+            if not os.path.exists(sku_master_path) or not os.path.exists(sales_history_path):
+                raise HTTPException(
+                    status_code=400, 
+                    detail="No valid Shopify products and fallback CSV files not found in data/synthetic dataset/"
+                )
+            
+            # Load SKU master CSV
+            df_master = pd.read_csv(sku_master_path)
+            print(f"[INFO] Loaded fallback SKU master with {len(df_master)} products from CSV")
+            
+            # Load sales history CSV
+            df_sales = pd.read_csv(sales_history_path)
+            print(f"[INFO] Loaded fallback sales history with {len(df_sales)} records from CSV")
+            
+        else:
+            # Use Shopify data if we have valid products
+            df_master = pd.DataFrame(sku_master_rows)
+            print(f"[INFO] Created SKU master with {len(df_master)} products")
+            
+            # Load sales history from CSV instead of generating synthetic data
+            import os
+            sales_history_path = os.path.join(os.path.dirname(__file__), "data", "synthetic dataset", "seasonal_sales_history.csv")
+            
+            if os.path.exists(sales_history_path):
+                df_sales = pd.read_csv(sales_history_path)
+                print(f"[INFO] Loaded sales history with {len(df_sales)} records from CSV")
+            else:
+                # Fallback: Create minimal sales data if CSV not found
+                print("[WARNING] Sales history CSV not found, creating minimal data")
+                sales_rows = []
+                for _, sku in df_master.iterrows():
+                    sales_rows.append({
+                        "sku_id": sku["sku_id"],
+                        "date": datetime.now().strftime("%Y-%m-%d"),
+                        "units_sold": int(sku.get("units_sold_last_30_days", 0) / 30)
+                    })
+                df_sales = pd.DataFrame(sales_rows)
+                print(f"[INFO] Created minimal sales data with {len(df_sales)} records")
         
         # ============================================================
         # RUN AGENT PIPELINE WITH SHOPIFY DATA
@@ -1607,11 +1662,10 @@ async def upload_chat_csv(file: UploadFile = File(...)):
 
         print(f"[INFO] CSV uploaded with {len(df)} rows and columns: {list(df.columns)}")
         
-        # Use Ollama AI to analyze the CSV and determine what to do
+        # Use OpenAI to analyze the CSV and determine what to do
         try:
-            import requests
-            # ... (Ollama logic, kept same as before but abbreviated for this replacement block if needed, 
-            # OR I can just replace the error handling part)
+            from openai import OpenAI
+            client = OpenAI(api_key=CFG.openai_api_key)
             
             # Prepare CSV info for AI
             column_info = {
@@ -1620,7 +1674,7 @@ async def upload_chat_csv(file: UploadFile = File(...)):
                 "row_count": len(df)
             }
             
-            # Ask Ollama to analyze the CSV
+            # Ask OpenAI to analyze the CSV
             analysis_prompt = f"""Analyze this CSV data and provide a JSON response:
 
 Columns: {column_info['columns']}
@@ -1637,39 +1691,22 @@ Respond ONLY with valid JSON format:
   "description": "brief description of the data"
 }}"""
             
-            # Call Ollama API
-            response = requests.post(
-                'http://localhost:11434/api/generate',
-                json={
-                    'model': 'llama3.2:1b',
-                    'prompt': analysis_prompt,
-                    'stream': False
-                },
-                timeout=15
+            # Call OpenAI API
+            response = client.chat.completions.create(
+                model="gpt-4o-mini",
+                messages=[{"role": "user", "content": analysis_prompt}],
+                response_format={ "type": "json_object" },
+                timeout=30
             )
             
-            if response.status_code == 200:
-                # Parse Ollama response
-                import json
-                ollama_result = response.json()
-                ai_response = ollama_result.get('response', '')
-                
-                # Extract JSON from response (handle markdown code blocks)
-                if "```json" in ai_response:
-                    ai_response = ai_response.split("```json")[1].split("```")[0].strip()
-                elif "```" in ai_response:
-                    ai_response = ai_response.split("```")[1].split("```")[0].strip()
-                    
-                ai_analysis = json.loads(ai_response)
-                chat_data_type = ai_analysis.get("data_type", "generic")
-                
-                print(f"[INFO] Ollama detected data type: {chat_data_type}")
-            else:
-                print(f"[WARNING] Ollama API failed with status {response.status_code}, using fallback")
-                chat_data_type = "generic"
+            ai_response = response.choices[0].message.content
+            ai_analysis = json.loads(ai_response)
+            chat_data_type = ai_analysis.get("data_type", "generic")
+            
+            print(f"[INFO] OpenAI detected data type: {chat_data_type}")
                 
         except Exception as e:
-            print(f"[WARNING] Ollama analysis failed: {str(e)}, using fallback detection")
+            print(f"[WARNING] OpenAI analysis failed: {str(e)}, using fallback detection")
             chat_data_type = "generic"
         
         print(f"[DEBUG] Adapting to data type: '{chat_data_type}'")
@@ -1930,43 +1967,52 @@ The user has uploaded INVENTORY data. Answer their questions based on the risk l
                 stats = chat_data[numeric_cols].describe().to_markdown()
                 stats_info = f"\n\nData Statistics:\n{stats}"
             
-            context = f"""You are an advanced data analyst AI. You are analyzing a CSV file with the following structure:
+            context = f"""You are an advanced e-commerce data analyst. Analyze the following CSV data comprehensively:
+            
+COLUMNS: {columns}
 
-Columns: {columns}
-
-Data Preview for context:
+DATA PREVIEW (10 Rows):
 {preview_csv}
 {stats_info}
 
 INSTRUCTIONS:
-1. Answer the user's question purely based on the data provided above.
-2. Do NOT hallucinate columns that don't exist (like 'risk_level' or 'profit') unless you see them in the preview.
-3. If the user asks for 'issues', look for outliers in the data (low sales, high prices, etc.) or just summarize the key trends.
-4. Be concise and professional."""
+1. Provide a detailed summary of the data.
+2. Identify specifically:
+   - Top products by price or sales
+   - Any missing values or outliers
+   - Strategic recommendations for stock or pricing
+3. Be data-driven, specific, and professional. Reference items by their actual names."""
         
-        response = requests.post(
-            'http://localhost:11434/api/generate',
-            json={
-                'model': 'llama3.2:1b',  # Use the installed model
-                'prompt': f"System: {context}\n\nUser: {user_message}",
-                'stream': False
-            },
-            timeout=30
+        # Call OpenAI API
+        print(f"[DEBUG] Root API: Calling OpenAI with model gpt-4o-mini...")
+        from openai import OpenAI
+        client = OpenAI(api_key=CFG.openai_api_key)
+        
+        response = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {"role": "system", "content": context},
+                {"role": "user", "content": user_message}
+            ],
+            timeout=45
         )
         
-        if response.status_code == 200:
-            response = response.json().get('response', 'I could not generate a response.')
+        response_content = response.choices[0].message.content
+        if response_content:
+            response = response_content
+            print(f"[DEBUG] OpenAI response received: {response[:100]}...")
         else:
-            # If Ollama fails, fallthrough to simple response
+            # If OpenAI fails, fallthrough to simple response
+            print(f"[WARNING] OpenAI returned empty response")
             response = None
-            print(f"[WARNING] Ollama returned {response.status_code}")
 
     except Exception as e:
-        print(f"[WARNING] Ollama connection failed: {str(e)}")
+        print(f"[WARNING] OpenAI connection failed: {str(e)}")
         response = None
     
     if not response:
             # Fallback to simple logic
+            print("[DEBUG] Falling back to simple response generator")
             response = generate_simple_response(user_message, chat_data, chat_summary)
 
     

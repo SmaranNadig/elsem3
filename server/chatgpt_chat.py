@@ -1,52 +1,45 @@
 """
-Ollama Chat Module - LLM-powered CSV analysis chat.
+ChatGPT Chat Module - LLM-powered CSV analysis chat.
 
 Provides:
 - CSV file parsing and transformation
-- Ollama integration for chat
+- OpenAI integration for chat
 - Inventory insights generation
 """
 
 import pandas as pd
-import requests
 import json
 from typing import Dict, List, Optional, Tuple, Any
 from datetime import datetime
 import io
+import os
+from openai import OpenAI
+from core.config import CFG
 
-# Ollama configuration
-OLLAMA_URL = "http://localhost:11434"
-DEFAULT_MODEL = "llama3.2"  # Faster 2GB model - alternatives: "gemma:2b", "tinyllama"
+# Configuration
+DEFAULT_MODEL = "gpt-4o-mini"
 
 
-class OllamaChat:
-    """Chat interface using Ollama for CSV inventory analysis."""
+class ChatGPTChat:
+    """Chat interface using OpenAI for CSV inventory analysis."""
     
     def __init__(self, model: str = DEFAULT_MODEL):
         self.model = model
+        self.api_key = CFG.openai_api_key
+        self.client = OpenAI(api_key=self.api_key) if self.api_key else None
+        
         self.session_data: Optional[pd.DataFrame] = None
         self.session_analysis: Optional[pd.DataFrame] = None
         self.session_summary: Dict[str, Any] = {}
         self.chat_history: List[Dict[str, str]] = []
         
-    def check_ollama_available(self) -> bool:
-        """Check if Ollama server is running."""
-        try:
-            response = requests.get(f"{OLLAMA_URL}/api/tags", timeout=5)
-            return response.status_code == 200
-        except:
-            return False
+    def check_api_available(self) -> bool:
+        """Check if OpenAI API key is available."""
+        return bool(self.api_key)
     
     def get_available_models(self) -> List[str]:
-        """Get list of available Ollama models."""
-        try:
-            response = requests.get(f"{OLLAMA_URL}/api/tags", timeout=5)
-            if response.status_code == 200:
-                data = response.json()
-                return [m["name"] for m in data.get("models", [])]
-        except:
-            pass
-        return []
+        """Get list of available models (static list for OpenAI)."""
+        return ["gpt-4o-mini", "gpt-4o", "gpt-3.5-turbo"]
     
     def parse_csv(self, file_content: bytes, filename: str) -> Tuple[bool, str]:
         """
@@ -57,7 +50,10 @@ class OllamaChat:
         """
         try:
             # Try to read the CSV
-            df = pd.read_csv(io.BytesIO(file_content))
+            try:
+                df = pd.read_csv(io.BytesIO(file_content), encoding='utf-8')
+            except UnicodeDecodeError:
+                df = pd.read_csv(io.BytesIO(file_content), encoding='latin1')
             
             if df.empty:
                 return False, "CSV file is empty"
@@ -227,7 +223,7 @@ class OllamaChat:
     
     def chat(self, message: str) -> str:
         """
-        Send a message to Ollama and get a response about the data.
+        Send a message to ChatGPT and get a response about the data.
         
         Args:
             message: User's question
@@ -235,8 +231,8 @@ class OllamaChat:
         Returns:
             LLM response
         """
-        if not self.check_ollama_available():
-            return "Error: Ollama server is not running. Please start it with `ollama serve`."
+        if not self.check_api_available():
+            return "Error: OpenAI API key not found. Please check your .env file."
         
         # Build context
         context = self._build_context()
@@ -265,33 +261,24 @@ Answer the user's question thoroughly. If they ask for analysis, provide:
         # Add to history
         self.chat_history.append({"role": "user", "content": message})
         
-        # Call Ollama
+        # Call OpenAI
         try:
-            response = requests.post(
-                f"{OLLAMA_URL}/api/chat",
-                json={
-                    "model": self.model,
-                    "messages": [
-                        {"role": "system", "content": system_prompt},
-                        *self.chat_history
-                    ],
-                    "stream": False
-                },
-                timeout=180  # Increased timeout for larger models
+            response = self.client.chat.completions.create(
+                model=self.model,
+                messages=[
+                    {"role": "system", "content": system_prompt},
+                    *self.chat_history
+                ],
+                max_tokens=1000,
+                temperature=0.7
             )
             
-            if response.status_code == 200:
-                result = response.json()
-                assistant_message = result.get("message", {}).get("content", "No response")
-                self.chat_history.append({"role": "assistant", "content": assistant_message})
-                return assistant_message
-            else:
-                return f"Error from Ollama: {response.text}"
+            assistant_message = response.choices[0].message.content
+            self.chat_history.append({"role": "assistant", "content": assistant_message})
+            return assistant_message
                 
-        except requests.Timeout:
-            return "Request timed out. Please try again."
         except Exception as e:
-            return f"Error: {str(e)}"
+            return f"Error from OpenAI: {str(e)}"
     
     def _build_context(self) -> str:
         """Build detailed context string from session data."""
@@ -358,7 +345,7 @@ Answer the user's question thoroughly. If they ask for analysis, provide:
             "products_loaded": len(self.session_data) if self.session_data is not None else 0,
             "analysis_complete": self.session_analysis is not None,
             "summary": self.session_summary,
-            "ollama_available": self.check_ollama_available(),
+            "openai_available": self.check_api_available(),
             "model": self.model
         }
 
@@ -370,10 +357,10 @@ Answer the user's question thoroughly. If they ask for analysis, provide:
         self.chat_history = []
 
 # Global instance
-chat_session = OllamaChat()
+chat_session = ChatGPTChat()
 
 # Test
 if __name__ == "__main__":
-    chat = OllamaChat()
-    print("Ollama available:", chat.check_ollama_available())
+    chat = ChatGPTChat()
+    print("OpenAI available:", chat.check_api_available())
     print("Available models:", chat.get_available_models())

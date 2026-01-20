@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { Send, Upload, FileText, Trash2, Mic, MicOff, Volume2, VolumeX, MessageSquare, Home, Table, ChevronDown, ChevronUp, Download, BarChart2, Activity } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import ReactMarkdown from 'react-markdown';
 
 interface Message {
     role: 'user' | 'assistant' | 'system';
@@ -599,7 +600,27 @@ const ChatPage: React.FC = () => {
                                             : 'bg-white/10 text-gray-100'
                                         }`}
                                 >
-                                    <p className="whitespace-pre-wrap text-sm">{msg.content}</p>
+                                    {msg.role === 'user' ? (
+                                        <p className="whitespace-pre-wrap text-sm">{msg.content}</p>
+                                    ) : (
+                                        <div className="text-sm markdown-container">
+                                            <ReactMarkdown
+                                                components={{
+                                                    h1: ({ node, ...props }) => <h1 className="text-xl font-bold mb-2 text-white" {...props} />,
+                                                    h2: ({ node, ...props }) => <h2 className="text-lg font-bold mb-2 text-white" {...props} />,
+                                                    h3: ({ node, ...props }) => <h3 className="text-md font-bold mb-1 text-white" {...props} />,
+                                                    h4: ({ node, ...props }) => <h4 className="text-sm font-bold mb-1 text-white" {...props} />,
+                                                    p: ({ node, ...props }) => <p className="mb-2 last:mb-0" {...props} />,
+                                                    ul: ({ node, ...props }) => <ul className="list-disc ml-4 mb-2" {...props} />,
+                                                    ol: ({ node, ...props }) => <ol className="list-decimal ml-4 mb-2" {...props} />,
+                                                    li: ({ node, ...props }) => <li className="mb-1" {...props} />,
+                                                    strong: ({ node, ...props }) => <strong className="font-bold text-blue-300" {...props} />,
+                                                }}
+                                            >
+                                                {msg.content}
+                                            </ReactMarkdown>
+                                        </div>
+                                    )}
                                     {msg.role === 'assistant' && (
                                         <button
                                             onClick={() => speakText(msg.content)}

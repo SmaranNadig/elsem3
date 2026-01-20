@@ -6,8 +6,14 @@ from dataclasses import dataclass
 import time
 from typing import Optional, Dict, Tuple
 from datetime import datetime
+import warnings
 from core.config import CFG, HAS_ARIMA, HAS_LANGCHAIN, llm
 from core.strategy_modes import get_mode_config, StrategyMode
+
+# Suppress statsmodels warnings about unsupported index
+warnings.filterwarnings('ignore', category=UserWarning, module='statsmodels')
+warnings.filterwarnings('ignore', message='No supported index')
+warnings.filterwarnings('ignore', message='An unsupported index')
 
 # Import pydantic for structured output
 try:
@@ -81,11 +87,20 @@ class SeasonalAnalystAgent:
         else:
             self.has_llm = False
     
-    def _compute_monthly_aggregates(self, df_sales: pd.DataFrame, sku_id: str) -> pd.DataFrame:
+    def _compute_monthly_aggregates(self, df_sales: pd.DataFrame, sku_id: str, product_name: str = None) -> pd.DataFrame:
         """
-        Aggregate daily sales to monthly for seasonal analysis
+        Aggregate daily sales to monthly for seasonal analysis.
+        Tries matching by sku_id first, then product_name if provided.
         """
-        sku_sales = df_sales[df_sales["sku_id"] == sku_id].copy()
+        target_sku_id = str(sku_id)
+        
+        sku_sales = df_sales[df_sales["sku_id"] == target_sku_id].copy()
+        
+        # Fallback to product name if no sales found for SKU ID
+        if sku_sales.empty and product_name:
+            sku_sales = df_sales[df_sales["product_name"] == product_name].copy()
+            if not sku_sales.empty:
+                print(f"[INFO] Seasonal Analyst: Matched history by name for '{product_name}'")
         
         if sku_sales.empty:
             return pd.DataFrame()
@@ -224,6 +239,10 @@ class SeasonalAnalystAgent:
         current_month = datetime.now().month
         next_month = (current_month % 12) + 1
         
+        # Prepare Sales Data (Ensure string SKU IDs for matching)
+        df_sales = df_sales.copy()
+        df_sales["sku_id"] = df_sales["sku_id"].astype(str)
+        
         print(f"[INFO] Seasonal Analyst: Analyzing {len(df)} SKUs for month {current_month}...")
         
         # Analyze each SKU
@@ -231,8 +250,11 @@ class SeasonalAnalystAgent:
             sku_id = df.loc[idx, "sku_id"]
             
             try:
-                # Get monthly aggregates
-                monthly_sales = self._compute_monthly_aggregates(df_sales, sku_id)
+                # Get product name for fallback matching
+                product_name = df.loc[idx, "product_name"] if "product_name" in df.columns else None
+                
+                # Get monthly aggregates (with name fallback)
+                monthly_sales = self._compute_monthly_aggregates(df_sales, sku_id, product_name)
                 
                 if monthly_sales.empty or len(monthly_sales) < 3:
                     continue
@@ -259,6 +281,20 @@ class SeasonalAnalystAgent:
                     strength, forecast = sarima_result
                     df.at[idx, "seasonality_strength"] = round(strength, 3)
                     df.at[idx, "seasonal_forecast"] = round(forecast, 1)
+                else:
+                    # Fallback for short history (< 12 months)
+                    # Heuristic strength based on index variation
+                    index_values = list(indices.values())
+                    # Calculate how much indices deviate from 1.0
+                    deviations = [abs(v - 1.0) for v in index_values if v != 1.0]
+                    if deviations:
+                        # Strength is 0 to 1 based on max deviation (capped at 0.7 for heuristic)
+                        fallback_strength = min(0.7, max(deviations))
+                        df.at[idx, "seasonality_strength"] = round(fallback_strength, 3)
+                    
+                    # Fallback forecast: (Avg Monthly Sales) * Next Month Index
+                    avg_monthly = monthly_sales["units_sold"].mean()
+                    df.at[idx, "seasonal_forecast"] = round(avg_monthly * indices.get(next_month, 1.0), 1)
                 
                 # Seasonal risk flag
                 # High stock + entering low season + profitable = risk
@@ -291,13 +327,29 @@ class SeasonalAnalystAgent:
         - Products with seasonal risk flag
         - Products entering peak/trough season
         """
-        # Find SKUs that need LLM analysis - Now analyzing ALL SKUs as per user request
-        needs_analysis = pd.Series(True, index=df.index)
+        # Find SKUs that need LLM analysis - Prioritize to save API calls
+        # Priority 1: Seasonal Flags (Risks)
+        # Priority 2: Strong Seasonality
+        # Limit to Top 10 to avoid rate limits
         
-        analysis_count = len(df)
-
+        candidates = df.copy()
+        candidates['priority_score'] = 0
         
-        print(f"[INFO] Seasonal Analyst: Generating LLM insights for {analysis_count} SKUs...")
+        # High priority for risks
+        if 'seasonal_risk_flag' in candidates.columns:
+            candidates.loc[candidates['seasonal_risk_flag'] == True, 'priority_score'] += 10
+            
+        # Add seasonality strength to score
+        if 'seasonality_strength' in candidates.columns:
+            candidates['priority_score'] += candidates['seasonality_strength'] * 5
+            
+        # Sort and take top 10
+        top_candidates = candidates.nlargest(10, 'priority_score')
+        needs_analysis = df.index.isin(top_candidates.index)
+        
+        analysis_count = needs_analysis.sum()
+        
+        print(f"[INFO] Seasonal Analyst: Generating LLM insights for {analysis_count} high-priority SKUs (Rate Limit Safe)...")
         
         for idx in df[needs_analysis].index:
             try:
