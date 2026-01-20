@@ -41,15 +41,16 @@ const MetricsChart: React.FC<MetricsChartProps> = ({ metrics, recommendations })
                 ],
                 backgroundColor: [
                     'rgba(239, 68, 68, 0.8)',
-                    'rgba(245, 158, 11, 0.8)',
+                    'rgba(234, 179, 8, 0.8)',
                     'rgba(16, 185, 129, 0.8)',
                 ],
                 borderColor: [
                     'rgba(239, 68, 68, 1)',
-                    'rgba(245, 158, 11, 1)',
+                    'rgba(234, 179, 8, 1)',
                     'rgba(16, 185, 129, 1)',
                 ],
-                borderWidth: 2,
+                borderWidth: 0,
+                hoverOffset: 4,
             },
         ],
     };
@@ -73,16 +74,14 @@ const MetricsChart: React.FC<MetricsChartProps> = ({ metrics, recommendations })
             {
                 label: 'Profit',
                 data: Object.values(categoryData).map((cat: any) => cat.profit),
-                backgroundColor: 'rgba(16, 185, 129, 0.8)',
-                borderColor: 'rgba(16, 185, 129, 1)',
-                borderWidth: 2,
+                backgroundColor: '#10b981', // Emerald
+                borderRadius: 4,
             },
             {
                 label: 'Loss',
                 data: Object.values(categoryData).map((cat: any) => cat.loss),
-                backgroundColor: 'rgba(239, 68, 68, 0.8)',
-                borderColor: 'rgba(239, 68, 68, 1)',
-                borderWidth: 2,
+                backgroundColor: '#ef4444', // Red
+                borderRadius: 4,
             },
         ],
     };
@@ -93,26 +92,46 @@ const MetricsChart: React.FC<MetricsChartProps> = ({ metrics, recommendations })
         plugins: {
             legend: {
                 position: 'top' as const,
+                align: 'end' as const,
                 labels: {
-                    color: '#cbd5e1',
+                    color: '#a1a1aa', // brand-muted
+                    boxWidth: 8,
+                    usePointStyle: true,
                     font: {
-                        size: 12,
-                        family: 'Inter',
+                        size: 10,
+                        family: '"Instrument Sans", sans-serif',
+                        weight: 600,
                     },
                 },
             },
-            title: {
-                display: false,
-            },
+            tooltip: {
+                backgroundColor: '#1D1D1F',
+                titleColor: '#fff',
+                bodyColor: '#a1a1aa',
+                borderColor: 'rgba(255,255,255,0.1)',
+                borderWidth: 1,
+                padding: 10,
+                cornerRadius: 8,
+                titleFont: { family: '"Instrument Sans", sans-serif', size: 12 },
+                bodyFont: { family: '"Instrument Sans", sans-serif', size: 10 },
+            }
         },
         scales: {
             x: {
-                ticks: { color: '#94a3b8' },
-                grid: { color: 'rgba(148, 163, 184, 0.1)' },
+                ticks: {
+                    color: '#71717a',
+                    font: { family: '"Instrument Sans", sans-serif', size: 10 },
+                },
+                grid: { display: false },
+                border: { display: false },
             },
             y: {
-                ticks: { color: '#94a3b8' },
-                grid: { color: 'rgba(148, 163, 184, 0.1)' },
+                ticks: {
+                    color: '#71717a',
+                    font: { family: '"Instrument Sans", sans-serif', size: 10 },
+                },
+                grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                border: { display: false },
             },
         },
     };
@@ -124,29 +143,46 @@ const MetricsChart: React.FC<MetricsChartProps> = ({ metrics, recommendations })
             legend: {
                 position: 'bottom' as const,
                 labels: {
-                    color: '#cbd5e1',
+                    color: '#a1a1aa',
+                    boxWidth: 8,
+                    padding: 20,
+                    usePointStyle: true,
                     font: {
-                        size: 12,
-                        family: 'Inter',
+                        size: 10,
+                        family: '"Instrument Sans", sans-serif',
+                        weight: 600,
                     },
                 },
             },
+            tooltip: {
+                backgroundColor: '#1D1D1F',
+                borderColor: 'rgba(255,255,255,0.1)',
+                borderWidth: 1,
+            }
         },
+        cutout: '70%',
     };
 
     return (
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2">
             {/* Risk Distribution */}
-            <div className="glass-card p-6 fade-in">
-                <h3 className="text-lg font-semibold text-white mb-4">Risk Distribution</h3>
-                <div className="h-64">
+            <div className="p-8 border-r border-white/5 fade-in">
+                <h3 className="text-xs font-bold uppercase tracking-widest text-gray-300 mb-6">Risk Breakdown</h3>
+                <div className="h-64 relative">
                     <Doughnut data={riskData} options={doughnutOptions} />
+                    {/* Center Text Overlay - Now truly centered because legend is at bottom */}
+                    <div className="absolute inset-x-0 top-0 bottom-16 flex items-center justify-center pointer-events-none">
+                        <div className="text-center">
+                            <span className="block text-2xl font-bold text-white">{metrics.total_critical_risk}</span>
+                            <span className="text-[10px] uppercase tracking-wider text-gray-300">Critical</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             {/* Category Profit/Loss */}
-            <div className="glass-card p-6 fade-in">
-                <h3 className="text-lg font-semibold text-white mb-4">Profit/Loss by Category</h3>
+            <div className="p-8 fade-in">
+                <h3 className="text-xs font-bold uppercase tracking-widest text-gray-300 mb-6">Financial Performance</h3>
                 <div className="h-64">
                     <Bar data={categoryChartData} options={chartOptions} />
                 </div>

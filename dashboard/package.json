@@ -9,13 +9,20 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/matter-js": "^0.20.2",
     "axios": "^1.6.2",
     "chart.js": "^4.4.0",
+    "framer-motion": "^12.26.2",
     "lucide-react": "^0.294.0",
+    "mermaid": "^11.12.2",
+    "matter-js": "^0.20.0",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
-    "react-markdown": "^10.1.0"
+    "react-markdown": "^10.1.0",
+    "react-router-dom": "^7.12.0",
+    "recharts": "^3.6.0",
+    "scipy": "^0.1.4"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",

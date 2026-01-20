@@ -1,5 +1,6 @@
 .env
 venv/
+.venv/
 __pycache__/
 *.pyc
 dashboard/node_modules/
@@ -10,3 +11,5 @@ dist/
 build/
 coverage/
 *.log
+dashboard_backup/
+merge_backup/

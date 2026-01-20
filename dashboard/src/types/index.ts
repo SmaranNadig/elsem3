@@ -47,6 +47,7 @@ export interface SKURecommendation {
     profit_at_risk: number;
     impact_score: number;
     recommended_action: string;
+    strategy_mode?: string; // Strategy mode for this SKU
     // LangChain LLM insights (optional)
     llm_profit_insight?: string;
     llm_inventory_insight?: string;
@@ -55,6 +56,14 @@ export interface SKURecommendation {
     llm_profit_confidence?: number;
     llm_inventory_confidence?: number;
     llm_strategy_confidence?: number;
+}
+
+export interface StrategyMode {
+    id: string;
+    name: string;
+    icon: string;
+    description: string;
+    color: string;
 }
 
 export interface Alert {

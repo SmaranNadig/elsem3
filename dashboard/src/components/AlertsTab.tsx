@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { AlertTriangle, Check, X, ArrowRight, DollarSign, Package } from 'lucide-react';
+import { AlertTriangle, Check, X, ArrowRight, DollarSign, Package, Bell } from 'lucide-react';
 import type { Alert } from '../types';
 import { api } from '../services/api';
 
@@ -79,16 +79,20 @@ const AlertsTab: React.FC = () => {
         }
     };
 
-    if (loading) return <div className="text-center p-8 text-slate-400">Loading alerts...</div>;
+    if (loading) return (
+        <div className="flex items-center justify-center p-20">
+            <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-brand-blue"></div>
+        </div>
+    );
 
     if (alerts.length === 0) {
         return (
-            <div className="text-center p-12 glass-card">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-emerald-500/20 mb-4">
-                    <Check className="w-8 h-8 text-emerald-400" />
+            <div className="text-center p-20 glass-card">
+                <div className="inline-flex items-center justify-center p-4 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-6">
+                    <Check className="w-8 h-8 text-emerald-500" />
                 </div>
-                <h3 className="text-xl font-semibold text-white mb-2">All Clear!</h3>
-                <p className="text-slate-400">No critical alerts requiring attention right now.</p>
+                <h3 className="text-lg font-bold uppercase tracking-widest text-white mb-2">System Optimal</h3>
+                <p className="text-gray-300 text-sm font-light">No critical alerts requiring attention right now.</p>
             </div>
         );
     }
@@ -96,53 +100,66 @@ const AlertsTab: React.FC = () => {
     return (
         <div className="space-y-4">
             {alerts.map(alert => (
-                <div key={alert.sku_id} className="glass-card p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 fade-in">
-                    <div className="flex items-start gap-4">
-                        <div className={`p-3 rounded-lg ${alert.risk_level === 'CRITICAL' ? 'bg-red-500/20 text-red-300' :
-                            alert.risk_level === 'WARNING' ? 'bg-amber-500/20 text-amber-300' :
-                                'bg-blue-500/20 text-blue-300'
+                <div key={alert.sku_id} className="glass-card p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 fade-in group hover:border-brand-blue/20 transition-all duration-300">
+                    <div className="flex items-start gap-5">
+                        <div className={`p-3 rounded-full border ${alert.risk_level === 'CRITICAL' ? 'bg-red-500/10 border-red-500/20 text-red-500' :
+                            alert.risk_level === 'WARNING' ? 'bg-amber-500/10 border-amber-500/20 text-amber-500' :
+                                'bg-brand-blue/10 border-brand-blue/20 text-brand-blue'
                             }`}>
-                            <AlertTriangle className="w-6 h-6" />
+                            <AlertTriangle className="w-5 h-5" />
                         </div>
                         <div>
-                            <div className="flex items-center gap-2 mb-1">
-                                <h3 className="font-semibold text-white text-lg">{alert.product_name}</h3>
-                                <span className="text-xs px-2 py-0.5 rounded bg-slate-700 text-slate-300 font-mono">
+                            <div className="flex items-center gap-3 mb-1">
+                                <h3 className="font-bold text-white text-base">{alert.product_name}</h3>
+                                <span className="text-[10px] px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-gray-300 font-mono uppercase tracking-wider">
                                     {alert.sku_id.split('_').pop()}
                                 </span>
                             </div>
-                            <p className="text-slate-300 text-sm mb-2">
-                                <span className={alert.risk_level === 'CRITICAL' ? 'text-red-400 font-medium' : 'text-amber-400'}>
+                            <div className="flex items-center gap-2 text-xs mb-3">
+                                <span className={`font-bold uppercase tracking-wider ${alert.risk_level === 'CRITICAL' ? 'text-red-500' : 'text-amber-500'}`}>
                                     {alert.risk_level} Risk
-                                </span> • {alert.recommended_action.replace(/_/g, ' ')}
-                            </p>
-                            <div className="flex items-center gap-4 text-sm text-slate-400">
-                                <span>Stock: {alert.current_stock}</span>
-                                <span>Price: ₹{alert.selling_price}</span>
-                                <span>Impact: {alert.impact_score.toFixed(0)}</span>
+                                </span>
+                                <span className="text-gray-300">•</span>
+                                <span className="text-gray-300 font-medium uppercase tracking-wide">
+                                    {alert.recommended_action.replace(/_/g, ' ')}
+                                </span>
+                            </div>
+                            <div className="flex items-center gap-6 text-xs text-gray-300 font-mono">
+                                <span className="flex items-center gap-2">
+                                    <Package className="w-3 h-3" />
+                                    Stock: <span className="text-white">{alert.current_stock}</span>
+                                </span>
+                                <span className="flex items-center gap-2">
+                                    <DollarSign className="w-3 h-3" />
+                                    Price: <span className="text-white">₹{alert.selling_price}</span>
+                                </span>
+                                <span className="flex items-center gap-2">
+                                    <Bell className="w-3 h-3" />
+                                    Impact: <span className="text-purple-400">{alert.impact_score.toFixed(0)}</span>
+                                </span>
                             </div>
                         </div>
                     </div>
 
-                    <div className="flex items-center gap-3 w-full md:w-auto">
+                    <div className="flex items-center gap-3 w-full md:w-auto mt-4 md:mt-0">
                         <button
                             onClick={() => handleDismiss(alert.sku_id)}
                             disabled={!!processingId}
-                            className="flex-1 md:flex-none px-4 py-2 border border-slate-600 hover:bg-slate-700 text-slate-300 rounded-lg transition-colors"
+                            className="flex-1 md:flex-none px-4 py-2 border border-white/10 hover:bg-white/5 text-gray-300 text-xs font-bold uppercase tracking-wider rounded-lg transition-colors"
                         >
                             Dismiss
                         </button>
                         <button
                             onClick={() => openActionModal(alert)}
                             disabled={!!processingId}
-                            className="flex-1 md:flex-none px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors flex items-center justify-center gap-2"
+                            className="flex-1 md:flex-none px-4 py-2 bg-brand-blue hover:bg-blue-600 text-white text-xs font-bold uppercase tracking-wider rounded-lg transition-colors flex items-center justify-center gap-2 shadow-[0_0_15px_rgba(0,102,255,0.3)]"
                         >
                             {processingId === alert.sku_id ? (
-                                <span className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></span>
+                                <span className="animate-spin rounded-full h-3 w-3 border-2 border-white border-t-transparent"></span>
                             ) : (
                                 <>
                                     Resolve
-                                    <ArrowRight className="w-4 h-4" />
+                                    <ArrowRight className="w-3 h-3" />
                                 </>
                             )}
                         </button>
@@ -152,40 +169,41 @@ const AlertsTab: React.FC = () => {
 
             {/* Action Modal */}
             {actionModal && (
-                <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4 backdrop-blur-sm">
-                    <div className="glass-card max-w-md w-full p-6 animate-in zoom-in-95 duration-200">
-                        <div className="flex justify-between items-start mb-6">
+                <div className="fixed inset-0 bg-[#000000]/80 flex items-center justify-center z-50 p-4 backdrop-blur-sm">
+                    <div className="glass-card max-w-md w-full p-8 animate-in zoom-in-95 duration-200 border-brand-blue/20 shadow-[0_0_50px_rgba(0,0,0,0.5)]">
+                        <div className="flex justify-between items-start mb-8">
                             <div>
-                                <h3 className="text-xl font-bold text-white mb-1">
+                                <h3 className="text-lg font-bold uppercase tracking-widest text-white mb-2">
                                     {actionModal.type === 'RESTOCK' ? 'Restock Inventory' : 'Adjust Price'}
                                 </h3>
-                                <p className="text-sm text-slate-400">{actionModal.alert.product_name}</p>
+                                <p className="text-xs text-gray-300 uppercase tracking-wide">{actionModal.alert.product_name}</p>
                             </div>
-                            <button onClick={() => setActionModal(null)} className="text-slate-400 hover:text-white">
+                            <button onClick={() => setActionModal(null)} className="text-gray-300 hover:text-white transition-colors">
                                 <X className="w-5 h-5" />
                             </button>
                         </div>
 
-                        <div className="mb-6">
-                            <label className="block text-sm font-medium text-slate-300 mb-2">
+                        <div className="mb-8">
+                            <label className="block text-[10px] font-bold uppercase tracking-widest text-gray-300 mb-3">
                                 {actionModal.type === 'RESTOCK' ? 'Quantity to Order' : 'New Price (₹)'}
                             </label>
-                            <div className="relative">
-                                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <div className="relative group">
+                                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                                     {actionModal.type === 'RESTOCK' ? (
-                                        <Package className="h-5 w-5 text-slate-500" />
+                                        <Package className="h-4 w-4 text-gray-300 group-focus-within:text-brand-blue transition-colors" />
                                     ) : (
-                                        <DollarSign className="h-5 w-5 text-slate-500" />
+                                        <DollarSign className="h-4 w-4 text-gray-300 group-focus-within:text-brand-blue transition-colors" />
                                     )}
                                 </div>
                                 <input
                                     type="number"
                                     value={inputValue}
                                     onChange={(e) => setInputValue(parseFloat(e.target.value))}
-                                    className="block w-full pl-10 pr-3 py-2 bg-slate-800/50 border border-slate-600 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                    className="block w-full pl-11 pr-4 py-3 bg-[#0A0A0A] border border-white/10 rounded-lg text-white font-mono placeholder-brand-muted focus:outline-none focus:border-brand-blue focus:ring-1 focus:ring-brand-blue transition-all"
                                 />
                             </div>
-                            <p className="mt-2 text-xs text-slate-500">
+                            <p className="mt-3 text-[10px] text-gray-300 uppercase tracking-wider flex items-center gap-2">
+                                <span className="w-1 h-1 bg-brand-muted rounded-full"></span>
                                 {actionModal.type === 'RESTOCK'
                                     ? `Current Stock: ${actionModal.alert.current_stock}`
                                     : `Current Price: ₹${actionModal.alert.selling_price}`
@@ -196,13 +214,13 @@ const AlertsTab: React.FC = () => {
                         <div className="flex gap-3">
                             <button
                                 onClick={() => setActionModal(null)}
-                                className="flex-1 px-4 py-2 border border-slate-600 hover:bg-slate-700 text-slate-300 rounded-lg transition-colors"
+                                className="flex-1 px-4 py-3 border border-white/10 hover:bg-white/5 text-gray-300 text-xs font-bold uppercase tracking-wider rounded-lg transition-colors"
                             >
                                 Cancel
                             </button>
                             <button
                                 onClick={confirmAction}
-                                className="flex-1 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition-colors"
+                                className="flex-1 px-4 py-3 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold uppercase tracking-wider rounded-lg transition-colors shadow-[0_0_20px_rgba(16,185,129,0.2)]"
                             >
                                 Confirm Action
                             </button>

@@ -19,9 +19,25 @@ export default {
                     800: '#1e40af',
                     900: '#1e3a8a',
                 },
+                brand: {
+                    dark: '#1D1D1F',
+                    light: '#FFFFFF',
+                    blue: '#0066FF',
+                    card: '#1D1D1F', // Reuse dark for cards as per analysis
+                    muted: 'rgba(29, 29, 31, 0.6)',
+                }
             },
             fontFamily: {
-                sans: ['Inter', 'system-ui', 'sans-serif'],
+                sans: ['"Instrument Sans"', 'Inter', 'system-ui', 'sans-serif'],
+                display: ['"Instrument Sans"', 'Inter', 'system-ui', 'sans-serif'],
+            },
+            letterSpacing: {
+                tighter: '-0.04em',
+                tight: '-0.02em',
+                normal: '0',
+                wide: '0.02em',
+                wider: '0.04em',
+                widest: '0.1em',
             },
         },
     },

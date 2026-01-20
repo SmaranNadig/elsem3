@@ -38,16 +38,22 @@ const AdsTab: React.FC = () => {
     };
 
     if (loading) {
-        return <div className="p-12 text-center text-slate-400">Loading Ad Data...</div>;
+        return (
+            <div className="flex items-center justify-center p-20">
+                <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-brand-blue"></div>
+            </div>
+        );
     }
 
     if (!metrics || campaigns.length === 0) {
         return (
-            <div className="glass-card p-12 text-center">
-                <Megaphone className="w-16 h-16 text-slate-600 mx-auto mb-4" />
-                <h3 className="text-xl font-semibold text-white mb-2">No Ad Campaigns Found</h3>
-                <p className="text-slate-400 mb-6">Connect an ad platform using the API to get started.</p>
-                <button className="px-4 py-2 bg-blue-600 rounded-lg text-white hover:bg-blue-700 transition">
+            <div className="glass-card p-20 text-center">
+                <div className="inline-flex items-center justify-center p-4 rounded-full bg-brand-blue/10 border border-brand-blue/20 mb-6">
+                    <Megaphone className="w-8 h-8 text-brand-blue" />
+                </div>
+                <h3 className="text-lg font-bold uppercase tracking-widest text-white mb-2">No Active Campaigns</h3>
+                <p className="text-gray-300 text-sm font-light mb-8">Connect an ad platform using the API to get started.</p>
+                <button className="px-6 py-3 bg-brand-blue hover:bg-blue-600 rounded-lg text-white text-xs font-bold uppercase tracking-wider transition-all shadow-[0_0_20px_rgba(0,102,255,0.3)]">
                     Connect Platform
                 </button>
             </div>
@@ -55,83 +61,100 @@ const AdsTab: React.FC = () => {
     }
 
     return (
-        <div className="space-y-6">
+        <div className="space-y-8">
             {/* Metrics Overview */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                <div className="glass-card p-6">
+                <div className="glass-card p-6 flex flex-col justify-between group hover:border-brand-blue/20 transition-all duration-300">
                     <div className="flex items-center gap-3 mb-2">
-                        <Target className="w-5 h-5 text-blue-400" />
-                        <h3 className="text-slate-400 text-sm font-medium">Active Campaigns</h3>
+                        <div className="p-2 bg-[#151516] rounded-full border border-white/5">
+                            <Target className="w-4 h-4 text-brand-blue" />
+                        </div>
+                        <h3 className="text-gray-300 text-[10px] font-bold uppercase tracking-widest">Active Campaigns</h3>
                     </div>
-                    <p className="text-3xl font-bold text-white">{metrics.active_campaigns}</p>
-                    <p className="text-xs text-slate-500 mt-1">Total: {metrics.total_campaigns}</p>
+                    <div>
+                        <p className="text-3xl font-bold text-white font-mono mt-4">{metrics.active_campaigns}</p>
+                        <p className="text-[10px] text-gray-300 mt-2 font-medium uppercase tracking-wider">Total: {metrics.total_campaigns}</p>
+                    </div>
                 </div>
 
-                <div className="glass-card p-6">
+                <div className="glass-card p-6 flex flex-col justify-between group hover:border-brand-blue/20 transition-all duration-300">
                     <div className="flex items-center gap-3 mb-2">
-                        <DollarSign className="w-5 h-5 text-emerald-400" />
-                        <h3 className="text-slate-400 text-sm font-medium">30d Spend</h3>
+                        <div className="p-2 bg-[#151516] rounded-full border border-white/5">
+                            <DollarSign className="w-4 h-4 text-emerald-500" />
+                        </div>
+                        <h3 className="text-gray-300 text-[10px] font-bold uppercase tracking-widest">30d Spend</h3>
                     </div>
-                    <p className="text-3xl font-bold text-emerald-400">₹{metrics.total_spend_30d.toLocaleString()}</p>
+                    <div>
+                        <p className="text-3xl font-bold text-emerald-500 font-mono mt-4">₹{metrics.total_spend_30d.toLocaleString()}</p>
+                        <p className="text-[10px] text-gray-300 mt-2 font-medium uppercase tracking-wider">Budget Utilization</p>
+                    </div>
                 </div>
 
-                <div className="glass-card p-6">
+                <div className="glass-card p-6 flex flex-col justify-between group hover:border-brand-blue/20 transition-all duration-300">
                     <div className="flex items-center gap-3 mb-2">
-                        <BarChart2 className="w-5 h-5 text-purple-400" />
-                        <h3 className="text-slate-400 text-sm font-medium">Avg ROAS</h3>
+                        <div className="p-2 bg-[#151516] rounded-full border border-white/5">
+                            <BarChart2 className="w-4 h-4 text-purple-500" />
+                        </div>
+                        <h3 className="text-gray-300 text-[10px] font-bold uppercase tracking-widest">Avg ROAS</h3>
                     </div>
-                    <p className="text-3xl font-bold text-purple-400">{metrics.avg_roas}x</p>
+                    <div>
+                        <p className="text-3xl font-bold text-purple-500 font-mono mt-4">{metrics.avg_roas}x</p>
+                        <p className="text-[10px] text-gray-300 mt-2 font-medium uppercase tracking-wider">Return on Spend</p>
+                    </div>
                 </div>
 
-                <div className="glass-card p-6 flex flex-col justify-center items-center">
-                    <button className="flex items-center gap-2 px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg w-full justify-center transition">
+                <div className="glass-card p-6 flex flex-col justify-center items-center group hover:border-brand-blue/20 transition-all duration-300">
+                    <button className="flex items-center justify-center gap-2 px-6 py-3 bg-brand-blue hover:bg-blue-600 text-white rounded-lg w-full transition-all shadow-[0_0_15px_rgba(0,102,255,0.2)] hover:shadow-[0_0_25px_rgba(0,102,255,0.4)]">
                         <Plus className="w-4 h-4" />
-                        New Campaign
+                        <span className="text-xs font-bold uppercase tracking-wider">New Campaign</span>
                     </button>
+                    <p className="text-[10px] text-gray-300 mt-4 font-medium uppercase tracking-wider text-center">
+                        Launch new ad set
+                    </p>
                 </div>
             </div>
 
             {/* Campaign List */}
-            <div className="glass-card overflow-hidden">
-                <div className="p-6 border-b border-slate-700">
-                    <h3 className="text-lg font-semibold text-white">Campaign Performance</h3>
+            <div className="glass-card overflow-hidden border-brand-light/5 p-0">
+                <div className="p-6 border-b border-white/5">
+                    <h3 className="text-lg font-bold uppercase tracking-widest text-white mb-0">Campaign Performance</h3>
                 </div>
                 <div className="overflow-x-auto">
                     <table className="w-full text-left">
-                        <thead className="bg-slate-800/50">
+                        <thead className="bg-[#151516]/50">
                             <tr>
-                                <th className="p-4 text-xs font-medium text-slate-400 uppercase">Status</th>
-                                <th className="p-4 text-xs font-medium text-slate-400 uppercase">Campaign</th>
-                                <th className="p-4 text-xs font-medium text-slate-400 uppercase">Platform</th>
-                                <th className="p-4 text-xs font-medium text-slate-400 uppercase">Daily Budget</th>
-                                <th className="p-4 text-xs font-medium text-slate-400 uppercase">ROAS</th>
-                                <th className="p-4 text-xs font-medium text-slate-400 uppercase">Spend (30d)</th>
-                                <th className="p-4 text-xs font-medium text-slate-400 uppercase">Action</th>
+                                <th className="py-4 px-6 text-xs font-bold text-gray-300 uppercase tracking-wider">Status</th>
+                                <th className="py-4 px-6 text-xs font-bold text-gray-300 uppercase tracking-wider">Campaign</th>
+                                <th className="py-4 px-6 text-xs font-bold text-gray-300 uppercase tracking-wider">Platform</th>
+                                <th className="py-4 px-6 text-xs font-bold text-gray-300 uppercase tracking-wider text-right">Daily Budget</th>
+                                <th className="py-4 px-6 text-xs font-bold text-gray-300 uppercase tracking-wider text-right">ROAS</th>
+                                <th className="py-4 px-6 text-xs font-bold text-gray-300 uppercase tracking-wider text-right">Spend (30d)</th>
+                                <th className="py-4 px-6 text-xs font-bold text-gray-300 uppercase tracking-wider text-center">Action</th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y divide-slate-700">
-                            {campaigns.map((c) => (
-                                <tr key={c.campaign_id} className="hover:bg-slate-700/30">
-                                    <td className="p-4">
-                                        <span className={`inline-flex items-center gap-1.5 px-2 py-1 rounded-full text-xs font-medium
-                                            ${c.status === 'ACTIVE' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-slate-500/10 text-slate-400'}`}>
-                                            <span className={`w-1.5 h-1.5 rounded-full ${c.status === 'ACTIVE' ? 'bg-emerald-400' : 'bg-slate-400'}`}></span>
+                        <tbody className="divide-y divide-white/5">
+                            {campaigns.map((c, index) => (
+                                <tr key={c.campaign_id} className="hover:bg-white/[0.02] transition-colors" style={{ animationDelay: `${index * 50}ms` }}>
+                                    <td className="py-4 px-6">
+                                        <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest border
+                                            ${c.status === 'ACTIVE' ? 'bg-emerald-500/10 text-emerald-500 border-emerald-500/20' : 'bg-brand-muted/10 text-gray-300 border-brand-muted/20'}`}>
+                                            <span className={`w-1.5 h-1.5 rounded-full ${c.status === 'ACTIVE' ? 'animate-pulse bg-emerald-500' : 'bg-brand-muted'}`}></span>
                                             {c.status}
                                         </span>
                                     </td>
-                                    <td className="p-4 font-medium text-white">{c.campaign_name}</td>
-                                    <td className="p-4 text-slate-400 text-sm">{c.platform}</td>
-                                    <td className="p-4 text-white">₹{c.daily_budget}</td>
-                                    <td className="p-4">
-                                        <span className={`${c.roas >= 4 ? 'text-emerald-400' : c.roas >= 2 ? 'text-blue-400' : 'text-red-400'}`}>
+                                    <td className="py-4 px-6 font-medium text-white text-sm">{c.campaign_name}</td>
+                                    <td className="py-4 px-6 text-gray-300 text-xs uppercase tracking-wide">{c.platform}</td>
+                                    <td className="py-4 px-6 text-white font-mono text-sm text-right">₹{c.daily_budget}</td>
+                                    <td className="py-4 px-6 text-right">
+                                        <span className={`font-mono font-bold ${c.roas >= 4 ? 'text-emerald-500' : c.roas >= 2 ? 'text-brand-blue' : 'text-red-500'}`}>
                                             {c.roas}x
                                         </span>
                                     </td>
-                                    <td className="p-4 text-slate-300">₹{c.total_spend_30d.toLocaleString()}</td>
-                                    <td className="p-4">
+                                    <td className="py-4 px-6 text-gray-300 font-mono text-sm text-right">₹{c.total_spend_30d.toLocaleString()}</td>
+                                    <td className="py-4 px-6 text-center">
                                         <button
                                             onClick={() => toggleCampaign(c.campaign_id, c.status)}
-                                            className="p-1.5 hover:bg-slate-700 rounded-md text-slate-400 hover:text-white transition"
+                                            className="p-2 hover:bg-white/5 rounded-full text-gray-300 hover:text-white transition-all border border-transparent hover:border-white/10"
                                             title={c.status === 'ACTIVE' ? "Pause Campaign" : "Resume Campaign"}
                                         >
                                             {c.status === 'ACTIVE' ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
