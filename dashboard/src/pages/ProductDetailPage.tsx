@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import {
-    LineChart, Line, BarChart, Bar, ScatterChart, Scatter, Cell,
-    XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, Area, AreaChart
+    Line, BarChart, Bar, Cell,
+    XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, AreaChart
 } from 'recharts';
-import { ArrowLeft, TrendingUp, DollarSign, Package, ShoppingCart, Globe } from 'lucide-react';
+import { ArrowLeft, DollarSign, Package, ShoppingCart, Globe } from 'lucide-react';
 import api from '../services/api';
 
 
@@ -65,230 +65,159 @@ const ProductDetailPage: React.FC = () => {
         ma6: data.monthly_trends.ma_6month[i]
     }));
 
-    const hourlyData = data.hourly_pattern.hours.map((hour: number, i: number) => ({
-        hour: `${hour}:00`,
-        sales: data.hourly_pattern.sales[i]
-    }));
-
     const weeklyData = data.weekly_pattern.days.map((day: string, i: number) => ({
         day,
         sales: data.weekly_pattern.sales[i]
     }));
 
-    const countryData = data.country_distribution.countries.map((country: string, i: number) => ({
-        country,
-        sales: data.country_distribution.sales[i]
-    }));
-
-    const priceQtyData = data.price_quantity.prices.map((price: number, i: number) => ({
-        price,
-        quantity: data.price_quantity.quantities[i]
-    }));
-
     const stats = data.statistics;
 
     return (
-        <div className="min-h-screen bg-[#0a0a0b] p-8">
+        <div className="min-h-screen bg-black p-8 font-mono">
             <div className="max-w-[1800px] mx-auto">
                 {/* Header */}
-                <div className="mb-8">
+                <div className="mb-12 border-b border-white pb-8">
                     <button
                         onClick={() => navigate('/product-sales')}
-                        className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors mb-4 group"
+                        className="inline-flex items-center gap-2 text-gray-500 hover:text-white transition-colors mb-6 uppercase tracking-widest text-xs"
                     >
-                        <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
-                        <span>Back to Products</span>
+                        <ArrowLeft size={16} />
+                        <span>Back to Index</span>
                     </button>
-                    <h1 className="text-5xl font-bold text-white mb-4 bg-gradient-to-r from-emerald-400 to-blue-500 bg-clip-text text-transparent">
+                    <h1 className="text-6xl md:text-8xl font-bold text-white mb-4 tracking-tighter uppercase">
                         {data.product_name}
                     </h1>
-                    <p className="text-gray-400 text-lg">Comprehensive Data Science Analysis</p>
+                    <p className="text-gray-500 text-lg uppercase tracking-widest">Analytics & Data Science</p>
                 </div>
 
-                {/* KPI Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                    <div className="bg-gradient-to-br from-emerald-900/20 to-emerald-950/20 border border-emerald-500/20 rounded-xl p-6 backdrop-blur-sm">
-                        <div className="flex items-center justify-between mb-2">
-                            <DollarSign className="text-emerald-400" size={24} />
-                            <TrendingUp className="text-emerald-400" size={20} />
+                {/* KPI Cards - Minimal Black/White */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-24">
+                    <div className="border-t border-white/20 pt-4">
+                        <div className="flex items-center justify-between mb-2 text-gray-500 uppercase tracking-widest text-xs">
+                            <span>Total Revenue</span>
+                            <DollarSign size={16} />
                         </div>
-                        <p className="text-gray-400 text-sm mb-1">Total Revenue</p>
-                        <p className="text-3xl font-bold text-white">£{stats.total_revenue.toLocaleString('en-US', { maximumFractionDigits: 0 })}</p>
+                        <p className="text-4xl font-bold text-white mt-4">${stats.total_revenue.toLocaleString('en-US', { maximumFractionDigits: 0 })}</p>
                     </div>
 
-                    <div className="bg-gradient-to-br from-blue-900/20 to-blue-950/20 border border-blue-500/20 rounded-xl p-6 backdrop-blur-sm">
-                        <div className="flex items-center justify-between mb-2">
-                            <Package className="text-blue-400" size={24} />
-                            <TrendingUp className="text-blue-400" size={20} />
+                    <div className="border-t border-white/20 pt-4">
+                        <div className="flex items-center justify-between mb-2 text-gray-500 uppercase tracking-widest text-xs">
+                            <span>Total Quantity</span>
+                            <Package size={16} />
                         </div>
-                        <p className="text-gray-400 text-sm mb-1">Total Quantity</p>
-                        <p className="text-3xl font-bold text-white">{stats.total_quantity.toLocaleString()}</p>
+                        <p className="text-4xl font-bold text-white mt-4">{stats.total_quantity.toLocaleString()}</p>
                     </div>
 
-                    <div className="bg-gradient-to-br from-purple-900/20 to-purple-950/20 border border-purple-500/20 rounded-xl p-6 backdrop-blur-sm">
-                        <div className="flex items-center justify-between mb-2">
-                            <ShoppingCart className="text-purple-400" size={24} />
-                            <TrendingUp className="text-purple-400" size={20} />
+                    <div className="border-t border-white/20 pt-4">
+                        <div className="flex items-center justify-between mb-2 text-gray-500 uppercase tracking-widest text-xs">
+                            <span>Total Orders</span>
+                            <ShoppingCart size={16} />
                         </div>
-                        <p className="text-gray-400 text-sm mb-1">Total Orders</p>
-                        <p className="text-3xl font-bold text-white">{stats.total_orders.toLocaleString()}</p>
+                        <p className="text-4xl font-bold text-white mt-4">{stats.total_orders.toLocaleString()}</p>
                     </div>
 
-                    <div className="bg-gradient-to-br from-orange-900/20 to-orange-950/20 border border-orange-500/20 rounded-xl p-6 backdrop-blur-sm">
-                        <div className="flex items-center justify-between mb-2">
-                            <Globe className="text-orange-400" size={24} />
-                            <TrendingUp className="text-orange-400" size={20} />
+                    <div className="border-t border-white/20 pt-4">
+                        <div className="flex items-center justify-between mb-2 text-gray-500 uppercase tracking-widest text-xs">
+                            <span>Avg Order Value</span>
+                            <Globe size={16} />
                         </div>
-                        <p className="text-gray-400 text-sm mb-1">Avg Order Value</p>
-                        <p className="text-3xl font-bold text-white">£{stats.avg_order_value.toFixed(2)}</p>
+                        <p className="text-4xl font-bold text-white mt-4">${stats.avg_order_value.toFixed(2)}</p>
                     </div>
                 </div>
 
                 {/* Charts Grid */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    {/* Monthly Sales Trend with Moving Averages */}
-                    <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-6 col-span-2">
-                        <h3 className="text-xl font-bold text-white mb-4">📈 Monthly Sales Trend & Moving Averages</h3>
-                        <ResponsiveContainer width="100%" height={350}>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-24">
+                    {/* Monthly Sales Trend */}
+                    <div className="col-span-2 border border-white/10 p-8">
+                        <h3 className="text-2xl font-bold text-white mb-8 uppercase tracking-widest">Monthly Sales Trend</h3>
+                        <ResponsiveContainer width="100%" height={400}>
                             <AreaChart data={monthlyData}>
                                 <defs>
                                     <linearGradient id="salesGradient" x1="0" y1="0" x2="0" y2="1">
-                                        <stop offset="5%" stopColor="#10B981" stopOpacity={0.8} />
-                                        <stop offset="95%" stopColor="#10B981" stopOpacity={0} />
+                                        <stop offset="5%" stopColor="#FFFFFF" stopOpacity={0.2} />
+                                        <stop offset="95%" stopColor="#FFFFFF" stopOpacity={0} />
                                     </linearGradient>
                                 </defs>
-                                <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                                <XAxis dataKey="month" stroke="#9CA3AF" angle={-45} textAnchor="end" height={80} />
-                                <YAxis stroke="#9CA3AF" tickFormatter={(v) => `£${(v / 1000).toFixed(0)}k`} />
+                                <CartesianGrid strokeDasharray="3 3" stroke="#333" vertical={false} />
+                                <XAxis dataKey="month" stroke="#666" tick={{ fill: '#666' }} axisLine={false} tickLine={false} />
+                                <YAxis stroke="#666" tickFormatter={(v) => `$${(v / 1000).toFixed(0)}k`} tick={{ fill: '#666' }} axisLine={false} tickLine={false} />
                                 <Tooltip
-                                    contentStyle={{ backgroundColor: '#1F2937', border: '1px solid #374151', borderRadius: '8px' }}
-                                    formatter={(value: any) => [`£${Number(value).toLocaleString()}`, '']}
+                                    contentStyle={{ backgroundColor: '#000', border: '1px solid #333' }}
+                                    itemStyle={{ color: '#fff' }}
+                                    formatter={(value: any) => [`$${Number(value).toLocaleString()}`, 'Sales']}
                                 />
-                                <Legend />
-                                <Area type="monotone" dataKey="sales" stroke="#10B981" fill="url(#salesGradient)" strokeWidth={2} />
-                                <Line type="monotone" dataKey="ma3" stroke="#3B82F6" strokeWidth={2} dot={false} name="3-Month MA" />
-                                <Line type="monotone" dataKey="ma6" stroke="#8B5CF6" strokeWidth={2} dot={false} name="6-Month MA" />
+                                <Area type="monotone" dataKey="sales" stroke="#FFFFFF" fill="url(#salesGradient)" strokeWidth={1} />
+                                <Line type="monotone" dataKey="ma3" stroke="#666" strokeDasharray="5 5" strokeWidth={1} dot={false} name="3M MA" />
                             </AreaChart>
                         </ResponsiveContainer>
                     </div>
 
-                    {/* Growth Rate Analysis */}
-                    <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-6">
-                        <h3 className="text-xl font-bold text-white mb-4">📊 Month-over-Month Growth Rate</h3>
+                    {/* Growth Rate */}
+                    <div className="border border-white/10 p-8">
+                        <h3 className="text-xl font-bold text-white mb-8 uppercase tracking-widest">MoM Growth</h3>
                         <ResponsiveContainer width="100%" height={300}>
                             <BarChart data={monthlyData}>
-                                <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                                <XAxis dataKey="month" stroke="#9CA3AF" angle={-45} textAnchor="end" height={80} />
-                                <YAxis stroke="#9CA3AF" tickFormatter={(v) => `${v}%`} />
+                                <CartesianGrid strokeDasharray="3 3" stroke="#333" vertical={false} />
+                                <XAxis dataKey="month" stroke="#666" hide />
+                                <YAxis stroke="#666" tickFormatter={(v) => `${v}%`} hide />
                                 <Tooltip
-                                    contentStyle={{ backgroundColor: '#1F2937', border: '1px solid #374151', borderRadius: '8px' }}
-                                    formatter={(value: any) => [`${Number(value).toFixed(2)}%`, 'Growth']}
+                                    contentStyle={{ backgroundColor: '#000', border: '1px solid #333' }}
+                                    itemStyle={{ color: '#fff' }}
+                                    cursor={{ fill: '#333' }}
                                 />
-                                <Bar dataKey="growth" fill="#10B981" radius={[8, 8, 0, 0]}>
+                                <Bar dataKey="growth" fill="#fff" maxBarSize={50}>
                                     {monthlyData.map((entry: any, index: number) => (
-                                        <Cell key={`cell-${index}`} fill={Number(entry.growth) >= 0 ? '#10B981' : '#EF4444'} />
+                                        <Cell key={`cell-${index}`} fill={Number(entry.growth) >= 0 ? '#FFFFFF' : '#333333'} />
                                     ))}
                                 </Bar>
                             </BarChart>
                         </ResponsiveContainer>
                     </div>
 
-                    {/* Day of Week Pattern */}
-                    <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-6">
-                        <h3 className="text-xl font-bold text-white mb-4">📅 Sales by Day of Week</h3>
+                    {/* Day of Week */}
+                    <div className="border border-white/10 p-8">
+                        <h3 className="text-xl font-bold text-white mb-8 uppercase tracking-widest">Weekly Distribution</h3>
                         <ResponsiveContainer width="100%" height={300}>
                             <BarChart data={weeklyData}>
-                                <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                                <XAxis dataKey="day" stroke="#9CA3AF" angle={-20} textAnchor="end" height={70} />
-                                <YAxis stroke="#9CA3AF" tickFormatter={(v) => `£${(v / 1000).toFixed(0)}k`} />
+                                <CartesianGrid strokeDasharray="3 3" stroke="#333" vertical={false} />
+                                <XAxis dataKey="day" stroke="#666" tickFormatter={(v) => v.substring(0, 3)} tick={{ fill: '#666' }} axisLine={false} tickLine={false} />
+                                <YAxis hide />
                                 <Tooltip
-                                    contentStyle={{ backgroundColor: '#1F2937', border: '1px solid #374151', borderRadius: '8px' }}
-                                    formatter={(value: any) => [`£${Number(value).toLocaleString()}`, 'Sales']}
+                                    contentStyle={{ backgroundColor: '#000', border: '1px solid #333' }}
+                                    itemStyle={{ color: '#fff' }}
+                                    cursor={{ fill: '#333' }}
                                 />
-                                <Bar dataKey="sales" fill="#3B82F6" radius={[8, 8, 0, 0]} />
+                                <Bar dataKey="sales" fill="#fff" maxBarSize={50} />
                             </BarChart>
                         </ResponsiveContainer>
                     </div>
 
-                    {/* Hour of Day Pattern */}
-                    <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-6">
-                        <h3 className="text-xl font-bold text-white mb-4">🕐 Sales by Hour of Day</h3>
-                        <ResponsiveContainer width="100%" height={300}>
-                            <LineChart data={hourlyData}>
-                                <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                                <XAxis dataKey="hour" stroke="#9CA3AF" />
-                                <YAxis stroke="#9CA3AF" tickFormatter={(v) => `£${(v / 1000).toFixed(0)}k`} />
-                                <Tooltip
-                                    contentStyle={{ backgroundColor: '#1F2937', border: '1px solid #374151', borderRadius: '8px' }}
-                                    formatter={(value: any) => [`£${Number(value).toLocaleString()}`, 'Sales']}
-                                />
-                                <Line type="monotone" dataKey="sales" stroke="#8B5CF6" strokeWidth={3} dot={{ fill: '#8B5CF6', r: 5 }} />
-                            </LineChart>
-                        </ResponsiveContainer>
-                    </div>
-
-                    {/* Geographic Distribution */}
-                    <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-6">
-                        <h3 className="text-xl font-bold text-white mb-4">🌍 Top 10 Countries by Revenue</h3>
-                        <ResponsiveContainer width="100%" height={300}>
-                            <BarChart data={countryData} layout="vertical">
-                                <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                                <XAxis type="number" stroke="#9CA3AF" tickFormatter={(v) => `£${(v / 1000).toFixed(0)}k`} />
-                                <YAxis type="category" dataKey="country" stroke="#9CA3AF" width={100} />
-                                <Tooltip
-                                    contentStyle={{ backgroundColor: '#1F2937', border: '1px solid #374151', borderRadius: '8px' }}
-                                    formatter={(value: any) => [`£${Number(value).toLocaleString()}`, 'Sales']}
-                                />
-                                <Bar dataKey="sales" fill="#F59E0B" radius={[0, 8, 8, 0]} />
-                            </BarChart>
-                        </ResponsiveContainer>
-                    </div>
-
-                    {/* Price vs Quantity Correlation */}
-                    <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-6">
-                        <h3 className="text-xl font-bold text-white mb-4">💰 Price vs Quantity Sold</h3>
-                        <ResponsiveContainer width="100%" height={300}>
-                            <ScatterChart>
-                                <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                                <XAxis dataKey="price" name="Price" stroke="#9CA3AF" tickFormatter={(v) => `£${v}`} />
-                                <YAxis dataKey="quantity" name="Quantity" stroke="#9CA3AF" />
-                                <Tooltip
-                                    cursor={{ strokeDasharray: '3 3' }}
-                                    contentStyle={{ backgroundColor: '#1F2937', border: '1px solid #374151', borderRadius: '8px' }}
-                                    formatter={(value: any, name: any) => [value, name === 'price' ? 'Price' : 'Quantity']}
-                                />
-                                <Scatter data={priceQtyData} fill="#EC4899" />
-                            </ScatterChart>
-                        </ResponsiveContainer>
-                    </div>
-
-                    {/* Statistical Summary */}
-                    <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-6 col-span-2">
-                        <h3 className="text-xl font-bold text-white mb-6">📊 Statistical Summary</h3>
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    {/* Stats Summary - Minimal Text */}
+                    <div className="col-span-2 border-t border-white/20 pt-12">
+                        <div className="grid grid-cols-2 md:grid-cols-6 gap-8">
                             <div>
-                                <p className="text-gray-400 text-sm mb-1">Mean Sales</p>
-                                <p className="text-2xl font-bold text-emerald-400">£{stats.mean_sales.toLocaleString('en-US', { maximumFractionDigits: 0 })}</p>
+                                <p className="text-xs text-gray-500 uppercase tracking-widest mb-2">Mean Sales</p>
+                                <p className="text-2xl text-white font-bold">${stats.mean_sales.toLocaleString('en-US', { maximumFractionDigits: 0 })}</p>
                             </div>
                             <div>
-                                <p className="text-gray-400 text-sm mb-1">Median Sales</p>
-                                <p className="text-2xl font-bold text-blue-400">£{stats.median_sales.toLocaleString('en-US', { maximumFractionDigits: 0 })}</p>
+                                <p className="text-xs text-gray-500 uppercase tracking-widest mb-2">Median</p>
+                                <p className="text-2xl text-white font-bold">${stats.median_sales.toLocaleString('en-US', { maximumFractionDigits: 0 })}</p>
                             </div>
                             <div>
-                                <p className="text-gray-400 text-sm mb-1">Std Deviation</p>
-                                <p className="text-2xl font-bold text-purple-400">£{stats.std_sales.toLocaleString('en-US', { maximumFractionDigits: 0 })}</p>
+                                <p className="text-xs text-gray-500 uppercase tracking-widest mb-2">Std Dev</p>
+                                <p className="text-2xl text-white font-bold">${stats.std_sales.toLocaleString('en-US', { maximumFractionDigits: 0 })}</p>
                             </div>
                             <div>
-                                <p className="text-gray-400 text-sm mb-1">Avg Price</p>
-                                <p className="text-2xl font-bold text-orange-400">£{stats.avg_price.toFixed(2)}</p>
+                                <p className="text-xs text-gray-500 uppercase tracking-widest mb-2">Avg Price</p>
+                                <p className="text-2xl text-white font-bold">${stats.avg_price.toFixed(2)}</p>
                             </div>
                             <div>
-                                <p className="text-gray-400 text-sm mb-1">Min Sales</p>
-                                <p className="text-2xl font-bold text-red-400">£{stats.min_sales.toLocaleString('en-US', { maximumFractionDigits: 0 })}</p>
+                                <p className="text-xs text-gray-500 uppercase tracking-widest mb-2">Min Range</p>
+                                <p className="text-2xl text-white font-bold">${stats.min_sales.toLocaleString('en-US', { maximumFractionDigits: 0 })}</p>
                             </div>
                             <div>
-                                <p className="text-gray-400 text-sm mb-1">Max Sales</p>
-                                <p className="text-2xl font-bold text-green-400">£{stats.max_sales.toLocaleString('en-US', { maximumFractionDigits: 0 })}</p>
+                                <p className="text-xs text-gray-500 uppercase tracking-widest mb-2">Max Range</p>
+                                <p className="text-2xl text-white font-bold">${stats.max_sales.toLocaleString('en-US', { maximumFractionDigits: 0 })}</p>
                             </div>
                         </div>
                     </div>

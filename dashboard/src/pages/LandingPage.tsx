@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, BarChart2, Brain, ChevronRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 
@@ -65,90 +65,6 @@ const LandingPage: React.FC = () => {
                 </motion.div>
             </header>
 
-            {/* Features Narrative Section */}
-            <section className="py-32 px-6 relative z-10" id="features">
-                <div className="container mx-auto">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-center mb-40">
-                        <motion.div
-                            initial={{ opacity: 0, x: -50 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8 }}
-                        >
-                            <h2 className="text-4xl md:text-6xl font-bold uppercase tracking-tight mb-6">
-                                Predictive <br /> <span className="text-emerald-500">Intelligence</span>
-                            </h2>
-                            <p className="text-gray-300 text-lg mb-8 leading-relaxed">
-                                Stop reacting to the market. Anticipate it. Our seasonal analysis engine processes thousands of data points to forecast peaks and troughs before they happen.
-                            </p>
-                            <Link to="/analytics" className="flex items-center gap-4 text-emerald-500 font-bold uppercase tracking-widest text-xs cursor-pointer hover:text-white transition-colors">
-                                Explore Analytics <ChevronRight className="w-4 h-4" />
-                            </Link>
-                        </motion.div>
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8 }}
-                            className="aspect-square rounded-3xl overflow-hidden relative bg-grain group"
-                        >
-                            <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 to-transparent mix-blend-overlay" />
-                            <div className="absolute inset-0 flex items-center justify-center">
-                                <BarChart2 className="w-32 h-32 text-emerald-500/50 group-hover:scale-110 transition-transform duration-700" />
-                            </div>
-                            {/* Grain Overlay */}
-                            <div className="absolute inset-0 bg-grain opacity-50" />
-                        </motion.div>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-center mb-40">
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8 }}
-                            className="aspect-square rounded-3xl overflow-hidden relative bg-grain group order-2 md:order-1"
-                        >
-                            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-transparent mix-blend-overlay" />
-                            <div className="absolute inset-0 flex items-center justify-center">
-                                <Brain className="w-32 h-32 text-purple-500/50 group-hover:scale-110 transition-transform duration-700" />
-                            </div>
-                            <div className="absolute inset-0 bg-grain opacity-50" />
-                        </motion.div>
-                        <motion.div
-                            initial={{ opacity: 0, x: 50 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8 }}
-                            className="order-1 md:order-2"
-                        >
-                            <h2 className="text-4xl md:text-6xl font-bold uppercase tracking-tight mb-6">
-                                Autonomous <br /> <span className="text-purple-500">Agents</span>
-                            </h2>
-                            <p className="text-gray-300 text-lg mb-8 leading-relaxed">
-                                Deployment without management. Our autonomous agents handle price adjustments, stock reordering, and ad campaign optimizations in real-time.
-                            </p>
-                            <Link to="/analytics" className="flex items-center gap-4 text-purple-500 font-bold uppercase tracking-widest text-xs cursor-pointer hover:text-white transition-colors">
-                                View Agents <ChevronRight className="w-4 h-4" />
-                            </Link>
-                        </motion.div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Footer CTA */}
-            <section className="py-24 relative overflow-hidden bg-grain text-center">
-                <div className="relative z-10">
-                    <h2 className="text-5xl md:text-8xl font-bold uppercase tracking-tighter mb-10 text-glow">
-                        Ready to <br /> Reform?
-                    </h2>
-                    <Link to="/dashboard">
-                        <button className="px-12 py-6 bg-white text-black rounded-full font-bold text-lg uppercase tracking-widest hover:bg-brand-blue hover:text-white transition-all duration-300 shadow-[0_0_40px_rgba(255,255,255,0.3)]">
-                            Get Started Now
-                        </button>
-                    </Link>
-                </div>
-            </section>
         </div>
     );
 };

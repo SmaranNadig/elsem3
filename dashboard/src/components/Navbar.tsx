@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard } from 'lucide-react';
+
 
 const Navbar: React.FC = () => {
     const location = useLocation();
@@ -35,13 +35,7 @@ const Navbar: React.FC = () => {
                     </Link>
                 </div>
 
-                {/* CTA */}
-                <Link to="/dashboard">
-                    <button className="flex items-center gap-2 px-6 py-2 bg-white text-black rounded-full hover:bg-brand-blue hover:text-white transition-all duration-300 font-bold text-xs uppercase tracking-widest shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:shadow-[0_0_30px_rgba(0,102,255,0.4)]">
-                        <LayoutDashboard className="w-4 h-4" />
-                        Enter App
-                    </button>
-                </Link>
+
             </div>
         </nav>
     );

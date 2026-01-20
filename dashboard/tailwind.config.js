@@ -20,11 +20,11 @@ export default {
                     900: '#1e3a8a',
                 },
                 brand: {
-                    dark: '#1D1D1F',
+                    dark: '#000000',
                     light: '#FFFFFF',
-                    blue: '#0066FF',
-                    card: '#1D1D1F', // Reuse dark for cards as per analysis
-                    muted: 'rgba(29, 29, 31, 0.6)',
+                    blue: '#FFFFFF', // Replaced blue with white for high contrast
+                    card: '#000000',
+                    muted: 'rgba(255, 255, 255, 0.6)',
                 }
             },
             fontFamily: {

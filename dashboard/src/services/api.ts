@@ -128,7 +128,9 @@ export const api = {
     },
 
     getProductAnalytics: (productName: string) => {
-        return apiClient.get(`/analytics/product/${encodeURIComponent(productName)}`);
+        return apiClient.get(`/analytics/product`, {
+            params: { product_name: productName }
+        });
     },
 
     bulkUpdateModes: async (updates: Record<string, string>) => {

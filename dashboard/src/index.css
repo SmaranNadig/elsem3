@@ -11,7 +11,7 @@
 
   color-scheme: dark;
   color: #FFFFFF;
-  background-color: #1D1D1F;
+  background-color: #000000;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -29,8 +29,7 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background: #1D1D1F;
-  /* Solid dark background matching bdsn.club */
+  background: #000000;
   color: #FFFFFF;
 }
 
@@ -46,25 +45,25 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #1D1D1F;
+  background: #000000;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #475569;
+  background: #333333;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #64748b;
+  background: #555555;
 }
 
-/* Glassmorphism card effect - Updated to match bdsn.club solid/minimal style */
-/* bdsn.club uses solid backgrounds with rounded corners, less emphasis on blur */
+/* Glassmorphism card effect - Updated to match Ogaki solid black style */
 .glass-card {
-  background: #1D1D1F;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+  background: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0px;
+  /* Sharp corners for modern look */
+  box-shadow: none;
 }
 
 /* Typography Utilities */
@@ -96,19 +95,6 @@ h6 {
   animation: fadeIn 0.3s ease-out;
 }
 
-@keyframes pulse-glow {
-
-  0%,
-  100% {
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
-  }
-
-  50% {
-    box-shadow: 0 0 30px rgba(59, 130, 246, 0.6);
-  }
-}
-
-
 @layer utilities {
   .uppercase {
     text-transform: uppercase;
@@ -118,36 +104,27 @@ h6 {
     letter-spacing: 0.1em;
   }
 
-  /* Grainy Texture */
+  /* Grainy Texture - Removed for clean black look */
   .bg-grain {
-    position: relative;
+    background-color: #000000;
   }
 
   .bg-grain::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 0;
+    display: none;
   }
 
-  /* Sexy Text Glow */
+  /* Simple clean text */
   .text-glow {
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-  }
-
-  .text-glow-blue {
-    text-shadow: 0 0 20px rgba(0, 102, 255, 0.5);
+    text-shadow: none;
   }
 
   .button-glow {
-    box-shadow: 0 0 20px rgba(0, 102, 255, 0.3);
+    box-shadow: none;
+    border: 1px solid white;
   }
 
   .button-glow:hover {
-    box-shadow: 0 0 30px rgba(0, 102, 255, 0.5);
+    background: white;
+    color: black;
   }
 }

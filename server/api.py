@@ -1546,7 +1546,8 @@ async def get_analytics_products(limit: int = 50):
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@app.get("/api/analytics/product/{product_name}")
+
+@app.get("/api/analytics/product")
 async def get_product_analytics(product_name: str):
     """Get comprehensive analytics for a specific product"""
     try:
@@ -2160,7 +2161,7 @@ async def clear_chat():
 # ============================================================================
 
 from fastapi import UploadFile, File
-from server.ollama_chat import chat_session
+# from server.ollama_chat import chat_session
 
 
 class ChatMessage(BaseModel):
@@ -2171,7 +2172,8 @@ class ChatMessage(BaseModel):
 @app.get("/api/chat/status")
 async def get_chat_status():
     """Get current chat session status."""
-    return chat_session.get_session_status()
+    return {"status": "error", "message": "Chat module missing"} 
+    # return chat_session.get_session_status()
 
 
 @app.post("/api/chat/upload-csv")
@@ -2181,26 +2183,27 @@ async def upload_csv_for_chat(file: UploadFile = File(...)):
     
     The file will be parsed, transformed to unified format, and analyzed.
     """
-    try:
-        # Read file content
-        content = await file.read()
-        
-        # Parse CSV
-        success, message = chat_session.parse_csv(content, file.filename)
-        
-        if not success:
-            raise HTTPException(status_code=400, detail=message)
-        
-        return {
-            "status": "success",
-            "message": message,
-            "summary": chat_session.session_summary
-        }
-        
-    except HTTPException:
-        raise
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+    raise HTTPException(status_code=501, detail="Chat module missing")
+    # try:
+    #     # Read file content
+    #     content = await file.read()
+    #     
+    #     # Parse CSV
+    #     success, message = chat_session.parse_csv(content, file.filename)
+    #     
+    #     if not success:
+    #         raise HTTPException(status_code=400, detail=message)
+    #     
+    #     return {
+    #         "status": "success",
+    #         "message": message,
+    #         "summary": chat_session.session_summary
+    #     }
+    #     
+    # except HTTPException:
+    #     raise
+    # except Exception as e:
+    #     raise HTTPException(status_code=500, detail=str(e))
 
 
 @app.post("/api/chat/message")
@@ -2210,98 +2213,101 @@ async def send_chat_message(data: ChatMessage):
     
     Requires a CSV to be uploaded first.
     """
-    try:
-        if chat_session.session_data is None:
-            return {
-                "response": "Please upload a CSV file first before asking questions.",
-                "has_data": False
-            }
-        
-        response = chat_session.chat(data.message)
-        
-        return {
-            "response": response,
-            "has_data": True,
-            "summary": chat_session.session_summary
-        }
-        
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+    raise HTTPException(status_code=501, detail="Chat module missing")
+    # try:
+    #     if chat_session.session_data is None:
+    #         return {
+    #             "response": "Please upload a CSV file first before asking questions.",
+    #             "has_data": False
+    #         }
+    #     
+    #     response = chat_session.chat(data.message)
+    #     
+    #     return {
+    #         "response": response,
+    #         "has_data": True,
+    #         "summary": chat_session.session_summary
+    #     }
+    #     
+    # except Exception as e:
+    #     raise HTTPException(status_code=500, detail=str(e))
 
 
 @app.post("/api/chat/clear")
 async def clear_chat_session():
     """Clear the current chat session."""
-    chat_session.clear_session()
+    # chat_session.clear_session()
     return {"status": "success", "message": "Session cleared"}
 
 
 @app.get("/api/chat/analysis")
 async def get_chat_analysis():
     """Get the analysis results from the uploaded CSV."""
-    if chat_session.session_analysis is None:
-        raise HTTPException(status_code=404, detail="No analysis available. Upload a CSV first.")
+    raise HTTPException(status_code=501, detail="Chat module missing")
+    # if chat_session.session_analysis is None:
+    #     raise HTTPException(status_code=404, detail="No analysis available. Upload a CSV first.")
     
-    # Convert to list of dicts
-    results = []
-    for _, row in chat_session.session_analysis.iterrows():
-        results.append({
-            "sku_id": row.get("sku_id", ""),
-            "product_name": row.get("product_name", ""),
-            "selling_price": float(row.get("selling_price", 0)),
-            "current_stock": int(row.get("current_stock", 0)),
-            "profit_per_unit": float(row.get("profit_per_unit", 0)),
-            "risk_level": row.get("risk_level", "UNKNOWN"),
-            "recommended_action": row.get("recommended_action", ""),
-            "impact_score": float(row.get("impact_score", 0)),
-            "date": row.get("date", "")
-        })
+    # # Convert to list of dicts
+    # results = []
+    # for _, row in chat_session.session_analysis.iterrows():
+    #     results.append({
+    #         "sku_id": row.get("sku_id", ""),
+    #         "product_name": row.get("product_name", ""),
+    #         "selling_price": float(row.get("selling_price", 0)),
+    #         "current_stock": int(row.get("current_stock", 0)),
+    #         "profit_per_unit": float(row.get("profit_per_unit", 0)),
+    #         "risk_level": row.get("risk_level", "UNKNOWN"),
+    #         "recommended_action": row.get("recommended_action", ""),
+    #         "impact_score": float(row.get("impact_score", 0)),
+    #         "date": row.get("date", "")
+    #     })
     
-    return {
-        "products": results,
-        "summary": chat_session.session_summary
-    }
+    # return {
+    #     "products": results,
+    #     "summary": chat_session.session_summary
+    # }
 
 
 @app.get("/api/chat/export-csv")
 async def export_chat_analysis_csv():
     """Export the analysis results as a CSV file."""
-    from fastapi.responses import StreamingResponse
-    import io
-    import csv
+    raise HTTPException(status_code=501, detail="Chat module missing")
+    # from fastapi.responses import StreamingResponse
+    # import io
+    # import csv
     
-    if chat_session.session_analysis is None:
-        raise HTTPException(status_code=404, detail="No analysis available. Upload a CSV first.")
+    # if chat_session.session_analysis is None:
+    #     raise HTTPException(status_code=404, detail="No analysis available. Upload a CSV first.")
     
-    # Create CSV in memory
-    output = io.StringIO()
-    writer = csv.writer(output)
+    # # Create CSV in memory
+    # output = io.StringIO()
+    # writer = csv.writer(output)
+    # 
+    # # Write header
+    # headers = ["Date", "SKU", "Product Name", "Price", "Stock", "Cost", "Profit/Unit", "Risk Level", "Recommended Action"]
+    # writer.writerow(headers)
     
-    # Write header
-    headers = ["Date", "SKU", "Product Name", "Price", "Stock", "Cost", "Profit/Unit", "Risk Level", "Recommended Action"]
-    writer.writerow(headers)
+    # # Write data
+    # for _, row in chat_session.session_analysis.iterrows():
+    #     writer.writerow([
+    #         row.get("date", ""),
+    #         row.get("sku_id", ""),
+    #         row.get("product_name", ""),
+    #         f"${row.get('selling_price', 0):.2f}",
+    #         row.get("current_stock", 0),
+    #         f"${row.get('cogs', 0):.2f}",
+    #         f"${row.get('profit_per_unit', 0):.2f}",
+    #         row.get("risk_level", ""),
+    #         row.get("recommended_action", "")
+    #     ])
     
-    # Write data
-    for _, row in chat_session.session_analysis.iterrows():
-        writer.writerow([
-            row.get("date", ""),
-            row.get("sku_id", ""),
-            row.get("product_name", ""),
-            f"${row.get('selling_price', 0):.2f}",
-            row.get("current_stock", 0),
-            f"${row.get('cogs', 0):.2f}",
-            f"${row.get('profit_per_unit', 0):.2f}",
-            row.get("risk_level", ""),
-            row.get("recommended_action", "")
-        ])
+    # output.seek(0)
     
-    output.seek(0)
-    
-    return StreamingResponse(
-        iter([output.getvalue()]),
-        media_type="text/csv",
-        headers={"Content-Disposition": "attachment; filename=inventory_analysis.csv"}
-    )
+    # return StreamingResponse(
+    #     iter([output.getvalue()]),
+    #     media_type="text/csv",
+    #     headers={"Content-Disposition": "attachment; filename=inventory_analysis.csv"}
+    # )
 
 
 # ============ Workflow Generation Endpoints ============
@@ -2317,30 +2323,31 @@ class WorkflowRequest(BaseModel):
 async def generate_workflow(request: WorkflowRequest):
     """Generate a dynamic workflow visualization based on analysis data."""
     
+    
     # Get analysis data if available
     analysis_data = None
     summary_data = {}
     
-    if chat_session.session_analysis is not None:
-        # Use the chat session's analysis data
-        summary_data = chat_session.session_summary or {}
-        
-        # For specific product workflows, get top product based on type
-        if request.workflow_type == "restock":
-            critical = chat_session.session_analysis[
-                chat_session.session_analysis.get("risk_level") == "CRITICAL"
-            ]
-            if not critical.empty:
-                analysis_data = critical.iloc[0].to_dict()
-                
-        elif request.workflow_type == "pricing":
-            loss_makers = chat_session.session_analysis[
-                chat_session.session_analysis.get("profit_per_unit", 0) < 0
-            ]
-            if not loss_makers.empty:
-                analysis_data = loss_makers.iloc[0].to_dict()
-        else:
-            analysis_data = summary_data
+    # if chat_session.session_analysis is not None:
+    #     # Use the chat session's analysis data
+    #     summary_data = chat_session.session_summary or {}
+    #     
+    #     # For specific product workflows, get top product based on type
+    #     if request.workflow_type == "restock":
+    #         critical = chat_session.session_analysis[
+    #             chat_session.session_analysis.get("risk_level") == "CRITICAL"
+    #         ]
+    #         if not critical.empty:
+    #             analysis_data = critical.iloc[0].to_dict()
+    #             
+    #     elif request.workflow_type == "pricing":
+    #         loss_makers = chat_session.session_analysis[
+    #             chat_session.session_analysis.get("profit_per_unit", 0) < 0
+    #         ]
+    #         if not loss_makers.empty:
+    #             analysis_data = loss_makers.iloc[0].to_dict()
+    #     else:
+    #         analysis_data = summary_data
     
     # Merge analysis data with summary
     merged_data = {**summary_data, **(analysis_data or {})}

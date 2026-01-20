@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, TrendingUp, Package, ShoppingCart, ChevronRight } from 'lucide-react';
+import { ArrowLeft, ChevronRight } from 'lucide-react';
 import api from '../services/api';
 
 interface Product {
@@ -36,11 +36,11 @@ const ProductSalesPage: React.FC = () => {
 
     if (loading) {
         return (
-            <div className="min-h-screen bg-[#0a0a0b] p-8">
-                <div className="max-w-7xl mx-auto">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {[1, 2, 3, 4, 5, 6].map((i) => (
-                            <div key={i} className="bg-gray-800 rounded-xl p-6 h-48 animate-pulse"></div>
+            <div className="min-h-screen bg-black p-8">
+                <div className="max-w-[1800px] mx-auto">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
+                            <div key={i} className="bg-gray-900 border border-white/10 h-64 animate-pulse"></div>
                         ))}
                     </div>
                 </div>
@@ -50,9 +50,9 @@ const ProductSalesPage: React.FC = () => {
 
     if (error || !products.length) {
         return (
-            <div className="min-h-screen bg-[#0a0a0b] p-8">
-                <div className="max-w-7xl mx-auto text-center">
-                    <p className="text-red-400 text-xl">⚠️ {error || 'No products available'}</p>
+            <div className="min-h-screen bg-black p-8 flex items-center justify-center">
+                <div className="text-white text-xl uppercase tracking-widest border border-white p-6">
+                    ⚠️ {error || 'No products available'}
                 </div>
             </div>
         );
@@ -63,83 +63,60 @@ const ProductSalesPage: React.FC = () => {
     };
 
     return (
-        <div className="min-h-screen bg-[#0a0a0b] p-8">
-            <div className="max-w-7xl mx-auto">
+        <div className="min-h-screen bg-black p-8 font-mono">
+            <div className="max-w-[1800px] mx-auto">
                 {/* Header */}
-                <div className="mb-8">
+                <div className="mb-12 border-b border-white pb-8">
                     <button
                         onClick={() => navigate('/dashboard')}
-                        className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors mb-4 group"
+                        className="inline-flex items-center gap-2 text-gray-500 hover:text-white transition-colors mb-6 uppercase tracking-widest text-xs"
                     >
-                        <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
+                        <ArrowLeft size={16} />
                         <span>Back to Dashboard</span>
                     </button>
-                    <h1 className="text-5xl font-bold bg-gradient-to-r from-emerald-400 via-blue-500 to-purple-500 bg-clip-text text-transparent mb-2">
-                        � Product Analytics
+                    <h1 className="text-6xl md:text-8xl font-bold text-white mb-4 tracking-tighter uppercase">
+                        Product Index
                     </h1>
-                    <p className="text-gray-400 text-lg">
-                        Click any product to view comprehensive data science analysis with advanced visualizations
+                    <p className="text-gray-500 text-lg uppercase tracking-widest">
+                        Catalogue & Performance Data
                     </p>
                 </div>
 
-                {/* Product Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {/* Product Grid - Minimal List Style */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     {products.map((product, index) => (
                         <div
                             key={index}
                             onClick={() => handleProductClick(product.name)}
-                            className="group cursor-pointer bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-6 hover:border-emerald-500/50 transition-all hover:scale-105 hover:shadow-2xl hover:shadow-emerald-500/10"
+                            className="group cursor-pointer bg-black border border-white/20 p-6 hover:bg-white hover:text-black transition-colors duration-300"
                         >
                             {/* Rank Badge */}
-                            <div className="flex items-center justify-between mb-4">
-                                <div className="bg-emerald-500/10 text-emerald-400 px-3 py-1 rounded-full text-sm font-bold">
-                                    #{index + 1}
-                                </div>
-                                <ChevronRight className="text-gray-400 group-hover:text-emerald-400 group-hover:translate-x-1 transition-all" size={20} />
+                            <div className="flex items-center justify-between mb-8">
+                                <span className="font-mono text-xs uppercase tracking-widest opacity-50">
+                                    {String(index + 1).padStart(2, '0')}
+                                </span>
+                                <ChevronRight className="opacity-0 group-hover:opacity-100 transition-opacity" size={16} />
                             </div>
 
                             {/* Product Name */}
-                            <h3 className="text-lg font-bold text-white mb-4 line-clamp-2 group-hover:text-emerald-400 transition-colors">
+                            <h3 className="text-xl font-bold mb-8 line-clamp-2 leading-tight min-h-[3.5rem]">
                                 {product.name}
                             </h3>
 
-                            {/* Metrics */}
-                            <div className="space-y-3">
-                                <div className="flex items-center justify-between">
-                                    <div className="flex items-center gap-2 text-gray-400">
-                                        <TrendingUp size={16} />
-                                        <span className="text-sm">Revenue</span>
-                                    </div>
-                                    <span className="text-emerald-400 font-bold">
-                                        £{product.total_sales.toLocaleString('en-US', { maximumFractionDigits: 0 })}
+                            {/* Metrics - Minimal */}
+                            <div className="space-y-4 border-t border-current pt-4 opacity-80 group-hover:opacity-100">
+                                <div className="flex items-center justify-between text-xs uppercase tracking-widest">
+                                    <span>Revenue</span>
+                                    <span className="font-bold">
+                                        ${product.total_sales.toLocaleString('en-US', { maximumFractionDigits: 0 })}
                                     </span>
                                 </div>
 
-                                <div className="flex items-center justify-between">
-                                    <div className="flex items-center gap-2 text-gray-400">
-                                        <Package size={16} />
-                                        <span className="text-sm">Quantity</span>
-                                    </div>
-                                    <span className="text-blue-400 font-bold">
+                                <div className="flex items-center justify-between text-xs uppercase tracking-widest">
+                                    <span>Qty</span>
+                                    <span className="font-bold">
                                         {product.total_quantity.toLocaleString()}
                                     </span>
-                                </div>
-
-                                <div className="flex items-center justify-between">
-                                    <div className="flex items-center gap-2 text-gray-400">
-                                        <ShoppingCart size={16} />
-                                        <span className="text-sm">Orders</span>
-                                    </div>
-                                    <span className="text-purple-400 font-bold">
-                                        {product.total_orders.toLocaleString()}
-                                    </span>
-                                </div>
-                            </div>
-
-                            {/* View Analysis Button */}
-                            <div className="mt-4 pt-4 border-t border-gray-700/50">
-                                <div className="text-center text-sm text-gray-400 group-hover:text-emerald-400 transition-colors font-semibold">
-                                    View Advanced Analytics →
                                 </div>
                             </div>
                         </div>

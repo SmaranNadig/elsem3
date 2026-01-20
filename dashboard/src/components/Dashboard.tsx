@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { RefreshCw, TrendingUp, TrendingDown, AlertTriangle, Activity, BarChart3 } from 'lucide-react';
+import { RefreshCw, TrendingUp, TrendingDown, AlertTriangle, Activity, BarChart3, ArrowRight } from 'lucide-react';
 import AgentStatusCard from './AgentStatusCard';
 import MetricsChart from './MetricsChart';
 import RecommendationsTable from './RecommendationsTable';
@@ -94,223 +94,201 @@ const Dashboard: React.FC = () => {
     }
 
     return (
-        <div className="min-h-screen p-6 font-sans text-brand-light selection:bg-brand-blue selection:text-white bg-grain bg-[#1D1D1F]">
-            <div className="max-w-[1400px] mx-auto relative z-10">
+        <div className="min-h-screen p-6 font-mono bg-black text-white">
+            <div className="max-w-[1800px] mx-auto relative z-10">
                 {/* Header */}
-                <div className="mb-12">
-                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8">
+                <div className="mb-24">
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12 border-b border-white pb-8">
                         <div className="flex items-center gap-4">
-                            <h1 className="text-5xl md:text-6xl font-display font-bold uppercase tracking-tighter text-white text-glow">
+                            <h1 className="text-6xl md:text-8xl font-bold uppercase tracking-tighter text-white">
                                 Agent Dashboard
                             </h1>
                             {/* LangChain Indicator */}
                             {recommendations.some(r => r.llm_profit_insight || r.llm_inventory_insight || r.llm_strategy_insight) && (
-                                <div className="flex items-center gap-2 px-4 py-1.5 bg-brand-blue/10 border border-brand-blue/20 rounded-full">
-                                    <div className="relative flex h-2 w-2">
-                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-blue opacity-75"></span>
-                                        <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-blue"></span>
-                                    </div>
-                                    <span className="text-[10px] font-bold uppercase tracking-widest text-brand-blue">
-                                        Active
+                                <div className="flex items-center gap-2 px-4 py-1 border border-white rounded-full">
+                                    <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                                    <span className="text-[10px] font-bold uppercase tracking-widest text-white">
+                                        AI Active
                                     </span>
                                 </div>
                             )}
                         </div>
-                        <div className="flex items-center gap-3">
-                            <a href="/" className="flex items-center gap-2 px-4 py-2 bg-[#151516] hover:bg-white/10 text-gray-300 hover:text-white border border-white/5 rounded-full transition-colors text-xs font-bold uppercase tracking-wider">
+                        <div className="flex items-center gap-4">
+                            <a href="/" className="px-6 py-2 bg-white text-black hover:bg-transparent hover:text-white border border-white transition-colors text-xs font-bold uppercase tracking-widest">
                                 Home
                             </a>
-                            <div className="flex p-1 bg-[#151516] rounded-full border border-white/5">
-                                <button
-                                    onClick={() => setActiveTab('overview')}
-                                    className={`px-6 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all ${activeTab === 'overview'
-                                        ? 'bg-white/10 text-white shadow-[0_0_15px_rgba(255,255,255,0.1)]'
-                                        : 'text-gray-300 hover:text-white'
-                                        }`}
-                                >
-                                    Overview
-                                </button>
-                                <button
-                                    onClick={() => setActiveTab('alerts')}
-                                    className={`px-6 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-2 ${activeTab === 'alerts'
-                                        ? 'bg-white/10 text-white shadow-[0_0_15px_rgba(255,255,255,0.1)]'
-                                        : 'text-gray-300 hover:text-white'
-                                        }`}
-                                >
-                                    Alerts
-                                    {metrics && (metrics.total_critical_risk > 0 || metrics.total_loss_makers > 0) && (
-                                        <span className="flex h-1.5 w-1.5 relative">
-                                            <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-red-500"></span>
-                                        </span>
-                                    )}
-                                </button>
-                                <button
-                                    onClick={() => setActiveTab('seasonal')}
-                                    className={`px-6 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all ${activeTab === 'seasonal'
-                                        ? 'bg-white/10 text-white shadow-[0_0_15px_rgba(255,255,255,0.1)]'
-                                        : 'text-gray-300 hover:text-white'
-                                        }`}
-                                >
-                                    Seasonal
-                                </button>
-                                <button
-                                    onClick={() => setActiveTab('ads')}
-                                    className={`px-6 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all ${activeTab === 'ads'
-                                        ? 'bg-white/10 text-white shadow-[0_0_15px_rgba(255,255,255,0.1)]'
-                                        : 'text-gray-300 hover:text-white'
-                                        }`}
-                                >
-                                    Ads
-                                </button>
+                            <div className="flex border border-white p-1 gap-1">
+                                {['overview', 'alerts', 'seasonal', 'ads'].map((tab) => (
+                                    <button
+                                        key={tab}
+                                        onClick={() => setActiveTab(tab as Tab)}
+                                        className={`px-6 py-2 text-xs font-bold uppercase tracking-widest transition-all ${activeTab === tab
+                                            ? 'bg-white text-black'
+                                            : 'text-gray-500 hover:text-white'
+                                            }`}
+                                    >
+                                        {tab === 'alerts' ? (
+                                            <span className="flex items-center gap-2">
+                                                Alerts
+                                                {metrics && (metrics.total_critical_risk > 0 || metrics.total_loss_makers > 0) && (
+                                                    <span className="flex h-1.5 w-1.5 relative">
+                                                        <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-white"></span>
+                                                    </span>
+                                                )}
+                                            </span>
+                                        ) : (
+                                            tab
+                                        )}
+                                    </button>
+                                ))}
                             </div>
                             <button
                                 onClick={handleRefresh}
                                 disabled={refreshing}
-                                className="flex items-center gap-2 px-4 py-2 bg-[#151516] hover:bg-white/10 text-white border border-white/5 rounded-full transition-colors"
+                                className="p-2 border border-white text-white hover:bg-white hover:text-black transition-colors"
                             >
                                 <RefreshCw className={`w-4 h-4 ${refreshing ? 'animate-spin' : ''}`} />
                             </button>
                         </div>
                     </div>
+
+                    {/* Content Section */}
+                    {activeTab === 'overview' ? (
+                        <div className="animate-in fade-in duration-500">
+                            {/* Overview Cards */}
+                            {metrics && (
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-24">
+                                    <div className="border border-white/20 p-8 hover:border-white transition-colors duration-300">
+                                        <div className="flex items-center justify-between mb-4">
+                                            <span className="text-gray-500 text-xs font-bold uppercase tracking-widest">Total SKUs</span>
+                                            <Activity className="w-5 h-5 text-white" />
+                                        </div>
+                                        <p className="text-6xl font-bold text-white tracking-tighter">{metrics.total_skus}</p>
+                                    </div>
+
+                                    <div className="border border-white/20 p-8 hover:border-white transition-colors duration-300">
+                                        <div className="flex items-center justify-between mb-4">
+                                            <span className="text-gray-500 text-xs font-bold uppercase tracking-widest">Profitable</span>
+                                            <TrendingUp className="w-5 h-5 text-white" />
+                                        </div>
+                                        <p className="text-6xl font-bold text-white tracking-tighter">{metrics.total_profitable}</p>
+                                        <p className="text-xs text-gray-400 mt-2 font-mono uppercase tracking-widest">
+                                            AVG: ${metrics.avg_profit_per_unit.toFixed(2)}
+                                        </p>
+                                    </div>
+
+                                    <div className="border border-white/20 p-8 hover:border-white transition-colors duration-300">
+                                        <div className="flex items-center justify-between mb-4">
+                                            <span className="text-gray-500 text-xs font-bold uppercase tracking-widest">Loss Makers</span>
+                                            <TrendingDown className="w-5 h-5 text-white" />
+                                        </div>
+                                        <p className="text-6xl font-bold text-white tracking-tighter">{metrics.total_loss_makers}</p>
+                                        <p className="text-xs text-gray-400 mt-2 font-mono uppercase tracking-widest">
+                                            LOSS: ${metrics.total_daily_loss.toFixed(2)}
+                                        </p>
+                                    </div>
+
+                                    <div className="border border-white/20 p-8 hover:border-white transition-colors duration-300">
+                                        <div className="flex items-center justify-between mb-4">
+                                            <span className="text-gray-500 text-xs font-bold uppercase tracking-widest">Critical Risk</span>
+                                            <AlertTriangle className="w-5 h-5 text-white" />
+                                        </div>
+                                        <p className="text-6xl font-bold text-white tracking-tighter">{metrics.total_critical_risk}</p>
+                                        <p className="text-xs text-gray-400 mt-2 font-mono uppercase tracking-widest">
+                                            WARN: {metrics.total_warning_risk}
+                                        </p>
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Agent Status Cards */}
+                            {agentStatus && agentStatus.agents && (
+                                <div className="mb-24">
+                                    <h2 className="text-xl font-bold uppercase tracking-widest text-white mb-8 border-b border-white/20 pb-4">Agent Status</h2>
+                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                        {agentStatus.agents.map((agent) => (
+                                            <AgentStatusCard key={agent.name} agent={agent} />
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Charts */}
+                            {metrics && recommendations.length > 0 && (
+                                <div className="mb-24">
+                                    <h2 className="text-xl font-bold uppercase tracking-widest text-white mb-8 border-b border-white/20 pb-4">Analytics</h2>
+                                    <div className="border border-white/20 p-1">
+                                        <MetricsChart metrics={metrics} recommendations={recommendations} />
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Link to Product Sales Analysis */}
+                            <div className="mb-24">
+                                <h2 className="text-xl font-bold uppercase tracking-widest text-white mb-8 border-b border-white/20 pb-4">Sales Analysis</h2>
+                                <a href="/product-sales" className="block group">
+                                    <div className="border border-white/20 p-8 hover:bg-white hover:text-black transition-all cursor-pointer">
+                                        <div className="flex items-center justify-between">
+                                            <div className="flex items-center gap-8">
+                                                <div className="border border-current p-4">
+                                                    <BarChart3 size={32} />
+                                                </div>
+                                                <div>
+                                                    <h3 className="text-4xl font-bold mb-2 uppercase tracking-tight">
+                                                        Product Index
+                                                    </h3>
+                                                    <p className="text-sm uppercase tracking-widest opacity-60">
+                                                        View detailed month-by-month sales trends
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div className="flex items-center gap-4">
+                                                <span className="text-xs font-bold uppercase tracking-widest">View Charts</span>
+                                                <ArrowRight className="w-6 h-6 transform group-hover:translate-x-2 transition-transform" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+
+                            {/* Recommendations Table */}
+                            {recommendations.length > 0 && (
+                                <div className="mb-24">
+                                    <h2 className="text-xl font-bold uppercase tracking-widest text-white mb-8 border-b border-white/20 pb-4">Inventory Intelligence</h2>
+                                    <RecommendationsTable
+                                        recommendations={recommendations}
+                                        onRefresh={fetchData}
+                                    />
+                                </div>
+                            )}
+                        </div>
+                    ) : activeTab === 'alerts' ? (
+                        <div className="animate-in fade-in duration-500">
+                            <AlertsTab />
+                        </div>
+                    ) : activeTab === 'seasonal' ? (
+                        <div className="animate-in fade-in duration-500">
+                            <SeasonalTab />
+                        </div>
+                    ) : (
+                        <div className="animate-in fade-in duration-500">
+                            <AdsTab />
+                        </div>
+                    )}
+
+                    {/* Error Banner */}
+                    {error && (
+                        <div className="fixed bottom-6 right-6 bg-black border border-white p-6 max-w-md shadow-none z-50">
+                            <div className="flex items-start gap-4">
+                                <AlertTriangle className="w-6 h-6 text-white flex-shrink-0" />
+                                <div>
+                                    <p className="text-sm font-bold uppercase tracking-wider text-white mb-1">Error</p>
+                                    <p className="text-sm text-gray-400">{error}</p>
+                                </div>
+                            </div>
+                        </div>
+                    )}
                 </div>
-
-                {activeTab === 'overview' ? (
-                    <div className="animate-in fade-in duration-500">
-                        {/* Overview Cards */}
-                        {metrics && (
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-                                <div className="glass-card p-8 fade-in hover:border-brand-blue/30 transition-colors duration-300">
-                                    <div className="flex items-center justify-between mb-4">
-                                        <span className="text-gray-400 text-xs font-bold uppercase tracking-widest">Total SKUs</span>
-                                        <Activity className="w-5 h-5 text-brand-blue" />
-                                    </div>
-                                    <p className="text-5xl font-display font-bold text-white tracking-tighter">{metrics.total_skus}</p>
-                                </div>
-
-                                <div className="glass-card p-8 fade-in hover:border-emerald-500/30 transition-colors duration-300">
-                                    <div className="flex items-center justify-between mb-4">
-                                        <span className="text-gray-400 text-xs font-bold uppercase tracking-widest">Profitable</span>
-                                        <TrendingUp className="w-5 h-5 text-emerald-500" />
-                                    </div>
-                                    <p className="text-5xl font-display font-bold text-emerald-500 tracking-tighter">{metrics.total_profitable}</p>
-                                    <p className="text-xs text-gray-300 mt-2 font-mono">
-                                        AVG: ₹{metrics.avg_profit_per_unit.toFixed(2)}
-                                    </p>
-                                </div>
-
-                                <div className="glass-card p-8 fade-in hover:border-red-500/30 transition-colors duration-300">
-                                    <div className="flex items-center justify-between mb-4">
-                                        <span className="text-gray-400 text-xs font-bold uppercase tracking-widest">Loss Makers</span>
-                                        <TrendingDown className="w-5 h-5 text-red-500" />
-                                    </div>
-                                    <p className="text-5xl font-display font-bold text-red-500 tracking-tighter">{metrics.total_loss_makers}</p>
-                                    <p className="text-xs text-gray-300 mt-2 font-mono">
-                                        LOSS: ₹{metrics.total_daily_loss.toFixed(2)}
-                                    </p>
-                                </div>
-
-                                <div className="glass-card p-8 fade-in hover:border-orange-500/30 transition-colors duration-300">
-                                    <div className="flex items-center justify-between mb-4">
-                                        <span className="text-gray-400 text-xs font-bold uppercase tracking-widest">Critical Risk</span>
-                                        <AlertTriangle className="w-5 h-5 text-orange-500" />
-                                    </div>
-                                    <p className="text-5xl font-display font-bold text-orange-500 tracking-tighter">{metrics.total_critical_risk}</p>
-                                    <p className="text-xs text-gray-300 mt-2 font-mono">
-                                        WARN: {metrics.total_warning_risk}
-                                    </p>
-                                </div>
-                            </div>
-                        )}
-
-                        {/* Agent Status Cards */}
-                        {agentStatus && agentStatus.agents && (
-                            <div className="mb-12">
-                                <h2 className="text-xl font-bold uppercase tracking-widest text-gray-400 mb-6 pl-1">Agent Status</h2>
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                    {agentStatus.agents.map((agent) => (
-                                        <AgentStatusCard key={agent.name} agent={agent} />
-                                    ))}
-                                </div>
-                            </div>
-                        )}
-
-                        {/* Charts */}
-                        {metrics && recommendations.length > 0 && (
-                            <div className="mb-12">
-                                <h2 className="text-xl font-bold uppercase tracking-widest text-gray-400 mb-6 pl-1">Analytics</h2>
-                                <div className="glass-card p-1">
-                                    <MetricsChart metrics={metrics} recommendations={recommendations} />
-                                </div>
-                            </div>
-                        )}
-
-                        {/* Link to Product Sales Analysis */}
-                        <div className="mb-12">
-                            <h2 className="text-xl font-bold uppercase tracking-widest text-gray-400 mb-6 pl-1">Sales Analysis</h2>
-                            <a href="/product-sales" className="block">
-                                <div className="glass-card p-8 hover:bg-white/5 transition-colors cursor-pointer border-2 border-transparent hover:border-emerald-500/30">
-                                    <div className="flex items-center justify-between">
-                                        <div className="flex items-center gap-4">
-                                            <div className="bg-emerald-500/10 p-4 rounded-lg">
-                                                <BarChart3 size={32} className="text-emerald-400" />
-                                            </div>
-                                            <div>
-                                                <h3 className="text-2xl font-bold text-white mb-1">
-                                                    📊 Individual Product Sales Analysis
-                                                </h3>
-                                                <p className="text-gray-400">
-                                                    View detailed month-by-month sales trends for each product from retail dataset
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div className="flex items-center gap-2 text-emerald-400">
-                                            <span className="text-sm font-semibold uppercase">View Charts</span>
-                                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-
-                        {/* Recommendations Table */}
-                        {recommendations.length > 0 && (
-                            <div className="mb-12">
-                                <h2 className="text-xl font-bold uppercase tracking-widest text-gray-400 mb-6 pl-1">Inventory Intelligence</h2>
-                                <RecommendationsTable
-                                    recommendations={recommendations}
-                                    onRefresh={fetchData}
-                                />
-                            </div>
-                        )}
-                    </div>
-                ) : activeTab === 'alerts' ? (
-                    <div className="animate-in fade-in duration-500">
-                        <AlertsTab />
-                    </div>
-                ) : activeTab === 'seasonal' ? (
-                    <div className="animate-in fade-in duration-500">
-                        <SeasonalTab />
-                    </div>
-                ) : (
-                    <div className="animate-in fade-in duration-500">
-                        <AdsTab />
-                    </div>
-                )}
-
-                {/* Error Banner */}
-                {error && (
-                    <div className="fixed bottom-6 right-6 glass-card p-6 border-l-4 border-red-500 max-w-md shadow-2xl">
-                        <div className="flex items-start gap-4">
-                            <AlertTriangle className="w-6 h-6 text-red-500 flex-shrink-0" />
-                            <div>
-                                <p className="text-sm font-bold uppercase tracking-wider text-white mb-1">Error</p>
-                                <p className="text-sm text-gray-300">{error}</p>
-                            </div>
-                        </div>
-                    </div>
-                )}
             </div>
         </div>
     );
