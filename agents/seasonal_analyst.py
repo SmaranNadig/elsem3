@@ -161,11 +161,13 @@ class SeasonalAnalystAgent:
             
             # Convert PeriodIndex to DatetimeIndex with monthly frequency
             series.index = series.index.to_timestamp()
-            series = series.asfreq('MS')  # Set monthly start frequency
+            series = series.asfreq('MS').fillna(0)  # Set monthly start frequency and fill gaps with 0
             
             # Fit simple seasonal decomposition first
             if len(series) >= 12:
-                decomp = seasonal_decompose(series, model='multiplicative', period=min(12, len(series)//2))
+                # Use multiplicative if no zeros, additive if zeros exist (multiplicative fails with 0s)
+                model_type = 'additive' if (series <= 0).any() else 'multiplicative'
+                decomp = seasonal_decompose(series, model=model_type, period=min(12, len(series)//2))
                 
                 # Calculate seasonality strength
                 seasonal_var = np.var(decomp.seasonal.dropna())

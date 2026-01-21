@@ -147,7 +147,19 @@ def execute_pipeline():
     
     try:
         execution_status = {"status": "running", "message": "Executing agent pipeline..."}
-        df = run_pipeline(verbose=False)
+        
+        # Load the specific dataframes for different analysis purposes as requested
+        df_master_local = pd.read_csv("data/synthetic dataset/sku_master.csv")
+        df_sales_other = pd.read_csv("data/synthetic dataset/shopify _analysis.csv") # For general analysis
+        df_sales_seasonal = pd.read_csv("data/synthetic dataset/seasonal_sales_history.csv") # Strictly for seasonal
+        
+        df = run_pipeline(
+            verbose=False,
+            df_master=df_master_local,
+            df_sales=df_sales_other,
+            df_sales_seasonal=df_sales_seasonal
+        )
+        
         if not df.empty:
             pipeline_data = df
             data_source = "csv"  # Mark as CSV
@@ -193,12 +205,47 @@ async def wait_for_n8n_data():
         print("[INFO] n8n data received! Pipeline executed by n8n endpoint.")
     else:
         print("[INFO] No n8n data received. Falling back to local CSV data...")
-        # Auto-run pipeline with synthetic/CSV data
-        success = execute_pipeline()
-        if success:
-            print("[INFO] Pipeline executed successfully with fallback CSV data.")
-        else:
-            print("[WARNING] Pipeline execution failed on startup.")
+        
+        # Explicitly load from local CSVs as requested
+        # User requested paths: 
+        # products -> data/synthetic dataset/sku_master.csv
+        # orders -> data/synthetic dataset/seasonal_sales_history.csv
+        
+        try:
+            global pipeline_data, last_execution_time, execution_status, data_source
+            
+            print("[INFO] Force loading local CSV datasets with dual-source sales logic...")
+            
+            # Load the specific dataframes for different analysis purposes as requested
+            df_master_local = pd.read_csv("data/synthetic dataset/sku_master.csv")
+            df_sales_other = pd.read_csv("data/synthetic dataset/shopify _analysis.csv") # For general analysis
+            df_sales_seasonal = pd.read_csv("data/synthetic dataset/seasonal_sales_history.csv") # Strictly for seasonal
+            
+            df = run_pipeline(
+                verbose=True,
+                df_master=df_master_local,
+                df_sales=df_sales_other,
+                df_sales_seasonal=df_sales_seasonal
+            )
+            
+            if not df.empty:
+                pipeline_data = df
+                data_source = "csv"
+                last_execution_time = datetime.now()
+                execution_status = {
+                    "status": "success",
+                    "message": f"Pipeline executed successfully with multi-source CSVs at {last_execution_time.strftime('%Y-%m-%d %H:%M:%S')}"
+                }
+                print(f"[INFO] Pipeline execution successful. Loaded {len(df)} SKUs.")
+            else:
+                execution_status = {"status": "error", "message": "Multi-source CSV pipeline returned empty data"}
+                print("[WARNING] Multi-source CSV pipeline returned empty data.")
+                
+        except Exception as e:
+            import traceback
+            traceback.print_exc()
+            print(f"[ERROR] Failed to execute multi-source CSV pipeline: {str(e)}")
+            execution_status = {"status": "error", "message": f"Multi-source pipeline failed: {str(e)}"}
 
 # Execute pipeline on startup - Start background wait for n8n data
 @app.on_event("startup")

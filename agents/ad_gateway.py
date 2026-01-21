@@ -48,15 +48,15 @@ class Campaign(BaseModel):
     campaign_name: str
     status: str
     daily_budget: float
-    total_spend_30d: float
-    impressions_30d: int
-    clicks_30d: int
-    conversions_30d: int
+    total_spend_90d: float
+    impressions_90d: int
+    clicks_90d: int
+    conversions_90d: int
     cpc: float
     ctr: float
     conversion_rate: float
     roas: float
-    revenue_30d: float = 0.0
+    revenue_90d: float = 0.0
     start_date: str = ""
     end_date: str = ""
 
@@ -80,8 +80,8 @@ class AdSummary(BaseModel):
     total_campaigns: int
     active_campaigns: int
     paused_campaigns: int
-    total_spend_30d: float
-    total_revenue_30d: float
+    total_spend_90d: float
+    total_revenue_90d: float
     avg_roas: float
     avg_cpc: float
     total_conversions: int
@@ -194,7 +194,7 @@ class AdGateway:
             if self._campaigns_df is not None and not self._campaigns_df.empty:
                 platform_data = self._campaigns_df[self._campaigns_df["platform"] == platform]
                 stats["campaigns"] = len(platform_data)
-                stats["spend_30d"] = float(platform_data["total_spend_30d"].sum())
+                stats["spend_90d"] = float(platform_data["total_spend_90d"].sum())
             
             result.append({
                 "platform": platform,
@@ -232,15 +232,15 @@ class AdGateway:
                 campaign_name=row["campaign_name"],
                 status=row["status"],
                 daily_budget=float(row["daily_budget"]),
-                total_spend_30d=float(row["total_spend_30d"]),
-                impressions_30d=int(row["impressions_30d"]),
-                clicks_30d=int(row["clicks_30d"]),
-                conversions_30d=int(row["conversions_30d"]),
+                total_spend_90d=float(row["total_spend_90d"]),
+                impressions_90d=int(row["impressions_90d"]),
+                clicks_90d=int(row["clicks_90d"]),
+                conversions_90d=int(row["conversions_90d"]),
                 cpc=float(row["cpc"]),
                 ctr=float(row["ctr"]),
                 conversion_rate=float(row["conversion_rate"]),
                 roas=float(row["roas"]),
-                revenue_30d=float(row.get("revenue_30d", 0)),
+                revenue_90d=float(row.get("revenue_90d", 0)),
                 start_date=str(row.get("start_date", "")),
                 end_date=str(row.get("end_date", ""))
             ))
@@ -268,15 +268,15 @@ class AdGateway:
             "campaign_name": data.campaign_name,
             "status": data.status.upper(),
             "daily_budget": data.daily_budget,
-            "total_spend_30d": 0.0,
-            "impressions_30d": 0,
-            "clicks_30d": 0,
-            "conversions_30d": 0,
+            "total_spend_90d": 0.0,
+            "impressions_90d": 0,
+            "clicks_90d": 0,
+            "conversions_90d": 0,
             "cpc": 0.0,
             "ctr": 0.0,
             "conversion_rate": 0.0,
             "roas": 0.0,
-            "revenue_30d": 0.0,
+            "revenue_90d": 0.0,
             "start_date": datetime.now().strftime("%Y-%m-%d"),
             "end_date": ""
         }
@@ -351,9 +351,9 @@ class AdGateway:
         if sku_campaigns.empty:
             return 0.0
         
-        # For 30 days, use total_spend_30d directly
-        if days == 30:
-            return float(sku_campaigns["total_spend_30d"].sum())
+        # For 90 days, use total_spend_90d directly
+        if days == 90:
+            return float(sku_campaigns["total_spend_90d"].sum())
         
         # For other periods, calculate from daily metrics
         if self._daily_metrics_df is not None and not self._daily_metrics_df.empty:
@@ -367,8 +367,8 @@ class AdGateway:
             
             return float(daily_data["spend"].sum())
         
-        # Fallback: prorate 30-day spend
-        return float(sku_campaigns["total_spend_30d"].sum() * (days / 30))
+        # Fallback: prorate 90-day spend
+        return float(sku_campaigns["total_spend_90d"].sum() * (days / 90))
     
     def get_all_sku_ad_spend(self, days: int = 30) -> Dict[str, float]:
         """Get ad spend for all SKUs as a dictionary"""
@@ -401,11 +401,11 @@ class AdGateway:
                 revenue=0, cpc=0, ctr=0, conversion_rate=0, roas=0
             )
         
-        impressions = int(sku_campaigns["impressions_30d"].sum())
-        clicks = int(sku_campaigns["clicks_30d"].sum())
-        conversions = int(sku_campaigns["conversions_30d"].sum())
-        spend = float(sku_campaigns["total_spend_30d"].sum())
-        revenue = float(sku_campaigns["revenue_30d"].sum())
+        impressions = int(sku_campaigns["impressions_90d"].sum())
+        clicks = int(sku_campaigns["clicks_90d"].sum())
+        conversions = int(sku_campaigns["conversions_90d"].sum())
+        spend = float(sku_campaigns["total_spend_90d"].sum())
+        revenue = float(sku_campaigns["revenue_90d"].sum())
         
         cpc = spend / max(1, clicks)
         ctr = (clicks / max(1, impressions)) * 100
@@ -472,11 +472,11 @@ class AdGateway:
             total_campaigns=len(df),
             active_campaigns=int((df["status"] == "ACTIVE").sum()),
             paused_campaigns=int((df["status"] == "PAUSED").sum()),
-            total_spend_30d=round(float(df["total_spend_30d"].sum()), 2),
-            total_revenue_30d=round(float(df["revenue_30d"].sum()), 2),
+            total_spend_90d=round(float(df["total_spend_90d"].sum()), 2),
+            total_revenue_90d=round(float(df["revenue_90d"].sum()), 2),
             avg_roas=round(float(df["roas"].mean()), 2),
             avg_cpc=round(float(df["cpc"].mean()), 2),
-            total_conversions=int(df["conversions_30d"].sum()),
+            total_conversions=int(df["conversions_90d"].sum()),
             platforms={
                 platform: int((df["platform"] == platform).sum())
                 for platform in df["platform"].unique()
@@ -491,8 +491,8 @@ class AdGateway:
         result = {}
         for sku_id in self._campaigns_df["sku_id"].unique():
             sku_data = self._campaigns_df[self._campaigns_df["sku_id"] == sku_id]
-            total_revenue = sku_data["revenue_30d"].sum()
-            total_spend = sku_data["total_spend_30d"].sum()
+            total_revenue = sku_data["revenue_90d"].sum()
+            total_spend = sku_data["total_spend_90d"].sum()
             result[sku_id] = round(total_revenue / max(1, total_spend), 2)
         
         return result
