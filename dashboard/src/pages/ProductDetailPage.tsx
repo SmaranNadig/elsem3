@@ -65,9 +65,9 @@ const ProductDetailPage: React.FC = () => {
         ma6: data.monthly_trends.ma_6month[i]
     }));
 
-    const hourlyData = data.hourly_pattern.hours.map((hour: number, i: number) => ({
-        hour: `${hour}:00`,
-        sales: data.hourly_pattern.sales[i]
+    const dailyData = data.daily_sales.dates.map((date: string, i: number) => ({
+        date,
+        sales: data.daily_sales.sales[i]
     }));
 
     const weeklyData = data.weekly_pattern.days.map((day: string, i: number) => ({
@@ -113,7 +113,7 @@ const ProductDetailPage: React.FC = () => {
                             <TrendingUp className="text-emerald-400" size={20} />
                         </div>
                         <p className="text-gray-400 text-sm mb-1">Total Revenue</p>
-                        <p className="text-3xl font-bold text-white">£{stats.total_revenue.toLocaleString('en-US', { maximumFractionDigits: 0 })}</p>
+                        <p className="text-3xl font-bold text-white">₹{stats.total_revenue.toLocaleString('en-US', { maximumFractionDigits: 0 })}</p>
                     </div>
 
                     <div className="bg-gradient-to-br from-blue-900/20 to-blue-950/20 border border-blue-500/20 rounded-xl p-6 backdrop-blur-sm">
@@ -140,7 +140,7 @@ const ProductDetailPage: React.FC = () => {
                             <TrendingUp className="text-orange-400" size={20} />
                         </div>
                         <p className="text-gray-400 text-sm mb-1">Avg Order Value</p>
-                        <p className="text-3xl font-bold text-white">£{stats.avg_order_value.toFixed(2)}</p>
+                        <p className="text-3xl font-bold text-white">₹{stats.avg_order_value.toFixed(2)}</p>
                     </div>
                 </div>
 
@@ -159,10 +159,10 @@ const ProductDetailPage: React.FC = () => {
                                 </defs>
                                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
                                 <XAxis dataKey="month" stroke="#9CA3AF" angle={-45} textAnchor="end" height={80} />
-                                <YAxis stroke="#9CA3AF" tickFormatter={(v) => `£${(v / 1000).toFixed(0)}k`} />
+                                <YAxis stroke="#9CA3AF" tickFormatter={(v) => `₹${(v / 1000).toFixed(0)}k`} />
                                 <Tooltip
                                     contentStyle={{ backgroundColor: '#1F2937', border: '1px solid #374151', borderRadius: '8px' }}
-                                    formatter={(value: any) => [`£${Number(value).toLocaleString()}`, '']}
+                                    formatter={(value: any) => [`₹${Number(value).toLocaleString()}`, '']}
                                 />
                                 <Legend />
                                 <Area type="monotone" dataKey="sales" stroke="#10B981" fill="url(#salesGradient)" strokeWidth={2} />
@@ -200,29 +200,30 @@ const ProductDetailPage: React.FC = () => {
                             <BarChart data={weeklyData}>
                                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
                                 <XAxis dataKey="day" stroke="#9CA3AF" angle={-20} textAnchor="end" height={70} />
-                                <YAxis stroke="#9CA3AF" tickFormatter={(v) => `£${(v / 1000).toFixed(0)}k`} />
+                                <YAxis stroke="#9CA3AF" tickFormatter={(v) => `₹${(v / 1000).toFixed(0)}k`} />
                                 <Tooltip
                                     contentStyle={{ backgroundColor: '#1F2937', border: '1px solid #374151', borderRadius: '8px' }}
-                                    formatter={(value: any) => [`£${Number(value).toLocaleString()}`, 'Sales']}
+                                    formatter={(value: any) => [`₹${Number(value).toLocaleString()}`, 'Sales']}
                                 />
                                 <Bar dataKey="sales" fill="#3B82F6" radius={[8, 8, 0, 0]} />
                             </BarChart>
                         </ResponsiveContainer>
                     </div>
 
-                    {/* Hour of Day Pattern */}
+                    {/* Daily Sales Trend (Replaces Hour of Day) */}
                     <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-6">
-                        <h3 className="text-xl font-bold text-white mb-4">🕐 Sales by Hour of Day</h3>
+                        <h3 className="text-xl font-bold text-white mb-4">📅 Daily Sales Trend</h3>
                         <ResponsiveContainer width="100%" height={300}>
-                            <LineChart data={hourlyData}>
+                            <LineChart data={dailyData}>
                                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                                <XAxis dataKey="hour" stroke="#9CA3AF" />
-                                <YAxis stroke="#9CA3AF" tickFormatter={(v) => `£${(v / 1000).toFixed(0)}k`} />
+                                <XAxis dataKey="date" stroke="#9CA3AF" tick={false} />
+                                <YAxis stroke="#9CA3AF" tickFormatter={(v) => `₹${(v / 1000).toFixed(0)}k`} />
                                 <Tooltip
                                     contentStyle={{ backgroundColor: '#1F2937', border: '1px solid #374151', borderRadius: '8px' }}
-                                    formatter={(value: any) => [`£${Number(value).toLocaleString()}`, 'Sales']}
+                                    formatter={(value: any) => [`₹${Number(value).toLocaleString()}`, 'Sales']}
+                                    labelFormatter={(label) => new Date(label).toDateString()}
                                 />
-                                <Line type="monotone" dataKey="sales" stroke="#8B5CF6" strokeWidth={3} dot={{ fill: '#8B5CF6', r: 5 }} />
+                                <Line type="monotone" dataKey="sales" stroke="#8B5CF6" strokeWidth={2} dot={false} />
                             </LineChart>
                         </ResponsiveContainer>
                     </div>
@@ -233,11 +234,11 @@ const ProductDetailPage: React.FC = () => {
                         <ResponsiveContainer width="100%" height={300}>
                             <BarChart data={countryData} layout="vertical">
                                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                                <XAxis type="number" stroke="#9CA3AF" tickFormatter={(v) => `£${(v / 1000).toFixed(0)}k`} />
+                                <XAxis type="number" stroke="#9CA3AF" tickFormatter={(v) => `₹${(v / 1000).toFixed(0)}k`} />
                                 <YAxis type="category" dataKey="country" stroke="#9CA3AF" width={100} />
                                 <Tooltip
                                     contentStyle={{ backgroundColor: '#1F2937', border: '1px solid #374151', borderRadius: '8px' }}
-                                    formatter={(value: any) => [`£${Number(value).toLocaleString()}`, 'Sales']}
+                                    formatter={(value: any) => [`₹${Number(value).toLocaleString()}`, 'Sales']}
                                 />
                                 <Bar dataKey="sales" fill="#F59E0B" radius={[0, 8, 8, 0]} />
                             </BarChart>
@@ -250,7 +251,7 @@ const ProductDetailPage: React.FC = () => {
                         <ResponsiveContainer width="100%" height={300}>
                             <ScatterChart>
                                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                                <XAxis dataKey="price" name="Price" stroke="#9CA3AF" tickFormatter={(v) => `£${v}`} />
+                                <XAxis dataKey="price" name="Price" stroke="#9CA3AF" tickFormatter={(v) => `₹${v}`} />
                                 <YAxis dataKey="quantity" name="Quantity" stroke="#9CA3AF" />
                                 <Tooltip
                                     cursor={{ strokeDasharray: '3 3' }}
@@ -268,27 +269,27 @@ const ProductDetailPage: React.FC = () => {
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                             <div>
                                 <p className="text-gray-400 text-sm mb-1">Mean Sales</p>
-                                <p className="text-2xl font-bold text-emerald-400">£{stats.mean_sales.toLocaleString('en-US', { maximumFractionDigits: 0 })}</p>
+                                <p className="text-2xl font-bold text-emerald-400">₹{stats.mean_sales.toLocaleString('en-US', { maximumFractionDigits: 0 })}</p>
                             </div>
                             <div>
                                 <p className="text-gray-400 text-sm mb-1">Median Sales</p>
-                                <p className="text-2xl font-bold text-blue-400">£{stats.median_sales.toLocaleString('en-US', { maximumFractionDigits: 0 })}</p>
+                                <p className="text-2xl font-bold text-blue-400">₹{stats.median_sales.toLocaleString('en-US', { maximumFractionDigits: 0 })}</p>
                             </div>
                             <div>
                                 <p className="text-gray-400 text-sm mb-1">Std Deviation</p>
-                                <p className="text-2xl font-bold text-purple-400">£{stats.std_sales.toLocaleString('en-US', { maximumFractionDigits: 0 })}</p>
+                                <p className="text-2xl font-bold text-purple-400">₹{stats.std_sales.toLocaleString('en-US', { maximumFractionDigits: 0 })}</p>
                             </div>
                             <div>
                                 <p className="text-gray-400 text-sm mb-1">Avg Price</p>
-                                <p className="text-2xl font-bold text-orange-400">£{stats.avg_price.toFixed(2)}</p>
+                                <p className="text-2xl font-bold text-orange-400">₹{stats.avg_price.toFixed(2)}</p>
                             </div>
                             <div>
                                 <p className="text-gray-400 text-sm mb-1">Min Sales</p>
-                                <p className="text-2xl font-bold text-red-400">£{stats.min_sales.toLocaleString('en-US', { maximumFractionDigits: 0 })}</p>
+                                <p className="text-2xl font-bold text-red-400">₹{stats.min_sales.toLocaleString('en-US', { maximumFractionDigits: 0 })}</p>
                             </div>
                             <div>
                                 <p className="text-gray-400 text-sm mb-1">Max Sales</p>
-                                <p className="text-2xl font-bold text-green-400">£{stats.max_sales.toLocaleString('en-US', { maximumFractionDigits: 0 })}</p>
+                                <p className="text-2xl font-bold text-green-400">₹{stats.max_sales.toLocaleString('en-US', { maximumFractionDigits: 0 })}</p>
                             </div>
                         </div>
                     </div>

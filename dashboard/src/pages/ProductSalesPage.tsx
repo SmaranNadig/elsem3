@@ -15,6 +15,7 @@ const ProductSalesPage: React.FC = () => {
     const [products, setProducts] = useState<Product[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const [selectedCategory, setSelectedCategory] = useState<string>('All');
 
     useEffect(() => {
         fetchProducts();
@@ -32,6 +33,18 @@ const ProductSalesPage: React.FC = () => {
         } finally {
             setLoading(false);
         }
+    };
+
+    // Extract unique categories and filter products
+    // Safely handle empty products array during loading
+    const categories = ['All', ...Array.from(new Set(products.map(p => (p as any).category || 'Other')))];
+
+    const filteredProducts = selectedCategory === 'All'
+        ? products
+        : products.filter(p => (p as any).category === selectedCategory);
+
+    const handleProductClick = (productName: string) => {
+        navigate(`/product/${encodeURIComponent(productName)}`);
     };
 
     if (loading) {
@@ -58,10 +71,6 @@ const ProductSalesPage: React.FC = () => {
         );
     }
 
-    const handleProductClick = (productName: string) => {
-        navigate(`/product/${encodeURIComponent(productName)}`);
-    };
-
     return (
         <div className="min-h-screen bg-[#0a0a0b] p-8">
             <div className="max-w-7xl mx-auto">
@@ -75,26 +84,48 @@ const ProductSalesPage: React.FC = () => {
                         <span>Back to Dashboard</span>
                     </button>
                     <h1 className="text-5xl font-bold bg-gradient-to-r from-emerald-400 via-blue-500 to-purple-500 bg-clip-text text-transparent mb-2">
-                        � Product Analytics
+                        📊 Product Analytics
                     </h1>
-                    <p className="text-gray-400 text-lg">
+                    <p className="text-gray-400 text-lg mb-6">
                         Click any product to view comprehensive data science analysis with advanced visualizations
                     </p>
+
+                    {/* Category Filter Buttons */}
+                    <div className="flex gap-2 flex-wrap">
+                        {categories.map(category => (
+                            <button
+                                key={category}
+                                onClick={() => setSelectedCategory(category)}
+                                className={`px-4 py-2 rounded-full text-sm font-semibold transition-all ${selectedCategory === category
+                                    ? 'bg-emerald-500 text-white shadow-lg shadow-emerald-500/25'
+                                    : 'bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-white'
+                                    }`}
+                            >
+                                {category}
+                            </button>
+                        ))}
+                    </div>
                 </div>
 
                 {/* Product Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {products.map((product, index) => (
+                    {filteredProducts.map((product, index) => (
                         <div
                             key={index}
                             onClick={() => handleProductClick(product.name)}
                             className="group cursor-pointer bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-6 hover:border-emerald-500/50 transition-all hover:scale-105 hover:shadow-2xl hover:shadow-emerald-500/10"
                         >
-                            {/* Rank Badge */}
+                            {/* Rank Badge & Category */}
                             <div className="flex items-center justify-between mb-4">
-                                <div className="bg-emerald-500/10 text-emerald-400 px-3 py-1 rounded-full text-sm font-bold">
-                                    #{index + 1}
+                                <div className="flex gap-2">
+                                    <div className="bg-emerald-500/10 text-emerald-400 px-3 py-1 rounded-full text-sm font-bold">
+                                        #{index + 1}
+                                    </div>
+                                    <div className="bg-blue-500/10 text-blue-400 px-3 py-1 rounded-full text-xs font-medium flex items-center">
+                                        {(product as any).category || 'Item'}
+                                    </div>
                                 </div>
+
                                 <ChevronRight className="text-gray-400 group-hover:text-emerald-400 group-hover:translate-x-1 transition-all" size={20} />
                             </div>
 
@@ -111,7 +142,7 @@ const ProductSalesPage: React.FC = () => {
                                         <span className="text-sm">Revenue</span>
                                     </div>
                                     <span className="text-emerald-400 font-bold">
-                                        £{product.total_sales.toLocaleString('en-US', { maximumFractionDigits: 0 })}
+                                        ₹{product.total_sales.toLocaleString('en-US', { maximumFractionDigits: 0 })}
                                     </span>
                                 </div>
 
@@ -128,7 +159,7 @@ const ProductSalesPage: React.FC = () => {
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center gap-2 text-gray-400">
                                         <ShoppingCart size={16} />
-                                        <span className="text-sm">Orders</span>
+                                        <span className="text-sm">Sales Days</span>
                                     </div>
                                     <span className="text-purple-400 font-bold">
                                         {product.total_orders.toLocaleString()}
