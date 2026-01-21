@@ -1,0 +1,1479 @@
+sku_id,product_name,date,units_sold,month,day_of_week,is_weekend
+SKU101,Skeleton science embroidery sweatshirt,2022-01-01,15,1,Saturday,1
+SKU105,calm trail look,2022-01-01,1,1,Saturday,1
+SKU106,arctic block tracksuit,2022-01-01,1,1,Saturday,1
+SKU110,oversized justin coord set,2022-01-01,1,1,Saturday,1
+SKU101,Skeleton science embroidery sweatshirt,2022-01-02,1,1,Sunday,1
+SKU108,elevate scuba tracksuit,2022-01-03,1,1,Monday,0
+SKU101,Skeleton science embroidery sweatshirt,2022-01-04,3,1,Tuesday,0
+SKU106,arctic block tracksuit,2022-01-06,1,1,Thursday,0
+SKU108,elevate scuba tracksuit,2022-01-06,1,1,Thursday,0
+SKU108,elevate scuba tracksuit,2022-01-07,3,1,Friday,0
+SKU101,Skeleton science embroidery sweatshirt,2022-01-08,1,1,Saturday,1
+SKU105,calm trail look,2022-01-08,1,1,Saturday,1
+SKU106,arctic block tracksuit,2022-01-08,1,1,Saturday,1
+SKU108,elevate scuba tracksuit,2022-01-08,7,1,Saturday,1
+SKU110,oversized justin coord set,2022-01-09,1,1,Sunday,1
+SKU101,Skeleton science embroidery sweatshirt,2022-01-10,1,1,Monday,0
+SKU105,calm trail look,2022-01-10,1,1,Monday,0
+SKU108,elevate scuba tracksuit,2022-01-10,1,1,Monday,0
+SKU106,arctic block tracksuit,2022-01-11,7,1,Tuesday,0
+SKU101,Skeleton science embroidery sweatshirt,2022-01-12,4,1,Wednesday,0
+SKU101,Skeleton science embroidery sweatshirt,2022-01-14,3,1,Friday,0
+SKU102,Kross Coord set,2022-01-14,5,1,Friday,0
+SKU108,elevate scuba tracksuit,2022-01-14,1,1,Friday,0
+SKU105,calm trail look,2022-01-15,2,1,Saturday,1
+SKU106,arctic block tracksuit,2022-01-15,4,1,Saturday,1
+SKU101,Skeleton science embroidery sweatshirt,2022-01-16,1,1,Sunday,1
+SKU106,arctic block tracksuit,2022-01-16,1,1,Sunday,1
+SKU105,calm trail look,2022-01-17,1,1,Monday,0
+SKU106,arctic block tracksuit,2022-01-17,1,1,Monday,0
+SKU101,Skeleton science embroidery sweatshirt,2022-01-18,1,1,Tuesday,0
+SKU105,calm trail look,2022-01-18,2,1,Tuesday,0
+SKU106,arctic block tracksuit,2022-01-20,3,1,Thursday,0
+SKU106,arctic block tracksuit,2022-01-21,4,1,Friday,0
+SKU110,oversized justin coord set,2022-01-21,1,1,Friday,0
+SKU101,Skeleton science embroidery sweatshirt,2022-01-22,1,1,Saturday,1
+SKU110,oversized justin coord set,2022-01-22,5,1,Saturday,1
+SKU101,Skeleton science embroidery sweatshirt,2022-01-23,7,1,Sunday,1
+SKU106,arctic block tracksuit,2022-01-23,7,1,Sunday,1
+SKU110,oversized justin coord set,2022-01-23,1,1,Sunday,1
+SKU101,Skeleton science embroidery sweatshirt,2022-01-24,3,1,Monday,0
+SKU108,elevate scuba tracksuit,2022-01-25,1,1,Tuesday,0
+SKU105,calm trail look,2022-01-26,1,1,Wednesday,0
+SKU108,elevate scuba tracksuit,2022-01-26,3,1,Wednesday,0
+SKU106,arctic block tracksuit,2022-01-28,1,1,Friday,0
+SKU108,elevate scuba tracksuit,2022-01-28,1,1,Friday,0
+SKU101,Skeleton science embroidery sweatshirt,2022-01-29,1,1,Saturday,1
+SKU106,arctic block tracksuit,2022-01-29,1,1,Saturday,1
+SKU105,calm trail look,2022-01-30,1,1,Sunday,1
+SKU108,elevate scuba tracksuit,2022-01-30,4,1,Sunday,1
+SKU101,Skeleton science embroidery sweatshirt,2022-01-31,1,1,Monday,0
+SKU105,calm trail look,2022-01-31,3,1,Monday,0
+SKU101,Skeleton science embroidery sweatshirt,2022-02-03,3,2,Thursday,0
+SKU103,Studio Coord Set,2022-02-03,1,2,Thursday,0
+SKU105,calm trail look,2022-02-03,2,2,Thursday,0
+SKU106,arctic block tracksuit,2022-02-04,10,2,Friday,0
+SKU108,elevate scuba tracksuit,2022-02-04,1,2,Friday,0
+SKU105,calm trail look,2022-02-05,1,2,Saturday,1
+SKU106,arctic block tracksuit,2022-02-05,1,2,Saturday,1
+SKU110,oversized justin coord set,2022-02-05,2,2,Saturday,1
+SKU106,arctic block tracksuit,2022-02-06,1,2,Sunday,1
+SKU101,Skeleton science embroidery sweatshirt,2022-02-07,1,2,Monday,0
+SKU105,calm trail look,2022-02-07,2,2,Monday,0
+SKU106,arctic block tracksuit,2022-02-07,2,2,Monday,0
+SKU108,elevate scuba tracksuit,2022-02-08,1,2,Tuesday,0
+SKU101,Skeleton science embroidery sweatshirt,2022-02-09,2,2,Wednesday,0
+SKU103,Studio Coord Set,2022-02-09,1,2,Wednesday,0
+SKU106,arctic block tracksuit,2022-02-09,3,2,Wednesday,0
+SKU106,arctic block tracksuit,2022-02-10,1,2,Thursday,0
+SKU101,Skeleton science embroidery sweatshirt,2022-02-11,2,2,Friday,0
+SKU106,arctic block tracksuit,2022-02-11,1,2,Friday,0
+SKU101,Skeleton science embroidery sweatshirt,2022-02-12,1,2,Saturday,1
+SKU102,Kross Coord set,2022-02-12,5,2,Saturday,1
+SKU105,calm trail look,2022-02-12,1,2,Saturday,1
+SKU103,Studio Coord Set,2022-02-13,3,2,Sunday,1
+SKU108,elevate scuba tracksuit,2022-02-13,1,2,Sunday,1
+SKU106,arctic block tracksuit,2022-02-14,1,2,Monday,0
+SKU108,elevate scuba tracksuit,2022-02-14,1,2,Monday,0
+SKU106,arctic block tracksuit,2022-02-15,2,2,Tuesday,0
+SKU108,elevate scuba tracksuit,2022-02-15,1,2,Tuesday,0
+SKU101,Skeleton science embroidery sweatshirt,2022-02-16,1,2,Wednesday,0
+SKU103,Studio Coord Set,2022-02-16,3,2,Wednesday,0
+SKU108,elevate scuba tracksuit,2022-02-16,2,2,Wednesday,0
+SKU110,oversized justin coord set,2022-02-16,1,2,Wednesday,0
+SKU105,calm trail look,2022-02-17,5,2,Thursday,0
+SKU101,Skeleton science embroidery sweatshirt,2022-02-19,1,2,Saturday,1
+SKU108,elevate scuba tracksuit,2022-02-19,1,2,Saturday,1
+SKU101,Skeleton science embroidery sweatshirt,2022-02-20,1,2,Sunday,1
+SKU106,arctic block tracksuit,2022-02-20,1,2,Sunday,1
+SKU110,oversized justin coord set,2022-02-20,1,2,Sunday,1
+SKU108,elevate scuba tracksuit,2022-02-21,2,2,Monday,0
+SKU108,elevate scuba tracksuit,2022-02-22,2,2,Tuesday,0
+SKU101,Skeleton science embroidery sweatshirt,2022-02-23,5,2,Wednesday,0
+SKU105,calm trail look,2022-02-23,1,2,Wednesday,0
+SKU108,elevate scuba tracksuit,2022-02-23,1,2,Wednesday,0
+SKU106,arctic block tracksuit,2022-02-24,5,2,Thursday,0
+SKU101,Skeleton science embroidery sweatshirt,2022-02-26,2,2,Saturday,1
+SKU103,Studio Coord Set,2022-02-27,2,2,Sunday,1
+SKU110,oversized justin coord set,2022-02-27,2,2,Sunday,1
+SKU101,Skeleton science embroidery sweatshirt,2022-02-28,1,2,Monday,0
+SKU106,arctic block tracksuit,2022-02-28,1,2,Monday,0
+SKU102,Kross Coord set,2022-03-01,2,3,Tuesday,0
+SKU107,varsity voyage coord set,2022-03-01,1,3,Tuesday,0
+SKU109,aeroslate coord set,2022-03-01,1,3,Tuesday,0
+SKU102,Kross Coord set,2022-03-02,1,3,Wednesday,0
+SKU103,Studio Coord Set,2022-03-02,1,3,Wednesday,0
+SKU107,varsity voyage coord set,2022-03-02,1,3,Wednesday,0
+SKU103,Studio Coord Set,2022-03-03,2,3,Thursday,0
+SKU107,varsity voyage coord set,2022-03-03,1,3,Thursday,0
+SKU109,aeroslate coord set,2022-03-03,3,3,Thursday,0
+SKU105,calm trail look,2022-03-04,1,3,Friday,0
+SKU102,Kross Coord set,2022-03-05,1,3,Saturday,1
+SKU103,Studio Coord Set,2022-03-05,1,3,Saturday,1
+SKU105,calm trail look,2022-03-05,2,3,Saturday,1
+SKU107,varsity voyage coord set,2022-03-05,1,3,Saturday,1
+SKU103,Studio Coord Set,2022-03-06,2,3,Sunday,1
+SKU104,West Coast Coord Set,2022-03-06,1,3,Sunday,1
+SKU108,elevate scuba tracksuit,2022-03-06,1,3,Sunday,1
+SKU109,aeroslate coord set,2022-03-06,2,3,Sunday,1
+SKU110,oversized justin coord set,2022-03-06,3,3,Sunday,1
+SKU102,Kross Coord set,2022-03-07,1,3,Monday,0
+SKU104,West Coast Coord Set,2022-03-07,2,3,Monday,0
+SKU110,oversized justin coord set,2022-03-07,1,3,Monday,0
+SKU102,Kross Coord set,2022-03-08,10,3,Tuesday,0
+SKU106,arctic block tracksuit,2022-03-08,1,3,Tuesday,0
+SKU109,aeroslate coord set,2022-03-08,1,3,Tuesday,0
+SKU107,varsity voyage coord set,2022-03-09,1,3,Wednesday,0
+SKU110,oversized justin coord set,2022-03-09,2,3,Wednesday,0
+SKU102,Kross Coord set,2022-03-10,1,3,Thursday,0
+SKU104,West Coast Coord Set,2022-03-10,1,3,Thursday,0
+SKU105,calm trail look,2022-03-10,1,3,Thursday,0
+SKU109,aeroslate coord set,2022-03-10,1,3,Thursday,0
+SKU110,oversized justin coord set,2022-03-10,1,3,Thursday,0
+SKU107,varsity voyage coord set,2022-03-11,1,3,Friday,0
+SKU110,oversized justin coord set,2022-03-11,1,3,Friday,0
+SKU102,Kross Coord set,2022-03-12,2,3,Saturday,1
+SKU103,Studio Coord Set,2022-03-12,1,3,Saturday,1
+SKU104,West Coast Coord Set,2022-03-12,2,3,Saturday,1
+SKU105,calm trail look,2022-03-12,1,3,Saturday,1
+SKU107,varsity voyage coord set,2022-03-12,1,3,Saturday,1
+SKU110,oversized justin coord set,2022-03-12,1,3,Saturday,1
+SKU103,Studio Coord Set,2022-03-13,1,3,Sunday,1
+SKU104,West Coast Coord Set,2022-03-13,2,3,Sunday,1
+SKU107,varsity voyage coord set,2022-03-13,2,3,Sunday,1
+SKU109,aeroslate coord set,2022-03-13,1,3,Sunday,1
+SKU103,Studio Coord Set,2022-03-14,1,3,Monday,0
+SKU109,aeroslate coord set,2022-03-14,5,3,Monday,0
+SKU102,Kross Coord set,2022-03-15,3,3,Tuesday,0
+SKU103,Studio Coord Set,2022-03-16,1,3,Wednesday,0
+SKU107,varsity voyage coord set,2022-03-16,1,3,Wednesday,0
+SKU103,Studio Coord Set,2022-03-17,2,3,Thursday,0
+SKU108,elevate scuba tracksuit,2022-03-17,1,3,Thursday,0
+SKU102,Kross Coord set,2022-03-18,2,3,Friday,0
+SKU103,Studio Coord Set,2022-03-18,3,3,Friday,0
+SKU109,aeroslate coord set,2022-03-18,1,3,Friday,0
+SKU103,Studio Coord Set,2022-03-19,5,3,Saturday,1
+SKU105,calm trail look,2022-03-19,3,3,Saturday,1
+SKU109,aeroslate coord set,2022-03-19,1,3,Saturday,1
+SKU110,oversized justin coord set,2022-03-19,1,3,Saturday,1
+SKU102,Kross Coord set,2022-03-20,1,3,Sunday,1
+SKU103,Studio Coord Set,2022-03-20,2,3,Sunday,1
+SKU104,West Coast Coord Set,2022-03-20,5,3,Sunday,1
+SKU109,aeroslate coord set,2022-03-21,1,3,Monday,0
+SKU104,West Coast Coord Set,2022-03-22,1,3,Tuesday,0
+SKU107,varsity voyage coord set,2022-03-22,2,3,Tuesday,0
+SKU109,aeroslate coord set,2022-03-22,1,3,Tuesday,0
+SKU103,Studio Coord Set,2022-03-23,10,3,Wednesday,0
+SKU104,West Coast Coord Set,2022-03-23,1,3,Wednesday,0
+SKU107,varsity voyage coord set,2022-03-23,1,3,Wednesday,0
+SKU109,aeroslate coord set,2022-03-23,3,3,Wednesday,0
+SKU110,oversized justin coord set,2022-03-24,1,3,Thursday,0
+SKU103,Studio Coord Set,2022-03-25,1,3,Friday,0
+SKU104,West Coast Coord Set,2022-03-25,10,3,Friday,0
+SKU110,oversized justin coord set,2022-03-25,2,3,Friday,0
+SKU102,Kross Coord set,2022-03-26,1,3,Saturday,1
+SKU103,Studio Coord Set,2022-03-26,1,3,Saturday,1
+SKU104,West Coast Coord Set,2022-03-26,3,3,Saturday,1
+SKU105,calm trail look,2022-03-26,1,3,Saturday,1
+SKU107,varsity voyage coord set,2022-03-26,1,3,Saturday,1
+SKU107,varsity voyage coord set,2022-03-27,1,3,Sunday,1
+SKU109,aeroslate coord set,2022-03-27,2,3,Sunday,1
+SKU102,Kross Coord set,2022-03-28,2,3,Monday,0
+SKU109,aeroslate coord set,2022-03-28,2,3,Monday,0
+SKU104,West Coast Coord Set,2022-03-29,1,3,Tuesday,0
+SKU102,Kross Coord set,2022-03-30,1,3,Wednesday,0
+SKU104,West Coast Coord Set,2022-03-30,1,3,Wednesday,0
+SKU109,aeroslate coord set,2022-03-30,2,3,Wednesday,0
+SKU102,Kross Coord set,2022-03-31,2,3,Thursday,0
+SKU102,Kross Coord set,2022-04-01,7,4,Friday,0
+SKU103,Studio Coord Set,2022-04-01,15,4,Friday,0
+SKU102,Kross Coord set,2022-04-02,4,4,Saturday,1
+SKU104,West Coast Coord Set,2022-04-02,1,4,Saturday,1
+SKU107,varsity voyage coord set,2022-04-02,1,4,Saturday,1
+SKU110,oversized justin coord set,2022-04-02,2,4,Saturday,1
+SKU103,Studio Coord Set,2022-04-04,15,4,Monday,0
+SKU104,West Coast Coord Set,2022-04-04,4,4,Monday,0
+SKU109,aeroslate coord set,2022-04-05,3,4,Tuesday,0
+SKU104,West Coast Coord Set,2022-04-06,1,4,Wednesday,0
+SKU107,varsity voyage coord set,2022-04-07,1,4,Thursday,0
+SKU109,aeroslate coord set,2022-04-07,1,4,Thursday,0
+SKU102,Kross Coord set,2022-04-08,1,4,Friday,0
+SKU103,Studio Coord Set,2022-04-08,15,4,Friday,0
+SKU109,aeroslate coord set,2022-04-08,1,4,Friday,0
+SKU103,Studio Coord Set,2022-04-09,3,4,Saturday,1
+SKU104,West Coast Coord Set,2022-04-09,3,4,Saturday,1
+SKU106,arctic block tracksuit,2022-04-09,2,4,Saturday,1
+SKU102,Kross Coord set,2022-04-10,4,4,Sunday,1
+SKU109,aeroslate coord set,2022-04-10,1,4,Sunday,1
+SKU101,Skeleton science embroidery sweatshirt,2022-04-11,2,4,Monday,0
+SKU109,aeroslate coord set,2022-04-11,1,4,Monday,0
+SKU102,Kross Coord set,2022-04-12,1,4,Tuesday,0
+SKU103,Studio Coord Set,2022-04-12,1,4,Tuesday,0
+SKU103,Studio Coord Set,2022-04-13,1,4,Wednesday,0
+SKU104,West Coast Coord Set,2022-04-13,7,4,Wednesday,0
+SKU107,varsity voyage coord set,2022-04-13,1,4,Wednesday,0
+SKU110,oversized justin coord set,2022-04-13,1,4,Wednesday,0
+SKU103,Studio Coord Set,2022-04-14,1,4,Thursday,0
+SKU104,West Coast Coord Set,2022-04-14,1,4,Thursday,0
+SKU109,aeroslate coord set,2022-04-14,1,4,Thursday,0
+SKU103,Studio Coord Set,2022-04-15,1,4,Friday,0
+SKU104,West Coast Coord Set,2022-04-15,4,4,Friday,0
+SKU101,Skeleton science embroidery sweatshirt,2022-04-16,1,4,Saturday,1
+SKU103,Studio Coord Set,2022-04-16,1,4,Saturday,1
+SKU105,calm trail look,2022-04-16,5,4,Saturday,1
+SKU107,varsity voyage coord set,2022-04-16,7,4,Saturday,1
+SKU109,aeroslate coord set,2022-04-16,1,4,Saturday,1
+SKU103,Studio Coord Set,2022-04-17,4,4,Sunday,1
+SKU107,varsity voyage coord set,2022-04-17,1,4,Sunday,1
+SKU109,aeroslate coord set,2022-04-17,3,4,Sunday,1
+SKU110,oversized justin coord set,2022-04-17,1,4,Sunday,1
+SKU103,Studio Coord Set,2022-04-18,7,4,Monday,0
+SKU107,varsity voyage coord set,2022-04-18,1,4,Monday,0
+SKU109,aeroslate coord set,2022-04-18,1,4,Monday,0
+SKU102,Kross Coord set,2022-04-19,1,4,Tuesday,0
+SKU104,West Coast Coord Set,2022-04-19,1,4,Tuesday,0
+SKU107,varsity voyage coord set,2022-04-19,1,4,Tuesday,0
+SKU109,aeroslate coord set,2022-04-19,1,4,Tuesday,0
+SKU102,Kross Coord set,2022-04-21,1,4,Thursday,0
+SKU103,Studio Coord Set,2022-04-21,7,4,Thursday,0
+SKU105,calm trail look,2022-04-21,1,4,Thursday,0
+SKU109,aeroslate coord set,2022-04-22,1,4,Friday,0
+SKU110,oversized justin coord set,2022-04-22,3,4,Friday,0
+SKU107,varsity voyage coord set,2022-04-23,1,4,Saturday,1
+SKU109,aeroslate coord set,2022-04-23,4,4,Saturday,1
+SKU110,oversized justin coord set,2022-04-23,2,4,Saturday,1
+SKU103,Studio Coord Set,2022-04-24,1,4,Sunday,1
+SKU109,aeroslate coord set,2022-04-24,1,4,Sunday,1
+SKU103,Studio Coord Set,2022-04-25,1,4,Monday,0
+SKU107,varsity voyage coord set,2022-04-25,1,4,Monday,0
+SKU109,aeroslate coord set,2022-04-25,3,4,Monday,0
+SKU104,West Coast Coord Set,2022-04-26,3,4,Tuesday,0
+SKU101,Skeleton science embroidery sweatshirt,2022-04-27,1,4,Wednesday,0
+SKU104,West Coast Coord Set,2022-04-27,1,4,Wednesday,0
+SKU105,calm trail look,2022-04-27,1,4,Wednesday,0
+SKU107,varsity voyage coord set,2022-04-27,1,4,Wednesday,0
+SKU102,Kross Coord set,2022-04-28,1,4,Thursday,0
+SKU104,West Coast Coord Set,2022-04-29,1,4,Friday,0
+SKU110,oversized justin coord set,2022-04-29,2,4,Friday,0
+SKU102,Kross Coord set,2022-04-30,1,4,Saturday,1
+SKU103,Studio Coord Set,2022-04-30,1,4,Saturday,1
+SKU104,West Coast Coord Set,2022-04-30,4,4,Saturday,1
+SKU107,varsity voyage coord set,2022-04-30,1,4,Saturday,1
+SKU110,oversized justin coord set,2022-04-30,1,4,Saturday,1
+SKU102,Kross Coord set,2022-05-01,1,5,Sunday,1
+SKU104,West Coast Coord Set,2022-05-01,3,5,Sunday,1
+SKU105,calm trail look,2022-05-01,1,5,Sunday,1
+SKU107,varsity voyage coord set,2022-05-01,3,5,Sunday,1
+SKU103,Studio Coord Set,2022-05-03,4,5,Tuesday,0
+SKU104,West Coast Coord Set,2022-05-03,3,5,Tuesday,0
+SKU102,Kross Coord set,2022-05-04,4,5,Wednesday,0
+SKU107,varsity voyage coord set,2022-05-04,3,5,Wednesday,0
+SKU102,Kross Coord set,2022-05-05,1,5,Thursday,0
+SKU102,Kross Coord set,2022-05-07,1,5,Saturday,1
+SKU104,West Coast Coord Set,2022-05-07,1,5,Saturday,1
+SKU102,Kross Coord set,2022-05-08,1,5,Sunday,1
+SKU103,Studio Coord Set,2022-05-08,4,5,Sunday,1
+SKU104,West Coast Coord Set,2022-05-08,1,5,Sunday,1
+SKU105,calm trail look,2022-05-08,2,5,Sunday,1
+SKU103,Studio Coord Set,2022-05-09,1,5,Monday,0
+SKU104,West Coast Coord Set,2022-05-09,1,5,Monday,0
+SKU107,varsity voyage coord set,2022-05-09,4,5,Monday,0
+SKU102,Kross Coord set,2022-05-10,1,5,Tuesday,0
+SKU104,West Coast Coord Set,2022-05-10,3,5,Tuesday,0
+SKU107,varsity voyage coord set,2022-05-10,15,5,Tuesday,0
+SKU102,Kross Coord set,2022-05-11,1,5,Wednesday,0
+SKU107,varsity voyage coord set,2022-05-11,1,5,Wednesday,0
+SKU109,aeroslate coord set,2022-05-11,4,5,Wednesday,0
+SKU102,Kross Coord set,2022-05-12,1,5,Thursday,0
+SKU103,Studio Coord Set,2022-05-12,3,5,Thursday,0
+SKU109,aeroslate coord set,2022-05-12,3,5,Thursday,0
+SKU102,Kross Coord set,2022-05-13,1,5,Friday,0
+SKU103,Studio Coord Set,2022-05-13,4,5,Friday,0
+SKU104,West Coast Coord Set,2022-05-13,1,5,Friday,0
+SKU105,calm trail look,2022-05-13,5,5,Friday,0
+SKU109,aeroslate coord set,2022-05-13,15,5,Friday,0
+SKU107,varsity voyage coord set,2022-05-14,7,5,Saturday,1
+SKU109,aeroslate coord set,2022-05-14,3,5,Saturday,1
+SKU104,West Coast Coord Set,2022-05-15,1,5,Sunday,1
+SKU105,calm trail look,2022-05-15,10,5,Sunday,1
+SKU107,varsity voyage coord set,2022-05-15,1,5,Sunday,1
+SKU102,Kross Coord set,2022-05-16,3,5,Monday,0
+SKU103,Studio Coord Set,2022-05-16,1,5,Monday,0
+SKU104,West Coast Coord Set,2022-05-16,3,5,Monday,0
+SKU107,varsity voyage coord set,2022-05-16,3,5,Monday,0
+SKU102,Kross Coord set,2022-05-17,3,5,Tuesday,0
+SKU103,Studio Coord Set,2022-05-17,1,5,Tuesday,0
+SKU104,West Coast Coord Set,2022-05-17,3,5,Tuesday,0
+SKU107,varsity voyage coord set,2022-05-17,7,5,Tuesday,0
+SKU103,Studio Coord Set,2022-05-18,3,5,Wednesday,0
+SKU110,oversized justin coord set,2022-05-18,1,5,Wednesday,0
+SKU102,Kross Coord set,2022-05-19,1,5,Thursday,0
+SKU103,Studio Coord Set,2022-05-19,4,5,Thursday,0
+SKU105,calm trail look,2022-05-19,1,5,Thursday,0
+SKU109,aeroslate coord set,2022-05-19,1,5,Thursday,0
+SKU102,Kross Coord set,2022-05-20,1,5,Friday,0
+SKU103,Studio Coord Set,2022-05-20,1,5,Friday,0
+SKU102,Kross Coord set,2022-05-21,1,5,Saturday,1
+SKU107,varsity voyage coord set,2022-05-21,4,5,Saturday,1
+SKU109,aeroslate coord set,2022-05-21,4,5,Saturday,1
+SKU102,Kross Coord set,2022-05-22,1,5,Sunday,1
+SKU104,West Coast Coord Set,2022-05-22,1,5,Sunday,1
+SKU109,aeroslate coord set,2022-05-22,1,5,Sunday,1
+SKU103,Studio Coord Set,2022-05-23,1,5,Monday,0
+SKU103,Studio Coord Set,2022-05-24,1,5,Tuesday,0
+SKU104,West Coast Coord Set,2022-05-24,1,5,Tuesday,0
+SKU102,Kross Coord set,2022-05-25,1,5,Wednesday,0
+SKU109,aeroslate coord set,2022-05-25,4,5,Wednesday,0
+SKU109,aeroslate coord set,2022-05-26,1,5,Thursday,0
+SKU102,Kross Coord set,2022-05-27,3,5,Friday,0
+SKU109,aeroslate coord set,2022-05-27,4,5,Friday,0
+SKU103,Studio Coord Set,2022-05-28,3,5,Saturday,1
+SKU105,calm trail look,2022-05-28,1,5,Saturday,1
+SKU109,aeroslate coord set,2022-05-28,15,5,Saturday,1
+SKU101,Skeleton science embroidery sweatshirt,2022-05-29,2,5,Sunday,1
+SKU102,Kross Coord set,2022-05-29,3,5,Sunday,1
+SKU103,Studio Coord Set,2022-05-29,1,5,Sunday,1
+SKU102,Kross Coord set,2022-05-30,1,5,Monday,0
+SKU103,Studio Coord Set,2022-05-30,1,5,Monday,0
+SKU107,varsity voyage coord set,2022-05-30,1,5,Monday,0
+SKU102,Kross Coord set,2022-05-31,3,5,Tuesday,0
+SKU109,aeroslate coord set,2022-05-31,1,5,Tuesday,0
+SKU102,Kross Coord set,2022-06-01,2,6,Wednesday,0
+SKU105,calm trail look,2022-06-01,3,6,Wednesday,0
+SKU103,Studio Coord Set,2022-06-02,1,6,Thursday,0
+SKU109,aeroslate coord set,2022-06-02,1,6,Thursday,0
+SKU104,West Coast Coord Set,2022-06-03,1,6,Friday,0
+SKU102,Kross Coord set,2022-06-04,1,6,Saturday,1
+SKU103,Studio Coord Set,2022-06-04,1,6,Saturday,1
+SKU107,varsity voyage coord set,2022-06-04,1,6,Saturday,1
+SKU109,aeroslate coord set,2022-06-04,5,6,Saturday,1
+SKU103,Studio Coord Set,2022-06-05,2,6,Sunday,1
+SKU104,West Coast Coord Set,2022-06-05,1,6,Sunday,1
+SKU107,varsity voyage coord set,2022-06-05,1,6,Sunday,1
+SKU102,Kross Coord set,2022-06-06,3,6,Monday,0
+SKU103,Studio Coord Set,2022-06-06,3,6,Monday,0
+SKU110,oversized justin coord set,2022-06-06,2,6,Monday,0
+SKU105,calm trail look,2022-06-07,1,6,Tuesday,0
+SKU109,aeroslate coord set,2022-06-07,2,6,Tuesday,0
+SKU103,Studio Coord Set,2022-06-08,1,6,Wednesday,0
+SKU105,calm trail look,2022-06-08,3,6,Wednesday,0
+SKU107,varsity voyage coord set,2022-06-08,1,6,Wednesday,0
+SKU102,Kross Coord set,2022-06-09,1,6,Thursday,0
+SKU106,arctic block tracksuit,2022-06-09,1,6,Thursday,0
+SKU102,Kross Coord set,2022-06-10,3,6,Friday,0
+SKU103,Studio Coord Set,2022-06-10,3,6,Friday,0
+SKU104,West Coast Coord Set,2022-06-10,1,6,Friday,0
+SKU104,West Coast Coord Set,2022-06-11,1,6,Saturday,1
+SKU107,varsity voyage coord set,2022-06-11,1,6,Saturday,1
+SKU102,Kross Coord set,2022-06-12,2,6,Sunday,1
+SKU103,Studio Coord Set,2022-06-12,1,6,Sunday,1
+SKU104,West Coast Coord Set,2022-06-12,3,6,Sunday,1
+SKU107,varsity voyage coord set,2022-06-12,1,6,Sunday,1
+SKU102,Kross Coord set,2022-06-13,1,6,Monday,0
+SKU105,calm trail look,2022-06-13,1,6,Monday,0
+SKU109,aeroslate coord set,2022-06-13,1,6,Monday,0
+SKU102,Kross Coord set,2022-06-14,1,6,Tuesday,0
+SKU103,Studio Coord Set,2022-06-14,1,6,Tuesday,0
+SKU105,calm trail look,2022-06-14,1,6,Tuesday,0
+SKU107,varsity voyage coord set,2022-06-15,10,6,Wednesday,0
+SKU104,West Coast Coord Set,2022-06-16,1,6,Thursday,0
+SKU107,varsity voyage coord set,2022-06-16,1,6,Thursday,0
+SKU104,West Coast Coord Set,2022-06-17,1,6,Friday,0
+SKU107,varsity voyage coord set,2022-06-17,1,6,Friday,0
+SKU110,oversized justin coord set,2022-06-17,2,6,Friday,0
+SKU102,Kross Coord set,2022-06-18,1,6,Saturday,1
+SKU103,Studio Coord Set,2022-06-18,2,6,Saturday,1
+SKU104,West Coast Coord Set,2022-06-18,1,6,Saturday,1
+SKU105,calm trail look,2022-06-18,1,6,Saturday,1
+SKU109,aeroslate coord set,2022-06-18,10,6,Saturday,1
+SKU103,Studio Coord Set,2022-06-19,1,6,Sunday,1
+SKU104,West Coast Coord Set,2022-06-19,1,6,Sunday,1
+SKU102,Kross Coord set,2022-06-20,1,6,Monday,0
+SKU104,West Coast Coord Set,2022-06-20,2,6,Monday,0
+SKU110,oversized justin coord set,2022-06-20,2,6,Monday,0
+SKU102,Kross Coord set,2022-06-21,3,6,Tuesday,0
+SKU103,Studio Coord Set,2022-06-22,1,6,Wednesday,0
+SKU110,oversized justin coord set,2022-06-22,1,6,Wednesday,0
+SKU102,Kross Coord set,2022-06-23,1,6,Thursday,0
+SKU103,Studio Coord Set,2022-06-23,2,6,Thursday,0
+SKU104,West Coast Coord Set,2022-06-23,2,6,Thursday,0
+SKU102,Kross Coord set,2022-06-24,1,6,Friday,0
+SKU109,aeroslate coord set,2022-06-24,1,6,Friday,0
+SKU107,varsity voyage coord set,2022-06-26,10,6,Sunday,1
+SKU109,aeroslate coord set,2022-06-26,1,6,Sunday,1
+SKU102,Kross Coord set,2022-06-27,3,6,Monday,0
+SKU104,West Coast Coord Set,2022-06-28,1,6,Tuesday,0
+SKU104,West Coast Coord Set,2022-06-29,1,6,Wednesday,0
+SKU105,calm trail look,2022-06-29,1,6,Wednesday,0
+SKU107,varsity voyage coord set,2022-06-30,2,6,Thursday,0
+SKU104,West Coast Coord Set,2022-07-01,3,7,Friday,0
+SKU105,calm trail look,2022-07-06,2,7,Wednesday,0
+SKU110,oversized justin coord set,2022-07-06,2,7,Wednesday,0
+SKU110,oversized justin coord set,2022-07-08,3,7,Friday,0
+SKU107,varsity voyage coord set,2022-07-09,1,7,Saturday,1
+SKU107,varsity voyage coord set,2022-07-10,1,7,Sunday,1
+SKU105,calm trail look,2022-07-12,2,7,Tuesday,0
+SKU109,aeroslate coord set,2022-07-13,1,7,Wednesday,0
+SKU110,oversized justin coord set,2022-07-13,3,7,Wednesday,0
+SKU110,oversized justin coord set,2022-07-14,5,7,Thursday,0
+SKU102,Kross Coord set,2022-07-16,1,7,Saturday,1
+SKU105,calm trail look,2022-07-16,1,7,Saturday,1
+SKU104,West Coast Coord Set,2022-07-20,10,7,Wednesday,0
+SKU107,varsity voyage coord set,2022-07-20,1,7,Wednesday,0
+SKU102,Kross Coord set,2022-07-23,1,7,Saturday,1
+SKU104,West Coast Coord Set,2022-07-28,1,7,Thursday,0
+SKU102,Kross Coord set,2022-08-02,1,8,Tuesday,0
+SKU109,aeroslate coord set,2022-08-04,1,8,Thursday,0
+SKU105,calm trail look,2022-08-06,1,8,Saturday,1
+SKU107,varsity voyage coord set,2022-08-06,1,8,Saturday,1
+SKU109,aeroslate coord set,2022-08-06,1,8,Saturday,1
+SKU107,varsity voyage coord set,2022-08-09,1,8,Tuesday,0
+SKU110,oversized justin coord set,2022-08-11,1,8,Thursday,0
+SKU103,Studio Coord Set,2022-08-12,5,8,Friday,0
+SKU110,oversized justin coord set,2022-08-12,2,8,Friday,0
+SKU105,calm trail look,2022-08-16,2,8,Tuesday,0
+SKU105,calm trail look,2022-08-17,1,8,Wednesday,0
+SKU104,West Coast Coord Set,2022-08-18,1,8,Thursday,0
+SKU109,aeroslate coord set,2022-08-18,2,8,Thursday,0
+SKU110,oversized justin coord set,2022-08-19,1,8,Friday,0
+SKU107,varsity voyage coord set,2022-08-20,1,8,Saturday,1
+SKU110,oversized justin coord set,2022-08-21,3,8,Sunday,1
+SKU105,calm trail look,2022-08-22,1,8,Monday,0
+SKU110,oversized justin coord set,2022-08-22,1,8,Monday,0
+SKU110,oversized justin coord set,2022-08-26,1,8,Friday,0
+SKU105,calm trail look,2022-08-27,1,8,Saturday,1
+SKU107,varsity voyage coord set,2022-08-28,3,8,Sunday,1
+SKU110,oversized justin coord set,2022-08-29,1,8,Monday,0
+SKU105,calm trail look,2022-08-30,2,8,Tuesday,0
+SKU109,aeroslate coord set,2022-08-30,2,8,Tuesday,0
+SKU110,oversized justin coord set,2022-09-02,1,9,Friday,0
+SKU110,oversized justin coord set,2022-09-04,2,9,Sunday,1
+SKU101,Skeleton science embroidery sweatshirt,2022-09-05,1,9,Monday,0
+SKU110,oversized justin coord set,2022-09-05,1,9,Monday,0
+SKU110,oversized justin coord set,2022-09-06,1,9,Tuesday,0
+SKU105,calm trail look,2022-09-08,2,9,Thursday,0
+SKU105,calm trail look,2022-09-09,1,9,Friday,0
+SKU105,calm trail look,2022-09-10,1,9,Saturday,1
+SKU110,oversized justin coord set,2022-09-10,1,9,Saturday,1
+SKU101,Skeleton science embroidery sweatshirt,2022-09-11,3,9,Sunday,1
+SKU105,calm trail look,2022-09-14,1,9,Wednesday,0
+SKU108,elevate scuba tracksuit,2022-09-15,1,9,Thursday,0
+SKU110,oversized justin coord set,2022-09-17,1,9,Saturday,1
+SKU104,West Coast Coord Set,2022-09-18,1,9,Sunday,1
+SKU110,oversized justin coord set,2022-09-18,3,9,Sunday,1
+SKU106,arctic block tracksuit,2022-09-22,1,9,Thursday,0
+SKU102,Kross Coord set,2022-09-24,3,9,Saturday,1
+SKU105,calm trail look,2022-09-24,1,9,Saturday,1
+SKU103,Studio Coord Set,2022-09-25,1,9,Sunday,1
+SKU110,oversized justin coord set,2022-09-25,1,9,Sunday,1
+SKU105,calm trail look,2022-09-30,1,9,Friday,0
+SKU102,Kross Coord set,2022-10-01,4,10,Saturday,1
+SKU105,calm trail look,2022-10-01,2,10,Saturday,1
+SKU110,oversized justin coord set,2022-10-01,2,10,Saturday,1
+SKU105,calm trail look,2022-10-02,2,10,Sunday,1
+SKU110,oversized justin coord set,2022-10-02,2,10,Sunday,1
+SKU102,Kross Coord set,2022-10-03,2,10,Monday,0
+SKU110,oversized justin coord set,2022-10-03,2,10,Monday,0
+SKU105,calm trail look,2022-10-04,2,10,Tuesday,0
+SKU108,elevate scuba tracksuit,2022-10-04,2,10,Tuesday,0
+SKU110,oversized justin coord set,2022-10-04,2,10,Tuesday,0
+SKU103,Studio Coord Set,2022-10-05,4,10,Wednesday,0
+SKU105,calm trail look,2022-10-05,4,10,Wednesday,0
+SKU110,oversized justin coord set,2022-10-05,4,10,Wednesday,0
+SKU103,Studio Coord Set,2022-10-06,10,10,Thursday,0
+SKU105,calm trail look,2022-10-06,4,10,Thursday,0
+SKU105,calm trail look,2022-10-07,2,10,Friday,0
+SKU110,oversized justin coord set,2022-10-07,2,10,Friday,0
+SKU102,Kross Coord set,2022-10-08,6,10,Saturday,1
+SKU103,Studio Coord Set,2022-10-08,6,10,Saturday,1
+SKU105,calm trail look,2022-10-08,10,10,Saturday,1
+SKU107,varsity voyage coord set,2022-10-08,6,10,Saturday,1
+SKU110,oversized justin coord set,2022-10-08,2,10,Saturday,1
+SKU101,Skeleton science embroidery sweatshirt,2022-10-09,2,10,Sunday,1
+SKU104,West Coast Coord Set,2022-10-09,10,10,Sunday,1
+SKU105,calm trail look,2022-10-09,4,10,Sunday,1
+SKU109,aeroslate coord set,2022-10-09,2,10,Sunday,1
+SKU110,oversized justin coord set,2022-10-09,4,10,Sunday,1
+SKU105,calm trail look,2022-10-10,6,10,Monday,0
+SKU110,oversized justin coord set,2022-10-10,2,10,Monday,0
+SKU105,calm trail look,2022-10-11,2,10,Tuesday,0
+SKU109,aeroslate coord set,2022-10-11,20,10,Tuesday,0
+SKU110,oversized justin coord set,2022-10-11,2,10,Tuesday,0
+SKU105,calm trail look,2022-10-12,4,10,Wednesday,0
+SKU110,oversized justin coord set,2022-10-12,2,10,Wednesday,0
+SKU105,calm trail look,2022-10-13,2,10,Thursday,0
+SKU110,oversized justin coord set,2022-10-13,4,10,Thursday,0
+SKU101,Skeleton science embroidery sweatshirt,2022-10-14,2,10,Friday,0
+SKU105,calm trail look,2022-10-14,10,10,Friday,0
+SKU107,varsity voyage coord set,2022-10-14,4,10,Friday,0
+SKU105,calm trail look,2022-10-15,2,10,Saturday,1
+SKU107,varsity voyage coord set,2022-10-15,2,10,Saturday,1
+SKU110,oversized justin coord set,2022-10-15,2,10,Saturday,1
+SKU105,calm trail look,2022-10-16,2,10,Sunday,1
+SKU106,arctic block tracksuit,2022-10-16,2,10,Sunday,1
+SKU107,varsity voyage coord set,2022-10-16,2,10,Sunday,1
+SKU110,oversized justin coord set,2022-10-16,2,10,Sunday,1
+SKU109,aeroslate coord set,2022-10-17,2,10,Monday,0
+SKU110,oversized justin coord set,2022-10-17,2,10,Monday,0
+SKU106,arctic block tracksuit,2022-10-18,4,10,Tuesday,0
+SKU110,oversized justin coord set,2022-10-18,2,10,Tuesday,0
+SKU104,West Coast Coord Set,2022-10-19,2,10,Wednesday,0
+SKU109,aeroslate coord set,2022-10-20,2,10,Thursday,0
+SKU110,oversized justin coord set,2022-10-20,2,10,Thursday,0
+SKU105,calm trail look,2022-10-21,2,10,Friday,0
+SKU110,oversized justin coord set,2022-10-21,2,10,Friday,0
+SKU102,Kross Coord set,2022-10-22,2,10,Saturday,1
+SKU106,arctic block tracksuit,2022-10-22,10,10,Saturday,1
+SKU107,varsity voyage coord set,2022-10-22,2,10,Saturday,1
+SKU110,oversized justin coord set,2022-10-22,2,10,Saturday,1
+SKU105,calm trail look,2022-10-23,10,10,Sunday,1
+SKU106,arctic block tracksuit,2022-10-23,10,10,Sunday,1
+SKU110,oversized justin coord set,2022-10-23,2,10,Sunday,1
+SKU105,calm trail look,2022-10-24,2,10,Monday,0
+SKU108,elevate scuba tracksuit,2022-10-24,2,10,Monday,0
+SKU109,aeroslate coord set,2022-10-24,2,10,Monday,0
+SKU110,oversized justin coord set,2022-10-24,4,10,Monday,0
+SKU110,oversized justin coord set,2022-10-25,6,10,Tuesday,0
+SKU104,West Coast Coord Set,2022-10-26,2,10,Wednesday,0
+SKU105,calm trail look,2022-10-26,2,10,Wednesday,0
+SKU107,varsity voyage coord set,2022-10-26,6,10,Wednesday,0
+SKU110,oversized justin coord set,2022-10-26,10,10,Wednesday,0
+SKU105,calm trail look,2022-10-27,4,10,Thursday,0
+SKU110,oversized justin coord set,2022-10-27,2,10,Thursday,0
+SKU105,calm trail look,2022-10-28,2,10,Friday,0
+SKU108,elevate scuba tracksuit,2022-10-28,2,10,Friday,0
+SKU110,oversized justin coord set,2022-10-28,6,10,Friday,0
+SKU105,calm trail look,2022-10-29,20,10,Saturday,1
+SKU110,oversized justin coord set,2022-10-29,10,10,Saturday,1
+SKU105,calm trail look,2022-10-30,2,10,Sunday,1
+SKU108,elevate scuba tracksuit,2022-10-30,2,10,Sunday,1
+SKU110,oversized justin coord set,2022-10-30,2,10,Sunday,1
+SKU110,oversized justin coord set,2022-10-31,6,10,Monday,0
+SKU101,Skeleton science embroidery sweatshirt,2022-11-01,2,11,Tuesday,0
+SKU105,calm trail look,2022-11-01,4,11,Tuesday,0
+SKU106,arctic block tracksuit,2022-11-01,4,11,Tuesday,0
+SKU108,elevate scuba tracksuit,2022-11-01,4,11,Tuesday,0
+SKU110,oversized justin coord set,2022-11-01,2,11,Tuesday,0
+SKU105,calm trail look,2022-11-02,2,11,Wednesday,0
+SKU108,elevate scuba tracksuit,2022-11-02,2,11,Wednesday,0
+SKU110,oversized justin coord set,2022-11-02,10,11,Wednesday,0
+SKU105,calm trail look,2022-11-03,6,11,Thursday,0
+SKU101,Skeleton science embroidery sweatshirt,2022-11-04,2,11,Friday,0
+SKU105,calm trail look,2022-11-04,6,11,Friday,0
+SKU106,arctic block tracksuit,2022-11-04,2,11,Friday,0
+SKU108,elevate scuba tracksuit,2022-11-04,2,11,Friday,0
+SKU110,oversized justin coord set,2022-11-04,2,11,Friday,0
+SKU101,Skeleton science embroidery sweatshirt,2022-11-05,2,11,Saturday,1
+SKU105,calm trail look,2022-11-05,4,11,Saturday,1
+SKU106,arctic block tracksuit,2022-11-05,2,11,Saturday,1
+SKU108,elevate scuba tracksuit,2022-11-05,2,11,Saturday,1
+SKU110,oversized justin coord set,2022-11-05,2,11,Saturday,1
+SKU101,Skeleton science embroidery sweatshirt,2022-11-06,2,11,Sunday,1
+SKU105,calm trail look,2022-11-06,4,11,Sunday,1
+SKU106,arctic block tracksuit,2022-11-06,2,11,Sunday,1
+SKU108,elevate scuba tracksuit,2022-11-06,2,11,Sunday,1
+SKU110,oversized justin coord set,2022-11-06,2,11,Sunday,1
+SKU101,Skeleton science embroidery sweatshirt,2022-11-07,4,11,Monday,0
+SKU105,calm trail look,2022-11-07,2,11,Monday,0
+SKU106,arctic block tracksuit,2022-11-07,4,11,Monday,0
+SKU108,elevate scuba tracksuit,2022-11-07,4,11,Monday,0
+SKU110,oversized justin coord set,2022-11-07,2,11,Monday,0
+SKU101,Skeleton science embroidery sweatshirt,2022-11-08,2,11,Tuesday,0
+SKU106,arctic block tracksuit,2022-11-08,4,11,Tuesday,0
+SKU110,oversized justin coord set,2022-11-08,2,11,Tuesday,0
+SKU105,calm trail look,2022-11-09,2,11,Wednesday,0
+SKU106,arctic block tracksuit,2022-11-09,10,11,Wednesday,0
+SKU108,elevate scuba tracksuit,2022-11-09,4,11,Wednesday,0
+SKU109,aeroslate coord set,2022-11-09,2,11,Wednesday,0
+SKU110,oversized justin coord set,2022-11-09,2,11,Wednesday,0
+SKU108,elevate scuba tracksuit,2022-11-10,6,11,Thursday,0
+SKU106,arctic block tracksuit,2022-11-11,2,11,Friday,0
+SKU110,oversized justin coord set,2022-11-11,2,11,Friday,0
+SKU101,Skeleton science embroidery sweatshirt,2022-11-12,2,11,Saturday,1
+SKU105,calm trail look,2022-11-12,2,11,Saturday,1
+SKU106,arctic block tracksuit,2022-11-12,4,11,Saturday,1
+SKU108,elevate scuba tracksuit,2022-11-12,20,11,Saturday,1
+SKU110,oversized justin coord set,2022-11-12,2,11,Saturday,1
+SKU101,Skeleton science embroidery sweatshirt,2022-11-13,2,11,Sunday,1
+SKU105,calm trail look,2022-11-13,10,11,Sunday,1
+SKU106,arctic block tracksuit,2022-11-13,2,11,Sunday,1
+SKU108,elevate scuba tracksuit,2022-11-13,2,11,Sunday,1
+SKU110,oversized justin coord set,2022-11-13,4,11,Sunday,1
+SKU101,Skeleton science embroidery sweatshirt,2022-11-14,2,11,Monday,0
+SKU106,arctic block tracksuit,2022-11-14,2,11,Monday,0
+SKU110,oversized justin coord set,2022-11-14,2,11,Monday,0
+SKU106,arctic block tracksuit,2022-11-15,2,11,Tuesday,0
+SKU108,elevate scuba tracksuit,2022-11-15,2,11,Tuesday,0
+SKU110,oversized justin coord set,2022-11-15,2,11,Tuesday,0
+SKU105,calm trail look,2022-11-16,6,11,Wednesday,0
+SKU108,elevate scuba tracksuit,2022-11-16,2,11,Wednesday,0
+SKU110,oversized justin coord set,2022-11-16,2,11,Wednesday,0
+SKU101,Skeleton science embroidery sweatshirt,2022-11-17,6,11,Thursday,0
+SKU106,arctic block tracksuit,2022-11-17,2,11,Thursday,0
+SKU110,oversized justin coord set,2022-11-17,2,11,Thursday,0
+SKU106,arctic block tracksuit,2022-11-18,2,11,Friday,0
+SKU108,elevate scuba tracksuit,2022-11-18,2,11,Friday,0
+SKU110,oversized justin coord set,2022-11-18,2,11,Friday,0
+SKU105,calm trail look,2022-11-19,2,11,Saturday,1
+SKU106,arctic block tracksuit,2022-11-19,2,11,Saturday,1
+SKU108,elevate scuba tracksuit,2022-11-19,2,11,Saturday,1
+SKU110,oversized justin coord set,2022-11-19,2,11,Saturday,1
+SKU105,calm trail look,2022-11-20,2,11,Sunday,1
+SKU106,arctic block tracksuit,2022-11-20,2,11,Sunday,1
+SKU108,elevate scuba tracksuit,2022-11-20,2,11,Sunday,1
+SKU110,oversized justin coord set,2022-11-20,2,11,Sunday,1
+SKU101,Skeleton science embroidery sweatshirt,2022-11-21,2,11,Monday,0
+SKU104,West Coast Coord Set,2022-11-21,2,11,Monday,0
+SKU106,arctic block tracksuit,2022-11-21,2,11,Monday,0
+SKU107,varsity voyage coord set,2022-11-21,10,11,Monday,0
+SKU108,elevate scuba tracksuit,2022-11-21,2,11,Monday,0
+SKU110,oversized justin coord set,2022-11-21,4,11,Monday,0
+SKU105,calm trail look,2022-11-22,6,11,Tuesday,0
+SKU106,arctic block tracksuit,2022-11-22,2,11,Tuesday,0
+SKU107,varsity voyage coord set,2022-11-22,4,11,Tuesday,0
+SKU108,elevate scuba tracksuit,2022-11-22,6,11,Tuesday,0
+SKU110,oversized justin coord set,2022-11-22,2,11,Tuesday,0
+SKU101,Skeleton science embroidery sweatshirt,2022-11-23,10,11,Wednesday,0
+SKU105,calm trail look,2022-11-23,4,11,Wednesday,0
+SKU106,arctic block tracksuit,2022-11-23,2,11,Wednesday,0
+SKU108,elevate scuba tracksuit,2022-11-23,2,11,Wednesday,0
+SKU109,aeroslate coord set,2022-11-23,2,11,Wednesday,0
+SKU110,oversized justin coord set,2022-11-23,6,11,Wednesday,0
+SKU101,Skeleton science embroidery sweatshirt,2022-11-24,6,11,Thursday,0
+SKU105,calm trail look,2022-11-24,2,11,Thursday,0
+SKU106,arctic block tracksuit,2022-11-24,4,11,Thursday,0
+SKU110,oversized justin coord set,2022-11-24,2,11,Thursday,0
+SKU101,Skeleton science embroidery sweatshirt,2022-11-25,20,11,Friday,0
+SKU105,calm trail look,2022-11-25,4,11,Friday,0
+SKU106,arctic block tracksuit,2022-11-25,4,11,Friday,0
+SKU108,elevate scuba tracksuit,2022-11-25,2,11,Friday,0
+SKU101,Skeleton science embroidery sweatshirt,2022-11-26,20,11,Saturday,1
+SKU105,calm trail look,2022-11-26,2,11,Saturday,1
+SKU106,arctic block tracksuit,2022-11-26,2,11,Saturday,1
+SKU108,elevate scuba tracksuit,2022-11-26,2,11,Saturday,1
+SKU110,oversized justin coord set,2022-11-26,2,11,Saturday,1
+SKU101,Skeleton science embroidery sweatshirt,2022-11-27,2,11,Sunday,1
+SKU105,calm trail look,2022-11-27,2,11,Sunday,1
+SKU106,arctic block tracksuit,2022-11-27,6,11,Sunday,1
+SKU108,elevate scuba tracksuit,2022-11-27,2,11,Sunday,1
+SKU110,oversized justin coord set,2022-11-27,2,11,Sunday,1
+SKU101,Skeleton science embroidery sweatshirt,2022-11-28,10,11,Monday,0
+SKU105,calm trail look,2022-11-28,6,11,Monday,0
+SKU106,arctic block tracksuit,2022-11-28,4,11,Monday,0
+SKU108,elevate scuba tracksuit,2022-11-28,2,11,Monday,0
+SKU110,oversized justin coord set,2022-11-28,2,11,Monday,0
+SKU101,Skeleton science embroidery sweatshirt,2022-11-29,2,11,Tuesday,0
+SKU105,calm trail look,2022-11-29,2,11,Tuesday,0
+SKU106,arctic block tracksuit,2022-11-29,2,11,Tuesday,0
+SKU108,elevate scuba tracksuit,2022-11-29,2,11,Tuesday,0
+SKU110,oversized justin coord set,2022-11-29,2,11,Tuesday,0
+SKU101,Skeleton science embroidery sweatshirt,2022-11-30,20,11,Wednesday,0
+SKU105,calm trail look,2022-11-30,2,11,Wednesday,0
+SKU106,arctic block tracksuit,2022-11-30,2,11,Wednesday,0
+SKU108,elevate scuba tracksuit,2022-11-30,2,11,Wednesday,0
+SKU110,oversized justin coord set,2022-11-30,2,11,Wednesday,0
+SKU104,West Coast Coord Set,2022-12-01,1,12,Thursday,0
+SKU101,Skeleton science embroidery sweatshirt,2022-12-02,3,12,Friday,0
+SKU106,arctic block tracksuit,2022-12-02,1,12,Friday,0
+SKU101,Skeleton science embroidery sweatshirt,2022-12-03,1,12,Saturday,1
+SKU101,Skeleton science embroidery sweatshirt,2022-12-04,1,12,Sunday,1
+SKU105,calm trail look,2022-12-04,1,12,Sunday,1
+SKU106,arctic block tracksuit,2022-12-04,15,12,Sunday,1
+SKU108,elevate scuba tracksuit,2022-12-04,1,12,Sunday,1
+SKU101,Skeleton science embroidery sweatshirt,2022-12-05,1,12,Monday,0
+SKU108,elevate scuba tracksuit,2022-12-05,3,12,Monday,0
+SKU101,Skeleton science embroidery sweatshirt,2022-12-07,3,12,Wednesday,0
+SKU106,arctic block tracksuit,2022-12-07,1,12,Wednesday,0
+SKU101,Skeleton science embroidery sweatshirt,2022-12-08,1,12,Thursday,0
+SKU105,calm trail look,2022-12-08,1,12,Thursday,0
+SKU108,elevate scuba tracksuit,2022-12-09,3,12,Friday,0
+SKU101,Skeleton science embroidery sweatshirt,2022-12-10,1,12,Saturday,1
+SKU106,arctic block tracksuit,2022-12-10,1,12,Saturday,1
+SKU108,elevate scuba tracksuit,2022-12-10,1,12,Saturday,1
+SKU105,calm trail look,2022-12-11,2,12,Sunday,1
+SKU108,elevate scuba tracksuit,2022-12-11,1,12,Sunday,1
+SKU110,oversized justin coord set,2022-12-11,1,12,Sunday,1
+SKU110,oversized justin coord set,2022-12-12,3,12,Monday,0
+SKU108,elevate scuba tracksuit,2022-12-13,3,12,Tuesday,0
+SKU105,calm trail look,2022-12-14,1,12,Wednesday,0
+SKU108,elevate scuba tracksuit,2022-12-14,1,12,Wednesday,0
+SKU101,Skeleton science embroidery sweatshirt,2022-12-15,1,12,Thursday,0
+SKU105,calm trail look,2022-12-15,1,12,Thursday,0
+SKU108,elevate scuba tracksuit,2022-12-17,1,12,Saturday,1
+SKU101,Skeleton science embroidery sweatshirt,2022-12-18,1,12,Sunday,1
+SKU106,arctic block tracksuit,2022-12-18,4,12,Sunday,1
+SKU106,arctic block tracksuit,2022-12-19,4,12,Monday,0
+SKU106,arctic block tracksuit,2022-12-21,3,12,Wednesday,0
+SKU101,Skeleton science embroidery sweatshirt,2022-12-23,4,12,Friday,0
+SKU104,West Coast Coord Set,2022-12-23,1,12,Friday,0
+SKU105,calm trail look,2022-12-23,10,12,Friday,0
+SKU101,Skeleton science embroidery sweatshirt,2022-12-24,1,12,Saturday,1
+SKU106,arctic block tracksuit,2022-12-24,1,12,Saturday,1
+SKU108,elevate scuba tracksuit,2022-12-24,1,12,Saturday,1
+SKU110,oversized justin coord set,2022-12-24,1,12,Saturday,1
+SKU101,Skeleton science embroidery sweatshirt,2022-12-25,1,12,Sunday,1
+SKU104,West Coast Coord Set,2022-12-27,5,12,Tuesday,0
+SKU101,Skeleton science embroidery sweatshirt,2022-12-28,4,12,Wednesday,0
+SKU108,elevate scuba tracksuit,2022-12-29,1,12,Thursday,0
+SKU101,Skeleton science embroidery sweatshirt,2022-12-30,1,12,Friday,0
+SKU108,elevate scuba tracksuit,2022-12-30,4,12,Friday,0
+SKU101,Skeleton science embroidery sweatshirt,2022-12-31,7,12,Saturday,1
+SKU106,arctic block tracksuit,2022-12-31,1,12,Saturday,1
+SKU108,elevate scuba tracksuit,2022-12-31,3,12,Saturday,1
+SKU101,Skeleton science embroidery sweatshirt,2023-01-01,1,1,Sunday,1
+SKU106,arctic block tracksuit,2023-01-01,1,1,Sunday,1
+SKU108,elevate scuba tracksuit,2023-01-01,1,1,Sunday,1
+SKU110,oversized justin coord set,2023-01-01,1,1,Sunday,1
+SKU106,arctic block tracksuit,2023-01-03,1,1,Tuesday,0
+SKU108,elevate scuba tracksuit,2023-01-03,3,1,Tuesday,0
+SKU110,oversized justin coord set,2023-01-03,1,1,Tuesday,0
+SKU106,arctic block tracksuit,2023-01-04,3,1,Wednesday,0
+SKU108,elevate scuba tracksuit,2023-01-05,1,1,Thursday,0
+SKU109,aeroslate coord set,2023-01-05,1,1,Thursday,0
+SKU106,arctic block tracksuit,2023-01-06,1,1,Friday,0
+SKU108,elevate scuba tracksuit,2023-01-06,1,1,Friday,0
+SKU105,calm trail look,2023-01-07,1,1,Saturday,1
+SKU108,elevate scuba tracksuit,2023-01-07,1,1,Saturday,1
+SKU101,Skeleton science embroidery sweatshirt,2023-01-08,15,1,Sunday,1
+SKU106,arctic block tracksuit,2023-01-08,1,1,Sunday,1
+SKU106,arctic block tracksuit,2023-01-11,1,1,Wednesday,0
+SKU108,elevate scuba tracksuit,2023-01-11,7,1,Wednesday,0
+SKU101,Skeleton science embroidery sweatshirt,2023-01-13,4,1,Friday,0
+SKU106,arctic block tracksuit,2023-01-13,1,1,Friday,0
+SKU101,Skeleton science embroidery sweatshirt,2023-01-14,1,1,Saturday,1
+SKU106,arctic block tracksuit,2023-01-14,1,1,Saturday,1
+SKU108,elevate scuba tracksuit,2023-01-14,1,1,Saturday,1
+SKU101,Skeleton science embroidery sweatshirt,2023-01-15,4,1,Sunday,1
+SKU105,calm trail look,2023-01-15,1,1,Sunday,1
+SKU108,elevate scuba tracksuit,2023-01-15,3,1,Sunday,1
+SKU106,arctic block tracksuit,2023-01-16,1,1,Monday,0
+SKU101,Skeleton science embroidery sweatshirt,2023-01-17,1,1,Tuesday,0
+SKU108,elevate scuba tracksuit,2023-01-17,3,1,Tuesday,0
+SKU101,Skeleton science embroidery sweatshirt,2023-01-18,1,1,Wednesday,0
+SKU106,arctic block tracksuit,2023-01-18,1,1,Wednesday,0
+SKU110,oversized justin coord set,2023-01-18,2,1,Wednesday,0
+SKU101,Skeleton science embroidery sweatshirt,2023-01-19,1,1,Thursday,0
+SKU108,elevate scuba tracksuit,2023-01-19,1,1,Thursday,0
+SKU110,oversized justin coord set,2023-01-19,10,1,Thursday,0
+SKU101,Skeleton science embroidery sweatshirt,2023-01-20,1,1,Friday,0
+SKU105,calm trail look,2023-01-20,1,1,Friday,0
+SKU110,oversized justin coord set,2023-01-20,1,1,Friday,0
+SKU101,Skeleton science embroidery sweatshirt,2023-01-21,1,1,Saturday,1
+SKU101,Skeleton science embroidery sweatshirt,2023-01-22,1,1,Sunday,1
+SKU108,elevate scuba tracksuit,2023-01-22,1,1,Sunday,1
+SKU110,oversized justin coord set,2023-01-22,1,1,Sunday,1
+SKU101,Skeleton science embroidery sweatshirt,2023-01-26,1,1,Thursday,0
+SKU108,elevate scuba tracksuit,2023-01-26,1,1,Thursday,0
+SKU110,oversized justin coord set,2023-01-26,1,1,Thursday,0
+SKU101,Skeleton science embroidery sweatshirt,2023-01-28,3,1,Saturday,1
+SKU108,elevate scuba tracksuit,2023-01-28,3,1,Saturday,1
+SKU101,Skeleton science embroidery sweatshirt,2023-01-29,1,1,Sunday,1
+SKU106,arctic block tracksuit,2023-01-29,7,1,Sunday,1
+SKU108,elevate scuba tracksuit,2023-01-29,1,1,Sunday,1
+SKU101,Skeleton science embroidery sweatshirt,2023-01-30,7,1,Monday,0
+SKU108,elevate scuba tracksuit,2023-01-30,1,1,Monday,0
+SKU106,arctic block tracksuit,2023-01-31,7,1,Tuesday,0
+SKU106,arctic block tracksuit,2023-02-01,1,2,Wednesday,0
+SKU108,elevate scuba tracksuit,2023-02-01,1,2,Wednesday,0
+SKU104,West Coast Coord Set,2023-02-02,2,2,Thursday,0
+SKU106,arctic block tracksuit,2023-02-02,2,2,Thursday,0
+SKU102,Kross Coord set,2023-02-03,1,2,Friday,0
+SKU105,calm trail look,2023-02-03,1,2,Friday,0
+SKU107,varsity voyage coord set,2023-02-03,1,2,Friday,0
+SKU110,oversized justin coord set,2023-02-03,1,2,Friday,0
+SKU107,varsity voyage coord set,2023-02-04,2,2,Saturday,1
+SKU110,oversized justin coord set,2023-02-04,1,2,Saturday,1
+SKU108,elevate scuba tracksuit,2023-02-05,2,2,Sunday,1
+SKU105,calm trail look,2023-02-06,2,2,Monday,0
+SKU105,calm trail look,2023-02-08,1,2,Wednesday,0
+SKU106,arctic block tracksuit,2023-02-08,5,2,Wednesday,0
+SKU101,Skeleton science embroidery sweatshirt,2023-02-09,1,2,Thursday,0
+SKU105,calm trail look,2023-02-09,1,2,Thursday,0
+SKU106,arctic block tracksuit,2023-02-09,1,2,Thursday,0
+SKU108,elevate scuba tracksuit,2023-02-09,1,2,Thursday,0
+SKU109,aeroslate coord set,2023-02-09,1,2,Thursday,0
+SKU110,oversized justin coord set,2023-02-09,1,2,Thursday,0
+SKU101,Skeleton science embroidery sweatshirt,2023-02-10,1,2,Friday,0
+SKU103,Studio Coord Set,2023-02-10,1,2,Friday,0
+SKU106,arctic block tracksuit,2023-02-11,1,2,Saturday,1
+SKU108,elevate scuba tracksuit,2023-02-11,1,2,Saturday,1
+SKU109,aeroslate coord set,2023-02-12,1,2,Sunday,1
+SKU110,oversized justin coord set,2023-02-13,1,2,Monday,0
+SKU105,calm trail look,2023-02-14,1,2,Tuesday,0
+SKU108,elevate scuba tracksuit,2023-02-14,1,2,Tuesday,0
+SKU106,arctic block tracksuit,2023-02-17,1,2,Friday,0
+SKU108,elevate scuba tracksuit,2023-02-17,1,2,Friday,0
+SKU101,Skeleton science embroidery sweatshirt,2023-02-18,1,2,Saturday,1
+SKU108,elevate scuba tracksuit,2023-02-18,3,2,Saturday,1
+SKU102,Kross Coord set,2023-02-19,1,2,Sunday,1
+SKU104,West Coast Coord Set,2023-02-19,1,2,Sunday,1
+SKU105,calm trail look,2023-02-19,2,2,Sunday,1
+SKU106,arctic block tracksuit,2023-02-19,1,2,Sunday,1
+SKU106,arctic block tracksuit,2023-02-20,5,2,Monday,0
+SKU108,elevate scuba tracksuit,2023-02-20,1,2,Monday,0
+SKU104,West Coast Coord Set,2023-02-23,1,2,Thursday,0
+SKU106,arctic block tracksuit,2023-02-23,1,2,Thursday,0
+SKU102,Kross Coord set,2023-02-24,10,2,Friday,0
+SKU108,elevate scuba tracksuit,2023-02-24,1,2,Friday,0
+SKU108,elevate scuba tracksuit,2023-02-25,1,2,Saturday,1
+SKU109,aeroslate coord set,2023-02-25,3,2,Saturday,1
+SKU105,calm trail look,2023-02-26,1,2,Sunday,1
+SKU107,varsity voyage coord set,2023-02-26,3,2,Sunday,1
+SKU108,elevate scuba tracksuit,2023-02-26,5,2,Sunday,1
+SKU101,Skeleton science embroidery sweatshirt,2023-02-27,3,2,Monday,0
+SKU102,Kross Coord set,2023-02-27,2,2,Monday,0
+SKU101,Skeleton science embroidery sweatshirt,2023-02-28,1,2,Tuesday,0
+SKU106,arctic block tracksuit,2023-02-28,10,2,Tuesday,0
+SKU102,Kross Coord set,2023-03-01,1,3,Wednesday,0
+SKU103,Studio Coord Set,2023-03-01,1,3,Wednesday,0
+SKU102,Kross Coord set,2023-03-02,2,3,Thursday,0
+SKU103,Studio Coord Set,2023-03-02,1,3,Thursday,0
+SKU104,West Coast Coord Set,2023-03-03,3,3,Friday,0
+SKU107,varsity voyage coord set,2023-03-03,1,3,Friday,0
+SKU101,Skeleton science embroidery sweatshirt,2023-03-04,3,3,Saturday,1
+SKU103,Studio Coord Set,2023-03-04,1,3,Saturday,1
+SKU105,calm trail look,2023-03-04,1,3,Saturday,1
+SKU107,varsity voyage coord set,2023-03-04,2,3,Saturday,1
+SKU110,oversized justin coord set,2023-03-04,1,3,Saturday,1
+SKU102,Kross Coord set,2023-03-05,1,3,Sunday,1
+SKU103,Studio Coord Set,2023-03-05,1,3,Sunday,1
+SKU104,West Coast Coord Set,2023-03-05,1,3,Sunday,1
+SKU107,varsity voyage coord set,2023-03-05,5,3,Sunday,1
+SKU110,oversized justin coord set,2023-03-05,1,3,Sunday,1
+SKU102,Kross Coord set,2023-03-06,2,3,Monday,0
+SKU105,calm trail look,2023-03-06,1,3,Monday,0
+SKU102,Kross Coord set,2023-03-07,2,3,Tuesday,0
+SKU104,West Coast Coord Set,2023-03-07,1,3,Tuesday,0
+SKU110,oversized justin coord set,2023-03-08,2,3,Wednesday,0
+SKU102,Kross Coord set,2023-03-10,2,3,Friday,0
+SKU110,oversized justin coord set,2023-03-10,1,3,Friday,0
+SKU107,varsity voyage coord set,2023-03-11,3,3,Saturday,1
+SKU102,Kross Coord set,2023-03-12,10,3,Sunday,1
+SKU103,Studio Coord Set,2023-03-12,3,3,Sunday,1
+SKU107,varsity voyage coord set,2023-03-12,1,3,Sunday,1
+SKU109,aeroslate coord set,2023-03-12,1,3,Sunday,1
+SKU102,Kross Coord set,2023-03-13,1,3,Monday,0
+SKU104,West Coast Coord Set,2023-03-13,3,3,Monday,0
+SKU107,varsity voyage coord set,2023-03-14,2,3,Tuesday,0
+SKU109,aeroslate coord set,2023-03-14,2,3,Tuesday,0
+SKU104,West Coast Coord Set,2023-03-15,2,3,Wednesday,0
+SKU107,varsity voyage coord set,2023-03-15,1,3,Wednesday,0
+SKU102,Kross Coord set,2023-03-16,1,3,Thursday,0
+SKU104,West Coast Coord Set,2023-03-16,2,3,Thursday,0
+SKU107,varsity voyage coord set,2023-03-16,3,3,Thursday,0
+SKU110,oversized justin coord set,2023-03-17,5,3,Friday,0
+SKU102,Kross Coord set,2023-03-18,1,3,Saturday,1
+SKU103,Studio Coord Set,2023-03-18,1,3,Saturday,1
+SKU107,varsity voyage coord set,2023-03-18,5,3,Saturday,1
+SKU109,aeroslate coord set,2023-03-18,1,3,Saturday,1
+SKU103,Studio Coord Set,2023-03-19,2,3,Sunday,1
+SKU104,West Coast Coord Set,2023-03-19,2,3,Sunday,1
+SKU105,calm trail look,2023-03-19,2,3,Sunday,1
+SKU108,elevate scuba tracksuit,2023-03-19,1,3,Sunday,1
+SKU109,aeroslate coord set,2023-03-19,3,3,Sunday,1
+SKU104,West Coast Coord Set,2023-03-20,1,3,Monday,0
+SKU106,arctic block tracksuit,2023-03-21,1,3,Tuesday,0
+SKU107,varsity voyage coord set,2023-03-21,1,3,Tuesday,0
+SKU102,Kross Coord set,2023-03-22,2,3,Wednesday,0
+SKU107,varsity voyage coord set,2023-03-22,1,3,Wednesday,0
+SKU102,Kross Coord set,2023-03-23,1,3,Thursday,0
+SKU104,West Coast Coord Set,2023-03-23,2,3,Thursday,0
+SKU107,varsity voyage coord set,2023-03-23,1,3,Thursday,0
+SKU109,aeroslate coord set,2023-03-23,1,3,Thursday,0
+SKU103,Studio Coord Set,2023-03-24,1,3,Friday,0
+SKU104,West Coast Coord Set,2023-03-25,2,3,Saturday,1
+SKU107,varsity voyage coord set,2023-03-25,1,3,Saturday,1
+SKU109,aeroslate coord set,2023-03-25,2,3,Saturday,1
+SKU110,oversized justin coord set,2023-03-25,1,3,Saturday,1
+SKU104,West Coast Coord Set,2023-03-26,10,3,Sunday,1
+SKU107,varsity voyage coord set,2023-03-26,1,3,Sunday,1
+SKU110,oversized justin coord set,2023-03-26,1,3,Sunday,1
+SKU103,Studio Coord Set,2023-03-27,3,3,Monday,0
+SKU110,oversized justin coord set,2023-03-27,1,3,Monday,0
+SKU102,Kross Coord set,2023-03-28,1,3,Tuesday,0
+SKU103,Studio Coord Set,2023-03-29,1,3,Wednesday,0
+SKU104,West Coast Coord Set,2023-03-30,3,3,Thursday,0
+SKU104,West Coast Coord Set,2023-03-31,3,3,Friday,0
+SKU102,Kross Coord set,2023-04-01,1,4,Saturday,1
+SKU103,Studio Coord Set,2023-04-01,3,4,Saturday,1
+SKU105,calm trail look,2023-04-01,1,4,Saturday,1
+SKU107,varsity voyage coord set,2023-04-01,1,4,Saturday,1
+SKU109,aeroslate coord set,2023-04-01,4,4,Saturday,1
+SKU102,Kross Coord set,2023-04-02,3,4,Sunday,1
+SKU103,Studio Coord Set,2023-04-02,1,4,Sunday,1
+SKU109,aeroslate coord set,2023-04-02,7,4,Sunday,1
+SKU102,Kross Coord set,2023-04-03,3,4,Monday,0
+SKU104,West Coast Coord Set,2023-04-03,4,4,Monday,0
+SKU107,varsity voyage coord set,2023-04-03,1,4,Monday,0
+SKU109,aeroslate coord set,2023-04-03,1,4,Monday,0
+SKU110,oversized justin coord set,2023-04-03,1,4,Monday,0
+SKU102,Kross Coord set,2023-04-04,3,4,Tuesday,0
+SKU105,calm trail look,2023-04-04,3,4,Tuesday,0
+SKU107,varsity voyage coord set,2023-04-04,1,4,Tuesday,0
+SKU104,West Coast Coord Set,2023-04-05,3,4,Wednesday,0
+SKU107,varsity voyage coord set,2023-04-05,3,4,Wednesday,0
+SKU109,aeroslate coord set,2023-04-05,1,4,Wednesday,0
+SKU102,Kross Coord set,2023-04-06,3,4,Thursday,0
+SKU103,Studio Coord Set,2023-04-06,4,4,Thursday,0
+SKU109,aeroslate coord set,2023-04-06,4,4,Thursday,0
+SKU106,arctic block tracksuit,2023-04-07,1,4,Friday,0
+SKU107,varsity voyage coord set,2023-04-07,1,4,Friday,0
+SKU109,aeroslate coord set,2023-04-07,3,4,Friday,0
+SKU103,Studio Coord Set,2023-04-08,1,4,Saturday,1
+SKU107,varsity voyage coord set,2023-04-08,1,4,Saturday,1
+SKU109,aeroslate coord set,2023-04-08,1,4,Saturday,1
+SKU110,oversized justin coord set,2023-04-08,1,4,Saturday,1
+SKU102,Kross Coord set,2023-04-09,1,4,Sunday,1
+SKU103,Studio Coord Set,2023-04-09,3,4,Sunday,1
+SKU105,calm trail look,2023-04-09,3,4,Sunday,1
+SKU107,varsity voyage coord set,2023-04-09,7,4,Sunday,1
+SKU109,aeroslate coord set,2023-04-09,7,4,Sunday,1
+SKU101,Skeleton science embroidery sweatshirt,2023-04-10,1,4,Monday,0
+SKU103,Studio Coord Set,2023-04-10,4,4,Monday,0
+SKU105,calm trail look,2023-04-10,3,4,Monday,0
+SKU107,varsity voyage coord set,2023-04-10,1,4,Monday,0
+SKU103,Studio Coord Set,2023-04-11,1,4,Tuesday,0
+SKU107,varsity voyage coord set,2023-04-11,4,4,Tuesday,0
+SKU106,arctic block tracksuit,2023-04-12,2,4,Wednesday,0
+SKU107,varsity voyage coord set,2023-04-12,3,4,Wednesday,0
+SKU110,oversized justin coord set,2023-04-12,1,4,Wednesday,0
+SKU102,Kross Coord set,2023-04-13,3,4,Thursday,0
+SKU104,West Coast Coord Set,2023-04-13,1,4,Thursday,0
+SKU108,elevate scuba tracksuit,2023-04-13,1,4,Thursday,0
+SKU109,aeroslate coord set,2023-04-13,1,4,Thursday,0
+SKU102,Kross Coord set,2023-04-14,7,4,Friday,0
+SKU103,Studio Coord Set,2023-04-14,1,4,Friday,0
+SKU103,Studio Coord Set,2023-04-15,7,4,Saturday,1
+SKU104,West Coast Coord Set,2023-04-15,4,4,Saturday,1
+SKU107,varsity voyage coord set,2023-04-15,3,4,Saturday,1
+SKU109,aeroslate coord set,2023-04-15,1,4,Saturday,1
+SKU104,West Coast Coord Set,2023-04-16,1,4,Sunday,1
+SKU107,varsity voyage coord set,2023-04-16,3,4,Sunday,1
+SKU109,aeroslate coord set,2023-04-16,1,4,Sunday,1
+SKU102,Kross Coord set,2023-04-17,1,4,Monday,0
+SKU104,West Coast Coord Set,2023-04-17,7,4,Monday,0
+SKU106,arctic block tracksuit,2023-04-17,3,4,Monday,0
+SKU110,oversized justin coord set,2023-04-17,2,4,Monday,0
+SKU104,West Coast Coord Set,2023-04-18,3,4,Tuesday,0
+SKU103,Studio Coord Set,2023-04-19,4,4,Wednesday,0
+SKU110,oversized justin coord set,2023-04-19,1,4,Wednesday,0
+SKU102,Kross Coord set,2023-04-20,1,4,Thursday,0
+SKU103,Studio Coord Set,2023-04-20,7,4,Thursday,0
+SKU102,Kross Coord set,2023-04-21,1,4,Friday,0
+SKU107,varsity voyage coord set,2023-04-21,1,4,Friday,0
+SKU109,aeroslate coord set,2023-04-21,3,4,Friday,0
+SKU110,oversized justin coord set,2023-04-21,1,4,Friday,0
+SKU102,Kross Coord set,2023-04-22,3,4,Saturday,1
+SKU104,West Coast Coord Set,2023-04-22,7,4,Saturday,1
+SKU110,oversized justin coord set,2023-04-22,2,4,Saturday,1
+SKU106,arctic block tracksuit,2023-04-23,5,4,Sunday,1
+SKU105,calm trail look,2023-04-24,1,4,Monday,0
+SKU107,varsity voyage coord set,2023-04-24,1,4,Monday,0
+SKU102,Kross Coord set,2023-04-25,3,4,Tuesday,0
+SKU103,Studio Coord Set,2023-04-25,4,4,Tuesday,0
+SKU104,West Coast Coord Set,2023-04-25,1,4,Tuesday,0
+SKU102,Kross Coord set,2023-04-26,1,4,Wednesday,0
+SKU104,West Coast Coord Set,2023-04-26,3,4,Wednesday,0
+SKU105,calm trail look,2023-04-26,1,4,Wednesday,0
+SKU102,Kross Coord set,2023-04-27,1,4,Thursday,0
+SKU103,Studio Coord Set,2023-04-27,1,4,Thursday,0
+SKU105,calm trail look,2023-04-27,1,4,Thursday,0
+SKU108,elevate scuba tracksuit,2023-04-27,5,4,Thursday,0
+SKU109,aeroslate coord set,2023-04-27,1,4,Thursday,0
+SKU103,Studio Coord Set,2023-04-28,1,4,Friday,0
+SKU107,varsity voyage coord set,2023-04-28,3,4,Friday,0
+SKU109,aeroslate coord set,2023-04-28,3,4,Friday,0
+SKU109,aeroslate coord set,2023-04-29,1,4,Saturday,1
+SKU110,oversized justin coord set,2023-04-29,1,4,Saturday,1
+SKU102,Kross Coord set,2023-04-30,1,4,Sunday,1
+SKU107,varsity voyage coord set,2023-04-30,4,4,Sunday,1
+SKU101,Skeleton science embroidery sweatshirt,2023-05-01,1,5,Monday,0
+SKU102,Kross Coord set,2023-05-01,1,5,Monday,0
+SKU110,oversized justin coord set,2023-05-01,1,5,Monday,0
+SKU102,Kross Coord set,2023-05-02,1,5,Tuesday,0
+SKU103,Studio Coord Set,2023-05-02,1,5,Tuesday,0
+SKU105,calm trail look,2023-05-02,2,5,Tuesday,0
+SKU103,Studio Coord Set,2023-05-03,1,5,Wednesday,0
+SKU109,aeroslate coord set,2023-05-03,4,5,Wednesday,0
+SKU110,oversized justin coord set,2023-05-04,1,5,Thursday,0
+SKU110,oversized justin coord set,2023-05-05,10,5,Friday,0
+SKU102,Kross Coord set,2023-05-06,1,5,Saturday,1
+SKU103,Studio Coord Set,2023-05-06,4,5,Saturday,1
+SKU104,West Coast Coord Set,2023-05-06,4,5,Saturday,1
+SKU107,varsity voyage coord set,2023-05-06,1,5,Saturday,1
+SKU110,oversized justin coord set,2023-05-06,1,5,Saturday,1
+SKU102,Kross Coord set,2023-05-07,4,5,Sunday,1
+SKU103,Studio Coord Set,2023-05-07,1,5,Sunday,1
+SKU102,Kross Coord set,2023-05-08,3,5,Monday,0
+SKU104,West Coast Coord Set,2023-05-08,3,5,Monday,0
+SKU107,varsity voyage coord set,2023-05-08,1,5,Monday,0
+SKU107,varsity voyage coord set,2023-05-09,3,5,Tuesday,0
+SKU102,Kross Coord set,2023-05-10,1,5,Wednesday,0
+SKU103,Studio Coord Set,2023-05-10,1,5,Wednesday,0
+SKU109,aeroslate coord set,2023-05-10,1,5,Wednesday,0
+SKU102,Kross Coord set,2023-05-11,1,5,Thursday,0
+SKU110,oversized justin coord set,2023-05-11,10,5,Thursday,0
+SKU102,Kross Coord set,2023-05-12,1,5,Friday,0
+SKU104,West Coast Coord Set,2023-05-12,3,5,Friday,0
+SKU104,West Coast Coord Set,2023-05-13,1,5,Saturday,1
+SKU103,Studio Coord Set,2023-05-14,1,5,Sunday,1
+SKU104,West Coast Coord Set,2023-05-14,7,5,Sunday,1
+SKU109,aeroslate coord set,2023-05-14,3,5,Sunday,1
+SKU104,West Coast Coord Set,2023-05-15,1,5,Monday,0
+SKU107,varsity voyage coord set,2023-05-15,3,5,Monday,0
+SKU108,elevate scuba tracksuit,2023-05-15,2,5,Monday,0
+SKU102,Kross Coord set,2023-05-16,1,5,Tuesday,0
+SKU109,aeroslate coord set,2023-05-16,7,5,Tuesday,0
+SKU104,West Coast Coord Set,2023-05-17,1,5,Wednesday,0
+SKU103,Studio Coord Set,2023-05-18,3,5,Thursday,0
+SKU107,varsity voyage coord set,2023-05-18,1,5,Thursday,0
+SKU102,Kross Coord set,2023-05-19,3,5,Friday,0
+SKU103,Studio Coord Set,2023-05-19,1,5,Friday,0
+SKU102,Kross Coord set,2023-05-20,4,5,Saturday,1
+SKU103,Studio Coord Set,2023-05-20,1,5,Saturday,1
+SKU109,aeroslate coord set,2023-05-20,1,5,Saturday,1
+SKU103,Studio Coord Set,2023-05-21,4,5,Sunday,1
+SKU104,West Coast Coord Set,2023-05-21,3,5,Sunday,1
+SKU105,calm trail look,2023-05-21,3,5,Sunday,1
+SKU107,varsity voyage coord set,2023-05-21,4,5,Sunday,1
+SKU109,aeroslate coord set,2023-05-21,1,5,Sunday,1
+SKU110,oversized justin coord set,2023-05-21,1,5,Sunday,1
+SKU102,Kross Coord set,2023-05-22,1,5,Monday,0
+SKU103,Studio Coord Set,2023-05-23,1,5,Tuesday,0
+SKU107,varsity voyage coord set,2023-05-23,1,5,Tuesday,0
+SKU109,aeroslate coord set,2023-05-23,1,5,Tuesday,0
+SKU110,oversized justin coord set,2023-05-23,1,5,Tuesday,0
+SKU103,Studio Coord Set,2023-05-24,3,5,Wednesday,0
+SKU103,Studio Coord Set,2023-05-25,3,5,Thursday,0
+SKU104,West Coast Coord Set,2023-05-25,1,5,Thursday,0
+SKU107,varsity voyage coord set,2023-05-25,1,5,Thursday,0
+SKU107,varsity voyage coord set,2023-05-26,1,5,Friday,0
+SKU102,Kross Coord set,2023-05-27,1,5,Saturday,1
+SKU104,West Coast Coord Set,2023-05-27,1,5,Saturday,1
+SKU109,aeroslate coord set,2023-05-27,1,5,Saturday,1
+SKU110,oversized justin coord set,2023-05-27,2,5,Saturday,1
+SKU102,Kross Coord set,2023-05-28,1,5,Sunday,1
+SKU104,West Coast Coord Set,2023-05-28,1,5,Sunday,1
+SKU107,varsity voyage coord set,2023-05-28,1,5,Sunday,1
+SKU110,oversized justin coord set,2023-05-28,1,5,Sunday,1
+SKU104,West Coast Coord Set,2023-05-29,1,5,Monday,0
+SKU102,Kross Coord set,2023-05-30,3,5,Tuesday,0
+SKU105,calm trail look,2023-05-30,2,5,Tuesday,0
+SKU107,varsity voyage coord set,2023-05-30,3,5,Tuesday,0
+SKU109,aeroslate coord set,2023-05-30,3,5,Tuesday,0
+SKU104,West Coast Coord Set,2023-05-31,7,5,Wednesday,0
+SKU105,calm trail look,2023-05-31,1,5,Wednesday,0
+SKU107,varsity voyage coord set,2023-05-31,3,5,Wednesday,0
+SKU109,aeroslate coord set,2023-05-31,1,5,Wednesday,0
+SKU103,Studio Coord Set,2023-06-01,2,6,Thursday,0
+SKU104,West Coast Coord Set,2023-06-01,2,6,Thursday,0
+SKU105,calm trail look,2023-06-01,1,6,Thursday,0
+SKU102,Kross Coord set,2023-06-02,2,6,Friday,0
+SKU103,Studio Coord Set,2023-06-02,3,6,Friday,0
+SKU107,varsity voyage coord set,2023-06-02,1,6,Friday,0
+SKU109,aeroslate coord set,2023-06-02,2,6,Friday,0
+SKU104,West Coast Coord Set,2023-06-03,1,6,Saturday,1
+SKU110,oversized justin coord set,2023-06-03,2,6,Saturday,1
+SKU107,varsity voyage coord set,2023-06-04,1,6,Sunday,1
+SKU109,aeroslate coord set,2023-06-04,1,6,Sunday,1
+SKU110,oversized justin coord set,2023-06-04,1,6,Sunday,1
+SKU102,Kross Coord set,2023-06-06,5,6,Tuesday,0
+SKU103,Studio Coord Set,2023-06-06,1,6,Tuesday,0
+SKU110,oversized justin coord set,2023-06-07,2,6,Wednesday,0
+SKU103,Studio Coord Set,2023-06-08,1,6,Thursday,0
+SKU109,aeroslate coord set,2023-06-08,1,6,Thursday,0
+SKU102,Kross Coord set,2023-06-09,2,6,Friday,0
+SKU103,Studio Coord Set,2023-06-09,1,6,Friday,0
+SKU109,aeroslate coord set,2023-06-09,2,6,Friday,0
+SKU102,Kross Coord set,2023-06-11,1,6,Sunday,1
+SKU103,Studio Coord Set,2023-06-11,1,6,Sunday,1
+SKU105,calm trail look,2023-06-11,1,6,Sunday,1
+SKU107,varsity voyage coord set,2023-06-11,3,6,Sunday,1
+SKU109,aeroslate coord set,2023-06-11,1,6,Sunday,1
+SKU103,Studio Coord Set,2023-06-12,3,6,Monday,0
+SKU104,West Coast Coord Set,2023-06-12,2,6,Monday,0
+SKU109,aeroslate coord set,2023-06-12,1,6,Monday,0
+SKU102,Kross Coord set,2023-06-13,5,6,Tuesday,0
+SKU103,Studio Coord Set,2023-06-13,1,6,Tuesday,0
+SKU104,West Coast Coord Set,2023-06-13,5,6,Tuesday,0
+SKU109,aeroslate coord set,2023-06-13,1,6,Tuesday,0
+SKU110,oversized justin coord set,2023-06-13,5,6,Tuesday,0
+SKU104,West Coast Coord Set,2023-06-14,1,6,Wednesday,0
+SKU107,varsity voyage coord set,2023-06-14,1,6,Wednesday,0
+SKU102,Kross Coord set,2023-06-15,1,6,Thursday,0
+SKU107,varsity voyage coord set,2023-06-15,2,6,Thursday,0
+SKU103,Studio Coord Set,2023-06-16,2,6,Friday,0
+SKU107,varsity voyage coord set,2023-06-16,1,6,Friday,0
+SKU102,Kross Coord set,2023-06-17,1,6,Saturday,1
+SKU103,Studio Coord Set,2023-06-17,2,6,Saturday,1
+SKU104,West Coast Coord Set,2023-06-17,3,6,Saturday,1
+SKU107,varsity voyage coord set,2023-06-17,1,6,Saturday,1
+SKU109,aeroslate coord set,2023-06-17,2,6,Saturday,1
+SKU110,oversized justin coord set,2023-06-17,1,6,Saturday,1
+SKU102,Kross Coord set,2023-06-18,1,6,Sunday,1
+SKU104,West Coast Coord Set,2023-06-18,10,6,Sunday,1
+SKU107,varsity voyage coord set,2023-06-18,1,6,Sunday,1
+SKU110,oversized justin coord set,2023-06-18,1,6,Sunday,1
+SKU104,West Coast Coord Set,2023-06-19,2,6,Monday,0
+SKU110,oversized justin coord set,2023-06-19,2,6,Monday,0
+SKU102,Kross Coord set,2023-06-20,1,6,Tuesday,0
+SKU104,West Coast Coord Set,2023-06-20,1,6,Tuesday,0
+SKU107,varsity voyage coord set,2023-06-20,1,6,Tuesday,0
+SKU102,Kross Coord set,2023-06-21,1,6,Wednesday,0
+SKU107,varsity voyage coord set,2023-06-21,1,6,Wednesday,0
+SKU109,aeroslate coord set,2023-06-21,5,6,Wednesday,0
+SKU110,oversized justin coord set,2023-06-21,1,6,Wednesday,0
+SKU102,Kross Coord set,2023-06-23,1,6,Friday,0
+SKU103,Studio Coord Set,2023-06-23,1,6,Friday,0
+SKU110,oversized justin coord set,2023-06-23,10,6,Friday,0
+SKU102,Kross Coord set,2023-06-24,5,6,Saturday,1
+SKU107,varsity voyage coord set,2023-06-24,1,6,Saturday,1
+SKU104,West Coast Coord Set,2023-06-25,5,6,Sunday,1
+SKU105,calm trail look,2023-06-25,2,6,Sunday,1
+SKU109,aeroslate coord set,2023-06-25,2,6,Sunday,1
+SKU110,oversized justin coord set,2023-06-25,2,6,Sunday,1
+SKU103,Studio Coord Set,2023-06-27,1,6,Tuesday,0
+SKU107,varsity voyage coord set,2023-06-27,3,6,Tuesday,0
+SKU109,aeroslate coord set,2023-06-27,1,6,Tuesday,0
+SKU110,oversized justin coord set,2023-06-27,1,6,Tuesday,0
+SKU102,Kross Coord set,2023-06-28,1,6,Wednesday,0
+SKU103,Studio Coord Set,2023-06-28,2,6,Wednesday,0
+SKU107,varsity voyage coord set,2023-06-28,2,6,Wednesday,0
+SKU103,Studio Coord Set,2023-06-29,1,6,Thursday,0
+SKU105,calm trail look,2023-06-29,2,6,Thursday,0
+SKU103,Studio Coord Set,2023-06-30,2,6,Friday,0
+SKU105,calm trail look,2023-06-30,1,6,Friday,0
+SKU107,varsity voyage coord set,2023-06-30,3,6,Friday,0
+SKU102,Kross Coord set,2023-07-02,3,7,Sunday,1
+SKU102,Kross Coord set,2023-07-06,2,7,Thursday,0
+SKU110,oversized justin coord set,2023-07-06,1,7,Thursday,0
+SKU102,Kross Coord set,2023-07-08,2,7,Saturday,1
+SKU105,calm trail look,2023-07-08,2,7,Saturday,1
+SKU107,varsity voyage coord set,2023-07-13,2,7,Thursday,0
+SKU110,oversized justin coord set,2023-07-14,1,7,Friday,0
+SKU105,calm trail look,2023-07-19,2,7,Wednesday,0
+SKU110,oversized justin coord set,2023-07-19,1,7,Wednesday,0
+SKU110,oversized justin coord set,2023-07-21,1,7,Friday,0
+SKU102,Kross Coord set,2023-07-22,1,7,Saturday,1
+SKU110,oversized justin coord set,2023-07-26,3,7,Wednesday,0
+SKU110,oversized justin coord set,2023-07-28,2,7,Friday,0
+SKU110,oversized justin coord set,2023-07-31,1,7,Monday,0
+SKU107,varsity voyage coord set,2023-08-01,2,8,Tuesday,0
+SKU104,West Coast Coord Set,2023-08-03,3,8,Thursday,0
+SKU104,West Coast Coord Set,2023-08-04,1,8,Friday,0
+SKU103,Studio Coord Set,2023-08-05,3,8,Saturday,1
+SKU110,oversized justin coord set,2023-08-08,1,8,Tuesday,0
+SKU107,varsity voyage coord set,2023-08-10,2,8,Thursday,0
+SKU105,calm trail look,2023-08-11,3,8,Friday,0
+SKU105,calm trail look,2023-08-12,2,8,Saturday,1
+SKU107,varsity voyage coord set,2023-08-13,3,8,Sunday,1
+SKU106,arctic block tracksuit,2023-08-15,3,8,Tuesday,0
+SKU107,varsity voyage coord set,2023-08-15,1,8,Tuesday,0
+SKU110,oversized justin coord set,2023-08-16,3,8,Wednesday,0
+SKU102,Kross Coord set,2023-08-20,1,8,Sunday,1
+SKU105,calm trail look,2023-08-21,1,8,Monday,0
+SKU102,Kross Coord set,2023-08-23,1,8,Wednesday,0
+SKU103,Studio Coord Set,2023-08-25,1,8,Friday,0
+SKU110,oversized justin coord set,2023-08-25,1,8,Friday,0
+SKU103,Studio Coord Set,2023-08-26,1,8,Saturday,1
+SKU110,oversized justin coord set,2023-08-26,1,8,Saturday,1
+SKU105,calm trail look,2023-08-27,3,8,Sunday,1
+SKU109,aeroslate coord set,2023-08-28,2,8,Monday,0
+SKU107,varsity voyage coord set,2023-08-29,2,8,Tuesday,0
+SKU110,oversized justin coord set,2023-08-29,1,8,Tuesday,0
+SKU107,varsity voyage coord set,2023-08-31,1,8,Thursday,0
+SKU110,oversized justin coord set,2023-08-31,1,8,Thursday,0
+SKU105,calm trail look,2023-09-01,1,9,Friday,0
+SKU105,calm trail look,2023-09-02,5,9,Saturday,1
+SKU106,arctic block tracksuit,2023-09-02,1,9,Saturday,1
+SKU107,varsity voyage coord set,2023-09-04,5,9,Monday,0
+SKU105,calm trail look,2023-09-05,10,9,Tuesday,0
+SKU110,oversized justin coord set,2023-09-05,1,9,Tuesday,0
+SKU105,calm trail look,2023-09-07,1,9,Thursday,0
+SKU107,varsity voyage coord set,2023-09-07,3,9,Thursday,0
+SKU110,oversized justin coord set,2023-09-09,1,9,Saturday,1
+SKU101,Skeleton science embroidery sweatshirt,2023-09-11,10,9,Monday,0
+SKU104,West Coast Coord Set,2023-09-11,1,9,Monday,0
+SKU104,West Coast Coord Set,2023-09-12,1,9,Tuesday,0
+SKU101,Skeleton science embroidery sweatshirt,2023-09-13,5,9,Wednesday,0
+SKU110,oversized justin coord set,2023-09-13,1,9,Wednesday,0
+SKU108,elevate scuba tracksuit,2023-09-15,1,9,Friday,0
+SKU110,oversized justin coord set,2023-09-15,1,9,Friday,0
+SKU110,oversized justin coord set,2023-09-16,2,9,Saturday,1
+SKU103,Studio Coord Set,2023-09-17,5,9,Sunday,1
+SKU110,oversized justin coord set,2023-09-18,1,9,Monday,0
+SKU106,arctic block tracksuit,2023-09-19,1,9,Tuesday,0
+SKU110,oversized justin coord set,2023-09-19,10,9,Tuesday,0
+SKU107,varsity voyage coord set,2023-09-23,1,9,Saturday,1
+SKU105,calm trail look,2023-09-24,1,9,Sunday,1
+SKU108,elevate scuba tracksuit,2023-09-27,1,9,Wednesday,0
+SKU110,oversized justin coord set,2023-09-28,1,9,Thursday,0
+SKU103,Studio Coord Set,2023-09-29,1,9,Friday,0
+SKU104,West Coast Coord Set,2023-09-29,2,9,Friday,0
+SKU102,Kross Coord set,2023-09-30,2,9,Saturday,1
+SKU110,oversized justin coord set,2023-09-30,1,9,Saturday,1
+SKU103,Studio Coord Set,2023-10-01,20,10,Sunday,1
+SKU105,calm trail look,2023-10-01,4,10,Sunday,1
+SKU110,oversized justin coord set,2023-10-01,2,10,Sunday,1
+SKU101,Skeleton science embroidery sweatshirt,2023-10-02,4,10,Monday,0
+SKU103,Studio Coord Set,2023-10-02,6,10,Monday,0
+SKU105,calm trail look,2023-10-02,2,10,Monday,0
+SKU106,arctic block tracksuit,2023-10-02,6,10,Monday,0
+SKU110,oversized justin coord set,2023-10-02,2,10,Monday,0
+SKU110,oversized justin coord set,2023-10-03,4,10,Tuesday,0
+SKU105,calm trail look,2023-10-04,2,10,Wednesday,0
+SKU107,varsity voyage coord set,2023-10-04,4,10,Wednesday,0
+SKU108,elevate scuba tracksuit,2023-10-04,2,10,Wednesday,0
+SKU105,calm trail look,2023-10-05,6,10,Thursday,0
+SKU110,oversized justin coord set,2023-10-05,10,10,Thursday,0
+SKU110,oversized justin coord set,2023-10-06,2,10,Friday,0
+SKU101,Skeleton science embroidery sweatshirt,2023-10-07,6,10,Saturday,1
+SKU105,calm trail look,2023-10-07,2,10,Saturday,1
+SKU110,oversized justin coord set,2023-10-07,2,10,Saturday,1
+SKU101,Skeleton science embroidery sweatshirt,2023-10-08,4,10,Sunday,1
+SKU103,Studio Coord Set,2023-10-08,2,10,Sunday,1
+SKU105,calm trail look,2023-10-08,2,10,Sunday,1
+SKU110,oversized justin coord set,2023-10-08,4,10,Sunday,1
+SKU105,calm trail look,2023-10-09,6,10,Monday,0
+SKU110,oversized justin coord set,2023-10-09,20,10,Monday,0
+SKU105,calm trail look,2023-10-10,2,10,Tuesday,0
+SKU110,oversized justin coord set,2023-10-10,10,10,Tuesday,0
+SKU103,Studio Coord Set,2023-10-11,2,10,Wednesday,0
+SKU105,calm trail look,2023-10-11,2,10,Wednesday,0
+SKU107,varsity voyage coord set,2023-10-11,4,10,Wednesday,0
+SKU110,oversized justin coord set,2023-10-11,6,10,Wednesday,0
+SKU105,calm trail look,2023-10-12,2,10,Thursday,0
+SKU101,Skeleton science embroidery sweatshirt,2023-10-13,2,10,Friday,0
+SKU103,Studio Coord Set,2023-10-13,2,10,Friday,0
+SKU105,calm trail look,2023-10-13,2,10,Friday,0
+SKU110,oversized justin coord set,2023-10-13,2,10,Friday,0
+SKU104,West Coast Coord Set,2023-10-14,10,10,Saturday,1
+SKU105,calm trail look,2023-10-14,4,10,Saturday,1
+SKU102,Kross Coord set,2023-10-15,10,10,Sunday,1
+SKU105,calm trail look,2023-10-15,4,10,Sunday,1
+SKU110,oversized justin coord set,2023-10-15,2,10,Sunday,1
+SKU105,calm trail look,2023-10-16,2,10,Monday,0
+SKU105,calm trail look,2023-10-17,2,10,Tuesday,0
+SKU110,oversized justin coord set,2023-10-17,6,10,Tuesday,0
+SKU105,calm trail look,2023-10-18,4,10,Wednesday,0
+SKU110,oversized justin coord set,2023-10-18,2,10,Wednesday,0
+SKU104,West Coast Coord Set,2023-10-19,2,10,Thursday,0
+SKU105,calm trail look,2023-10-19,10,10,Thursday,0
+SKU110,oversized justin coord set,2023-10-19,2,10,Thursday,0
+SKU104,West Coast Coord Set,2023-10-20,2,10,Friday,0
+SKU105,calm trail look,2023-10-20,2,10,Friday,0
+SKU110,oversized justin coord set,2023-10-20,10,10,Friday,0
+SKU105,calm trail look,2023-10-21,2,10,Saturday,1
+SKU110,oversized justin coord set,2023-10-21,6,10,Saturday,1
+SKU103,Studio Coord Set,2023-10-22,2,10,Sunday,1
+SKU105,calm trail look,2023-10-22,6,10,Sunday,1
+SKU110,oversized justin coord set,2023-10-22,20,10,Sunday,1
+SKU105,calm trail look,2023-10-23,4,10,Monday,0
+SKU106,arctic block tracksuit,2023-10-23,4,10,Monday,0
+SKU110,oversized justin coord set,2023-10-23,4,10,Monday,0
+SKU105,calm trail look,2023-10-24,2,10,Tuesday,0
+SKU105,calm trail look,2023-10-25,2,10,Wednesday,0
+SKU110,oversized justin coord set,2023-10-25,2,10,Wednesday,0
+SKU105,calm trail look,2023-10-26,2,10,Thursday,0
+SKU110,oversized justin coord set,2023-10-26,2,10,Thursday,0
+SKU105,calm trail look,2023-10-27,2,10,Friday,0
+SKU110,oversized justin coord set,2023-10-27,2,10,Friday,0
+SKU102,Kross Coord set,2023-10-28,2,10,Saturday,1
+SKU104,West Coast Coord Set,2023-10-28,4,10,Saturday,1
+SKU105,calm trail look,2023-10-28,4,10,Saturday,1
+SKU110,oversized justin coord set,2023-10-28,2,10,Saturday,1
+SKU105,calm trail look,2023-10-29,2,10,Sunday,1
+SKU110,oversized justin coord set,2023-10-29,4,10,Sunday,1
+SKU102,Kross Coord set,2023-10-30,4,10,Monday,0
+SKU103,Studio Coord Set,2023-10-30,2,10,Monday,0
+SKU105,calm trail look,2023-10-30,4,10,Monday,0
+SKU110,oversized justin coord set,2023-10-30,2,10,Monday,0
+SKU105,calm trail look,2023-10-31,2,10,Tuesday,0
+SKU107,varsity voyage coord set,2023-10-31,2,10,Tuesday,0
+SKU108,elevate scuba tracksuit,2023-10-31,2,10,Tuesday,0
+SKU110,oversized justin coord set,2023-10-31,2,10,Tuesday,0
+SKU101,Skeleton science embroidery sweatshirt,2023-11-01,2,11,Wednesday,0
+SKU105,calm trail look,2023-11-01,2,11,Wednesday,0
+SKU106,arctic block tracksuit,2023-11-01,4,11,Wednesday,0
+SKU110,oversized justin coord set,2023-11-01,2,11,Wednesday,0
+SKU101,Skeleton science embroidery sweatshirt,2023-11-02,20,11,Thursday,0
+SKU105,calm trail look,2023-11-02,4,11,Thursday,0
+SKU106,arctic block tracksuit,2023-11-02,4,11,Thursday,0
+SKU108,elevate scuba tracksuit,2023-11-02,10,11,Thursday,0
+SKU110,oversized justin coord set,2023-11-02,4,11,Thursday,0
+SKU101,Skeleton science embroidery sweatshirt,2023-11-03,2,11,Friday,0
+SKU105,calm trail look,2023-11-03,2,11,Friday,0
+SKU108,elevate scuba tracksuit,2023-11-03,2,11,Friday,0
+SKU110,oversized justin coord set,2023-11-03,10,11,Friday,0
+SKU101,Skeleton science embroidery sweatshirt,2023-11-04,4,11,Saturday,1
+SKU105,calm trail look,2023-11-04,4,11,Saturday,1
+SKU106,arctic block tracksuit,2023-11-04,10,11,Saturday,1
+SKU108,elevate scuba tracksuit,2023-11-04,2,11,Saturday,1
+SKU110,oversized justin coord set,2023-11-04,2,11,Saturday,1
+SKU101,Skeleton science embroidery sweatshirt,2023-11-05,10,11,Sunday,1
+SKU104,West Coast Coord Set,2023-11-05,10,11,Sunday,1
+SKU105,calm trail look,2023-11-05,2,11,Sunday,1
+SKU106,arctic block tracksuit,2023-11-05,2,11,Sunday,1
+SKU108,elevate scuba tracksuit,2023-11-05,2,11,Sunday,1
+SKU110,oversized justin coord set,2023-11-05,2,11,Sunday,1
+SKU101,Skeleton science embroidery sweatshirt,2023-11-06,2,11,Monday,0
+SKU105,calm trail look,2023-11-06,2,11,Monday,0
+SKU108,elevate scuba tracksuit,2023-11-06,2,11,Monday,0
+SKU110,oversized justin coord set,2023-11-06,2,11,Monday,0
+SKU101,Skeleton science embroidery sweatshirt,2023-11-07,4,11,Tuesday,0
+SKU105,calm trail look,2023-11-07,2,11,Tuesday,0
+SKU106,arctic block tracksuit,2023-11-07,6,11,Tuesday,0
+SKU108,elevate scuba tracksuit,2023-11-07,2,11,Tuesday,0
+SKU110,oversized justin coord set,2023-11-07,2,11,Tuesday,0
+SKU101,Skeleton science embroidery sweatshirt,2023-11-08,6,11,Wednesday,0
+SKU105,calm trail look,2023-11-08,2,11,Wednesday,0
+SKU108,elevate scuba tracksuit,2023-11-08,2,11,Wednesday,0
+SKU110,oversized justin coord set,2023-11-08,2,11,Wednesday,0
+SKU101,Skeleton science embroidery sweatshirt,2023-11-09,10,11,Thursday,0
+SKU105,calm trail look,2023-11-09,6,11,Thursday,0
+SKU108,elevate scuba tracksuit,2023-11-09,4,11,Thursday,0
+SKU105,calm trail look,2023-11-10,4,11,Friday,0
+SKU106,arctic block tracksuit,2023-11-10,4,11,Friday,0
+SKU108,elevate scuba tracksuit,2023-11-10,2,11,Friday,0
+SKU110,oversized justin coord set,2023-11-10,4,11,Friday,0
+SKU101,Skeleton science embroidery sweatshirt,2023-11-11,2,11,Saturday,1
+SKU106,arctic block tracksuit,2023-11-11,2,11,Saturday,1
+SKU108,elevate scuba tracksuit,2023-11-11,2,11,Saturday,1
+SKU110,oversized justin coord set,2023-11-11,2,11,Saturday,1
+SKU101,Skeleton science embroidery sweatshirt,2023-11-12,10,11,Sunday,1
+SKU102,Kross Coord set,2023-11-12,2,11,Sunday,1
+SKU105,calm trail look,2023-11-12,4,11,Sunday,1
+SKU106,arctic block tracksuit,2023-11-12,2,11,Sunday,1
+SKU108,elevate scuba tracksuit,2023-11-12,2,11,Sunday,1
+SKU110,oversized justin coord set,2023-11-12,2,11,Sunday,1
+SKU101,Skeleton science embroidery sweatshirt,2023-11-13,2,11,Monday,0
+SKU106,arctic block tracksuit,2023-11-13,4,11,Monday,0
+SKU108,elevate scuba tracksuit,2023-11-13,6,11,Monday,0
+SKU110,oversized justin coord set,2023-11-13,6,11,Monday,0
+SKU101,Skeleton science embroidery sweatshirt,2023-11-14,6,11,Tuesday,0
+SKU105,calm trail look,2023-11-14,4,11,Tuesday,0
+SKU106,arctic block tracksuit,2023-11-14,2,11,Tuesday,0
+SKU108,elevate scuba tracksuit,2023-11-14,6,11,Tuesday,0
+SKU110,oversized justin coord set,2023-11-14,2,11,Tuesday,0
+SKU101,Skeleton science embroidery sweatshirt,2023-11-15,2,11,Wednesday,0
+SKU105,calm trail look,2023-11-15,4,11,Wednesday,0
+SKU106,arctic block tracksuit,2023-11-15,6,11,Wednesday,0
+SKU108,elevate scuba tracksuit,2023-11-15,2,11,Wednesday,0
+SKU110,oversized justin coord set,2023-11-15,20,11,Wednesday,0
+SKU105,calm trail look,2023-11-16,20,11,Thursday,0
+SKU106,arctic block tracksuit,2023-11-16,2,11,Thursday,0
+SKU108,elevate scuba tracksuit,2023-11-16,2,11,Thursday,0
+SKU110,oversized justin coord set,2023-11-16,4,11,Thursday,0
+SKU101,Skeleton science embroidery sweatshirt,2023-11-17,6,11,Friday,0
+SKU105,calm trail look,2023-11-17,2,11,Friday,0
+SKU108,elevate scuba tracksuit,2023-11-17,2,11,Friday,0
+SKU110,oversized justin coord set,2023-11-17,4,11,Friday,0
+SKU101,Skeleton science embroidery sweatshirt,2023-11-18,2,11,Saturday,1
+SKU105,calm trail look,2023-11-18,2,11,Saturday,1
+SKU106,arctic block tracksuit,2023-11-18,4,11,Saturday,1
+SKU108,elevate scuba tracksuit,2023-11-18,2,11,Saturday,1
+SKU110,oversized justin coord set,2023-11-18,2,11,Saturday,1
+SKU101,Skeleton science embroidery sweatshirt,2023-11-19,4,11,Sunday,1
+SKU105,calm trail look,2023-11-19,2,11,Sunday,1
+SKU106,arctic block tracksuit,2023-11-19,10,11,Sunday,1
+SKU110,oversized justin coord set,2023-11-19,6,11,Sunday,1
+SKU101,Skeleton science embroidery sweatshirt,2023-11-20,2,11,Monday,0
+SKU105,calm trail look,2023-11-20,2,11,Monday,0
+SKU106,arctic block tracksuit,2023-11-20,6,11,Monday,0
+SKU108,elevate scuba tracksuit,2023-11-20,2,11,Monday,0
+SKU110,oversized justin coord set,2023-11-20,4,11,Monday,0
+SKU101,Skeleton science embroidery sweatshirt,2023-11-21,2,11,Tuesday,0
+SKU106,arctic block tracksuit,2023-11-21,4,11,Tuesday,0
+SKU108,elevate scuba tracksuit,2023-11-21,2,11,Tuesday,0
+SKU110,oversized justin coord set,2023-11-21,2,11,Tuesday,0
+SKU106,arctic block tracksuit,2023-11-22,2,11,Wednesday,0
+SKU108,elevate scuba tracksuit,2023-11-22,2,11,Wednesday,0
+SKU110,oversized justin coord set,2023-11-22,4,11,Wednesday,0
+SKU101,Skeleton science embroidery sweatshirt,2023-11-23,2,11,Thursday,0
+SKU106,arctic block tracksuit,2023-11-23,10,11,Thursday,0
+SKU108,elevate scuba tracksuit,2023-11-23,2,11,Thursday,0
+SKU109,aeroslate coord set,2023-11-23,4,11,Thursday,0
+SKU110,oversized justin coord set,2023-11-23,2,11,Thursday,0
+SKU105,calm trail look,2023-11-24,4,11,Friday,0
+SKU107,varsity voyage coord set,2023-11-24,20,11,Friday,0
+SKU108,elevate scuba tracksuit,2023-11-24,4,11,Friday,0
+SKU110,oversized justin coord set,2023-11-24,2,11,Friday,0
+SKU101,Skeleton science embroidery sweatshirt,2023-11-25,2,11,Saturday,1
+SKU104,West Coast Coord Set,2023-11-25,4,11,Saturday,1
+SKU105,calm trail look,2023-11-25,10,11,Saturday,1
+SKU106,arctic block tracksuit,2023-11-25,2,11,Saturday,1
+SKU108,elevate scuba tracksuit,2023-11-25,2,11,Saturday,1
+SKU110,oversized justin coord set,2023-11-25,6,11,Saturday,1
+SKU101,Skeleton science embroidery sweatshirt,2023-11-26,6,11,Sunday,1
+SKU105,calm trail look,2023-11-26,20,11,Sunday,1
+SKU106,arctic block tracksuit,2023-11-26,2,11,Sunday,1
+SKU108,elevate scuba tracksuit,2023-11-26,2,11,Sunday,1
+SKU110,oversized justin coord set,2023-11-26,2,11,Sunday,1
+SKU101,Skeleton science embroidery sweatshirt,2023-11-27,2,11,Monday,0
+SKU105,calm trail look,2023-11-27,4,11,Monday,0
+SKU106,arctic block tracksuit,2023-11-27,4,11,Monday,0
+SKU108,elevate scuba tracksuit,2023-11-27,4,11,Monday,0
+SKU110,oversized justin coord set,2023-11-27,2,11,Monday,0
+SKU101,Skeleton science embroidery sweatshirt,2023-11-28,4,11,Tuesday,0
+SKU105,calm trail look,2023-11-28,10,11,Tuesday,0
+SKU106,arctic block tracksuit,2023-11-28,10,11,Tuesday,0
+SKU108,elevate scuba tracksuit,2023-11-28,2,11,Tuesday,0
+SKU110,oversized justin coord set,2023-11-28,2,11,Tuesday,0
+SKU106,arctic block tracksuit,2023-11-29,2,11,Wednesday,0
+SKU108,elevate scuba tracksuit,2023-11-29,20,11,Wednesday,0
+SKU110,oversized justin coord set,2023-11-29,2,11,Wednesday,0
+SKU101,Skeleton science embroidery sweatshirt,2023-11-30,4,11,Thursday,0
+SKU105,calm trail look,2023-11-30,10,11,Thursday,0
+SKU106,arctic block tracksuit,2023-11-30,2,11,Thursday,0
+SKU108,elevate scuba tracksuit,2023-11-30,2,11,Thursday,0
+SKU101,Skeleton science embroidery sweatshirt,2023-12-01,1,12,Friday,0
+SKU110,oversized justin coord set,2023-12-01,2,12,Friday,0
+SKU105,calm trail look,2023-12-02,1,12,Saturday,1
+SKU108,elevate scuba tracksuit,2023-12-02,1,12,Saturday,1
+SKU101,Skeleton science embroidery sweatshirt,2023-12-03,1,12,Sunday,1
+SKU106,arctic block tracksuit,2023-12-03,1,12,Sunday,1
+SKU108,elevate scuba tracksuit,2023-12-03,4,12,Sunday,1
+SKU101,Skeleton science embroidery sweatshirt,2023-12-04,3,12,Monday,0
+SKU101,Skeleton science embroidery sweatshirt,2023-12-05,15,12,Tuesday,0
+SKU106,arctic block tracksuit,2023-12-05,1,12,Tuesday,0
+SKU106,arctic block tracksuit,2023-12-06,1,12,Wednesday,0
+SKU107,varsity voyage coord set,2023-12-07,1,12,Thursday,0
+SKU108,elevate scuba tracksuit,2023-12-07,1,12,Thursday,0
+SKU106,arctic block tracksuit,2023-12-08,7,12,Friday,0
+SKU101,Skeleton science embroidery sweatshirt,2023-12-09,1,12,Saturday,1
+SKU110,oversized justin coord set,2023-12-09,1,12,Saturday,1
+SKU101,Skeleton science embroidery sweatshirt,2023-12-10,1,12,Sunday,1
+SKU106,arctic block tracksuit,2023-12-10,1,12,Sunday,1
+SKU110,oversized justin coord set,2023-12-10,1,12,Sunday,1
+SKU108,elevate scuba tracksuit,2023-12-11,1,12,Monday,0
+SKU110,oversized justin coord set,2023-12-11,1,12,Monday,0
+SKU108,elevate scuba tracksuit,2023-12-13,1,12,Wednesday,0
+SKU101,Skeleton science embroidery sweatshirt,2023-12-14,1,12,Thursday,0
+SKU106,arctic block tracksuit,2023-12-14,1,12,Thursday,0
+SKU104,West Coast Coord Set,2023-12-15,1,12,Friday,0
+SKU105,calm trail look,2023-12-15,1,12,Friday,0
+SKU101,Skeleton science embroidery sweatshirt,2023-12-16,1,12,Saturday,1
+SKU106,arctic block tracksuit,2023-12-17,1,12,Sunday,1
+SKU108,elevate scuba tracksuit,2023-12-17,3,12,Sunday,1
+SKU106,arctic block tracksuit,2023-12-19,15,12,Tuesday,0
+SKU106,arctic block tracksuit,2023-12-20,1,12,Wednesday,0
+SKU108,elevate scuba tracksuit,2023-12-21,1,12,Thursday,0
+SKU101,Skeleton science embroidery sweatshirt,2023-12-23,1,12,Saturday,1
+SKU108,elevate scuba tracksuit,2023-12-23,1,12,Saturday,1
+SKU101,Skeleton science embroidery sweatshirt,2023-12-24,1,12,Sunday,1
+SKU106,arctic block tracksuit,2023-12-24,1,12,Sunday,1
+SKU110,oversized justin coord set,2023-12-24,1,12,Sunday,1
+SKU110,oversized justin coord set,2023-12-25,2,12,Monday,0
+SKU101,Skeleton science embroidery sweatshirt,2023-12-26,1,12,Tuesday,0
+SKU108,elevate scuba tracksuit,2023-12-26,15,12,Tuesday,0
+SKU101,Skeleton science embroidery sweatshirt,2023-12-27,4,12,Wednesday,0
+SKU106,arctic block tracksuit,2023-12-27,1,12,Wednesday,0
+SKU108,elevate scuba tracksuit,2023-12-28,1,12,Thursday,0
+SKU101,Skeleton science embroidery sweatshirt,2023-12-29,1,12,Friday,0
+SKU101,Skeleton science embroidery sweatshirt,2023-12-30,1,12,Saturday,1
+SKU106,arctic block tracksuit,2023-12-30,1,12,Saturday,1
+SKU108,elevate scuba tracksuit,2023-12-30,1,12,Saturday,1
+SKU110,oversized justin coord set,2023-12-30,1,12,Saturday,1
+SKU108,elevate scuba tracksuit,2023-12-31,1,12,Sunday,1
+SKU110,oversized justin coord set,2023-12-31,1,12,Sunday,1

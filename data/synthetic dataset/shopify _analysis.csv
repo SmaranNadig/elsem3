@@ -1,0 +1,251 @@
+sku_id,product_name,date,units_sold,month,day_of_week,is_weekend
+SKU110,oversized justin coord set,2024-10-06,2,10,Friday,0
+SKU101,Skeleton science embroidery sweatshirt,2024-10-07,6,10,Saturday,1
+SKU105,calm trail look,2024-10-07,2,10,Saturday,1
+SKU110,oversized justin coord set,2024-10-07,2,10,Saturday,1
+SKU101,Skeleton science embroidery sweatshirt,2024-10-08,4,10,Sunday,1
+SKU103,Studio Coord Set,2024-10-08,2,10,Sunday,1
+SKU105,calm trail look,2024-10-08,2,10,Sunday,1
+SKU110,oversized justin coord set,2024-10-08,4,10,Sunday,1
+SKU105,calm trail look,2024-10-09,6,10,Monday,0
+SKU110,oversized justin coord set,2024-10-09,20,10,Monday,0
+SKU105,calm trail look,2024-10-10,2,10,Tuesday,0
+SKU110,oversized justin coord set,2024-10-10,10,10,Tuesday,0
+SKU103,Studio Coord Set,2024-10-11,2,10,Wednesday,0
+SKU105,calm trail look,2024-10-11,2,10,Wednesday,0
+SKU107,varsity voyage coord set,2024-10-11,4,10,Wednesday,0
+SKU110,oversized justin coord set,2024-10-11,6,10,Wednesday,0
+SKU105,calm trail look,2024-10-12,2,10,Thursday,0
+SKU101,Skeleton science embroidery sweatshirt,2024-10-13,2,10,Friday,0
+SKU103,Studio Coord Set,2024-10-13,2,10,Friday,0
+SKU105,calm trail look,2024-10-13,2,10,Friday,0
+SKU110,oversized justin coord set,2024-10-13,2,10,Friday,0
+SKU104,West Coast Coord Set,2024-10-14,10,10,Saturday,1
+SKU105,calm trail look,2024-10-14,4,10,Saturday,1
+SKU102,Kross Coord set,2024-10-15,10,10,Sunday,1
+SKU105,calm trail look,2024-10-15,4,10,Sunday,1
+SKU110,oversized justin coord set,2024-10-15,2,10,Sunday,1
+SKU105,calm trail look,2024-10-16,2,10,Monday,0
+SKU105,calm trail look,2024-10-17,2,10,Tuesday,0
+SKU110,oversized justin coord set,2024-10-17,6,10,Tuesday,0
+SKU105,calm trail look,2024-10-18,4,10,Wednesday,0
+SKU110,oversized justin coord set,2024-10-18,2,10,Wednesday,0
+SKU104,West Coast Coord Set,2024-10-19,2,10,Thursday,0
+SKU105,calm trail look,2024-10-19,10,10,Thursday,0
+SKU110,oversized justin coord set,2024-10-19,2,10,Thursday,0
+SKU104,West Coast Coord Set,2024-10-20,2,10,Friday,0
+SKU105,calm trail look,2024-10-20,2,10,Friday,0
+SKU110,oversized justin coord set,2024-10-20,10,10,Friday,0
+SKU105,calm trail look,2024-10-21,2,10,Saturday,1
+SKU110,oversized justin coord set,2024-10-21,6,10,Saturday,1
+SKU103,Studio Coord Set,2024-10-22,2,10,Sunday,1
+SKU105,calm trail look,2024-10-22,6,10,Sunday,1
+SKU110,oversized justin coord set,2024-10-22,20,10,Sunday,1
+SKU105,calm trail look,2024-10-23,4,10,Monday,0
+SKU106,arctic block tracksuit,2024-10-23,4,10,Monday,0
+SKU110,oversized justin coord set,2024-10-23,4,10,Monday,0
+SKU105,calm trail look,2024-10-24,2,10,Tuesday,0
+SKU105,calm trail look,2024-10-25,2,10,Wednesday,0
+SKU110,oversized justin coord set,2024-10-25,2,10,Wednesday,0
+SKU105,calm trail look,2024-10-26,2,10,Thursday,0
+SKU110,oversized justin coord set,2024-10-26,2,10,Thursday,0
+SKU105,calm trail look,2024-10-27,2,10,Friday,0
+SKU110,oversized justin coord set,2024-10-27,2,10,Friday,0
+SKU102,Kross Coord set,2024-10-28,2,10,Saturday,1
+SKU104,West Coast Coord Set,2024-10-28,4,10,Saturday,1
+SKU105,calm trail look,2024-10-28,4,10,Saturday,1
+SKU110,oversized justin coord set,2024-10-28,2,10,Saturday,1
+SKU105,calm trail look,2024-10-29,2,10,Sunday,1
+SKU110,oversized justin coord set,2024-10-29,4,10,Sunday,1
+SKU102,Kross Coord set,2024-10-30,4,10,Monday,0
+SKU103,Studio Coord Set,2024-10-30,2,10,Monday,0
+SKU105,calm trail look,2024-10-30,4,10,Monday,0
+SKU110,oversized justin coord set,2024-10-30,2,10,Monday,0
+SKU105,calm trail look,2024-10-31,2,10,Tuesday,0
+SKU107,varsity voyage coord set,2024-10-31,2,10,Tuesday,0
+SKU108,elevate scuba tracksuit,2024-10-31,2,10,Tuesday,0
+SKU110,oversized justin coord set,2024-10-31,2,10,Tuesday,0
+SKU101,Skeleton science embroidery sweatshirt,2024-11-01,2,11,Wednesday,0
+SKU105,calm trail look,2024-11-01,2,11,Wednesday,0
+SKU106,arctic block tracksuit,2024-11-01,4,11,Wednesday,0
+SKU110,oversized justin coord set,2024-11-01,2,11,Wednesday,0
+SKU101,Skeleton science embroidery sweatshirt,2024-11-02,20,11,Thursday,0
+SKU105,calm trail look,2024-11-02,4,11,Thursday,0
+SKU106,arctic block tracksuit,2024-11-02,4,11,Thursday,0
+SKU108,elevate scuba tracksuit,2024-11-02,10,11,Thursday,0
+SKU110,oversized justin coord set,2024-11-02,4,11,Thursday,0
+SKU101,Skeleton science embroidery sweatshirt,2024-11-03,2,11,Friday,0
+SKU105,calm trail look,2024-11-03,2,11,Friday,0
+SKU108,elevate scuba tracksuit,2024-11-03,2,11,Friday,0
+SKU110,oversized justin coord set,2024-11-03,10,11,Friday,0
+SKU101,Skeleton science embroidery sweatshirt,2024-11-04,4,11,Saturday,1
+SKU105,calm trail look,2024-11-04,4,11,Saturday,1
+SKU106,arctic block tracksuit,2024-11-04,10,11,Saturday,1
+SKU108,elevate scuba tracksuit,2024-11-04,2,11,Saturday,1
+SKU110,oversized justin coord set,2024-11-04,2,11,Saturday,1
+SKU101,Skeleton science embroidery sweatshirt,2024-11-05,10,11,Sunday,1
+SKU104,West Coast Coord Set,2024-11-05,10,11,Sunday,1
+SKU105,calm trail look,2024-11-05,2,11,Sunday,1
+SKU106,arctic block tracksuit,2024-11-05,2,11,Sunday,1
+SKU108,elevate scuba tracksuit,2024-11-05,2,11,Sunday,1
+SKU110,oversized justin coord set,2024-11-05,2,11,Sunday,1
+SKU101,Skeleton science embroidery sweatshirt,2024-11-06,2,11,Monday,0
+SKU105,calm trail look,2024-11-06,2,11,Monday,0
+SKU108,elevate scuba tracksuit,2024-11-06,2,11,Monday,0
+SKU110,oversized justin coord set,2024-11-06,2,11,Monday,0
+SKU101,Skeleton science embroidery sweatshirt,2024-11-07,4,11,Tuesday,0
+SKU105,calm trail look,2024-11-07,2,11,Tuesday,0
+SKU106,arctic block tracksuit,2024-11-07,6,11,Tuesday,0
+SKU108,elevate scuba tracksuit,2024-11-07,2,11,Tuesday,0
+SKU110,oversized justin coord set,2024-11-07,2,11,Tuesday,0
+SKU101,Skeleton science embroidery sweatshirt,2024-11-08,6,11,Wednesday,0
+SKU105,calm trail look,2024-11-08,2,11,Wednesday,0
+SKU108,elevate scuba tracksuit,2024-11-08,2,11,Wednesday,0
+SKU110,oversized justin coord set,2024-11-08,2,11,Wednesday,0
+SKU101,Skeleton science embroidery sweatshirt,2024-11-09,10,11,Thursday,0
+SKU105,calm trail look,2024-11-09,6,11,Thursday,0
+SKU108,elevate scuba tracksuit,2024-11-09,4,11,Thursday,0
+SKU105,calm trail look,2024-11-10,4,11,Friday,0
+SKU106,arctic block tracksuit,2024-11-10,4,11,Friday,0
+SKU108,elevate scuba tracksuit,2024-11-10,2,11,Friday,0
+SKU110,oversized justin coord set,2024-11-10,4,11,Friday,0
+SKU101,Skeleton science embroidery sweatshirt,2024-11-11,2,11,Saturday,1
+SKU106,arctic block tracksuit,2024-11-11,2,11,Saturday,1
+SKU108,elevate scuba tracksuit,2024-11-11,2,11,Saturday,1
+SKU110,oversized justin coord set,2024-11-11,2,11,Saturday,1
+SKU101,Skeleton science embroidery sweatshirt,2024-11-12,10,11,Sunday,1
+SKU102,Kross Coord set,2024-11-12,2,11,Sunday,1
+SKU105,calm trail look,2024-11-12,4,11,Sunday,1
+SKU106,arctic block tracksuit,2024-11-12,2,11,Sunday,1
+SKU108,elevate scuba tracksuit,2024-11-12,2,11,Sunday,1
+SKU110,oversized justin coord set,2024-11-12,2,11,Sunday,1
+SKU101,Skeleton science embroidery sweatshirt,2024-11-13,2,11,Monday,0
+SKU106,arctic block tracksuit,2024-11-13,4,11,Monday,0
+SKU108,elevate scuba tracksuit,2024-11-13,6,11,Monday,0
+SKU110,oversized justin coord set,2024-11-13,6,11,Monday,0
+SKU101,Skeleton science embroidery sweatshirt,2024-11-14,6,11,Tuesday,0
+SKU105,calm trail look,2024-11-14,4,11,Tuesday,0
+SKU106,arctic block tracksuit,2024-11-14,2,11,Tuesday,0
+SKU108,elevate scuba tracksuit,2024-11-14,6,11,Tuesday,0
+SKU110,oversized justin coord set,2024-11-14,2,11,Tuesday,0
+SKU101,Skeleton science embroidery sweatshirt,2024-11-15,2,11,Wednesday,0
+SKU105,calm trail look,2024-11-15,4,11,Wednesday,0
+SKU106,arctic block tracksuit,2024-11-15,6,11,Wednesday,0
+SKU108,elevate scuba tracksuit,2024-11-15,2,11,Wednesday,0
+SKU110,oversized justin coord set,2024-11-15,20,11,Wednesday,0
+SKU105,calm trail look,2024-11-16,20,11,Thursday,0
+SKU106,arctic block tracksuit,2024-11-16,2,11,Thursday,0
+SKU108,elevate scuba tracksuit,2024-11-16,2,11,Thursday,0
+SKU110,oversized justin coord set,2024-11-16,4,11,Thursday,0
+SKU101,Skeleton science embroidery sweatshirt,2024-11-17,6,11,Friday,0
+SKU105,calm trail look,2024-11-17,2,11,Friday,0
+SKU108,elevate scuba tracksuit,2024-11-17,2,11,Friday,0
+SKU110,oversized justin coord set,2024-11-17,4,11,Friday,0
+SKU101,Skeleton science embroidery sweatshirt,2024-11-18,2,11,Saturday,1
+SKU105,calm trail look,2024-11-18,2,11,Saturday,1
+SKU106,arctic block tracksuit,2024-11-18,4,11,Saturday,1
+SKU108,elevate scuba tracksuit,2024-11-18,2,11,Saturday,1
+SKU110,oversized justin coord set,2024-11-18,2,11,Saturday,1
+SKU101,Skeleton science embroidery sweatshirt,2024-11-19,4,11,Sunday,1
+SKU105,calm trail look,2024-11-19,2,11,Sunday,1
+SKU106,arctic block tracksuit,2024-11-19,10,11,Sunday,1
+SKU110,oversized justin coord set,2024-11-19,6,11,Sunday,1
+SKU101,Skeleton science embroidery sweatshirt,2024-11-20,2,11,Monday,0
+SKU105,calm trail look,2024-11-20,2,11,Monday,0
+SKU106,arctic block tracksuit,2024-11-20,6,11,Monday,0
+SKU108,elevate scuba tracksuit,2024-11-20,2,11,Monday,0
+SKU110,oversized justin coord set,2024-11-20,4,11,Monday,0
+SKU101,Skeleton science embroidery sweatshirt,2024-11-21,2,11,Tuesday,0
+SKU106,arctic block tracksuit,2024-11-21,4,11,Tuesday,0
+SKU108,elevate scuba tracksuit,2024-11-21,2,11,Tuesday,0
+SKU110,oversized justin coord set,2024-11-21,2,11,Tuesday,0
+SKU106,arctic block tracksuit,2024-11-22,2,11,Wednesday,0
+SKU108,elevate scuba tracksuit,2024-11-22,2,11,Wednesday,0
+SKU110,oversized justin coord set,2024-11-22,4,11,Wednesday,0
+SKU101,Skeleton science embroidery sweatshirt,2024-11-23,2,11,Thursday,0
+SKU106,arctic block tracksuit,2024-11-23,10,11,Thursday,0
+SKU108,elevate scuba tracksuit,2024-11-23,2,11,Thursday,0
+SKU109,aeroslate coord set,2024-11-23,4,11,Thursday,0
+SKU110,oversized justin coord set,2024-11-23,2,11,Thursday,0
+SKU105,calm trail look,2024-11-24,4,11,Friday,0
+SKU107,varsity voyage coord set,2024-11-24,20,11,Friday,0
+SKU108,elevate scuba tracksuit,2024-11-24,4,11,Friday,0
+SKU110,oversized justin coord set,2024-11-24,2,11,Friday,0
+SKU101,Skeleton science embroidery sweatshirt,2024-11-25,2,11,Saturday,1
+SKU104,West Coast Coord Set,2024-11-25,4,11,Saturday,1
+SKU105,calm trail look,2024-11-25,10,11,Saturday,1
+SKU106,arctic block tracksuit,2024-11-25,2,11,Saturday,1
+SKU108,elevate scuba tracksuit,2024-11-25,2,11,Saturday,1
+SKU110,oversized justin coord set,2024-11-25,6,11,Saturday,1
+SKU101,Skeleton science embroidery sweatshirt,2024-11-26,6,11,Sunday,1
+SKU105,calm trail look,2024-11-26,20,11,Sunday,1
+SKU106,arctic block tracksuit,2024-11-26,2,11,Sunday,1
+SKU108,elevate scuba tracksuit,2024-11-26,2,11,Sunday,1
+SKU110,oversized justin coord set,2024-11-26,2,11,Sunday,1
+SKU101,Skeleton science embroidery sweatshirt,2024-11-27,2,11,Monday,0
+SKU105,calm trail look,2024-11-27,4,11,Monday,0
+SKU106,arctic block tracksuit,2024-11-27,4,11,Monday,0
+SKU108,elevate scuba tracksuit,2024-11-27,4,11,Monday,0
+SKU110,oversized justin coord set,2024-11-27,2,11,Monday,0
+SKU101,Skeleton science embroidery sweatshirt,2024-11-28,4,11,Tuesday,0
+SKU105,calm trail look,2024-11-28,10,11,Tuesday,0
+SKU106,arctic block tracksuit,2024-11-28,10,11,Tuesday,0
+SKU108,elevate scuba tracksuit,2024-11-28,2,11,Tuesday,0
+SKU110,oversized justin coord set,2024-11-28,2,11,Tuesday,0
+SKU106,arctic block tracksuit,2024-11-29,2,11,Wednesday,0
+SKU108,elevate scuba tracksuit,2024-11-29,20,11,Wednesday,0
+SKU110,oversized justin coord set,2024-11-29,2,11,Wednesday,0
+SKU101,Skeleton science embroidery sweatshirt,2024-11-30,4,11,Thursday,0
+SKU105,calm trail look,2024-11-30,10,11,Thursday,0
+SKU106,arctic block tracksuit,2024-11-30,2,11,Thursday,0
+SKU108,elevate scuba tracksuit,2024-11-30,2,11,Thursday,0
+SKU101,Skeleton science embroidery sweatshirt,2024-12-01,1,12,Friday,0
+SKU110,oversized justin coord set,2024-12-01,2,12,Friday,0
+SKU105,calm trail look,2024-12-02,1,12,Saturday,1
+SKU108,elevate scuba tracksuit,2024-12-02,1,12,Saturday,1
+SKU101,Skeleton science embroidery sweatshirt,2024-12-03,1,12,Sunday,1
+SKU106,arctic block tracksuit,2024-12-03,1,12,Sunday,1
+SKU108,elevate scuba tracksuit,2024-12-03,4,12,Sunday,1
+SKU101,Skeleton science embroidery sweatshirt,2024-12-04,3,12,Monday,0
+SKU101,Skeleton science embroidery sweatshirt,2024-12-05,15,12,Tuesday,0
+SKU106,arctic block tracksuit,2024-12-05,1,12,Tuesday,0
+SKU106,arctic block tracksuit,2024-12-06,1,12,Wednesday,0
+SKU107,varsity voyage coord set,2024-12-07,1,12,Thursday,0
+SKU108,elevate scuba tracksuit,2024-12-07,1,12,Thursday,0
+SKU106,arctic block tracksuit,2024-12-08,7,12,Friday,0
+SKU101,Skeleton science embroidery sweatshirt,2024-12-09,1,12,Saturday,1
+SKU110,oversized justin coord set,2024-12-09,1,12,Saturday,1
+SKU101,Skeleton science embroidery sweatshirt,2024-12-10,1,12,Sunday,1
+SKU106,arctic block tracksuit,2024-12-10,1,12,Sunday,1
+SKU110,oversized justin coord set,2024-12-10,1,12,Sunday,1
+SKU108,elevate scuba tracksuit,2024-12-11,1,12,Monday,0
+SKU110,oversized justin coord set,2024-12-11,1,12,Monday,0
+SKU108,elevate scuba tracksuit,2024-12-13,1,12,Wednesday,0
+SKU101,Skeleton science embroidery sweatshirt,2024-12-14,1,12,Thursday,0
+SKU106,arctic block tracksuit,2024-12-14,1,12,Thursday,0
+SKU104,West Coast Coord Set,2024-12-15,1,12,Friday,0
+SKU105,calm trail look,2024-12-15,1,12,Friday,0
+SKU101,Skeleton science embroidery sweatshirt,2024-12-16,1,12,Saturday,1
+SKU106,arctic block tracksuit,2024-12-17,1,12,Sunday,1
+SKU108,elevate scuba tracksuit,2024-12-17,3,12,Sunday,1
+SKU106,arctic block tracksuit,2024-12-19,15,12,Tuesday,0
+SKU106,arctic block tracksuit,2024-12-20,1,12,Wednesday,0
+SKU108,elevate scuba tracksuit,2024-12-21,1,12,Thursday,0
+SKU101,Skeleton science embroidery sweatshirt,2024-12-23,1,12,Saturday,1
+SKU108,elevate scuba tracksuit,2024-12-23,1,12,Saturday,1
+SKU101,Skeleton science embroidery sweatshirt,2024-12-24,1,12,Sunday,1
+SKU106,arctic block tracksuit,2024-12-24,1,12,Sunday,1
+SKU110,oversized justin coord set,2024-12-24,1,12,Sunday,1
+SKU110,oversized justin coord set,2024-12-25,2,12,Monday,0
+SKU101,Skeleton science embroidery sweatshirt,2024-12-26,1,12,Tuesday,0
+SKU108,elevate scuba tracksuit,2024-12-26,15,12,Tuesday,0
+SKU101,Skeleton science embroidery sweatshirt,2024-12-27,4,12,Wednesday,0
+SKU106,arctic block tracksuit,2024-12-27,1,12,Wednesday,0
+SKU108,elevate scuba tracksuit,2024-12-28,1,12,Thursday,0
+SKU101,Skeleton science embroidery sweatshirt,2024-12-29,1,12,Friday,0
+SKU101,Skeleton science embroidery sweatshirt,2024-12-30,1,12,Saturday,1
+SKU106,arctic block tracksuit,2024-12-30,1,12,Saturday,1
+SKU108,elevate scuba tracksuit,2024-12-30,1,12,Saturday,1
+SKU110,oversized justin coord set,2024-12-30,1,12,Saturday,1
+SKU108,elevate scuba tracksuit,2024-12-31,1,12,Sunday,1
+SKU110,oversized justin coord set,2024-12-31,1,12,Sunday,1
