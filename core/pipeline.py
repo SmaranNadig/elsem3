@@ -19,7 +19,8 @@ def run_pipeline(
     output_path: str = "data/agent_recommendations.csv",
     verbose: bool = True,
     df_master: Optional[pd.DataFrame] = None,
-    df_sales: Optional[pd.DataFrame] = None
+    df_sales: Optional[pd.DataFrame] = None,
+    df_sales_seasonal: Optional[pd.DataFrame] = None
 ) -> pd.DataFrame:
     """
     End-to-end pipeline (OPTIMIZED):
@@ -98,7 +99,9 @@ def run_pipeline(
         print("[INFO] Running SeasonalAnalystAgent...")
     agent_start = time.time()
     seasonal_agent = SeasonalAnalystAgent()
-    df_seasonal = seasonal_agent.compute_seasonal_metrics(df_inventory, df_sales)
+    # Use seasonal specific sales data if provided, else fall back to main sales data
+    target_seasonal_sales = df_sales_seasonal if df_sales_seasonal is not None else df_sales
+    df_seasonal = seasonal_agent.compute_seasonal_metrics(df_inventory, target_seasonal_sales)
     if verbose:
         print(f"[INFO] SeasonalAnalyst completed in {time.time() - agent_start:.2f}s")
 

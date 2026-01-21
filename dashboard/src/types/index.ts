@@ -110,7 +110,7 @@ export interface AdCampaign {
     platform: string;
     status: string;
     daily_budget: number;
-    total_spend_30d: number;
+    total_spend_90d: number;
     roas: number;
     impressions: number;
     clicks: number;
@@ -124,7 +124,7 @@ export interface AdMetricsSummary {
     total_campaigns: number;
     active_campaigns: number;
     paused_campaigns: number;
-    total_spend_30d: number;
+    total_spend_90d: number;
     avg_roas: number;
     platforms: Record<string, boolean>;
 }

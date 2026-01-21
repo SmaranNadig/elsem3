@@ -82,10 +82,10 @@ const AdsTab: React.FC = () => {
                         <div className="p-2 bg-[#151516] rounded-full border border-white/5">
                             <DollarSign className="w-4 h-4 text-emerald-500" />
                         </div>
-                        <h3 className="text-gray-300 text-[10px] font-bold uppercase tracking-widest">30d Spend</h3>
+                        <h3 className="text-gray-300 text-[10px] font-bold uppercase tracking-widest">90d Spend</h3>
                     </div>
                     <div>
-                        <p className="text-3xl font-bold text-emerald-500 font-mono mt-4">₹{metrics.total_spend_30d.toLocaleString()}</p>
+                        <p className="text-3xl font-bold text-emerald-500 font-mono mt-4">₹{metrics.total_spend_90d.toLocaleString()}</p>
                         <p className="text-[10px] text-gray-300 mt-2 font-medium uppercase tracking-wider">Budget Utilization</p>
                     </div>
                 </div>
@@ -128,7 +128,7 @@ const AdsTab: React.FC = () => {
                                 <th className="py-4 px-6 text-xs font-bold text-gray-300 uppercase tracking-wider">Platform</th>
                                 <th className="py-4 px-6 text-xs font-bold text-gray-300 uppercase tracking-wider text-right">Daily Budget</th>
                                 <th className="py-4 px-6 text-xs font-bold text-gray-300 uppercase tracking-wider text-right">ROAS</th>
-                                <th className="py-4 px-6 text-xs font-bold text-gray-300 uppercase tracking-wider text-right">Spend (30d)</th>
+                                <th className="py-4 px-6 text-xs font-bold text-gray-300 uppercase tracking-wider text-right">Spend (90d)</th>
                                 <th className="py-4 px-6 text-xs font-bold text-gray-300 uppercase tracking-wider text-center">Action</th>
                             </tr>
                         </thead>
@@ -150,7 +150,7 @@ const AdsTab: React.FC = () => {
                                             {c.roas}x
                                         </span>
                                     </td>
-                                    <td className="py-4 px-6 text-gray-300 font-mono text-sm text-right">₹{c.total_spend_30d.toLocaleString()}</td>
+                                    <td className="py-4 px-6 text-gray-300 font-mono text-sm text-right">₹{c.total_spend_90d.toLocaleString()}</td>
                                     <td className="py-4 px-6 text-center">
                                         <button
                                             onClick={() => toggleCampaign(c.campaign_id, c.status)}
