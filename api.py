@@ -193,12 +193,38 @@ async def wait_for_n8n_data():
         print("[INFO] n8n data received! Pipeline executed by n8n endpoint.")
     else:
         print("[INFO] No n8n data received. Falling back to local CSV data...")
-        # Auto-run pipeline with synthetic/CSV data
-        success = execute_pipeline()
-        if success:
-            print("[INFO] Pipeline executed successfully with fallback CSV data.")
-        else:
-            print("[WARNING] Pipeline execution failed on startup.")
+        
+        # Explicitly load from local CSVs as requested
+        # User requested paths: 
+        # products -> data/synthetic dataset/sku_master.csv
+        # orders -> data/synthetic dataset/seasonal_sales_history.csv
+        
+        try:
+            global pipeline_data, last_execution_time, execution_status, data_source
+            
+            print("[INFO] Force loading local CSV datasets...")
+            df = run_pipeline(
+                verbose=True,
+                sku_master_path="data/synthetic dataset/sku_master.csv",
+                sales_history_path="data/synthetic dataset/seasonal_sales_history.csv"
+            )
+            
+            if not df.empty:
+                pipeline_data = df
+                data_source = "csv"
+                last_execution_time = datetime.now()
+                execution_status = {
+                    "status": "success",
+                    "message": f"Pipeline executed successfully with local CSVs at {last_execution_time.strftime('%Y-%m-%d %H:%M:%S')}"
+                }
+                print(f"[INFO] Pipeline execution successful. Loaded {len(df)} SKUs.")
+            else:
+                execution_status = {"status": "error", "message": "Local CSV pipeline returned empty data"}
+                print("[WARNING] Local CSV pipeline returned empty data.")
+                
+        except Exception as e:
+            print(f"[ERROR] Failed to execute local CSV pipeline: {str(e)}")
+            execution_status = {"status": "error", "message": f"Local pipeline failed: {str(e)}"}
 
 # Execute pipeline on startup - Start background wait for n8n data
 @app.on_event("startup")

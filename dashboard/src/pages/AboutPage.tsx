@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Github, Twitter, Mail } from 'lucide-react';
+import { Github, Mail } from 'lucide-react';
 import Navbar from '../components/Navbar';
 
 const AboutPage: React.FC = () => {
@@ -60,13 +60,10 @@ const AboutPage: React.FC = () => {
                 <div className="text-center">
                     <h3 className="text-xl font-bold uppercase tracking-widest mb-8 text-gray-400">Connect With Us</h3>
                     <div className="flex justify-center gap-8">
-                        <a href="#" className="p-4 rounded-full bg-[#151516] border border-white/5 hover:border-brand-blue hover:text-brand-blue transition-colors group">
+                        <a href="https://github.com/aditya-sridhar-git" target="_blank" rel="noopener noreferrer" className="p-4 rounded-full bg-[#151516] border border-white/5 hover:border-brand-blue hover:text-brand-blue transition-colors group">
                             <Github className="w-6 h-6 group-hover:scale-110 transition-transform" />
                         </a>
-                        <a href="#" className="p-4 rounded-full bg-[#151516] border border-white/5 hover:border-sky-400 hover:text-sky-400 transition-colors group">
-                            <Twitter className="w-6 h-6 group-hover:scale-110 transition-transform" />
-                        </a>
-                        <a href="#" className="p-4 rounded-full bg-[#151516] border border-white/5 hover:border-emerald-500 hover:text-emerald-500 transition-colors group">
+                        <a href="mailto:aditya.sridhar.126@gmail.com" className="p-4 rounded-full bg-[#151516] border border-white/5 hover:border-emerald-500 hover:text-emerald-500 transition-colors group">
                             <Mail className="w-6 h-6 group-hover:scale-110 transition-transform" />
                         </a>
                     </div>

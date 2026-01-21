@@ -1,11 +1,11 @@
 sku_id,category,product_name,selling_price,cogs,current_stock,lead_time_days,units_sold_last_30_days,platform_fee_percent,platform_fixed_fee,shipping_cost_per_unit,ad_spend_total_last_30_days
-21212,Fast Moving,PACK OF 72 RETRO SPOT CAKE CASES,0.67,0.4,4824,3,4824,2.0,0.3,0.5,161.15
-85123A,Fast Moving,WHITE HANGING HEART T-LIGHT HOLDER,3.05,1.83,4691,3,4691,2.0,0.3,0.5,714.76
-84077,Fast Moving,WORLD WAR 2 GLIDERS ASSTD DESIGNS,0.24,0.15,4419,3,4419,2.0,0.3,0.5,53.91
-22514,Medium Moving,CHILDS GARDEN SPADE BLUE,2.22,1.33,92,3,92,2.0,0.3,0.5,10.28
-85018D,Medium Moving,YULETIDE IMAGES S/6 PAPER BOXES,2.19,1.31,64,4,64,2.0,0.3,0.5,7.03
-22627,Medium Moving,MINT KITCHEN SCALES,9.47,5.68,107,3,107,2.0,0.3,0.95,50.82
-37492A,Slow Moving,YELLOW RED FLOWER PIGGY BANK,4.27,2.56,147,3,147,2.0,0.3,0.5,31.48
-90208,Slow Moving,PAIR OF ENAMEL FLOWER CLUSTER SLIDE,2.54,1.52,10,11,8,2.0,0.3,0.205,1.1
-84817,Slow Moving,DANISH ROSE DECORATIVE PLATE,2.1,1.26,10,12,10,2.0,0.3,0.5,1.15
-21629,Slow Moving,SQUARE FLOOR CUSHION VINTAGE PINK,12.79,7.67,10,5,8,2.0,0.3,1.28,5.57
+SKU101,Sweatshirt,Skeleton science embroidery sweatshirt,1699,775.4,484,10,11,2.0,40.0,80.0,1413.25
+SKU102,Coord Set,Kross Coord set,1699,733.31,67,9,20,2.0,40.0,80.0,532.67
+SKU103,Coord Set,Studio Coord Set,999,452.13,112,5,25,2.0,40.0,80.0,538.09
+SKU104,Coord Set,West Coast Coord Set,1599,669.75,166,10,6,2.0,40.0,80.0,1079.68
+SKU105,Lifestyle,calm trail look,1999,889.07,299,4,13,2.0,40.0,80.0,1748.37
+SKU106,Tracksuit,arctic block tracksuit,2499,1227.75,123,5,8,2.0,40.0,80.0,1252.78
+SKU107,Coord Set,varsity voyage coord set,1599,773.44,163,7,27,2.0,40.0,80.0,1449.0
+SKU108,Tracksuit,elevate scuba tracksuit,2499,1114.28,378,4,27,2.0,40.0,80.0,1376.3
+SKU109,Coord Set,aeroslate coord set,1799,845.85,483,6,16,2.0,40.0,80.0,1791.7
+SKU110,Coord Set,oversized justin coord set,1599,795.04,390,3,17,2.0,40.0,80.0,1316.43

@@ -1,687 +1,590 @@
 sku_id,category,product_name,selling_price,cogs,current_stock,lead_time_days,profit_per_unit,loss_per_day,is_loss_maker,sales_velocity_per_day,days_of_stock_left,risk_level,reorder_qty_suggested,profit_at_risk,impact_score,recommended_action,strategy_mode,seasonal_index_current,seasonal_index_next,peak_month,trough_month,seasonal_trend,seasonality_strength,seasonal_forecast,seasonal_risk_flag,llm_profit_insight,llm_inventory_insight,llm_strategy_insight,llm_seasonal_insight,llm_inventory_confidence,llm_strategy_confidence,llm_seasonal_confidence
-85123A,Fast Moving,WHITE HANGING HEART T-LIGHT HOLDER,3.05,1.83,4691,3,-318.7633515625666,49843.96273933333,True,233.10324451900712,20.124130016635174,SAFE,0,0.0,2476.825716099573,PAUSE_ADS_OR_INCREASE_PRICE,Strategy,1.219,0.647,November,February,FALLING,0.689,3805.4,False,"### 1) Profitability Assessment
-The current profitability of the WHITE HANGING HEART T-LIGHT HOLDER is negative, with a profit per unit of approximately ₹-318.76 and a daily loss of ₹49,843.96. This indicates that the product is not only failing to meet the minimum margin target of 15% but is also incurring significant losses. Given the medium risk tolerance, immediate action is required to either improve profitability or consider discontinuation.
+SKU105,Lifestyle,calm trail look,1999,889.07,299,4,801.0635999999998,0.0,False,5.653454988265682,52.88801283827408,SAFE,0,239518.01639999993,4528.777005338064,MONITOR,Strategy,0.326,0.428,November,July,RISING,1.0,14.5,True,"### 1) Profitability Assessment
+The calm trail look product has a selling price of ₹1999 and a cost of goods sold (COGS) of ₹889.07, resulting in a profit per unit of approximately ₹801.06. This yields a profit margin of about 40%, which significantly exceeds the minimum margin target of 15%. The current profitability is strong, indicating a healthy product performance. However, maintaining customer satisfaction and managing risk is essential for long-term success.
 
 ### 2) Pricing Recommendation
-To achieve the minimum margin target of 15%, the selling price must be adjusted. The formula for the minimum selling price (SP) based on COGS (Cost of Goods Sold) is:
-
-\[ SP = COGS / (1 - Margin Target) \]
-
-Substituting the values:
-
-\[ SP = ₹1.83 / (1 - 0.15) = ₹1.83 / 0.85 \approx ₹2.15 \]
-
-However, to ensure a positive profit margin, consider setting the selling price higher than ₹2.15. A recommended selling price of **₹3.50** would provide a profit margin of approximately 20%, enhancing profitability while still being competitive in the fast-moving category.
+To align with the Balanced strategy, consider a slight price adjustment to ₹2099. This would increase the profit per unit to approximately ₹1,209.93, maintaining a profit margin of around 42.5%. This price point can enhance perceived value without alienating customers, as it remains competitive within the lifestyle category. Monitor customer feedback closely to ensure satisfaction remains high.
 
 ### 3) Cost Optimization Tip
-To improve profitability, focus on reducing the COGS. Analyze the supply chain for potential cost-saving opportunities, such as negotiating better rates with suppliers, exploring bulk purchasing discounts, or optimizing production processes. Even a small reduction in COGS can significantly enhance profit margins and overall financial health. Aim for a target COGS of around ₹1.50 to achieve a more sustainable profit per unit.","### 1) Risk Assessment Aligned with Strategy
-- **Current Stock**: 4691 units
-- **Daily Demand**: 233.1 units/day
-- **Days of Stock Remaining**: 20.1 days
+Evaluate the supply chain for potential cost reductions. Negotiate with suppliers for bulk discounts or explore alternative materials that maintain quality but reduce COGS. Aim to lower the COGS below ₹800, which would further increase profit margins while allowing for competitive pricing strategies. Additionally, consider streamlining production processes to enhance efficiency and reduce waste.","### 1) Risk Assessment Aligned with Strategy
+- **Current Stock**: 299 units
+- **Daily Demand**: 5.7 units/day
+- **Days of Stock Remaining**: 52.9 days
 
 **Risk Level**: SAFE  
-- The product is currently in a safe risk category, indicating stable demand and supply conditions. However, the negative profit per unit (₹-318.76) suggests that while stock levels are adequate, the financial viability of maintaining this inventory is questionable.
-
-**Risk Tolerance**: Medium  
-- Given the medium risk tolerance, it is essential to monitor demand fluctuations closely and adjust inventory levels accordingly to avoid stockouts or excess inventory.
+- With a medium risk tolerance, the current stock level is adequate given the demand and lead time. The product is not at immediate risk of stockout, and the SAFE risk classification indicates stable demand and supply conditions.
 
 ### 2) Demand Pattern Analysis
-- **Demand Velocity**: 233.1 units/day
-- **Projected Demand Over Next 20 Days**: 20.1 days * 233.1 units/day = 4,684.31 units
+- **Average Daily Demand**: 5.7 units/day
+- **Total Demand Over Remaining Days**: 5.7 units/day * 52.9 days = 301.53 units
 
-**Demand Coverage**: 
-- Current stock (4691 units) is slightly above projected demand (4684.31 units) for the next 20 days, indicating a balanced demand-supply scenario.
-
-**Conclusion**: Demand appears stable, but the negative profit margin indicates a need for strategic pricing or cost management to improve profitability.
+**Demand vs. Stock**: 
+- Current stock (299 units) is slightly below the projected demand (301.53 units) over the next 52.9 days. This indicates a potential risk of stockout if demand remains consistent.
 
 ### 3) Reorder Strategy Recommendation
+- **Lead Time**: 4 days
 - **Safety Stock Calculation**: 
-  - Safety Stock = Daily Demand * Lead Time * Safety Stock Multiplier
-  - Safety Stock = 233.1 units/day * 3 days * 1.2 = 839.16 units (rounded to 840 units)
+  - Safety Stock = (Average Daily Demand * Lead Time) * Safety Stock Multiplier
+  - Safety Stock = (5.7 units/day * 4 days) * 1.2 = 27.36 units (rounded to 28 units)
 
-- **Total Stock Requirement**: 
-  - Total Stock Required = Projected Demand + Safety Stock
-  - Total Stock Required = 4684.31 units + 840 units = 5524.31 units (rounded to 5525 units)
+**Total Stock Requirement**: 
+- Total Demand during Lead Time = 5.7 units/day * 4 days = 22.8 units (rounded to 23 units)
+- Total Requirement = Safety Stock + Total Demand during Lead Time = 28 units + 23 units = 51 units
 
 **Reorder Point**: 
-- Given the current stock of 4691 units, a reorder should be initiated when stock levels drop to approximately 840 units (safety stock level) to ensure continuity of supply without risking stockouts.
+- Reorder when stock reaches 51 units.
 
 **Recommendation**: 
-- Place a reorder for approximately 834 units (5525 - 4691) to maintain optimal inventory levels while balancing profit, risk, and customer satisfaction. Additionally, consider reviewing pricing strategies to improve profit margins on this product.","### 1) Why this action aligns with strategy
-Pausing ads or increasing the price of the WHITE HANGING HEART T-LIGHT HOLDER aligns with the Balanced strategy by addressing the current negative profit per unit while managing risk and customer satisfaction. Given the product's safe risk level and sufficient stock, this action allows for a recalibration of pricing strategy to enhance profitability without immediate pressure on inventory or customer demand.
+- Given the current stock of 299 units, monitor daily sales closely. Initiate a reorder when stock levels approach 51 units to maintain balance between profit, risk, and customer satisfaction. This approach minimizes stockout risk while ensuring sufficient inventory to meet customer demand.","### 1) Why this action aligns with strategy
+Monitoring the ""calm trail look"" product aligns with the Balanced strategy as it allows for a proactive approach to managing profit, risk, and customer satisfaction. Given its safe risk level and sufficient stock, monitoring ensures that we can respond to market changes without overcommitting resources, thereby balancing profitability with risk management.
 
 ### 2) How to implement effectively
-- **Pause Ads**: Temporarily halt advertising campaigns to reduce marketing expenses while assessing the product's price elasticity and customer response.
-- **Increase Price**: Conduct a market analysis to determine an optimal price increase that balances perceived value and customer willingness to pay. Implement the price change across all sales channels.
-- **Monitor Customer Feedback**: Engage with customers through surveys or social media to gauge reactions to the price change and ensure satisfaction remains high.
+- **Data Tracking**: Set up a system to continuously track sales velocity, customer feedback, and market trends related to the product.
+- **Regular Reviews**: Schedule bi-weekly reviews to assess performance metrics and adjust strategies as needed.
+- **Customer Engagement**: Engage with customers through surveys or social media to gauge satisfaction and gather insights for potential improvements.
 
 ### 3) Expected outcome
-By pausing ads and increasing the price, the expected outcome is a reduction in losses per unit sold, potentially leading to a positive profit margin. This strategy should stabilize inventory levels, allowing for a more sustainable sales approach while maintaining customer interest through perceived value.
+By effectively monitoring the product, we anticipate maintaining a steady sales flow while minimizing the risk of stockouts or overstocking. This approach should lead to sustained profitability, enhanced customer satisfaction through responsiveness, and informed decision-making for future actions.
 
 ### 4) Priority justification
-This action is prioritized due to the current negative profit per unit, which poses a significant risk to overall profitability. By addressing this issue through price adjustments and reduced advertising spend, the business can optimize its financial performance while maintaining a focus on customer satisfaction and risk management. The impact score of 2477.0 indicates a strong potential for improvement, justifying immediate action.","1) **Inventory Action**: Reduce stock levels significantly ahead of the trough in February, as the next month index (0.65) indicates declining demand. 
+Monitoring is prioritized as it provides a low-risk, high-reward strategy that allows for flexibility in response to market dynamics. It ensures that we maintain customer satisfaction and profitability without the immediate pressures of restocking or price increases, which could disrupt the current balance.","1) **Inventory Action**: Increase stock levels in anticipation of rising demand, especially as we approach the peak month of November. Aim to reduce current stock days to optimize turnover.
 
-2) **Pricing Strategy**: Consider a promotional pricing strategy to clear existing inventory, as the profit per unit is negative (₹-318.76). 
+2) **Pricing Strategy**: Implement a competitive pricing strategy to enhance customer satisfaction while maintaining profit margins. Consider promotional offers leading up to peak season to stimulate demand.
 
-3) **Key Timing to Watch**: Monitor inventory levels closely in October and early November to capitalize on peak demand, while preparing for a swift reduction post-peak to mitigate losses.",0.85,0.9,0.85
-84077,Fast Moving,WORLD WAR 2 GLIDERS ASSTD DESIGNS,0.24,0.15,4419,3,-322.7175820810138,47536.299840533335,True,228.30085991734137,19.356037474409618,SAFE,0,0.0,2455.890049984688,PAUSE_ADS_OR_INCREASE_PRICE,Strategy,0.341,0.566,November,January,RISING,0.707,12970.7,False,"### 1) Profitability Assessment
-The current profitability of the ""WORLD WAR 2 GLIDERS ASSTD DESIGNS"" product is significantly negative, with a profit per unit of ₹-322.72 and a daily loss of ₹47,536.30. This indicates that the product is not only failing to meet the minimum margin target of 15% but is also incurring substantial losses. The combination of a low selling price and high cost of goods sold (COGS) is unsustainable and poses a risk to overall profitability and customer satisfaction.
+3) **Key Timing to Watch**: Monitor sales trends closely in the next month (index 0.43) for early indicators of demand shifts, and prepare for inventory adjustments as November approaches.",0.85,0.9,0.85
+SKU108,Tracksuit,elevate scuba tracksuit,2499,1114.28,378,4,1147.569525925926,0.0,False,2.526838906445927,149.59402399406144,SAFE,0,433781.2808,2899.7233259613377,MONITOR,Strategy,1.227,0.732,November,March,FALLING,0.7,15.5,True,"### 1) Profitability Assessment
+The elevate scuba tracksuit has a selling price of ₹2499 and a cost of goods sold (COGS) of ₹1114.28, resulting in a profit per unit of approximately ₹1147.57. This yields a profit margin of about 46%, significantly exceeding the minimum margin target of 15%. The current profitability is strong, indicating a healthy product performance. However, maintaining customer satisfaction and managing risks is essential for sustained success.
 
 ### 2) Pricing Recommendation
-To achieve the minimum margin target of 15%, the selling price must be adjusted. The formula for the minimum selling price (SP) based on COGS and desired margin is:
-
-\[ SP = COGS / (1 - Margin) \]
-
-Using the current COGS of ₹0.15 and a margin target of 15%:
-
-\[ SP = 0.15 / (1 - 0.15) = 0.15 / 0.85 \approx ₹0.1765 \]
-
-However, this price is still below the current selling price of ₹0.24, which is positive. To ensure profitability while considering customer satisfaction, a recommended selling price could be set at ₹0.30. This price maintains a balance between profitability and market competitiveness.
+To align with the Balanced strategy, consider a slight price adjustment to ₹2399. This maintains a profit margin of approximately 44.5%, which is still well above the minimum target. The lower price point can enhance customer satisfaction and potentially increase sales volume, balancing profit with customer appeal.
 
 ### 3) Cost Optimization Tip
-To improve profitability, focus on reducing the COGS. Analyze the supply chain for potential cost-saving opportunities, such as negotiating better rates with suppliers, optimizing production processes, or sourcing alternative materials that maintain quality but reduce costs. A target reduction of at least 10% in COGS could significantly enhance profit margins and help achieve the desired balance between profit and risk.","### 1) Risk Assessment Aligned with Strategy
-- **Current Stock**: 4419 units
-- **Daily Demand**: 228.3 units/day
-- **Days of Stock Remaining**: 19.4 days
-
-**Risk Level**: SAFE  
-- The product has a safe risk profile, indicating stable demand and manageable supply chain conditions. However, the negative profit per unit (₹-322.72) suggests a need for careful monitoring to avoid losses.
-
-**Risk Tolerance**: Medium  
-- Given the medium risk tolerance, maintaining a balance between stock levels and potential stockouts is crucial. The current stock is sufficient for the next 19.4 days, but with a lead time of 3 days, proactive measures are necessary to avoid stockouts.
+Evaluate the supply chain for potential cost reductions. Negotiate with suppliers for bulk discounts or explore alternative materials that maintain quality but reduce COGS. A targeted reduction of even 5-10% in COGS could significantly enhance profit margins while allowing for competitive pricing, thus balancing profit and customer satisfaction effectively.","### 1) Risk Assessment Aligned with Strategy
+Given the product ""elevate scuba tracksuit"" has a **SAFE** risk classification, the risk of stockouts is low. However, with a medium risk tolerance, it is essential to maintain a balance between inventory levels and potential demand fluctuations. The current stock of **378 units** and a **velocity of 2.5 units/day** indicates a steady demand, but the safety stock multiplier of **1.2x** suggests a proactive approach to mitigate any unforeseen demand spikes or supply chain disruptions.
 
 ### 2) Demand Pattern Analysis
-- **Demand Forecast**: 
-  - Daily demand is 228.3 units, leading to a total demand of approximately 4437 units over the next 19.4 days.
-  
-- **Safety Stock Calculation**: 
-  - Safety Stock = Daily Demand x Lead Time x Safety Stock Multiplier
-  - Safety Stock = 228.3 units/day x 3 days x 1.2 = 820 units
+- **Current Stock**: 378 units
+- **Daily Demand**: 2.5 units/day
+- **Days of Stock Remaining**: 149.6 days
 
-- **Total Stock Requirement**: 
-  - Total Stock Needed = Demand over Lead Time + Safety Stock
-  - Total Stock Needed = 684.9 units (for 3 days) + 820 units = 1504.9 units
+Calculating the total demand over the remaining stock period:
+- **Total Demand**: 2.5 units/day * 149.6 days = 374 units
+
+With 378 units in stock, the current inventory can meet the projected demand for the next **149.6 days**. This indicates a healthy inventory level, but it is crucial to consider lead time and safety stock in the reorder strategy.
 
 ### 3) Reorder Strategy Recommendation
-- **Current Stock vs. Total Stock Requirement**: 
-  - Current Stock: 4419 units
-  - Total Stock Requirement: 1505 units
+To maintain a balanced approach, consider the following:
 
-- **Reorder Point**: 
-  - To maintain a balance between stock availability and minimizing excess inventory, set a reorder point at the total stock requirement (1505 units). 
+- **Reorder Point (ROP)**: Calculate the ROP considering lead time and safety stock.
+  - **Lead Time Demand**: 2.5 units/day * 4 days = 10 units
+  - **Safety Stock**: 1.2 * Lead Time Demand = 1.2 * 10 units = 12 units
+  - **Total ROP**: Lead Time Demand + Safety Stock = 10 units + 12 units = 22 units
 
-- **Reorder Quantity**: 
-  - Given the current stock is significantly above the reorder point, no immediate reorder is necessary. However, monitor demand closely and prepare to reorder when stock approaches the reorder point.
+- **Reorder Quantity (ROQ)**: To optimize inventory levels while minimizing stockout risks, consider ordering enough to cover demand until the next shipment arrives, plus additional safety stock.
+  - **Recommended Reorder Quantity**: Aim for a minimum of 50 units to ensure sufficient stock while considering demand variability.
 
-- **Action Plan**: 
-  - Continue to assess demand trends and adjust the reorder strategy accordingly. If demand increases or if the profit margin improves, consider revisiting the pricing strategy to enhance profitability.
+### Summary
+- **Risk Assessment**: Low risk with a proactive safety stock approach.
+- **Demand Pattern**: Sufficient stock for 149.6 days, with a total demand of 374 units.
+- **Reorder Strategy**: Set ROP at 22 units and recommend a reorder quantity of 50 units to maintain balance in profit, risk, and customer satisfaction.","### 1) Why this action aligns with strategy
+Monitoring the elevate scuba tracksuit aligns with the Balanced strategy as it allows for a proactive approach to managing profit, risk, and customer satisfaction. Given the product's safe risk level and substantial profit potential, monitoring ensures that any shifts in customer demand or market conditions can be addressed promptly, maintaining a balance between maximizing profit and minimizing risk.
 
-In summary, maintain current stock levels while monitoring demand closely, and prepare to reorder when stock approaches the calculated reorder point to balance profit, risk, and customer satisfaction effectively.","### 1) Alignment with Strategy
-Pausing ads or increasing the price of the ""World War 2 Gliders Asstd Designs"" aligns with the Balanced strategy by addressing the current negative profit per unit (₹-322.72) while managing risk and customer satisfaction. By reducing advertising spend, we minimize losses, and increasing the price can help recover costs without significantly impacting customer demand, given the product's safe risk level.
+### 2) How to implement effectively
+- **Data Tracking**: Set up a system to continuously track sales velocity, customer feedback, and market trends related to the scuba tracksuit.
+- **Inventory Management**: Regularly assess stock levels and forecast demand to avoid stockouts or overstock situations.
+- **Customer Engagement**: Gather insights from customer reviews and surveys to understand satisfaction levels and areas for improvement.
+- **Market Analysis**: Keep an eye on competitor pricing and promotional strategies to adjust marketing efforts accordingly.
 
-### 2) Implementation
-- **Pause Ads**: Immediately halt all advertising campaigns for this product to reduce unnecessary expenditure.
-- **Price Adjustment**: Conduct a market analysis to determine a price increase that balances profitability and customer acceptance. Implement the new price across all sales channels.
-- **Monitor Customer Feedback**: Collect data on customer reactions to the price change to ensure satisfaction remains high.
+### 3) Expected outcome
+By effectively monitoring the elevate scuba tracksuit, we can anticipate changes in demand, optimize inventory levels, and enhance customer satisfaction. This proactive approach is expected to maintain or increase profit margins while minimizing the risk of stockouts or excess inventory, ultimately leading to sustained profitability.
 
-### 3) Expected Outcome
-- **Financial Recovery**: By pausing ads and increasing the price, we expect to reduce losses and potentially achieve a break-even point or profit margin.
-- **Inventory Management**: With 4419 units and a 19.4-day stock left, the price increase may slow down sales slightly, allowing for better inventory management without stockouts.
-- **Customer Retention**: If executed carefully, customer satisfaction should remain stable, as the product's unique value proposition may justify the price increase.
+### 4) Priority justification
+Monitoring is prioritized because it serves as a foundational action that informs subsequent decisions regarding advertising, restocking, and pricing strategies. Given the product's current stock levels and profit potential, a focus on monitoring allows for informed adjustments that balance profit maximization with risk management and customer satisfaction, ensuring long-term success in a competitive market.","1) **Inventory Action**: Reduce stock levels to align with the declining trend and high current stock days. Consider a clearance sale to minimize excess inventory before the trough in March.
 
-### 4) Priority Justification
-This action is prioritized because:
-- **Immediate Financial Impact**: Addressing the negative profit per unit is critical for overall business health.
-- **Risk Management**: The product is currently at a safe risk level, allowing for strategic adjustments without significant customer backlash.
-- **Resource Optimization**: Pausing ads frees up budget for more profitable products, aligning with the goal of optimizing resources across the business.","1) **Inventory Action**: Increase stock levels in anticipation of rising demand, particularly as we approach November, the peak month. 
+2) **Pricing Strategy**: Implement competitive pricing to attract customers, potentially lowering prices to increase sales volume while maintaining a profit margin, especially as demand decreases.
 
-2) **Pricing Strategy**: Implement a slight price increase to improve profit margins while monitoring customer response, ensuring it remains competitive.
-
-3) **Key Timing to Watch**: Focus on the transition from October to November for inventory replenishment and promotional activities, as well as monitoring sales trends closely in January to adjust for the expected trough.",0.85,0.9,0.85
-21212,Fast Moving,PACK OF 72 RETRO SPOT CAKE CASES,0.67,0.4,4824,3,-287.1376664776119,46171.7367696,True,198.0908891373419,24.352457707711068,SAFE,0,0.0,1895.9785219123892,PAUSE_ADS_OR_INCREASE_PRICE,Strategy,0.848,0.922,October,December,STABLE,0.953,7283.2,False,"### 1) Profitability Assessment
-The current profitability of the PACK OF 72 RETRO SPOT CAKE CASES is negative, with a profit per unit of approximately ₹-287.14 and a daily loss of ₹46,171.74. This indicates that the product is not only unprofitable but also significantly impacting overall financial health. The selling price of ₹0.67 against a COGS of ₹0.40 results in a profit margin that is far below the minimum target of 15.0%. Immediate action is required to align profitability with the Balanced strategy.
+3) **Key Timing to Watch**: Monitor sales closely in October and early November for peak demand, and adjust inventory and pricing strategies accordingly to maximize profit before the seasonal decline.",0.85,0.9,0.85
+SKU107,Coord Set,varsity voyage coord set,1599,773.44,163,7,606.9569333333333,0.0,False,3.879364170210226,42.017194789724236,SAFE,0,98933.98013333333,2354.60698003401,MONITOR,Strategy,1.0,0.351,May,December,FALLING,0.7,6.0,False,"### 1) Profitability Assessment
+The varsity voyage coord set has a selling price of ₹1599 and a cost of goods sold (COGS) of ₹773.44, resulting in a profit per unit of approximately ₹607. This profit margin is around 37.9%, significantly exceeding the minimum margin target of 15%. The product is currently profitable, with no daily losses reported, indicating a strong position in terms of profitability.
 
 ### 2) Pricing Recommendation
-To achieve at least a 15% profit margin, the selling price must be adjusted. The formula for the minimum selling price (SP) to achieve the desired margin is:
-
-\[ SP = \frac{COGS}{1 - \text{Margin Target}} \]
-
-Substituting the values:
-
-\[ SP = \frac{0.40}{1 - 0.15} = \frac{0.40}{0.85} \approx ₹0.47 \]
-
-However, this price does not account for the current loss. To cover the loss and achieve profitability, consider setting the selling price to approximately ₹1.00. This price point would provide a profit margin of around 30% (₹1.00 - ₹0.40 = ₹0.60 profit per unit), which balances profit and customer satisfaction while mitigating risk.
+To align with the Balanced strategy, consider a slight price increase to ₹1699. This adjustment maintains a competitive edge while enhancing profit margins. The new profit per unit would be approximately ₹925, which still meets customer satisfaction expectations and maintains a healthy risk profile.
 
 ### 3) Cost Optimization Tip
-To enhance profitability without significantly impacting customer satisfaction, evaluate the COGS of ₹0.40. Explore options to reduce production costs through bulk purchasing of materials, negotiating better rates with suppliers, or optimizing the production process to minimize waste. A reduction of even ₹0.05 in COGS could improve the profit margin significantly, allowing for a more competitive pricing strategy while still achieving the desired profitability.","### 1) Risk Assessment Aligned with Strategy
-- **Current Stock**: 4824 units
-- **Daily Demand**: 198.1 units/day
-- **Days of Stock Remaining**: 24.4 days
+Evaluate supplier contracts and explore bulk purchasing options to reduce COGS. A target reduction of 10-15% in COGS could enhance profit margins further while allowing for potential price adjustments or promotional offers that could increase customer satisfaction and sales volume.","### 1) Risk Assessment Aligned with Strategy
+- **Current Stock**: 163 units
+- **Days of Stock Left**: 42 days
+- **Daily Demand (Velocity)**: 3.9 units/day
+- **Lead Time**: 7 days
 
-**Risk Level**: SAFE  
-- The product has a safe risk status, indicating that there are no immediate concerns regarding stockouts or demand fluctuations. However, the negative profit per unit (₹-287.14) suggests a need for careful monitoring of demand and cost management.
+**Risk Level**: SAFE
 
-**Risk Tolerance**: Medium  
-- Given the medium risk tolerance, maintaining a balance between stock levels and potential stockouts is crucial. The safety stock multiplier of 1.2x will help mitigate risks associated with demand variability.
+**Assessment**: With a current stock of 163 units and a daily demand of 3.9 units, the product will last for approximately 41.8 days (163 units / 3.9 units/day). Given the lead time of 7 days, there is a comfortable buffer of 34.8 days (41.8 days - 7 days) before a reorder is necessary. The risk of stockout is low, aligning with the medium risk tolerance of the Balanced strategy.
 
 ### 2) Demand Pattern Analysis
-- **Average Daily Demand**: 198.1 units
-- **Total Demand Over Remaining Days**: 198.1 units/day * 24.4 days = 4,832.84 units
+- **Average Daily Demand**: 3.9 units/day
+- **Safety Stock Calculation**: 
+  - Safety Stock = (Lead Time Demand) x Safety Stock Multiplier
+  - Lead Time Demand = Daily Demand x Lead Time = 3.9 units/day x 7 days = 27.3 units
+  - Safety Stock = 27.3 units x 1.2 = 32.76 units (rounded to 33 units)
 
-**Demand Coverage**: 
-- Current stock (4824 units) is slightly below the projected demand (4832.84 units) over the next 24.4 days. This indicates a potential risk of stockout before the next replenishment.
-
-**Demand Stability**: 
-- If demand is consistent, the current stock will not suffice to cover the entire period, necessitating a proactive approach to reorder.
+**Demand Pattern**: The demand is stable, with no significant fluctuations noted. The safety stock provides a buffer against variability, ensuring customer satisfaction while minimizing stockout risks.
 
 ### 3) Reorder Strategy Recommendation
 - **Reorder Point (ROP)**: 
-  - Calculate ROP considering lead time and safety stock:
-  - ROP = (Daily Demand * Lead Time) + Safety Stock
-  - Safety Stock = Safety Stock Multiplier * (Daily Demand * Lead Time)
-  - Safety Stock = 1.2 * (198.1 units/day * 3 days) = 1.2 * 594.3 = 713.16 units
-  - ROP = (198.1 units/day * 3 days) + 713.16 units = 594.3 + 713.16 = 1307.46 units
+  - ROP = Lead Time Demand + Safety Stock = 27.3 units + 33 units = 60.3 units (rounded to 61 units)
 
 **Recommendation**: 
-- **Reorder when stock reaches approximately 1308 units** to ensure sufficient coverage during lead time and to minimize stockout risks. Given the current stock level, a reorder should be initiated soon to avoid potential stockouts.
+- **Current Stock**: 163 units
+- **Reorder Point**: 61 units
 
-**Action**: Monitor demand closely and adjust reorder quantities based on any fluctuations in sales velocity or changes in lead time.","### 1) Why this action aligns with strategy
-Pausing ads or increasing the price of the PACK OF 72 RETRO SPOT CAKE CASES aligns with the Balanced strategy by addressing the current negative profit per unit while managing risk and customer satisfaction. Given the product's low profitability and sufficient stock, this action allows for a recalibration of pricing strategy without immediate pressure on inventory or customer relationships.
+Since the current stock (163 units) is well above the reorder point (61 units), no immediate reorder is necessary. However, monitor demand closely. When stock levels approach the reorder point, place an order for at least one lead time demand (27.3 units) plus safety stock (33 units), totaling approximately 61 units to maintain optimal inventory levels and ensure customer satisfaction without incurring excess holding costs. 
+
+**Action**: Review inventory weekly and adjust reorder quantities based on demand trends to maintain balance across profit, risk, and customer satisfaction.","### 1) Why this action aligns with strategy
+Monitoring the varsity voyage coord set aligns with the Balanced strategy as it allows for a proactive approach to managing profit, risk, and customer satisfaction. Given the product's safe risk level and substantial profit potential, monitoring ensures that we can respond to market changes without overcommitting resources, thus balancing profitability with risk management.
 
 ### 2) How to implement effectively
-- **Pause Ads**: Temporarily halt all advertising campaigns for this product to reduce marketing expenses and assess the impact on sales.
-- **Price Adjustment**: Analyze competitor pricing and customer willingness to pay. Gradually increase the price by a small percentage (e.g., 5-10%) to test market response.
-- **Monitor Sales**: Track sales volume and customer feedback closely post-implementation to gauge the effectiveness of the price change and adjust accordingly.
+- **Data Tracking**: Set up a system to continuously track sales velocity, customer feedback, and market trends related to the coord set.
+- **Inventory Review**: Regularly assess stock levels and days left to ensure timely restocking if sales accelerate.
+- **Customer Engagement**: Gather insights from customer reviews and inquiries to gauge satisfaction and identify potential improvements.
+- **Market Analysis**: Keep an eye on competitor pricing and promotions to adjust strategies as needed.
 
 ### 3) Expected outcome
-By pausing ads and increasing the price, we expect to:
-- Reduce losses per unit sold, potentially moving towards a break-even point.
-- Maintain customer satisfaction by ensuring that the price increase is justified through perceived value.
-- Optimize inventory turnover by allowing for a more strategic sales approach without aggressive marketing.
+By monitoring the product, we anticipate maintaining a healthy stock level while maximizing profit opportunities. This approach should lead to sustained customer satisfaction through availability and responsiveness to market demands, ultimately enhancing brand loyalty and profitability.
 
 ### 4) Priority justification
-This action is prioritized because:
-- The product is currently unprofitable, and immediate action is necessary to mitigate losses.
-- The risk level is classified as safe, allowing for strategic adjustments without jeopardizing customer relationships.
-- With a significant stock level and a limited time frame (24.4 days left), optimizing pricing and marketing efforts is crucial to balance profit and customer satisfaction effectively.","1) **Inventory Action**: Increase stock levels to prepare for the peak month of October, considering the stable seasonal trend and high seasonality strength (95%). Aim for a buffer stock to mitigate risks.
+Monitoring is prioritized because it serves as a foundational action that informs subsequent decisions regarding advertising, restocking, and pricing. It allows for a balanced approach to managing the product's lifecycle, ensuring that we are prepared to optimize ads, restock efficiently, or adjust pricing based on real-time data and customer feedback, thus maintaining equilibrium among profit, risk, and customer satisfaction.","1) **Inventory Action**: Reduce stock levels for the varsity voyage coord set to align with the declining trend and low next month index. Aim for a 30% decrease in inventory to mitigate risk.
 
-2) **Pricing Strategy**: Implement a competitive pricing strategy to enhance customer satisfaction, while cautiously adjusting prices to minimize losses, given the negative profit per unit.
+2) **Pricing Strategy**: Implement a competitive pricing strategy, potentially lowering prices by 10-15% to enhance customer satisfaction and stimulate demand during the off-peak months.
 
-3) **Key Timing to Watch**: Monitor sales closely in September and October for demand spikes, and adjust inventory and pricing strategies accordingly to maximize profit and customer satisfaction.",0.85,0.9,0.85
-37492A,Slow Moving,YELLOW RED FLOWER PIGGY BANK,4.27,2.56,147,3,-353.46028220408164,1731.9553828,True,15.928571428571429,9.228699551569507,SAFE,0,0.0,187.6705784083576,PAUSE_ADS_OR_INCREASE_PRICE,Strategy,1.0,1.0,,,STABLE,0.0,0.0,False,"### 1) Profitability Assessment
-The YELLOW RED FLOWER PIGGY BANK is currently unprofitable, with a negative profit per unit of ₹-353.46 and a daily loss of ₹1731.96. This indicates that the product is not only slow-moving but also failing to meet the minimum margin target of 15%. The combination of low sales volume and high costs is detrimental to overall profitability.
+3) **Key Timing to Watch**: Monitor sales closely in April and early May, as these are critical for maximizing profit before the peak month, while also preparing for a significant drop post-May.",0.85,0.9,0.85
+SKU109,Coord Set,aeroslate coord set,1799,845.85,483,6,671.51235,0.0,False,2.4891282616079096,194.0438375353125,SAFE,0,324340.46505,1671.480368403742,MONITOR,Strategy,0.059,0.297,May,January,RISING,0.7,5.0,True,"### 1) Profitability Assessment
+The aeroslate coord set has a selling price of ₹1799 and a cost of goods sold (COGS) of ₹845.85, resulting in a profit per unit of ₹671.51. This translates to a profit margin of approximately 37.3%, which significantly exceeds the minimum margin target of 15.0%. The current profitability is strong, indicating a healthy product performance. However, maintaining customer satisfaction and managing risk are also crucial.
 
 ### 2) Pricing Recommendation
-To align with the Balanced strategy while ensuring a minimum margin of 15%, the selling price needs to be adjusted. 
-
-**Calculation for New Selling Price:**
-- COGS: ₹2.56
-- Desired Margin: 15%
-- Required Selling Price = COGS / (1 - Desired Margin) = ₹2.56 / (1 - 0.15) = ₹3.01
-
-**Recommendation:** Increase the selling price to at least ₹3.01. However, considering the current price of ₹4.27, a more competitive price adjustment could be made to ₹4.00 to stimulate demand while still maintaining a margin above 15%.
+To align with the Balanced strategy, consider a slight price adjustment to ₹1849. This maintains a competitive edge while increasing the profit margin to approximately 39.5%. This price point still offers value to customers and enhances profitability without alienating the target market. Ensure that the perceived value justifies the price increase to maintain customer satisfaction.
 
 ### 3) Cost Optimization Tip
-To improve profitability, focus on reducing the COGS. Analyze the supply chain for potential cost-saving opportunities, such as negotiating better rates with suppliers or exploring alternative materials that maintain quality but lower costs. Additionally, consider bundling this product with other items to increase perceived value and drive sales, thereby spreading fixed costs over a larger volume.","### 1) Risk Assessment Aligned with Strategy
-- **Current Stock**: 147 units
-- **Days of Stock Left**: 9.2 days
-- **Daily Demand (Velocity)**: 15.9 units/day
-- **Lead Time**: 3 days
+Evaluate the supply chain for potential cost reductions. Negotiate with suppliers for better rates or explore alternative materials that maintain quality but reduce COGS. A targeted reduction of 5-10% in COGS could significantly enhance profit margins while allowing for competitive pricing. Additionally, consider bulk purchasing or long-term contracts to secure lower prices.","### 1) Risk Assessment Aligned with Strategy
+- **Current Stock**: 483 units
+- **Days Left**: 194 days
+- **Velocity**: 2.5 units/day
+- **Lead Time**: 6 days
+- **Risk Level**: SAFE
 
-**Risk Level**: SAFE  
-- The product is currently in a safe risk category, indicating that there are no immediate concerns regarding stockouts or excess inventory. However, with only 9.2 days of stock left, proactive measures are necessary to maintain balance.
+**Assessment**: The current stock level is sufficient to meet demand for the next 194 days, significantly exceeding the lead time of 6 days. Given the SAFE risk status, the product is not at immediate risk of stockouts. However, maintaining a medium risk tolerance means we should still monitor demand fluctuations closely to avoid potential stockouts in the future.
 
 ### 2) Demand Pattern Analysis
-- **Daily Demand**: 15.9 units/day
-- **Total Demand Over Remaining Stock**: 15.9 units/day * 9.2 days = 146.28 units
+- **Daily Demand**: 2.5 units/day
+- **Projected Demand Over Lead Time**: 2.5 units/day * 6 days = 15 units
 
-**Analysis**: 
-- The current stock will last approximately 9.2 days, which is just enough to cover the demand until the stock runs out. Given the lead time of 3 days, a reorder should be initiated soon to avoid stockouts.
+**Analysis**: The demand pattern is stable, with a consistent velocity of 2.5 units/day. The projected demand during the lead time (15 units) is minimal compared to the current stock (483 units). This indicates a strong buffer against fluctuations in demand, aligning with the strategy of balancing customer satisfaction and risk.
 
 ### 3) Reorder Strategy Recommendation
 - **Safety Stock Calculation**: 
   - Safety Stock = (Lead Time Demand) * Safety Stock Multiplier
-  - Lead Time Demand = Daily Demand * Lead Time = 15.9 units/day * 3 days = 47.7 units
-  - Safety Stock = 47.7 units * 1.2 = 57.24 units (rounded to 58 units)
+  - Safety Stock = 15 units * 1.2 = 18 units
 
-- **Total Stock Requirement**: 
-  - Total Stock Needed = Lead Time Demand + Safety Stock = 47.7 units + 58 units = 105.7 units (rounded to 106 units)
-
-- **Reorder Point**: 
-  - Reorder when stock reaches 106 units. Given current stock (147 units), reorder now to ensure continuous availability.
+- **Reorder Point (ROP)**: 
+  - ROP = Lead Time Demand + Safety Stock
+  - ROP = 15 units + 18 units = 33 units
 
 **Recommendation**: 
-- Place a reorder for at least 106 units immediately to maintain balance between risk, profit, and customer satisfaction. Monitor demand closely to adjust future orders as necessary.","### 1) Why this action aligns with strategy
-Pausing ads or increasing the price of the YELLOW RED FLOWER PIGGY BANK aligns with the Balanced strategy by addressing the current negative profit per unit while managing risk and customer satisfaction. Given the product's low profitability and sufficient stock, this action minimizes financial loss and allows for a reassessment of market demand without overwhelming customers with ads for an unprofitable item.
+- **Reorder Point**: Set the reorder point at 33 units. This ensures that when stock levels drop to this point, a reorder is triggered to maintain customer satisfaction and mitigate stockout risks.
+- **Reorder Quantity**: Given the current stock and demand, consider placing a reorder for a quantity that maintains a healthy inventory level while considering storage costs and cash flow. A suggested reorder quantity could be around 100 units to ensure ample stock while balancing costs.
+
+By implementing this strategy, you will effectively balance profit, risk, and customer satisfaction.","### 1) Why this action aligns with strategy
+Monitoring the aeroslate coord set aligns with the Balanced strategy as it allows for a proactive approach to managing profit, risk, and customer satisfaction. The product is currently in a safe risk category, and with sufficient stock, monitoring ensures that any shifts in demand or market conditions can be addressed without compromising profitability or customer satisfaction.
 
 ### 2) How to implement effectively
-- **Pause Ads**: Temporarily halt all advertising campaigns for the product to reduce unnecessary expenditure.
-- **Price Adjustment**: Analyze competitor pricing and customer willingness to pay. If feasible, increase the price incrementally (e.g., by 5-10%) to test market response.
-- **Monitor Feedback**: Collect customer feedback and sales data post-implementation to gauge the impact of the price change and adjust strategy accordingly.
+- **Data Tracking**: Set up a dashboard to track sales velocity, customer feedback, and market trends related to the aeroslate coord set.
+- **Regular Reviews**: Schedule bi-weekly reviews to assess stock levels, profit margins, and customer satisfaction metrics.
+- **Market Analysis**: Conduct competitor analysis to identify any changes in pricing or product offerings that may impact demand.
+- **Customer Engagement**: Gather customer feedback through surveys or social media to gauge satisfaction and identify potential improvements.
 
 ### 3) Expected outcome
-By pausing ads and potentially increasing the price, the expected outcome includes:
-- Reduction in advertising costs, leading to improved overall profitability.
-- Stabilization of stock levels, allowing for better inventory management.
-- Potential increase in profit margins if the price increase is accepted by customers, leading to a more sustainable product offering.
+By effectively monitoring the aeroslate coord set, we anticipate maintaining a stable profit margin while minimizing risk. This proactive approach will enable timely adjustments to marketing strategies or pricing, ultimately enhancing customer satisfaction and potentially increasing sales without overextending inventory.
 
 ### 4) Priority justification
-This action is prioritized due to the current negative profit per unit, which poses a financial risk. By focusing on optimizing pricing and reducing unnecessary ad spend, the strategy aims to balance profit and risk effectively while maintaining customer satisfaction through careful price adjustments. This approach ensures that resources are allocated efficiently, aligning with the overarching goal of sustainable business growth.","1) **Inventory Action**: Maintain current stock levels due to stable demand and slow-moving status; avoid overstocking to minimize risk.
+Monitoring is prioritized as it provides a balanced approach to managing the product's performance without immediate financial risk. Given the current stock levels and profit potential, this action allows for strategic flexibility, ensuring that the company can respond to market changes while safeguarding profitability and customer loyalty.","1) **Inventory Action**: Increase stock levels to prepare for rising demand, targeting a 20% increase to mitigate seasonal risk.
 
-2) **Pricing Strategy**: Consider a slight price adjustment to improve profit margins, ensuring it aligns with customer satisfaction and market competitiveness.
+2) **Pricing Strategy**: Maintain competitive pricing to enhance customer satisfaction while ensuring profit margins. Consider a slight discount during peak demand to boost sales volume.
 
-3) **Key Timing to Watch**: Monitor sales closely in the upcoming month for any unexpected changes in demand, particularly as the season progresses, to adjust inventory and pricing strategies accordingly.",0.85,0.9,0.85
-85018D,Medium Moving,YULETIDE IMAGES S/6 PAPER BOXES,2.19,1.31,64,4,-285.66552774999997,609.4197925333333,True,16.077882629431627,3.980623660160559,CRITICAL,0,0.0,153.09656088130478,PAUSE_ADS_OR_INCREASE_PRICE,Strategy,1.0,1.0,October,March,STABLE,0.0,0.0,False,"### 1) Profitability Assessment
-The YULETIDE IMAGES S/6 PAPER BOXES currently have a negative profit per unit of ₹-285.67, indicating that the product is not profitable. With a daily loss of ₹609.42, the product is underperforming significantly. The current profit margin is well below the minimum target of 15%, which poses a risk to overall profitability and customer satisfaction.
-
-### 2) Pricing Recommendation
-To achieve a minimum margin target of 15%, the selling price must be adjusted. The required selling price can be calculated as follows:
-
-- **Desired Profit Margin**: 15%
-- **COGS**: ₹1.31
-- **Required Selling Price**: COGS / (1 - Desired Profit Margin) = ₹1.31 / (1 - 0.15) = ₹1.31 / 0.85 ≈ ₹1.54
-
-**Recommendation**: Increase the selling price to at least ₹1.54 to meet the minimum margin target while balancing customer expectations.
-
-### 3) Cost Optimization Tip
-To improve profitability, consider negotiating with suppliers for a reduction in the cost of goods sold (COGS). A target reduction of even ₹0.10 could significantly enhance the profit margin. Additionally, evaluate packaging and production processes for potential efficiencies that could lower costs without compromising quality, thereby improving overall customer satisfaction.","### 1) Risk Assessment Aligned with Strategy
-Given the critical risk status of the YULETIDE IMAGES S/6 PAPER BOXES, immediate attention is required. The current stock of 64 units with a velocity of 16.1 units/day indicates that stock will deplete in approximately 4 days (64 units / 16.1 units/day). Since the lead time is also 4 days, there is a risk of stockout if demand remains consistent. 
-
-**Risk Factors:**
-- **Stockout Risk:** High, as current stock will last exactly until the next order arrives.
-- **Financial Risk:** Negative profit per unit (₹-285.67) suggests that selling this product incurs a loss, which compounds the risk of holding excess inventory.
-- **Customer Satisfaction Risk:** Potential stockouts could lead to customer dissatisfaction, impacting future sales and brand reputation.
-
-### 2) Demand Pattern Analysis
-The demand velocity of 16.1 units/day indicates a steady consumption rate. Given that the stock will last exactly until the next order arrives, it is crucial to analyze demand patterns for potential fluctuations. 
-
-**Considerations:**
-- **Historical Demand:** If historical data shows variability in demand, it may necessitate a higher safety stock.
-- **Seasonality:** If this product is seasonal, understanding peak demand periods is essential for future planning.
-- **Customer Behavior:** If customers have shown a tendency to purchase in larger quantities during certain periods, this should be factored into the reorder strategy.
-
-### 3) Reorder Strategy Recommendation
-To mitigate risks and align with the Balanced strategy, the following actions are recommended:
-
-1. **Immediate Reorder:** Place an order for at least 64 units (to cover current demand) plus additional safety stock to buffer against potential demand spikes.
-   
-   **Safety Stock Calculation:**
-   - Safety Stock = Safety Stock Multiplier x Daily Demand x Lead Time
-   - Safety Stock = 1.2 x 16.1 units/day x 4 days = 77.52 units (round to 78 units)
-
-2. **Total Reorder Quantity:**
-   - Total Reorder = Current Stock + Safety Stock = 64 units + 78 units = 142 units.
-
-3. **Monitor Demand Closely:** Implement a monitoring system to track daily sales and adjust future orders based on real-time demand data.
-
-4. **Evaluate Pricing Strategy:** Given the negative profit margin, consider revising pricing or cost structure to improve profitability before the next order cycle.
-
-By following this approach, you can balance profit, risk, and customer satisfaction effectively while addressing the critical risk status of the product.","### 1) Why this action aligns with strategy
-Pausing ads or increasing the price of the YuleTide Images S/6 Paper Boxes aligns with the Balanced strategy by addressing the critical risk level and negative profit per unit. By reducing advertising spend, we mitigate further losses while assessing market demand. Increasing the price can help recover some of the losses, balancing profit and risk without compromising customer satisfaction excessively.
-
-### 2) How to implement effectively
-- **Pause Ads**: Immediately halt all advertising campaigns for this product to prevent further financial drain.
-- **Market Analysis**: Conduct a quick analysis of competitor pricing and customer feedback to determine an optimal price increase.
-- **Price Adjustment**: Implement a modest price increase, ensuring it remains competitive and justifiable based on perceived value.
-- **Monitor Customer Response**: Track sales and customer feedback closely post-implementation to gauge acceptance of the new price.
-
-### 3) Expected outcome
-By pausing ads and increasing the price, we expect to stabilize the financial situation of the product. This should lead to:
-- Reduced losses per unit sold.
-- Improved profit margins if the price increase is accepted by customers.
-- A clearer understanding of market demand, allowing for better inventory management and future pricing strategies.
-
-### 4) Priority justification
-This action is prioritized due to the critical risk level associated with the product. With a negative profit per unit and limited stock, immediate action is necessary to prevent further financial losses. Balancing profit recovery with risk management ensures that customer satisfaction is not severely impacted while addressing the urgent need to stabilize the product's performance.","1) **Inventory Action**: Maintain current stock levels due to stable demand and low seasonality strength. Monitor sales closely to avoid overstocking.
-
-2) **Pricing Strategy**: Implement a slight price increase to improve profit margins, considering the negative profit per unit. Ensure the new price remains competitive.
-
-3) **Key Timing to Watch**: Focus on October for peak sales and monitor trends closely in the months leading up to it, especially September, to adjust inventory and pricing as needed.",0.85,0.9,0.85
-22514,Medium Moving,CHILDS GARDEN SPADE BLUE,2.22,1.33,92,3,-226.6693267826087,695.1192688,True,3.6330958254386077,25.322756244364474,SAFE,0,0.0,27.450379496295838,PAUSE_ADS_OR_INCREASE_PRICE,Strategy,1.0,1.0,May,September,STABLE,0.0,0.0,False,"### 1) Profitability Assessment
-The CHILDS GARDEN SPADE BLUE is currently unprofitable, with a profit per unit of ₹-226.67 and a daily loss of ₹695.12. The selling price of ₹2.22 is significantly lower than the cost of goods sold (COGS) of ₹1.33, leading to negative margins. This situation poses a risk to both profitability and customer satisfaction, as ongoing losses can affect product availability and brand perception.
+3) **Key Timing to Watch**: Monitor sales closely in April as demand ramps up, and adjust inventory and pricing strategies accordingly to capitalize on peak sales in May.",0.85,0.9,0.85
+SKU102,Coord Set,Kross Coord set,1699,733.31,67,9,568.0236000000001,0.0,False,2.151113708420624,31.14665660756366,SAFE,0,38057.58120000001,1221.8833526664334,MONITOR,Strategy,0.334,0.635,May,August,RISING,0.7,9.5,False,"### 1) Profitability Assessment
+The Kross Coord set has a selling price of ₹1699 and a cost of goods sold (COGS) of ₹733.31, resulting in a profit per unit of ₹568.02. This yields a profit margin of approximately 33.5%, which significantly exceeds the minimum margin target of 15.0%. The current profitability is strong, indicating a healthy product performance with no daily losses.
 
 ### 2) Pricing Recommendation
-To achieve a minimum margin target of 15.0%, the selling price must be adjusted. The required selling price can be calculated as follows:
-
-- **Desired Profit Margin**: 15% of Selling Price (SP)
-- **COGS**: ₹1.33
-
-Using the formula:
-\[ \text{SP} = \text{COGS} / (1 - \text{Desired Margin}) \]
-\[ \text{SP} = ₹1.33 / (1 - 0.15) \]
-\[ \text{SP} = ₹1.33 / 0.85 \]
-\[ \text{SP} \approx ₹1.56 \]
-
-**Recommendation**: Increase the selling price to approximately ₹1.56 to meet the minimum margin target while balancing risk and customer satisfaction.
+To align with the Balanced strategy, consider a slight price increase to ₹1799. This adjustment maintains a competitive edge while enhancing profit margins. The new profit per unit would be ₹1065.69 (₹1799 - ₹733.31), resulting in a profit margin of approximately 59.2%. This price point balances profit maximization with customer satisfaction, assuming perceived value remains high.
 
 ### 3) Cost Optimization Tip
-To improve profitability without significantly impacting customer satisfaction, consider negotiating with suppliers for a lower COGS or exploring alternative materials that maintain quality but reduce costs. Additionally, streamline production processes to minimize waste and overhead, which can help lower overall costs and improve margins.","### 1) Risk Assessment Aligned with Strategy
-- **Current Stock**: 92 units
-- **Days of Stock Left**: 25.3 days
-- **Daily Demand (Velocity)**: 3.6 units/day
-- **Lead Time**: 3 days
+Evaluate supplier contracts and explore bulk purchasing options to reduce COGS. A targeted reduction of 10% in COGS (to approximately ₹659.98) would increase profit per unit to ₹1139.02 at the current selling price, enhancing profitability while maintaining the same margin. Additionally, consider streamlining production processes to further lower costs without compromising quality.","### 1) Risk Assessment Aligned with Strategy
+- **Current Stock**: 67 units
+- **Daily Demand**: 2.2 units/day
+- **Days of Stock Remaining**: 31.1 days
 
 **Risk Level**: SAFE  
-- The product has a safe risk classification, indicating stable demand and supply conditions. However, the negative profit per unit (₹-226.67) suggests that while stock levels are adequate, the financial performance is concerning.
+- The product has a medium risk tolerance, and with a current stock that covers over 31 days of demand, the risk of stockouts is low. The SAFE risk designation indicates that the product is stable in demand and supply.
 
-**Risk Tolerance**: Medium  
-- Given the medium risk tolerance, maintaining a balance between stock availability and financial performance is crucial. The current stock level is sufficient to meet demand over the next 25.3 days, with a lead time of only 3 days, minimizing the risk of stockouts.
+**Risk Factors**:
+- **Stockout Penalty Weight (0.7)**: This indicates a significant penalty for stockouts, emphasizing the need to maintain adequate inventory levels to avoid lost sales and customer dissatisfaction.
 
 ### 2) Demand Pattern Analysis
-- **Current Demand**: 3.6 units/day
-- **Projected Demand Over Lead Time**: 3.6 units/day * 3 days = 10.8 units
+- **Average Daily Demand**: 2.2 units/day
+- **Total Demand Over Lead Time (9 days)**: 2.2 units/day * 9 days = 19.8 units
+
+**Demand Stability**: 
+- The demand appears consistent, with no significant fluctuations noted. This stability supports a balanced approach to inventory management, allowing for predictable reorder points.
+
+### 3) Reorder Strategy Recommendation
+**Safety Stock Calculation**:
+- **Safety Stock**: Daily Demand * Lead Time * Safety Stock Multiplier
+- Safety Stock = 2.2 units/day * 9 days * 1.2 = 23.76 units (rounded to 24 units)
+
+**Total Stock Requirement**:
+- **Total Requirement**: Average Demand during Lead Time + Safety Stock
+- Total Requirement = 19.8 units + 24 units = 43.8 units (rounded to 44 units)
+
+**Current Stock Assessment**:
+- Current Stock: 67 units
+- Since current stock (67 units) exceeds the total requirement (44 units), no immediate reorder is necessary.
+
+**Reorder Point**:
+- **Reorder Point (ROP)**: Daily Demand * Lead Time + Safety Stock
+- ROP = 2.2 units/day * 9 days + 24 units = 44 units
+
+**Recommendation**:
+- Monitor inventory levels closely. Given the current stock is above the ROP, consider placing a reorder when stock approaches 44 units to maintain balance between profit, risk, and customer satisfaction. Regularly review demand patterns to adjust the reorder strategy as necessary.","### 1) Alignment with Strategy
+Monitoring the Kross Coord set aligns with the Balanced strategy as it allows for a proactive approach to managing profit, risk, and customer satisfaction. The product is currently in a safe risk category, and monitoring ensures that any shifts in demand or market conditions can be addressed promptly, maintaining customer satisfaction while safeguarding profits.
+
+### 2) Implementation
+- **Data Tracking**: Set up a system to track sales velocity, customer feedback, and market trends for the Kross Coord set.
+- **Regular Reviews**: Schedule bi-weekly reviews to assess stock levels and sales performance.
+- **Customer Engagement**: Gather customer insights through surveys or social media to understand preferences and potential improvements.
+- **Adjust Marketing**: If sales slow, consider targeted advertising to boost visibility without overcommitting resources.
+
+### 3) Expected Outcome
+By effectively monitoring the Kross Coord set, we anticipate maintaining a steady sales flow, minimizing stockouts, and ensuring customer satisfaction. This proactive approach should lead to sustained profitability and a potential increase in customer loyalty, ultimately enhancing the product's market position.
+
+### 4) Priority Justification
+Monitoring is prioritized because it serves as a foundational action that informs subsequent decisions regarding advertising, restocking, and pricing. Given the current stock levels and profit potential, maintaining oversight will allow for timely adjustments, ensuring that profit margins are protected while also addressing customer needs effectively. This balanced approach mitigates risk and maximizes overall performance.","1) **Inventory Action**: Increase stock levels in anticipation of rising demand, particularly as we approach the peak month of May. Aim for a 20% increase based on the seasonal trend.
+
+2) **Pricing Strategy**: Maintain competitive pricing to enhance customer satisfaction while ensuring profit margins. Consider a slight price increase (5%) leading into peak season to maximize profit without deterring customers.
+
+3) **Key Timing to Watch**: Monitor sales closely in April as demand ramps up, and adjust inventory levels accordingly to avoid stockouts during peak sales in May.",0.85,0.9,0.85
+SKU106,Tracksuit,arctic block tracksuit,2499,1227.75,123,5,347.07359999999994,0.0,False,3.1243271247660522,39.36847682337687,SAFE,0,42690.0528,1084.3714627702027,MONITOR,Strategy,1.243,1.221,November,March,STABLE,0.7,28.5,False,"### 1) Profitability Assessment
+The arctic block tracksuit has a selling price of ₹2499 and a cost of goods sold (COGS) of ₹1227.75, resulting in a profit of approximately ₹347.07 per unit. This translates to a profit margin of about 13.9%, which is below the minimum margin target of 15.0%. While the product is generating profit, it does not meet the desired margin threshold, indicating a need for adjustments to enhance profitability without compromising customer satisfaction.
+
+### 2) Pricing Recommendation
+To achieve the minimum margin target of 15.0%, the selling price should be adjusted. The required selling price can be calculated as follows:
+
+- Desired Profit Margin = 15%
+- Required Profit = COGS / (1 - Desired Profit Margin)  
+  = ₹1227.75 / (1 - 0.15)  
+  = ₹1227.75 / 0.85  
+  = ₹1449.12 (approx.)
+
+Thus, the new selling price should be set at approximately ₹1449.12 or higher. However, considering market positioning and customer perception, a recommended selling price of ₹2599 would provide a comfortable margin while remaining competitive.
+
+### 3) Cost Optimization Tip
+To enhance profitability while maintaining customer satisfaction, consider negotiating with suppliers for a reduction in COGS. Aim for a target reduction of at least 5-10% by exploring bulk purchasing options or alternative suppliers. This could lower the COGS to around ₹1100-₹1160, which would significantly improve the profit margin and allow for more competitive pricing or increased marketing spend to boost sales.","### 1) Risk Assessment Aligned with Strategy
+- **Current Stock**: 123 units
+- **Days of Stock Remaining**: 39.4 days
+- **Daily Demand (Velocity)**: 3.1 units/day
+- **Lead Time**: 5 days
+
+**Risk Level**: SAFE  
+- The current stock is sufficient to cover demand for approximately 39.4 days, which exceeds the lead time of 5 days. This indicates a low risk of stockouts, aligning with the medium risk tolerance of the Balanced strategy.
+
+### 2) Demand Pattern Analysis
+- **Daily Demand**: 3.1 units/day
+- **Total Demand Over Lead Time**: 3.1 units/day * 5 days = 15.5 units
 
 **Safety Stock Calculation**:  
-- Safety Stock = (Lead Time Demand) * Safety Stock Multiplier  
-- Safety Stock = 10.8 units * 1.2 = 12.96 units (rounded to 13 units)
+- **Safety Stock**: 1.2x * (Lead Time Demand) = 1.2 * 15.5 = 18.6 units (rounded to 19 units)
 
 **Total Stock Requirement**:  
-- Total Stock Needed = Lead Time Demand + Safety Stock  
-- Total Stock Needed = 10.8 units + 13 units = 23.8 units (rounded to 24 units)
+- **Total Requirement**: Lead Time Demand + Safety Stock = 15.5 + 19 = 34.5 units
+
+**Current Stock vs. Requirement**:  
+- Current Stock (123 units) is significantly higher than the total requirement (34.5 units), indicating a strong position to meet customer demand without risk of stockouts.
 
 ### 3) Reorder Strategy Recommendation
-- **Current Stock**: 92 units
-- **Reorder Point**: 24 units (based on lead time and safety stock)
+- **Reorder Point (ROP)**: Lead Time Demand + Safety Stock = 34.5 units
+- **Current Stock**: 123 units
 
 **Recommendation**:  
-- **Reorder Trigger**: Initiate reorder when stock reaches 24 units. Given the current stock of 92 units, there is no immediate need to reorder.
-- **Order Quantity**: When reordering, consider ordering enough to cover demand for the next cycle (approximately 3-4 weeks) while factoring in the negative profit margin. This may involve a strategic review of pricing or cost management to improve profitability.
+- Given the current stock level, no immediate reorder is necessary. However, monitor demand trends closely. If demand increases or if stock levels drop below the ROP of 34.5 units, initiate a reorder for a quantity that maintains a safety stock of 19 units to ensure continued customer satisfaction while balancing profit and risk.
 
-**Conclusion**: Maintain current stock levels until reaching the reorder point of 24 units, while continuously monitoring demand and profitability to adjust future strategies accordingly.","### 1) Why this action aligns with strategy
-Pausing ads or increasing the price of the Child's Garden Spade Blue aligns with the Balanced strategy by addressing the current negative profit per unit (₹-226.67) while maintaining customer satisfaction and minimizing risk. By reducing advertising spend, we can limit losses, and increasing the price could potentially improve profitability without significantly impacting demand, given the safe risk level.
+**Action Plan**:  
+- Set a reorder trigger at 34.5 units.
+- Review demand patterns monthly to adjust safety stock and reorder levels as necessary, ensuring alignment with the Balanced strategy.","### 1) Why this action aligns with strategy
+Monitoring the arctic block tracksuit aligns with the Balanced strategy as it allows for a proactive approach to managing inventory and customer satisfaction without incurring unnecessary risks. Given the product's safe risk level and sufficient stock, monitoring ensures that we can respond to market demand and customer feedback while maintaining profitability.
 
 ### 2) How to implement effectively
-- **Pause Ads**: Temporarily halt all advertising campaigns for this product to reduce unnecessary expenditure.
-- **Price Adjustment**: Conduct market research to determine a competitive yet profitable price point. Gradually increase the price by a small percentage (e.g., 5-10%) to gauge customer response.
-- **Monitor Sales**: Track sales volume and customer feedback closely post-implementation to assess the impact of the price change.
+- **Data Tracking**: Set up a system to continuously track sales velocity, customer feedback, and market trends related to the tracksuit.
+- **Regular Reviews**: Schedule bi-weekly reviews to assess stock levels, sales performance, and customer sentiment.
+- **Adjust Marketing**: Based on monitoring insights, optimize advertising strategies to boost visibility and sales if demand increases.
+- **Restock Planning**: Prepare a restock plan based on sales forecasts to ensure availability without overcommitting resources.
 
 ### 3) Expected outcome
-By pausing ads and potentially increasing the price, we expect to:
-- Reduce losses associated with negative profit margins.
-- Stabilize or improve profit margins if the price increase is accepted by customers.
-- Maintain customer satisfaction by ensuring the product remains available and competitively priced.
+By effectively monitoring the arctic block tracksuit, we anticipate maintaining optimal stock levels, enhancing customer satisfaction through timely availability, and maximizing profit margins. This approach should lead to a steady sales flow, minimizing the risk of stockouts or excess inventory.
 
 ### 4) Priority justification
-This action is prioritized because it directly addresses the negative profit situation while balancing the need for customer satisfaction and risk management. Given the current stock levels and the safe risk assessment, it is crucial to optimize profitability without incurring further losses, making this a strategic necessity.","1) **Inventory Action**: Maintain current stock levels, as the stable seasonal trend and low risk indicate no immediate need for adjustments.
+Monitoring is prioritized because it allows for a balanced approach to managing profit and risk while ensuring customer satisfaction. With a safe risk level and adequate stock, this action enables us to remain agile in response to market changes, ensuring we capitalize on sales opportunities without compromising our overall strategy.","1) **Inventory Action**: Increase stock levels to meet anticipated demand, considering the stable seasonal trend and current stock days. Aim for a 10-15% increase in inventory ahead of November.
 
-2) **Pricing Strategy**: Consider a slight price increase to improve profit margins, ensuring it remains competitive to avoid customer dissatisfaction.
+2) **Pricing Strategy**: Maintain competitive pricing to enhance customer satisfaction while ensuring profitability. Consider a slight discount during peak sales periods to boost volume without compromising profit margins.
 
-3) **Key Timing to Watch**: Monitor sales closely in May, the peak month, for potential demand spikes, and prepare for inventory reassessment in September, the trough month, to optimize stock levels.",0.85,0.9,0.85
-84817,Slow Moving,DANISH ROSE DECORATIVE PLATE,2.1,1.26,10,12,-89.09155999999999,29.69718666666666,True,7.5,1.3333333333333333,CRITICAL,0,0.0,22.272889999999997,REVIEW_PRICING,Strategy,1.0,0.5,November,September,FALLING,0.0,0.0,False,"### 1) Profitability Assessment
-The DANISH ROSE DECORATIVE PLATE is currently unprofitable, with a negative profit per unit of ₹-89.09 and a daily loss of ₹29.70. The selling price of ₹2.1 is significantly lower than the cost of goods sold (COGS) of ₹1.26, leading to unsustainable operations. Given the medium risk tolerance and a minimum margin target of 15%, immediate action is required to improve profitability.
+3) **Key Timing to Watch**: Monitor sales trends closely in October leading into November, as this is the peak month. Adjust inventory and pricing strategies based on real-time sales data.",0.85,0.9,0.85
+SKU110,Coord Set,oversized justin coord set,1599,795.04,390,3,323.10595294117644,0.0,False,2.1879957134635366,178.2453217801971,SAFE,0,126011.32164705881,706.9544400298453,MONITOR,Strategy,0.492,0.189,October,February,FALLING,1.0,24.4,True,"### 1) Profitability Assessment
+The oversized Justin coord set has a selling price of ₹1599 and a cost of goods sold (COGS) of ₹795.04, resulting in a profit per unit of approximately ₹323.11. This translates to a profit margin of about 20.2%, which exceeds the minimum margin target of 15.0%. The current profitability is healthy, but maintaining customer satisfaction and managing risk are essential for long-term success.
 
 ### 2) Pricing Recommendation
-To achieve the minimum margin target of 15%, the selling price must be adjusted. The required selling price can be calculated as follows:
-
-- **Target Profit Margin**: 15% of Selling Price (SP)
-- **COGS**: ₹1.26
-- **Profit per Unit**: SP - COGS
-
-Setting up the equation:
-\[ 
-0.15 \times SP = SP - 1.26 
-\]
-\[ 
-0.15 \times SP + 1.26 = SP 
-\]
-\[ 
-1.26 = SP - 0.15 \times SP 
-\]
-\[ 
-1.26 = 0.85 \times SP 
-\]
-\[ 
-SP = \frac{1.26}{0.85} \approx ₹1.48 
-\]
-
-Thus, to meet the minimum margin target, the new selling price should be approximately **₹1.48**. This price adjustment will help in achieving the desired profit margin while remaining competitive.
+To align with the Balanced strategy, consider a slight price increase to ₹1699. This adjustment would raise the profit per unit to approximately ₹404.96, enhancing profitability while still remaining competitive. Ensure that this price point is justified by perceived value and customer satisfaction to mitigate any potential risk of losing sales.
 
 ### 3) Cost Optimization Tip
-To enhance profitability, consider negotiating with suppliers for a reduction in COGS. A target reduction of at least 10% could significantly improve margins. For instance, if COGS can be reduced to ₹1.14, the profit per unit at the new selling price of ₹1.48 would be:
-
-\[ 
-Profit = 1.48 - 1.14 = ₹0.34 
-\]
-
-This would yield a profit margin of approximately 22.97%, exceeding the minimum target and improving overall financial health while maintaining customer satisfaction.","### 1) Risk Assessment Aligned with Strategy
-- **Current Stock Situation**: With only 10 units available and a daily velocity of 7.5 units, the stock will deplete in approximately 1.3 days. Given the lead time of 12 days, there is a critical risk of stockouts.
-- **Risk Level**: The risk is classified as CRITICAL due to the high likelihood of stockouts before new inventory arrives, which can negatively impact customer satisfaction and lead to lost sales.
-- **Safety Stock Requirement**: To mitigate this risk, safety stock should be calculated using the safety stock multiplier of 1.2x. The safety stock needed is:
-  \[
-  \text{Safety Stock} = \text{Lead Time Demand} \times \text{Safety Stock Multiplier}
-  \]
-  \[
-  \text{Lead Time Demand} = \text{Velocity} \times \text{Lead Time} = 7.5 \text{ units/day} \times 12 \text{ days} = 90 \text{ units}
-  \]
-  \[
-  \text{Safety Stock} = 90 \text{ units} \times 1.2 = 108 \text{ units}
-  \]
-- **Conclusion**: Immediate action is required to replenish stock to avoid stockouts and maintain customer satisfaction.
+Evaluate supplier contracts and explore bulk purchasing options to reduce COGS. A target reduction of at least 10% in COGS (to around ₹715) would increase the profit margin significantly, allowing for more flexibility in pricing strategies while still meeting the minimum margin target. Additionally, consider streamlining production processes to minimize waste and reduce costs further.","### 1) Risk Assessment Aligned with Strategy
+- **Risk Level**: SAFE
+- **Assessment**: The product has a low risk profile, indicating stable demand and supply conditions. Given the medium risk tolerance, this product aligns well with the Balanced strategy, allowing for a focus on optimizing profit while maintaining customer satisfaction.
 
 ### 2) Demand Pattern Analysis
-- **Demand Velocity**: The product has a velocity of 7.5 units/day, indicating a steady demand.
-- **Stock Depletion Rate**: With current stock levels, the product will run out in 1.3 days, which is significantly shorter than the lead time of 12 days.
-- **Customer Impact**: If stockouts occur, customer satisfaction will decline, leading to potential loss of future sales and brand loyalty.
+- **Current Stock**: 390 units
+- **Daily Velocity**: 2.2 units/day
+- **Days of Stock Remaining**: 178.2 days
+
+**Demand Forecast**:
+- **Total Demand Over Remaining Stock**: 2.2 units/day * 178.2 days = 392.04 units
+- **Conclusion**: Current stock is sufficient to meet demand for the next 178.2 days, with a slight surplus (2.04 units). This indicates a stable demand pattern with no immediate risk of stockouts.
 
 ### 3) Reorder Strategy Recommendation
-- **Reorder Point Calculation**: To ensure stock availability, the reorder point should be set at the lead time demand plus safety stock:
-  \[
-  \text{Reorder Point} = \text{Lead Time Demand} + \text{Safety Stock} = 90 \text{ units} + 108 \text{ units} = 198 \text{ units}
-  \]
-- **Immediate Reorder Action**: Place an order for at least 198 units immediately to cover the lead time and maintain safety stock levels.
-- **Monitor Demand Trends**: Continuously monitor demand patterns and adjust reorder quantities as necessary to align with changing customer preferences and market conditions.
-- **Profit Consideration**: Given the negative profit per unit (₹-89.09), consider evaluating pricing strategies or cost reductions to improve profitability while maintaining stock levels.
+- **Safety Stock Calculation**: 
+  - Daily Demand = 2.2 units
+  - Lead Time = 3 days
+  - Safety Stock = Daily Demand * Lead Time * Safety Stock Multiplier = 2.2 * 3 * 1.2 = 7.92 units (rounded to 8 units)
+
+- **Reorder Point (ROP)**:
+  - ROP = (Daily Demand * Lead Time) + Safety Stock = (2.2 * 3) + 8 = 6.6 + 8 = 14.6 units (rounded to 15 units)
+
+- **Recommendation**: 
+  - **Reorder when stock reaches 15 units**. Given the current stock level of 390 units, there is no immediate need to reorder. Monitor demand trends closely, and initiate a reorder when stock approaches the ROP to maintain customer satisfaction and mitigate stockout risks.
 
 ### Summary
-To balance profit, risk, and customer satisfaction, immediate action is required to reorder 198 units of the DANISH ROSE DECORATIVE PLATE to mitigate critical stockout risks and ensure customer satisfaction.","### 1) Why this action aligns with strategy
-Reviewing pricing for the Danish Rose Decorative Plate is crucial due to its critical risk level and negative profit per unit. By optimizing pricing, we can potentially enhance profitability while addressing customer satisfaction and minimizing risk. This aligns with the balanced strategy of optimizing profit, managing risk, and ensuring customer satisfaction.
+Maintain current stock levels while monitoring demand. Reorder when stock reaches 15 units to balance profit, risk, and customer satisfaction effectively.","### 1) Why this action aligns with strategy
+Monitoring the oversized Justin coord set aligns with the Balanced strategy as it allows for a proactive approach to managing profit, risk, and customer satisfaction. Given the product's safe risk level and substantial stock, monitoring ensures that any shifts in market demand or customer feedback can be addressed promptly, maintaining profitability while minimizing potential losses.
 
 ### 2) How to implement effectively
-- **Market Analysis**: Conduct a competitive analysis to understand pricing trends for similar products.
-- **Customer Feedback**: Gather insights from customers regarding perceived value and willingness to pay.
-- **Price Adjustment**: Test different pricing strategies (e.g., slight increases, bundling with other products) to find the optimal price point.
-- **Monitor Impact**: Track sales volume and customer feedback post-adjustment to assess the effectiveness of the new pricing.
+- **Data Tracking**: Set up a system to track sales velocity, customer reviews, and market trends related to the oversized Justin coord set.
+- **Regular Reviews**: Schedule bi-weekly reviews of sales data and customer feedback to identify any changes in demand or satisfaction.
+- **Adjust Marketing**: If monitoring reveals declining interest, adjust advertising strategies (OPTIMIZE_ADS) to boost visibility and engagement.
+- **Inventory Management**: Prepare to restock if sales increase, ensuring that inventory levels remain optimal without overcommitting resources.
 
 ### 3) Expected outcome
-By reviewing and adjusting the pricing, we anticipate:
-- Improved profit margins, potentially turning the current loss into a profit.
-- Increased customer interest if the price aligns better with perceived value.
-- Enhanced stock turnover, reducing the risk of excess inventory.
+By effectively monitoring the product, we can anticipate changes in customer preferences and market conditions, allowing for timely adjustments in marketing and inventory strategies. This proactive approach is expected to maintain or enhance customer satisfaction, protect profit margins, and mitigate risks associated with overstock or stockouts.
 
 ### 4) Priority justification
-This action is prioritized due to the critical risk level associated with the product. With only 10 units left and a negative profit margin, immediate action is necessary to prevent further losses. Optimizing pricing is essential to stabilize profitability and maintain customer satisfaction, making it a strategic imperative in the current context.","1) **Inventory Action**: Reduce stock levels significantly for the DANISH ROSE DECORATIVE PLATE, given its slow-moving status and falling seasonal trend. Aim for minimal inventory to avoid excess.
+Monitoring is prioritized because it serves as a foundational step in balancing profit, risk, and customer satisfaction. With a significant profit at risk (₹126,011.32) and a healthy stock level, maintaining vigilance over this product ensures that we can capitalize on its potential while safeguarding against unforeseen market shifts. This approach supports long-term sustainability and profitability.","1) **Inventory Action**: Reduce stock levels significantly to align with the falling seasonal trend and low demand forecast for the next month. Aim for a lean inventory to mitigate risk.
 
-2) **Pricing Strategy**: Consider a discount pricing strategy to stimulate demand, while ensuring the price remains competitive to enhance customer satisfaction despite the negative profit per unit.
+2) **Pricing Strategy**: Implement competitive pricing to stimulate demand, considering the profit margin. Introduce promotional offers in October to capitalize on peak season.
 
-3) **Key Timing to Watch**: Monitor inventory levels closely in September (trough month) and prepare for potential restocking in October, leading up to the peak in November, while assessing customer feedback for adjustments.",0.85,0.9,0.85
-22627,Medium Moving,MINT KITCHEN SCALES,9.47,5.68,107,3,-77.96169760747664,278.0633881333334,True,4.8164936946872725,22.2153306497679,SAFE,0,0.0,12.51673416511757,PAUSE_ADS_OR_INCREASE_PRICE,Strategy,1.0,1.0,May,December,STABLE,0.0,0.0,False,"### 1) Profitability Assessment
-The MINT KITCHEN SCALES are currently unprofitable, with a negative profit per unit of ₹-77.96 and a daily loss of ₹278.06. The selling price of ₹9.47 is significantly lower than the cost of goods sold (COGS) at ₹5.68, leading to unsustainable operations. To align with the medium risk tolerance and a minimum margin target of 15%, immediate adjustments are necessary.
+3) **Key Timing to Watch**: Monitor inventory levels closely in September and October for potential adjustments, and track customer feedback to gauge satisfaction and adapt strategies accordingly.",0.85,0.9,0.85
+SKU103,Coord Set,Studio Coord Set,999,452.13,112,5,209.0616,0.0,False,2.6165619667743543,42.80426048463564,SAFE,0,23414.8992,547.0226312729933,MONITOR,Strategy,1.0,0.251,April,September,FALLING,0.7,5.5,False,"### 1) Profitability Assessment
+The Studio Coord Set has a selling price of ₹999 and a cost of goods sold (COGS) of ₹452.13, resulting in a profit per unit of ₹209.06. This translates to a profit margin of approximately 20.9%, which exceeds the minimum margin target of 15.0%. The product is currently profitable and aligns well with the medium risk tolerance, as it offers a healthy margin while maintaining customer satisfaction.
 
 ### 2) Pricing Recommendation
-To achieve at least a 15% margin, the selling price must be adjusted. The target profit per unit can be calculated as follows:
-
-- **Target Profit per Unit** = COGS × (1 + Margin Target)  
-  = ₹5.68 × (1 + 0.15)  
-  = ₹5.68 × 1.15  
-  = ₹6.54
-
-Thus, the new selling price should be:
-
-- **New Selling Price** = Target Profit per Unit + COGS  
-  = ₹6.54 + ₹5.68  
-  = ₹12.22
-
-**Recommendation**: Increase the selling price to at least ₹12.22 to meet the minimum margin target.
+To further optimize profitability while ensuring customer satisfaction, consider a slight price increase to ₹1,049. This adjustment would raise the profit per unit to approximately ₹229.87, resulting in a profit margin of about 21.9%. This price point remains competitive and can enhance perceived value without significantly impacting demand.
 
 ### 3) Cost Optimization Tip
-To improve profitability without solely relying on price increases, consider negotiating with suppliers for a reduction in COGS. A target reduction of at least 10% would lower COGS to approximately ₹5.11, allowing for a more favorable profit margin even at the current selling price. Additionally, evaluate the supply chain for efficiencies or bulk purchasing discounts that could further reduce costs.","### 1) Risk Assessment Aligned with Strategy
-- **Current Stock**: 107 units
-- **Daily Demand**: 4.8 units/day
-- **Days of Stock Remaining**: 22.2 days
+Evaluate supplier contracts and explore bulk purchasing options to reduce COGS. A targeted reduction of 5-10% in COGS could significantly enhance profitability. For instance, if COGS can be reduced to ₹430, the profit per unit would increase to ₹239.06, raising the profit margin to approximately 22.8%. This would further strengthen the balance between profit and customer satisfaction.","### 1) Risk Assessment Aligned with Strategy
+- **Current Stock**: 112 units
+- **Days of Stock Remaining**: 42.8 days
+- **Daily Demand (Velocity)**: 2.6 units/day
+- **Lead Time**: 5 days
 
-**Projected Demand Over Remaining Days**:  
-\[ \text{Projected Demand} = \text{Daily Demand} \times \text{Days Remaining} = 4.8 \times 22.2 \approx 106.56 \text{ units} \]
+**Risk Level**: SAFE  
+- The product has a safe risk level, indicating stable demand and supply conditions. Given the current stock and lead time, the risk of stockouts is low.
 
-**Risk Evaluation**:  
-- With 107 units in stock and a projected demand of approximately 106.56 units, the current stock is sufficient to meet demand without stockouts.
-- **Risk Level**: SAFE, but close to the threshold. Given the medium risk tolerance, maintaining a buffer is advisable.
+**Risk Tolerance**: Medium  
+- The current stock level provides a buffer against demand fluctuations, aligning with the medium risk tolerance. However, continuous monitoring is essential to maintain this balance.
 
 ### 2) Demand Pattern Analysis
-- **Demand Velocity**: 4.8 units/day indicates a steady demand pattern.
-- **Lead Time**: 3 days allows for timely replenishment.
-- **Safety Stock Calculation**:  
-\[ \text{Safety Stock} = \text{Safety Stock Multiplier} \times \text{Daily Demand} \times \text{Lead Time} = 1.2 \times 4.8 \times 3 \approx 17.28 \text{ units} \]
+- **Daily Demand**: 2.6 units/day
+- **Total Demand Over Lead Time**: 2.6 units/day * 5 days = 13 units
+
+**Demand Pattern**:  
+- The demand is consistent and predictable, with no significant spikes or drops noted. The current stock of 112 units can cover demand for approximately 43 days, which is well above the lead time, indicating a stable demand pattern.
+
+### 3) Reorder Strategy Recommendation
+**Reorder Point Calculation**:  
+- **Safety Stock**: Daily Demand * Lead Time * Safety Stock Multiplier  
+  = 2.6 units/day * 5 days * 1.2 = 15.6 units (rounded to 16 units)
+
+**Reorder Point**:  
+- **Reorder Point** = (Daily Demand * Lead Time) + Safety Stock  
+  = 13 units + 16 units = 29 units
+
+**Recommendation**:  
+- **Reorder when stock reaches 29 units**. This ensures that you maintain customer satisfaction while balancing profit and risk. Given the current stock of 112 units, you are well above the reorder point, allowing for flexibility in demand fluctuations.
+
+**Action**: Monitor demand trends closely and adjust the reorder point if significant changes in demand patterns are observed.","### 1) Why this action aligns with strategy
+Monitoring the Studio Coord Set aligns with the Balanced strategy as it allows for a proactive approach to managing profit, risk, and customer satisfaction. Given the product's safe risk level and sufficient stock, monitoring ensures that any shifts in customer demand or market conditions can be addressed without compromising profitability or customer satisfaction.
+
+### 2) How to implement effectively
+- **Data Tracking**: Set up a system to regularly analyze sales trends, customer feedback, and inventory levels for the Studio Coord Set.
+- **Market Analysis**: Keep an eye on competitor pricing and promotions to gauge market dynamics.
+- **Customer Engagement**: Solicit feedback from customers regarding the product to identify potential improvements or marketing opportunities.
+- **Review Schedule**: Establish a bi-weekly review process to assess the product's performance and make timely adjustments if necessary.
+
+### 3) Expected outcome
+By effectively monitoring the Studio Coord Set, we anticipate maintaining a steady sales flow while minimizing the risk of stockouts or overstocking. This approach should lead to sustained profitability, as we can quickly adapt to changes in customer preferences or market conditions, ultimately enhancing customer satisfaction.
+
+### 4) Priority justification
+Monitoring is prioritized because it serves as a foundational strategy that supports other actions like optimizing ads, restocking, and price adjustments. It ensures that we have a clear understanding of the product's performance and market position, allowing for informed decision-making that balances profit, risk, and customer satisfaction effectively.","1) **Inventory Action**: Reduce stock levels in anticipation of declining demand, aiming for a target of 30 days of stock to align with the falling seasonal trend.
+
+2) **Pricing Strategy**: Implement a competitive pricing strategy to maintain customer satisfaction while maximizing profit, potentially offering discounts in the trough months to stimulate sales.
+
+3) **Key Timing to Watch**: Monitor inventory levels closely in March and April for peak sales, and prepare for significant reductions in September as demand drops.",0.85,0.9,0.85
+SKU101,Sweatshirt,Skeleton science embroidery sweatshirt,1699,775.4,484,10,295.7490545454545,0.0,False,1.6803418766254379,288.03662322098256,SAFE,0,143142.54239999998,496.95952132510797,MONITOR,Strategy,1.579,0.496,November,May,FALLING,0.7,13.5,True,"### 1) Profitability Assessment
+The Skeleton science embroidery sweatshirt has a selling price of ₹1699 and a cost of goods sold (COGS) of ₹775.4, resulting in a profit per unit of approximately ₹295.75. This yields a profit margin of about 17.4%, which exceeds the minimum margin target of 15.0%. The current profitability is satisfactory, but there is potential for improvement in customer satisfaction and risk management.
+
+### 2) Pricing Recommendation
+To align with the Balanced strategy, consider a slight price adjustment to ₹1799. This would increase the profit per unit to approximately ₹399.6, enhancing profitability while still remaining competitive. Ensure that this price point is justified by emphasizing unique features or quality to maintain customer satisfaction.
+
+### 3) Cost Optimization Tip
+Evaluate the supply chain for potential cost reductions. Negotiate with suppliers for bulk discounts or explore alternative materials that maintain quality but reduce COGS. Additionally, streamline production processes to minimize waste, which can further enhance profit margins without compromising product quality or customer satisfaction.","### 1) Risk Assessment Aligned with Strategy
+- **Current Stock**: 484 units
+- **Days Left**: 288 days
+- **Velocity**: 1.7 units/day
+- **Lead Time**: 10 days
+
+**Risk Level**: SAFE  
+- The product has a low risk profile, indicating stable demand and supply conditions. Given the medium risk tolerance, maintaining a safe stock level is appropriate.
+
+**Safety Stock Calculation**:  
+- **Average Daily Demand**: 1.7 units/day  
+- **Safety Stock**: \( \text{Safety Stock} = \text{Safety Stock Multiplier} \times \text{Average Daily Demand} \times \text{Lead Time} \)  
+- \( \text{Safety Stock} = 1.2 \times 1.7 \times 10 = 20.4 \) units (rounded to 21 units)
+
+### 2) Demand Pattern Analysis
+- **Total Demand Over Lead Time**:  
+  - \( \text{Total Demand} = \text{Velocity} \times \text{Lead Time} = 1.7 \times 10 = 17 \) units
+- **Projected Stock After Lead Time**:  
+  - \( \text{Projected Stock} = \text{Current Stock} - \text{Total Demand} = 484 - 17 = 467 \) units
+
+**Demand Stability**:  
+- The demand is consistent, with a velocity of 1.7 units/day. Given the long remaining stock duration (288 days), the product is not at immediate risk of stockout.
 
 ### 3) Reorder Strategy Recommendation
 - **Reorder Point (ROP)**:  
-\[ \text{ROP} = \text{Daily Demand} \times \text{Lead Time} + \text{Safety Stock} = (4.8 \times 3) + 17.28 \approx 32.88 \text{ units} \]
+  - \( \text{ROP} = \text{Average Daily Demand} \times \text{Lead Time} + \text{Safety Stock} \)  
+  - \( \text{ROP} = 1.7 \times 10 + 21 = 38 \) units
 
-- **Current Stock vs. ROP**:  
-Current stock (107 units) is well above the ROP (32.88 units), indicating no immediate need to reorder.
+**Recommendation**:  
+- **Current Stock**: 484 units is well above the ROP of 38 units.  
+- **Action**: Monitor demand trends closely. Given the current stock levels and demand velocity, a reorder is not necessary at this time. However, consider placing a reorder when stock approaches 100 units to ensure continued customer satisfaction and mitigate any unforeseen demand spikes.
 
-- **Recommendation**: 
-  - Monitor demand closely; if demand increases or stock levels drop below 50 units, initiate a reorder.
-  - Consider placing a reorder when stock reaches approximately 50 units to maintain customer satisfaction and mitigate stockout risks.
-  - Given the negative profit per unit (₹-77.96), evaluate pricing strategies or cost reductions to improve profitability while maintaining stock levels. 
-
-This balanced approach ensures that profit, risk, and customer satisfaction are optimized.","### 1) Alignment with Strategy
-Pausing ads or increasing the price of the MINT KITCHEN SCALES aligns with the Balanced strategy by addressing the current negative profit per unit (₹-77.96) while maintaining customer satisfaction. By either reducing marketing spend or adjusting pricing, we can mitigate losses and stabilize profit margins, thus balancing profit and risk effectively.
-
-### 2) Implementation
-- **Pause Ads**: Temporarily halt advertising campaigns to reduce marketing expenses. Monitor sales performance closely during this period to assess the impact on customer demand.
-- **Increase Price**: Conduct a market analysis to determine a feasible price increase that customers are willing to accept without significantly affecting demand. Implement the price change across all sales channels.
-- **Communication**: If increasing prices, communicate the value proposition clearly to customers, emphasizing quality and features to justify the price adjustment.
-
-### 3) Expected Outcome
-- **Financial Improvement**: By pausing ads, we reduce unnecessary expenditure, and by increasing prices, we aim to shift the profit margin from negative to positive. This should lead to an overall improvement in profitability.
-- **Customer Retention**: If executed thoughtfully, the price increase may not deter loyal customers, especially if they perceive the product's value as high.
-- **Inventory Management**: With 107 units left, the actions should help manage stock levels effectively, preventing overstock situations.
-
-### 4) Priority Justification
-This action is prioritized because:
-- **Current Losses**: The product is currently unprofitable, necessitating immediate corrective measures.
-- **Risk Management**: The risk level is classified as SAFE, allowing for strategic adjustments without jeopardizing overall business stability.
-- **Resource Allocation**: By pausing ads, we can reallocate resources to more profitable products or initiatives, optimizing overall business performance. 
-
-In summary, pausing ads or increasing prices for the MINT KITCHEN SCALES is a strategic move to balance profit, risk, and customer satisfaction effectively.","1) **Inventory Action**: Maintain current stock levels due to stable seasonality and low risk; monitor sales closely to avoid excess inventory.
-
-2) **Pricing Strategy**: Consider a slight price increase to improve profit margins, ensuring it remains competitive while addressing the negative profit per unit.
-
-3) **Key Timing to Watch**: Focus on May for peak sales opportunities and monitor December for potential inventory adjustments, given it’s the trough month.",0.85,0.9,0.85
-21629,Slow Moving,SQUARE FLOOR CUSHION VINTAGE PINK,12.79,7.67,10,5,-73.727094,19.6605584,True,1.8701570219271235,5.347144588797892,WARNING,0,0.0,3.676833134676829,REVIEW_PRICING,Strategy,1.806,0.843,January,November,FALLING,0.92,1.7,False,"### 1) Profitability Assessment
-The SQUARE FLOOR CUSHION VINTAGE PINK is currently unprofitable, with a profit per unit of ₹-73.73 and a daily loss of ₹19.66. Given its classification as a slow-moving product, the current pricing and cost structure are not sustainable. The product fails to meet the minimum margin target of 15%, indicating a need for immediate adjustments to improve profitability while considering customer satisfaction and risk.
-
-### 2) Pricing Recommendation
-To achieve the minimum margin target of 15%, the selling price needs to be adjusted. The target profit per unit can be calculated as follows:
-
-- **Target Profit per Unit** = COGS / (1 - Margin Target)  
-= ₹7.67 / (1 - 0.15)  
-= ₹7.67 / 0.85  
-= ₹9.02 (rounded)
-
-Thus, to achieve at least a 15% margin, the new selling price should be set at approximately **₹9.02**. This price adjustment will help cover costs and improve profitability while remaining competitive.
-
-### 3) Cost Optimization Tip
-To enhance profitability, consider reviewing and negotiating with suppliers to reduce the COGS of ₹7.67. A target reduction of at least 10% could significantly improve margins. Additionally, explore alternative materials or production methods that maintain quality but lower costs. This approach will help balance cost efficiency with customer satisfaction, ensuring the product remains appealing while improving profitability.","### 1) Risk Assessment Aligned with Strategy
-The current stock of 10 units with a velocity of 1.9 units/day indicates that the product will run out in approximately 5.3 days. Given the lead time of 5 days, there is a risk of stockout, especially since the product is already flagged with a ""WARNING"" risk status. The negative profit per unit (₹-73.73) further complicates the situation, indicating that holding this inventory is not financially beneficial. The medium risk tolerance suggests that while some risk is acceptable, proactive measures should be taken to mitigate potential stockouts and financial losses.
-
-### 2) Demand Pattern Analysis
-The demand velocity of 1.9 units/day suggests a moderate and consistent demand for the SQUARE FLOOR CUSHION VINTAGE PINK. However, with only 10 units in stock, the current inventory is insufficient to meet demand over the next few days. The demand pattern indicates that if the trend continues, stockouts are imminent, which could lead to customer dissatisfaction and potential loss of future sales.
-
-### 3) Reorder Strategy Recommendation
-To align with the Balanced strategy, the following actions are recommended:
-
-- **Reorder Point Calculation**: 
-  - Daily Demand = 1.9 units
-  - Lead Time = 5 days
-  - Reorder Point = Daily Demand x Lead Time = 1.9 units/day x 5 days = 9.5 units (round up to 10 units).
-
-- **Safety Stock Calculation**: 
-  - Safety Stock = Safety Stock Multiplier x Daily Demand x Lead Time = 1.2 x 1.9 x 5 = 11.4 units (round up to 12 units).
-
-- **Total Reorder Quantity**: 
-  - Total Stock Needed = Reorder Point + Safety Stock = 10 units + 12 units = 22 units.
-
-- **Action**: Place an order for 22 units immediately to ensure sufficient stock to meet demand and mitigate the risk of stockouts. This order will also help in balancing customer satisfaction and financial performance, given the current negative profit situation. 
-
-By implementing this strategy, you can maintain a balance between risk, customer satisfaction, and profitability.","### 1) Why this action aligns with strategy
-Reviewing pricing for the SQUARE FLOOR CUSHION VINTAGE PINK aligns with the Balanced strategy as it directly addresses the need to optimize profit while managing risk and maintaining customer satisfaction. Given the current negative profit per unit, adjusting the price can help improve profitability, reduce financial risk, and potentially enhance perceived value for customers.
+**Conclusion**: Maintain current inventory levels while monitoring demand. Reassess every month to adjust for any changes in demand patterns or lead times.","### 1) Why this action aligns with strategy
+Monitoring the Skeleton science embroidery sweatshirt aligns with the Balanced strategy as it allows for a proactive approach to managing profit, risk, and customer satisfaction. Given the product's safe risk level and substantial stock, monitoring ensures that any shifts in customer demand or market trends can be swiftly addressed without compromising profitability or customer experience.
 
 ### 2) How to implement effectively
-- **Market Analysis**: Conduct a competitive analysis to understand pricing trends for similar products.
-- **Cost Assessment**: Review production and operational costs to determine the minimum viable price.
-- **Customer Feedback**: Gather insights from customers regarding their willingness to pay and perceived value.
-- **Price Adjustment**: Implement a strategic price increase, ensuring it remains competitive and justifiable based on the value offered.
-- **Monitor Performance**: After the price adjustment, closely track sales volume, customer feedback, and overall profitability.
+- **Data Tracking**: Set up a system to regularly analyze sales data, customer feedback, and market trends related to the sweatshirt.
+- **Inventory Management**: Use inventory management software to track stock levels and forecast demand based on historical sales patterns.
+- **Customer Engagement**: Engage with customers through surveys or social media to gauge satisfaction and gather insights on potential improvements or new designs.
+- **Regular Reviews**: Schedule bi-weekly reviews to assess the product's performance and adjust marketing strategies or stock levels as needed.
 
 ### 3) Expected outcome
-By reviewing and adjusting the pricing, we anticipate:
-- Improved profit margins per unit, potentially turning the current loss into profit.
-- Increased customer perception of value, leading to higher sales volume.
-- Enhanced stock turnover, reducing the risk of excess inventory as the current stock is low.
+By effectively monitoring the product, we anticipate maintaining a healthy stock level while maximizing profit margins. This proactive approach will help identify opportunities for promotions or adjustments in pricing, ultimately leading to increased customer satisfaction and retention. The expected outcome is a steady sales flow with minimized risk of overstock or stockouts.
 
 ### 4) Priority justification
-This action is prioritized due to the current warning risk level associated with profitability. With only 10 units left and a negative profit margin, immediate action is necessary to prevent further losses. Optimizing pricing is a critical step to stabilize financial performance while ensuring customer satisfaction is not compromised, thus aligning with the overarching goal of balancing profit, risk, and customer satisfaction.","1) **Inventory Action**: Reduce stock levels significantly for the SQUARE FLOOR CUSHION VINTAGE PINK, given its slow-moving status and falling seasonal trend. Aim for a stock level that aligns with the peak month in January.
+Monitoring is prioritized because it serves as a foundational action that supports the optimization of ads, restocking, and potential price increases. By understanding customer behavior and market dynamics, we can make informed decisions that balance profit and risk while enhancing customer satisfaction. This approach ensures that subsequent actions are data-driven and aligned with overall strategic goals.","1) **Inventory Action**: Reduce stock levels significantly to align with the declining trend and high current stock days. Aim for a lean inventory to mitigate risk.
 
-2) **Pricing Strategy**: Consider a promotional pricing strategy to clear existing inventory, potentially bundling with complementary products to enhance customer satisfaction while minimizing losses.
+2) **Pricing Strategy**: Implement a competitive pricing strategy to attract customers, considering the upcoming low demand in the next month. A slight discount may enhance customer satisfaction without sacrificing profit margins.
 
-3) **Key Timing to Watch**: Monitor inventory levels closely in December as demand typically peaks in January, ensuring stock is available without overcommitting resources.",0.85,0.9,0.85
-90208,Slow Moving,PAIR OF ENAMEL FLOWER CLUSTER SLIDE,2.54,1.52,10,11,-115.581444,30.8217184,True,1.1428571428571428,8.75,CRITICAL,0,0.0,3.522482102857143,REVIEW_PRICING,Strategy,1.12,0.102,August,February,FALLING,0.0,0.0,False,"### 1) Profitability Assessment
-The current profitability of the ""Pair of Enamel Flower Cluster Slide"" is negative, with a profit per unit of ₹-115.58 and a daily loss of ₹30.82. This indicates that the product is not only slow-moving but also unprofitable at its current price point. The minimum margin target of 15% is not being met, necessitating immediate action to improve profitability while considering customer satisfaction and risk.
+3) **Key Timing to Watch**: Monitor inventory levels closely in October and early November, as these are critical for capitalizing on peak demand while managing risk effectively.",0.85,0.9,0.85
+SKU104,Coord Set,West Coast Coord Set,1599,669.75,166,10,-25.286399999999958,5.057279999999992,True,3.112453816689878,53.33412470567755,SAFE,0,0.0,0.09482259300041782,REVIEW_PRICING,Strategy,1.0,0.251,March,August,FALLING,0.7,4.0,False,"### 1) Profitability Assessment
+The West Coast Coord Set is currently operating at a loss of ₹25.29 per unit, with a daily loss of ₹5.06. This indicates that the product is not meeting the minimum margin target of 15%, which translates to a required profit of approximately ₹240 (15% of ₹1599). The current cost of goods sold (COGS) is too high relative to the selling price, leading to negative profitability.
 
 ### 2) Pricing Recommendation
-To achieve at least a 15% margin, the selling price needs to be adjusted. The formula for the minimum selling price (SP) to achieve the target margin is:
+To achieve the minimum margin target of 15%, the selling price should be adjusted. The required selling price can be calculated as follows:
 
-\[ SP = COGS / (1 - Margin Target) \]
+- Required Profit = COGS + Desired Profit
+- Desired Profit = 15% of Selling Price
 
-Using the COGS of ₹1.52 and a margin target of 15%:
+Let \( P \) be the new selling price:
 
-\[ SP = 1.52 / (1 - 0.15) = 1.52 / 0.85 \approx ₹1.79 \]
+\[ 
+P = COGS + 0.15P 
+\]
 
-However, given the current selling price of ₹2.54, which is above the calculated minimum, consider a slight increase to ₹2.99 to enhance perceived value while remaining competitive. This price adjustment can help mitigate losses and improve customer perception.
+Rearranging gives:
+
+\[ 
+0.85P = COGS 
+\]
+
+Substituting the COGS:
+
+\[ 
+P = \frac{₹669.75}{0.85} \approx ₹787.35 
+\]
+
+To ensure competitiveness and customer satisfaction, consider setting the new selling price at ₹1599, but with a focus on reducing COGS to improve margins.
 
 ### 3) Cost Optimization Tip
-To enhance profitability, focus on reducing the COGS. Analyze the supply chain for potential cost-saving opportunities, such as negotiating better rates with suppliers or exploring alternative materials that maintain quality but reduce costs. A target reduction of at least 10% in COGS could significantly improve the profit margin, making the product more viable in the market.","### 1) Risk Assessment Aligned with Strategy
-Given the critical risk status of the product, immediate attention is required. The current stock of 10 units with a velocity of 1.1 units/day indicates that the stock will deplete in approximately 8.8 days. With a lead time of 11 days, there is a risk of stockout, which is compounded by the high stockout penalty weight of 0.7. This suggests that failing to meet customer demand could significantly impact customer satisfaction and future sales.
+To enhance profitability while maintaining customer satisfaction, consider the following cost optimization strategies:
+
+- **Supplier Negotiation**: Engage with suppliers to negotiate better rates or bulk purchase discounts to lower COGS.
+- **Material Efficiency**: Analyze the production process for waste reduction and efficiency improvements, potentially lowering material costs.
+- **Alternative Sourcing**: Explore alternative suppliers or materials that maintain quality but reduce costs.
+
+Implementing these strategies can help achieve the desired profit margins while balancing risk and customer satisfaction.","### 1) Risk Assessment Aligned with Strategy
+- **Current Stock**: 166 units
+- **Days of Stock Left**: 53.3 days
+- **Daily Demand (Velocity)**: 3.1 units/day
+- **Lead Time**: 10 days
+
+**Risk Level**: SAFE  
+- The current stock is sufficient to cover demand for approximately 53.3 days, which exceeds the lead time of 10 days. This indicates a low risk of stockouts, aligning with the medium risk tolerance of the Balanced strategy.
 
 ### 2) Demand Pattern Analysis
-The demand velocity of 1.1 units/day indicates a steady consumption rate. However, with only 10 units in stock and 8.8 days remaining, the product will run out before the next replenishment arrives (11 days lead time). This creates a critical situation where demand exceeds supply, leading to potential stockouts and lost sales.
+- **Daily Demand**: 3.1 units/day
+- **Total Demand Over Lead Time**: 3.1 units/day * 10 days = 31 units
+
+**Safety Stock Calculation**:  
+- Safety Stock = Safety Stock Multiplier * Daily Demand * Lead Time  
+- Safety Stock = 1.2 * 3.1 * 10 = 37.2 units (rounded to 38 units)
+
+**Total Stock Requirement**:  
+- Total Requirement = Demand During Lead Time + Safety Stock  
+- Total Requirement = 31 units + 38 units = 69 units
 
 ### 3) Reorder Strategy Recommendation
-To mitigate risk and align with the balanced strategy, the following actions are recommended:
+- **Current Stock**: 166 units
+- **Total Requirement**: 69 units
 
-- **Reorder Point Calculation**: 
-  - Daily Demand = 1.1 units/day
-  - Lead Time = 11 days
-  - Reorder Point = Daily Demand x Lead Time = 1.1 units/day x 11 days = 12.1 units (round up to 13 units).
+**Recommendation**:  
+- Given that the current stock (166 units) significantly exceeds the total requirement (69 units), there is no immediate need to reorder. However, monitor demand trends closely, as the product has a negative profit margin (₹-25.29), indicating potential issues with profitability. 
 
-- **Safety Stock Calculation**: 
-  - Safety Stock = Safety Stock Multiplier x Daily Demand x Lead Time = 1.2 x 1.1 x 11 = 14.52 units (round up to 15 units).
+**Action Steps**:
+1. **Continue Monitoring**: Keep an eye on sales velocity and market trends to adjust inventory levels proactively.
+2. **Evaluate Pricing Strategy**: Consider revising pricing or cost structure to improve profitability.
+3. **Set Reorder Point**: Establish a reorder point at 69 units to ensure timely replenishment when stock approaches this level, factoring in lead time and safety stock.
 
-- **Total Stock Requirement**: 
-  - Total Stock Needed = Reorder Point + Safety Stock = 13 + 15 = 28 units.
-
-- **Action**: Place an immediate reorder for 28 units to ensure adequate stock levels, considering the critical risk and the need to balance customer satisfaction with potential profit losses.
-
-This approach will help maintain customer satisfaction while managing the risk of stockouts effectively.","### 1) Why this action aligns with strategy
-Reviewing pricing for the PAIR OF ENAMEL FLOWER CLUSTER SLIDE aligns with the Balanced strategy as it directly addresses the critical risk level associated with the product's negative profit margin. By optimizing pricing, we can enhance profitability while maintaining customer satisfaction, ensuring that the product remains attractive in the market.
+This balanced approach ensures that you maintain adequate stock levels while minimizing risk and addressing profitability concerns.","### 1) Why this action aligns with strategy
+Reviewing pricing for the West Coast Coord Set aligns with the Balanced strategy as it directly addresses the need to optimize profit while managing risk and maintaining customer satisfaction. Given the current negative profit per unit, adjusting the pricing could enhance profitability without significantly impacting customer demand, especially since the risk level is categorized as safe.
 
 ### 2) How to implement effectively
-- **Market Analysis**: Conduct a competitive analysis to understand pricing trends for similar products.
-- **Cost Assessment**: Review production and operational costs to identify potential areas for cost reduction.
-- **Price Testing**: Implement A/B testing for different price points to gauge customer response without committing to a permanent price change.
-- **Customer Feedback**: Engage with customers to understand their perceived value of the product and willingness to pay.
-- **Monitor Sales**: Track sales performance post-adjustment to evaluate the impact on both profit and customer satisfaction.
+- **Market Analysis**: Conduct a competitive analysis to understand pricing trends and customer expectations in the market.
+- **Customer Feedback**: Gather insights from customers regarding perceived value and willingness to pay for the product.
+- **Pricing Models**: Explore different pricing strategies (e.g., value-based pricing, psychological pricing) to determine the optimal price point.
+- **Test Pricing**: Implement A/B testing with different price points to gauge customer response before finalizing the new price.
+- **Communication**: Clearly communicate any price changes to customers, emphasizing value and quality to maintain satisfaction.
 
 ### 3) Expected outcome
-By reviewing and potentially adjusting the pricing, we anticipate:
-- Improved profit margins, moving from a loss to a positive profit per unit.
-- Increased sales volume if the price adjustment aligns with customer expectations.
-- Enhanced customer satisfaction if the perceived value matches the new price point, leading to repeat purchases and brand loyalty.
+By reviewing and potentially adjusting the pricing, we anticipate an increase in profit margins per unit sold, which could lead to an overall improvement in profitability. Additionally, if executed thoughtfully, customer satisfaction may remain stable or even improve due to perceived value alignment.
 
 ### 4) Priority justification
-This action is prioritized due to the critical risk level associated with the product's current pricing strategy. With a negative profit margin and limited stock, immediate action is necessary to prevent further financial loss. Optimizing pricing not only addresses profitability but also mitigates risk, ensuring that customer satisfaction remains intact, thus aligning with the overarching goal of balancing profit, risk, and customer satisfaction.","1) **Inventory Action**: Reduce stock levels significantly to avoid excess inventory, given the slow-moving nature and falling seasonal trend.
+This action is prioritized because the current profit per unit is negative, indicating an urgent need to address pricing to avoid losses. Optimizing pricing is a direct lever to enhance profitability while maintaining a safe risk profile, making it a critical step in balancing profit, risk, and customer satisfaction effectively.","1) **Inventory Action**: Reduce stock levels significantly to avoid excess inventory, focusing on a lean approach given the falling trend and negative profit per unit.
 
-2) **Pricing Strategy**: Consider a discount or promotional pricing to stimulate demand, as the profit per unit is negative. Aim to clear inventory before the trough in February.
+2) **Pricing Strategy**: Implement competitive pricing to stimulate demand, potentially offering discounts or promotions to enhance customer satisfaction while managing risk.
 
-3) **Key Timing to Watch**: Monitor sales closely in August, the peak month, for any unexpected demand shifts, and adjust inventory levels accordingly to mitigate risk.",0.85,0.9,0.85
+3) **Key Timing to Watch**: Monitor sales closely in February and early March, as these are critical for capitalizing on peak demand before the trough in August. Adjust strategies based on real-time sales performance.",0.85,0.9,0.85

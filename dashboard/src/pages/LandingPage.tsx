@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, BarChart2, Brain, ChevronRight } from 'lucide-react';
+import { ArrowRight, BarChart2, Brain } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 
@@ -81,9 +81,7 @@ const LandingPage: React.FC = () => {
                             <p className="text-gray-300 text-lg mb-8 leading-relaxed">
                                 Stop reacting to the market. Anticipate it. Our seasonal analysis engine processes thousands of data points to forecast peaks and troughs before they happen.
                             </p>
-                            <Link to="/analytics" className="flex items-center gap-4 text-emerald-500 font-bold uppercase tracking-widest text-xs cursor-pointer hover:text-white transition-colors">
-                                Explore Analytics <ChevronRight className="w-4 h-4" />
-                            </Link>
+
                         </motion.div>
                         <motion.div
                             initial={{ opacity: 0, scale: 0.95 }}
@@ -128,9 +126,7 @@ const LandingPage: React.FC = () => {
                             <p className="text-gray-300 text-lg mb-8 leading-relaxed">
                                 Deployment without management. Our autonomous agents handle price adjustments, stock reordering, and ad campaign optimizations in real-time.
                             </p>
-                            <Link to="/analytics" className="flex items-center gap-4 text-purple-500 font-bold uppercase tracking-widest text-xs cursor-pointer hover:text-white transition-colors">
-                                View Agents <ChevronRight className="w-4 h-4" />
-                            </Link>
+
                         </motion.div>
                     </div>
                 </div>
